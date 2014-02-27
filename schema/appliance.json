@@ -24,7 +24,7 @@
                 "min_on_duration": { "format": "time", "type": "string" },
                 "category": { "type": "string" }
             },
-            "required": ["name"],
+            "required": ["name"]
         },
         { 
             "oneOf": [
