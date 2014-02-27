@@ -49,8 +49,14 @@
                         { "properties": {
                             "name": { "enum": ["tv"] },
                             "category": { "enum": ["entertainment"] }
+                        }},
+                        { "properties": {
+                            "name": { "enum": ["computer_monitor"] },
+                            "category": { "enum": ["ict"] }
                         }}
-                    ]}]
+                    ]
+                    }
+                    ]
                 }
             ]
         }

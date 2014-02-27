@@ -6,6 +6,11 @@
         "type": "chest"
     },
     "tv": {
-        "name": "tv"
+        "name": "tv",
+        "screen_size": 234
+    },
+    "monitor": {
+        "name": "computer_monitor",
+        "category": "ict"
     }
 }
