@@ -31,9 +31,13 @@
                     "_comment": "---------FRIDGES---------------",
                     "properties": {
                     "name": { "enum": ["fridge", "fridge_freezer", "freezer"] },
-                    "category": { "enum": ["cold"], "defaultValue": "cold" },
-                    "type": { "enum": ["upright", "chest", "american"], "defaultValue": "upright" },
-                    "freezer_is_separate_thermal_zone": { "type": "boolean", "defaultValue": true }
+                    "category": { "enum": ["cold"], "defaultValueX": "cold" },
+                    "type": { 
+                        "enum": ["upright", "chest", "american"], 
+                        "defaultValue": "upright" },
+                    "freezer_is_separate_thermal_zone": { 
+                        "type": "boolean", 
+                        "defaultValue": true }
                 }},
                 {   
                     "_comment": "---------LCD, PLASMA and CRT SCREENS--------",
