@@ -41,7 +41,8 @@
                 { "$ref": "#/subclasses/kitchen_misc" },
                 { "$ref": "#/subclasses/cooker" },
                 { "$ref": "#/subclasses/oven" },
-                { "$ref": "#/subclasses/hob_or_grill" }
+                { "$ref": "#/subclasses/hob_or_grill" },
+                { "$ref": "#/subclasses/sockets" }
         ]
     },
    
@@ -57,13 +58,11 @@
 
         "kitchen_misc": {
             "properties": {
-                "name": { "enum": ["wine_cooler",
-                                   "food_mixer", 
-                                   "vacuum_cleaner", 
-                                   "mini_vacuum_cleaner_charger",
-                                   "yoghurt_maker",
-                                   "water_filter",
-                                   "kitchen_outlets"] }
+                "name": { "enum": [
+                    "wine_cooler", "food_mixer", 
+                    "vacuum_cleaner", "mini_vacuum_cleaner_charger",
+                    "yoghurt_maker", "water_filter"
+                ] }
             }
         },
 
@@ -112,6 +111,13 @@
                 "name": { "enum": ["hob", "grill"] },
                 "fuel": { "$ref": "#/definitions/fuel" }
             }
+        },
+
+        "sockets": {
+            "properties": {
+                "name": { "enum": ["sockets"] }
+            },
+            "required": ["name", "room"]
         }
 
     },
