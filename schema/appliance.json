@@ -5,10 +5,9 @@
     "description": "Metadata for a Appliances",
     "type": "object",
     "properties": {
-        "name": {
-            "enum": ["tv", "toaster"]
-            }
+        "name": { "enum": ["tv", "toaster"] },
+        "instance": { "$ref": "instance.json" }
     },
-    "required": ["id", "sample_period", "max_sample_period"],
+    "required": ["name", "instance"],
     "additionalProperties": false
 }
