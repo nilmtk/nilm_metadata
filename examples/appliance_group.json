@@ -1,31 +1,34 @@
-{
-    [
-        { 
-            "name": "fridge",
-            "category": "cold",
-            "on_power_threshold": 5,
-            "type": "chest"
-        },
-        {
-            "name": "tv",
-            "screen_size": 234
-        },
-        {
-            "name": "computer_monitor",
-            "category": "ict",
-            "room": {"name": "kitchen", "instance": 1}
-        },
-        {
-            "name": "cooker",
-            "components": [
-                { "name": "oven", "fuel": "oil" },
-                { "name": "hob", "fuel": "electricity" },
-                { "name": "grill", "fuel": "gas" }
-            ]
-        },
-        {
-            "name": "sockets",
-            "room": {"name": "kitchen", "instance": 1}
-        }
-    ]
-}
+[
+    { 
+        "name": "fridge",
+        "instance": 1,
+        "category": "cold",
+        "on_power_threshold": 5,
+        "type": "chest"
+    },
+    {
+        "name": "tv",
+        "instance": 1,
+        "screen_size": 234
+    },
+    {
+        "name": "computer monitor",
+        "instance": 1,
+        "category": "ict",
+        "room": {"name": "kitchen", "instance": 1}
+    },
+    {
+        "name": "cooker",
+        "instance": 1,
+        "components": [
+            { "name": "oven", "fuel": "oil" },
+            { "name": "hob", "fuel": "electricity" },
+            { "name": "grill", "fuel": "gas" }
+        ]
+    },
+    {
+        "name": "sockets",
+        "instance": 1,
+        "room": { "name": "kitchen", "instance": 1 }
+    }
+]

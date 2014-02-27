@@ -42,7 +42,10 @@
                 { "$ref": "#/subclasses/cooker" },
                 { "$ref": "#/subclasses/oven" },
                 { "$ref": "#/subclasses/hob_or_grill" },
-                { "$ref": "#/subclasses/sockets" }
+                { "$ref": "#/subclasses/sockets" },
+                { "$ref": "#/subclasses/heating" },
+                { "$ref": "#/subclasses/heat_pump" },
+                { "$ref": "#/subclasses/misc" }
         ]
     },
    
@@ -50,7 +53,7 @@
 
         "fridge": {   
             "properties": {
-                "name": { "enum": ["fridge", "fridge_freezer", "freezer"] },
+                "name": { "enum": ["fridge", "fridge freezer", "freezer"] },
                 "type": { "enum": ["upright", "chest", "american"] },
                 "freezer_is_separate_thermal_zone": { "type": "boolean" }
             }
@@ -59,16 +62,19 @@
         "kitchen_misc": {
             "properties": {
                 "name": { "enum": [
-                    "wine_cooler", "food_mixer", 
-                    "vacuum_cleaner", "mini_vacuum_cleaner_charger",
-                    "yoghurt_maker", "water_filter"
+                    "wine cooler", "food mixer", 
+                    "vacuum cleaner", "mini vacuum cleaner charger",
+                    "yoghurt maker", "water filter",
+                    "microwave", "kettle", "toaster", "fryer", "bread maker", 
+                    "coffee maker", "food steamer", "bottle warmer", 
+                    "steriliser", "plate warmer", "slow cooker", "other cooking"
                 ] }
             }
         },
 
         "screen": {   
             "properties": {
-                "name": { "enum": ["tv", "computer_monitor"] },
+                "name": { "enum": ["tv", "computer monitor"] },
                 "screen_size": { 
                     "type": "number",
                     "description": "diagonal size in inches",
@@ -87,14 +93,16 @@
         "cooker": {
             "properties": {
                 "name": { "enum": ["cooker"] },
-                "components": { "type": "array",
-                                "description": "meta-appliance made up of other appliances",
-                                "items": {
-                                    "anyOf": [
-                                        { "$ref": "#/subclasses/oven" },
-                                        { "$ref": "#/subclasses/hob_or_grill" }
-                                    ]
-                                }}
+                "components": { 
+                    "type": "array",
+                    "description": "meta-appliance made up of other appliances",
+                    "items": {
+                        "anyOf": [
+                            { "$ref": "#/subclasses/oven" },
+                            { "$ref": "#/subclasses/hob_or_grill" }
+                        ]
+                    }
+                }
             }
         },
 
@@ -118,6 +126,29 @@
                 "name": { "enum": ["sockets"] }
             },
             "required": ["name", "room"]
+        },
+
+        "heating": {
+            "properties": {
+                "name": { "enum": [ 
+                    "boiler", "space heater", "storage heater",
+                    "domestic hot water heater" ] },
+                "fuel": { "$ref": "#/definitions/fuel" }
+            },
+        },
+
+        "heat_pump": {
+            "properties": {
+                "name": { "enum": ["heat pump", "air conditioning" ] },
+                "heat_source": { "enum": ["ground", "air", "water"] }
+            }
+        },
+
+        "misc": {
+            "properties": {
+                "name": { "enum": [
+                    "fan", "circulation pump" ] }
+            }
         }
 
     },
