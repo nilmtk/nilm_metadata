@@ -6,8 +6,10 @@
     "type": "object",
     "properties": {
         "id": {
-            "description": "The ID of this meter, unique within the building.",
-            "$ref": "instance.json"
+            "allOf": [
+                { "$ref": "instance.json" },
+                { "description": "The ID of this meter, unique within the building." }
+            ]
         },
         "sample_period": {
             "description": "The sample period in seconds",
@@ -53,20 +55,13 @@
                             {"$ref": "appliance.json#/properties/name"}
                             ]
                     },
-                    "instance": {
-                        "type": "integer",
-                        "minimum": 0,
-                        "exclusiveMinimum": true
-                        }
+                    "instance": { "$ref": "instance.json" }
                 },
                 "required": ["name", "instance"]
             },
             "uniqueItems": true
         },
-        "downstream_of_meter": {
-            "type": "integer",
-            "miniumum": 1
-        },
+        "downstream_of_meter": { "$ref": "instance.json" },
         "preprocessing_applied": {
             "type": "array",
             "items": {
