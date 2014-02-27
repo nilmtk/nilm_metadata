@@ -5,7 +5,12 @@
     "description": "Metadata for a Appliances",
     "type": "object",
     "properties": {
-        "name": { "enum": ["tv", "toaster"] },
+        "name": { 
+            "anyOf": [
+                { "enum": ["tv", "toaster"] },
+                { "$ref": "fridge.json#/allOf/name" }
+            ]
+        },
         "category": { "enum": ["cold", "hot"] },
         "instance": { "$ref": "instance.json" },
         "room": { "$ref": "room.json" },
