@@ -29,33 +29,21 @@
             "required": ["name"]
         },
         { 
-            "$ref": "#/all_subclasses"
+            "$ref": "#/subclasses"
         }
     ],
     "all_subclasses": {
-        "oneOf": 
-        [
-                { "$ref": "#/subclasses/fridge" },
-                { "$ref": "#/subclasses/screen" },
-                { "$ref": "#/subclasses/projector" },
-                { "$ref": "#/subclasses/kitchen_misc" },
-                { "$ref": "#/subclasses/cooker" },
-                { "$ref": "#/subclasses/oven" },
-                { "$ref": "#/subclasses/hob_or_grill" }
-        ]
-    },
-   
-    "subclasses": {
+        "oneOf": [
 
-        "fridge": {   
+        { "fridge": {   
             "properties": {
                 "name": { "enum": ["fridge", "fridge_freezer", "freezer"] },
                 "type": { "enum": ["upright", "chest", "american"] },
                 "freezer_is_separate_thermal_zone": { "type": "boolean" }
             }
-        },
+        }},
 
-        "kitchen_misc": {
+        {"kitchen_misc": {
             "properties": {
                 "name": { "enum": ["wine_cooler",
                                    "food_mixer", 
@@ -65,9 +53,9 @@
                                    "water_filter",
                                    "kitchen_outlets"] }
             }
-        },
+        }},
 
-        "screen": {   
+        {"screen": {   
             "properties": {
                 "name": { "enum": ["tv", "computer_monitor"] },
                 "screen_size": { 
@@ -77,15 +65,15 @@
                     "exclusiveMinimum": true
                 }
             }
-        },
+        }},
 
-        "projector": {
+        {"projector": {
             "properties": {
                 "name": { "enum": ["projector"] }
             }
-        },
+        }},
 
-        "cooker": {
+        {"cooker": {
             "properties": {
                 "name": { "enum": ["cooker"] },
                 "components": { "type": "array",
@@ -97,22 +85,22 @@
                                     ]
                                 }}
             }
-        },
+        }},
 
-        "oven": {
+        {"oven": {
             "properties": {
                 "name": { "enum": ["oven"] },
                 "fan": { "type": "boolean" },
                 "fuel": { "$ref": "#/definitions/fuel" }
             }
-        },
+        }},
 
-        "hob_or_grill": {
+        {"hob_or_grill": {
             "properties": {
                 "name": { "enum": ["hob", "grill"] },
                 "fuel": { "$ref": "#/definitions/fuel" }
             }
-        }
+        }}
 
     },
     "definitions": {
