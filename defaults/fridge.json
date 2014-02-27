@@ -1,0 +1,6 @@
+{
+    "$schema": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/fridge.json",
+    "name": "fridge",
+    "category": "cold",
+    "on_power_threshold": 5
+}

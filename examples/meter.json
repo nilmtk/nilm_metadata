@@ -1,0 +1,17 @@
+{
+    "id": 1,
+    "sample_period": 6,
+    "max_sample_period": 15,
+    "manufacturer": "Current Cost",
+    "model": "EnviR",
+    "available_measurements": [{"physical_quantity": "power", "type": "active"}],
+    "measurement_limits": [{"measurement": {
+                                "physical_quantity": "power", 
+                                "type": "active"
+                            },
+                            "min":0, 
+                            "max": 1000}],
+    "upstream_of": [{"name": "meter", "instance": 1},
+                   {"name": "tv", "instance": 1}],
+    "room": {"name": "kitchen", "instance": 1}
+}
