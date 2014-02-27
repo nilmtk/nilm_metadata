@@ -1,5 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.github.com/nilmtk/nilmschema/master/schema/meter.json",
     "title": "Meter",
     "description": "Metadata for a Meter",
     "type": "object",
@@ -29,7 +30,7 @@
         },
         "available_measurements": {
             "type": "array",
-            "items": { "$ref": "#/measurement" },
+            "items": { "$ref": "measurement.json" },
             "minItems": 1,
             "uniqueItems": true
         },
@@ -38,7 +39,7 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "measurement": {"$ref": "#/measurement"},
+                    "measurement": {"$ref": "measurement.json"},
                     "min": {"type": "number"},
                     "max": {"type": "number"}
                 },

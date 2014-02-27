@@ -1,5 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.github.com/nilmtk/nilmschema/master/schema/measurement.json",
     "title": "Measurement",
     "type": "object",
     "properties": {
