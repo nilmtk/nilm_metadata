@@ -78,7 +78,7 @@
             "properties": {
                 "name": { "enum": ["projector"] }
             }
-        }
+        },
 
         "cooker": {
             "properties": {
@@ -92,7 +92,7 @@
                                     ]
                                 }}
             }
-        }
+        },
 
         "oven": {
             "properties": {
@@ -100,7 +100,7 @@
                 "fan": { "type": "boolean" },
                 "fuel": { "$ref": "#/definitions/fuel" }
             }
-        }
+        },
 
         "hob_or_grill": {
             "properties": {
@@ -108,7 +108,6 @@
                 "fuel": { "$ref": "#/definitions/fuel" }
             }
         }
-
 
     },
     "definitions": {
