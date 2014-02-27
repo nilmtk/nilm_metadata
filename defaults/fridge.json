@@ -13,5 +13,13 @@
         "name": "computer_monitor",
         "category": "ict",
         "room": {"name": "kitchen", "instance": 1}
+    },
+    "cooker": {
+        "name": "cooker",
+        "components": [
+            { "name": "oven", "fuel": "oil" },
+            { "name": "hob", "fuel": "electricity" },
+            { "name": "grill", "fuel": "gas" }
+        ]
     }
 }
