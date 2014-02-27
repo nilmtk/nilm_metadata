@@ -4,29 +4,31 @@
     "title": "Appliance",
     "description": "Metadata for a Appliances",
     "type": "object",
-    "properties": {
-        "name": { 
-            "anyOf": [
-                { "enum": ["tv", "toaster"] },
-                { "$ref": "fridge.json#/extensions/properties/name" }
-            ]
+    "anyOf": [
+        { "properties": {
+            "name": { "enum": ["tv", "toaster"] },
+            "category": { "enum": ["cold", "hot"] },
+            "instance": { "$ref": "instance.json" },
+            "room": { "$ref": "room.json" },
+            "meters": { 
+                "type": "array", 
+                "items": { "$ref": "meter.json" },
+                "unique": true 
+            },
+            "on_power_threshold": { 
+                "type": "number", 
+                "description": "watts", 
+                "minimum": 0
+            },
+            "min_off_duration": { "format": "time", "type": "string" },
+            "min_on_duration": { "format": "time", "type": "string" }
         },
-        "category": { "enum": ["cold", "hot"] },
-        "instance": { "$ref": "instance.json" },
-        "room": { "$ref": "room.json" },
-        "meters": { 
-            "type": "array", 
-            "items": { "$ref": "meter.json" },
-            "unique": true 
+          "required": ["name"],
+          "additionalProperties": true
         },
-        "on_power_threshold": { 
-            "type": "number", 
-            "description": "watts", 
-            "minimum": 0
-        },
-        "min_off_duration": { "format": "time", "type": "string" },
-        "min_on_duration": { "format": "time", "type": "string" }
-    },
-    "required": ["name"],
-    "additionalProperties": true
+        { "oneOf": [
+            {"$ref": "fridge.json"}
+        ]
+        }
+    ]
 }

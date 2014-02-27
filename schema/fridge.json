@@ -3,16 +3,10 @@
     "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/fridge.json",
     "title": "Fridge",
     "type": "object",
-    "allOf": [
-        { "$ref": "appliance.json" },
-        { "$ref": "#/extensions" }
-    ],
-    "extensions": {
-        "properties": {
-            "name": { "enum": ["fridge", "fridge-freezer", "freezer"] },
-            "category": { "enum": ["cold"] },
-            "type": { "enum": ["upright", "chest", "american"] },
-            "freezer_is_separate_thermal_zone": { "type": "boolean" }
-        }
+    "properties": {
+        "name": { "enum": ["fridge", "fridge-freezer", "freezer"] },
+        "category": { "enum": ["cold"] },
+        "type": { "enum": ["upright", "chest", "american"] },
+        "freezer_is_separate_thermal_zone": { "type": "boolean" }
     }
 }
