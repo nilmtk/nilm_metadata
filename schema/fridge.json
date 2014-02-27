@@ -13,7 +13,6 @@
             "category": { "enum": ["cold"] },
             "type": { "enum": ["upright", "chest", "american"] },
             "freezer_is_separate_thermal_zone": { "type": "boolean" }
-        },
-        "additionalProperties": false
+        }
     }
 }
