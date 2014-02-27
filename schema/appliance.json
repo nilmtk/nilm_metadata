@@ -8,7 +8,7 @@
         "name": { 
             "anyOf": [
                 { "enum": ["tv", "toaster"] },
-                { "$ref": "fridge.json#/allOf/name" }
+                { "$ref": "fridge.json#/properties/name" }
             ]
         },
         "category": { "enum": ["cold", "hot"] },
