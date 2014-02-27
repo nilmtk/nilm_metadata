@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/fridge.json",
+    "title": "Fridge",
+    "type": "object",
+    "allOf": [
+        { "$ref": "appliance.json" },
+        {
+            "name": { "enum": ["fridge", "fridge-freezer", "freezer"] },
+            "category": { "enum": ["cold"] },
+            "properties": {
+                "type": { "enum": ["upright", "chest", "american"] },
+                "freezer_is_separate_thermal_zone": { "type": "boolean" }
+            },
+            "additionalProperties": false
+        }
+    ]
+}

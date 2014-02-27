@@ -92,13 +92,7 @@
                 ]
             }
         },
-        "room": {
-            "type": "object",
-            "properties": {
-                "name": { "$ref": "room.json#/properties/name" },
-                "instance": { "$ref": "instance.json" }
-                }
-            }
+        "room": { "$ref": "room.json" }
     },
     "required": ["id", "manufacturer", "model"],
     "additionalProperties": false
