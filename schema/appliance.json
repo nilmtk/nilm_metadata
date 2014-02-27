@@ -160,13 +160,13 @@
                     }
                 }
             }
-        }
+        },
 
         "pump": {
             "properties": {
                 "name": { "enum": ["pump"] }
             }
-        }
+        },
 
         "misc": {
             "properties": {
