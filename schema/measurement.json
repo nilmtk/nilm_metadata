@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Measurement",
+    "type": "object",
+    "properties": {
+        "physical_quantity": {
+            "enum": ["power", "energy", "voltage"]
+         },
+        "type": {
+            "enum": ["active", "reactive", "apparent"]
+        },
+        "cummulative": {
+            "type": "boolean"
+        }
+    },
+    "required": ["physical_quantity"],
+    "additionalProperties": false
+}

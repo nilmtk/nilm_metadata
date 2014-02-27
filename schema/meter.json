@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Meter",
+    "description": "Metadata for a Meter",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "The ID of this meter, unique within the building.",
+            "type": "integer",
+            "miniumum": 1
+        },
+        "sample_period": {
+            "description": "The sample period in seconds",
+            "type": "number",
+            "minimum": 0,
+            "exclusiveMinimum": true
+        },
+        "max_sample_period": {
+            "description": "The maximum allowed sample period in seconds",
+            "type": "number",
+            "minimum": 0,
+            "exclusiveMinimum": true
+        }, 
+        "manufacturer": {
+            "type": "string"
+        },
+        "model": {
+            "type": "string"
+        },
+        "available_measurements": {
+            "type": "array",
+            "items": { "$ref": "#/measurement" },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "measurement_limits": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "measurement": {"$ref": "#/measurement"},
+                    "min": {"type": "number"},
+                    "max": {"type": "number"}
+                },
+                "required": ["measurement", "min", "max"]
+            }
+        }
+    },
+    "required": ["id", "sample_period", "max_sample_period"],
+    "additionalProperties": false
+}
