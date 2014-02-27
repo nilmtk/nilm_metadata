@@ -5,38 +5,54 @@
     "description": "Metadata for a Appliances",
     "type": "object",
     "allOf": [
-        { "properties": {
-            "instance": { "$ref": "instance.json" },
-            "room": { "$ref": "room.json" },
-            "meters": { 
-                "type": "array", 
-                "items": { "$ref": "meter.json" },
-                "unique": true 
-            },
-            "on_power_threshold": { 
-                "type": "number", 
-                "description": "watts", 
-                "minimum": 0
-            },
-            "min_off_duration": { "format": "time", "type": "string" },
-            "min_on_duration": { "format": "time", "type": "string" }
-        },
-          "required": ["name"],
-          "additionalProperties": true
-        },
-        { "oneOf": [
-            {"$ref": "#/subclasses/fridge"}
-        ]
-        }
-    ],
-    "subclasses": {
-        "fridge": {
+        { 
             "properties": {
-                "name": { "enum": ["fridge", "fridge-freezer", "freezer"] },
-                "category": { "enum": ["cold"] },
-                "type": { "enum": ["upright", "chest", "american"] },
-                "freezer_is_separate_thermal_zone": { "type": "boolean" }
-            }            
+                "instance": { "$ref": "instance.json" },
+                "room": { "$ref": "room.json" },
+                "meters": { 
+                    "type": "array", 
+                    "items": { "$ref": "meter.json" },
+                    "unique": true 
+                },
+                "on_power_threshold": { 
+                    "type": "number", 
+                    "description": "watts", 
+                    "minimum": 0
+                },
+                "min_off_duration": { "format": "time", "type": "string" },
+                "min_on_duration": { "format": "time", "type": "string" }
+            },
+            "required": ["name"],
+            "additionalProperties": true
+        },
+        { 
+            "oneOf": [
+                {   
+                    "_comment": "---------FRIDGES---------------",
+                    "properties": {
+                    "name": { "enum": ["fridge", "fridge_freezer", "freezer"] },
+                    "category": { "enum": ["cold"], "defaultValue": "cold" },
+                    "type": { "enum": ["upright", "chest", "american"], "defaultValue": "upright" },
+                    "freezer_is_separate_thermal_zone": { "type": "boolean", "defaultValue": true }
+                }},
+                {   
+                    "_comment": "---------LCD, PLASMA and CRT SCREENS--------",
+                    "allOf": [
+                    { "properties": {
+                        "screen_size": { 
+                            "type": "number",
+                            "description": "diagonal size in inches",
+                            "minimum": 0,
+                            "exclusiveMinimum": true
+                        }}},
+                    { "oneOf": [
+                        { "properties": {
+                            "name": { "enum": ["tv"] },
+                            "category": { "enum": ["entertainment"] }
+                        }}
+                    ]}]
+                }
+            ]
         }
-    }
+    ]
 }

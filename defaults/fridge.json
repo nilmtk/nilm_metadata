@@ -1,5 +1,11 @@
 {
-    "name": "fridge",
-    "category": "cold",
-    "on_power_threshold": 5
+    "fridge": {
+        "name": "fridge",
+        "category": "cold",
+        "on_power_threshold": 5,
+        "type": "chest"
+    },
+    "tv": {
+        "name": "tv"
+    }
 }
