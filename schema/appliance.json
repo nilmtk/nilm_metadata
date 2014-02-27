@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.github.com/nilmtk/nilmschema/master/schema/appliance.json",
+    "title": "Appliance",
+    "description": "Metadata for a Appliances",
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": ["tv", "toaster"]
+            }
+    },
+    "required": ["id", "sample_period", "max_sample_period"],
+    "additionalProperties": false
+}

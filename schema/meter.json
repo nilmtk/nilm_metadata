@@ -45,6 +45,28 @@
                 },
                 "required": ["measurement", "min", "max"]
             }
+        },
+        "upstreamOf": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "oneOf": [
+                            {"enum": ["meter"]},
+                            {"$ref": "appliance.json#/name"}
+                            ]
+                    },
+                    "instance": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": true
+                        }
+                },
+                "uniqueItems": true,
+                "required": ["name", "instance"]
+            }
         }
     },
     "required": ["id", "sample_period", "max_sample_period"],
