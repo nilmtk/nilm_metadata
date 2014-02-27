@@ -37,16 +37,22 @@
         [
                 { "$ref": "#/subclasses/fridge" },
                 { "$ref": "#/subclasses/screen" },
+                { "$ref": "#/subclasses/games_console" },
                 { "$ref": "#/subclasses/projector" },
+                { "$ref": "#/subclasses/av_source" },
+                { "$ref": "#/subclasses/amp" },
                 { "$ref": "#/subclasses/kitchen_misc" },
                 { "$ref": "#/subclasses/cooker" },
                 { "$ref": "#/subclasses/oven" },
                 { "$ref": "#/subclasses/hob_or_grill" },
-                { "$ref": "#/subclasses/sockets" },
+                { "$ref": "#/subclasses/sockets_and_room_specific_misc" },
                 { "$ref": "#/subclasses/heating" },
                 { "$ref": "#/subclasses/heat_pump" },
                 { "$ref": "#/subclasses/shower_or_tub" },
                 { "$ref": "#/subclasses/pump" },
+                { "$ref": "#/subclasses/printer" },
+                { "$ref": "#/subclasses/office" },
+                { "$ref": "#/subclasses/charger" },
                 { "$ref": "#/subclasses/misc" }
         ]
     },
@@ -65,7 +71,7 @@
             "properties": {
                 "name": { "enum": [
                     "wine cooler", "food mixer", 
-                    "vacuum cleaner", "mini vacuum cleaner charger",
+                    "vacuum cleaner", 
                     "yoghurt maker", "water filter",
                     "microwave", "kettle", "toaster", "fryer", "bread maker", 
                     "coffee maker", "food steamer", "bottle warmer", 
@@ -82,7 +88,9 @@
                     "description": "diagonal size in inches",
                     "minimum": 0,
                     "exclusiveMinimum": true
-                }
+                },
+                "display": { "enum": ["crt", "lcd", "plasma", "oled" ] },
+                "backlight": { "enum": ["led", "cold cathode"] }
             }
         },
 
@@ -91,6 +99,45 @@
                 "name": { "enum": ["projector"] }
             }
         },
+
+        "games_console": {
+            "properties": {
+                "name": { "enum": ["games console"] },
+                "model": { "enum": ["xbox", "xbox 360", "xbox one",
+                                    "ps1", "ps2", "ps3", "ps4", 
+                                    "wii", "wii u",
+                                    "steam box"] }
+            }
+        },        
+
+        "av_source": {
+            "properties": {
+                "name": { "enum": ["av source"] },
+                "sources": {
+                    "type": "array",
+                    "items": { 
+                        "enum": [
+                            "hard disk", "receiver", "dvd", "blu-ray",
+                            "videodisc", "tape", "cd", "analogue radio", 
+                            "digital radio", "satellite", "cable", 
+                            "broadband", "fibre"
+                        ]
+                    }
+                }
+            }
+        },     
+
+        "amp": {
+            "properties": {
+                "name": { "enum": ["amp"] },
+                "type": { 
+                    "enum": [
+                        "av", "integrated audio", "pre", "power", "phono", 
+                        "active sub", "active speaker"
+                    ]
+                }
+            }
+        },     
 
         "cooker": {
             "properties": {
@@ -123,9 +170,9 @@
             }
         },
 
-        "sockets": {
+        "sockets_and_room_specific_misc": {
             "properties": {
-                "name": { "enum": ["sockets"] }
+                "name": { "enum": ["sockets", "misc"] }
             },
             "required": ["name", "room"]
         },
@@ -148,7 +195,7 @@
 
         "shower_or_tub": {
             "properties": {
-                "name": { "enum": ["shower", "hot tub"] },
+                "name": { "enum": ["shower", "hot tub", "jacuzzi"] },
                 "components": { 
                     "type": "array",
                     "description": "meta-appliance made up of other appliances",
@@ -168,9 +215,58 @@
             }
         },
 
+        "printer": {
+            "properties": {
+                "name": { "enum": ["printer"] },
+                "type": { "enum": ["laser", "led", "ink jet", "dot matrix"] },
+                "components": { 
+                    "type": "array",
+                    "description": "meta-appliance made up of other appliances",
+                    "items": {
+                        "anyOf": [
+                            { "$ref": "#/subclasses/office" }
+                        ]
+                    }
+                }
+            }
+        },
+
+        "office": {
+            "properties": {
+                "name": { "enum": ["scanner", "fax", "photocopier"] }
+            }
+        },
+
+        "charger": {
+            "properties": {
+                "name": { "enum": ["charger"] },
+                "type": { "enum": ["mobile phone", "tablet", "ebook", 
+                                   "baby hoover", "cordless phone"] }
+            }
+        },
+
         "misc": {
             "properties": {
-                "name": { "enum": ["fan" ] }
+                "name": { "enum": [
+                    "fan", 
+
+                    "spin dryer", "tumble dryer", "washing machine", 
+                    "washer dryer", "dish washer",
+
+                    "rf booster", "video sender", "digital picture frame",
+
+                    "hair dryer", "hair straightener", "trouser press", 
+                    "sun bed", "electric blanket", 
+                    "baby monitor rx", "baby monitor tx", "clothes iron",
+
+                    "broadband router", "wifi base station", 
+                    "ethernet hub", "usb hub", "modem",
+                    "laptop computer", "desktop computer",
+                    "external hard drive", "ups", "paper shredder",
+
+                    "soldering iron", "drill", "saw"
+
+                ] }
             }
         }
 
