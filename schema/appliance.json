@@ -33,7 +33,10 @@
                 { "$ref": "#/subclasses/fridge" },
                 { "$ref": "#/subclasses/screen" },
                 { "$ref": "#/subclasses/projector" },
-                { "$ref": "#/subclasses/kitchen_misc" }
+                { "$ref": "#/subclasses/kitchen_misc" },
+                { "$ref": "#/subclasses/cooker" },
+                { "$ref": "#/subclasses/oven" },
+                { "$ref": "#/subclasses/hob_or_grill" }
             ]
         }
     ],
@@ -77,5 +80,39 @@
             }
         }
 
+        "cooker": {
+            "properties": {
+                "name": { "enum": ["cooker"] },
+                "components": { "type": "array",
+                                "description": "meta-appliance made up of other appliances",
+                                "items": {
+                                    "anyOf": [
+                                        { "$ref": "#/subclasses/oven" },
+                                        { "$ref": "#/subclasses/hob_or_grill" }
+                                    ]
+                                }}
+            }
+        }
+
+        "oven": {
+            "properties": {
+                "name": { "enum": ["oven"] },
+                "fan": { "type": "boolean" },
+                "fuel": { "$ref": "#/definitions/fuel" }
+            }
+        }
+
+        "hob_or_grill": {
+            "properties": {
+                "name": { "enum": ["hob", "grill"] },
+                "fuel": { "$ref": "#/definitions/fuel" }
+            }
+        }
+
+
+    },
+    "definitions": {
+        "fuel": { "enum": [ "electricity", "gas", "oil", 
+                            "coal", "wood", "biomass" ] }
     }
 }

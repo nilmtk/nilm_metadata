@@ -92,7 +92,11 @@
                 ]
             }
         },
-        "room": { "$ref": "room.json" }
+        "room": { "$ref": "room.json" },
+        "dates_active": {
+            "type": "array",
+            "items": { "$ref": "timeframe.json" }
+        }
     },
     "required": ["id", "manufacturer", "model"],
     "additionalProperties": false
