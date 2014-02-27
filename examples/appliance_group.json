@@ -1,25 +1,31 @@
 {
-    "fridge": {
-        "name": "fridge",
-        "category": "cold",
-        "on_power_threshold": 5,
-        "type": "chest"
-    },
-    "tv": {
-        "name": "tv",
-        "screen_size": 234
-    },
-    "monitor": {
-        "name": "computer_monitor",
-        "category": "ict",
-        "room": {"name": "kitchen", "instance": 1}
-    },
-    "cooker": {
-        "name": "cooker",
-        "components": [
-            { "name": "oven", "fuel": "oil" },
-            { "name": "hob", "fuel": "electricity" },
-            { "name": "grill", "fuel": "gas" }
-        ]
-    }
+    [
+        { 
+            "name": "fridge",
+            "category": "cold",
+            "on_power_threshold": 5,
+            "type": "chest"
+        },
+        {
+            "name": "tv",
+            "screen_size": 234
+        },
+        {
+            "name": "computer_monitor",
+            "category": "ict",
+            "room": {"name": "kitchen", "instance": 1}
+        },
+        {
+            "name": "cooker",
+            "components": [
+                { "name": "oven", "fuel": "oil" },
+                { "name": "hob", "fuel": "electricity" },
+                { "name": "grill", "fuel": "gas" }
+            ]
+        },
+        {
+            "name": "sockets",
+            "room": {"name": "kitchen", "instance": 1}
+        }
+    ]
 }
