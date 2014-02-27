@@ -1,7 +1,7 @@
 NILM Schema
 ===========
 
-JSON-Schema for modelling meters, measurements, appliances, buildings etc
+[JSON Schema](http://json-schema.org/) for modelling meters, measurements, appliances, buildings etc
 
 Testing
 =======
