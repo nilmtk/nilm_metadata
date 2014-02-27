@@ -11,6 +11,7 @@
     },
     "monitor": {
         "name": "computer_monitor",
-        "category": "ict"
+        "category": "ict",
+        "room": {"name": "kitchen", "instance": 1}
     }
 }

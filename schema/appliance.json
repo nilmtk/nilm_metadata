@@ -6,12 +6,13 @@
     "type": "object",
     "allOf": [
         { 
+            "_comments": "------PROPERTIES COMMON TO ALL APPLIANCES----------",
             "properties": {
                 "instance": { "$ref": "instance.json" },
                 "room": { "$ref": "room.json" },
                 "meters": { 
                     "type": "array", 
-                    "items": { "$ref": "meter.json" },
+                    "items": { "$ref": "instance.json" },
                     "unique": true 
                 },
                 "on_power_threshold": { 
@@ -20,49 +21,45 @@
                     "minimum": 0
                 },
                 "min_off_duration": { "format": "time", "type": "string" },
-                "min_on_duration": { "format": "time", "type": "string" }
+                "min_on_duration": { "format": "time", "type": "string" },
+                "category": { "type": "string" }
             },
             "required": ["name"],
-            "additionalProperties": true
         },
         { 
             "oneOf": [
-                {   
-                    "_comment": "---------FRIDGES---------------",
-                    "properties": {
-                    "name": { "enum": ["fridge", "fridge_freezer", "freezer"] },
-                    "category": { "enum": ["cold"], "defaultValueX": "cold" },
-                    "type": { 
-                        "enum": ["upright", "chest", "american"], 
-                        "defaultValue": "upright" },
-                    "freezer_is_separate_thermal_zone": { 
-                        "type": "boolean", 
-                        "defaultValue": true }
-                }},
-                {   
-                    "_comment": "---------LCD, PLASMA and CRT SCREENS--------",
-                    "allOf": [
-                    { "properties": {
-                        "screen_size": { 
-                            "type": "number",
-                            "description": "diagonal size in inches",
-                            "minimum": 0,
-                            "exclusiveMinimum": true
-                        }}},
-                    { "oneOf": [
-                        { "properties": {
-                            "name": { "enum": ["tv"] },
-                            "category": { "enum": ["entertainment"] }
-                        }},
-                        { "properties": {
-                            "name": { "enum": ["computer_monitor"] },
-                            "category": { "enum": ["ict"] }
-                        }}
-                    ]
-                    }
-                    ]
-                }
+                { "$ref": "#/subclasses/fridge" },
+                { "$ref": "#/subclasses/screen" },
+                { "$ref": "#/subclasses/projector" }
             ]
         }
-    ]
+    ],
+    "subclasses": {
+
+        "fridge": {   
+            "properties": {
+                "name": { "enum": ["fridge", "fridge_freezer", "freezer"] },
+                "type": { "enum": ["upright", "chest", "american"] },
+                "freezer_is_separate_thermal_zone": { "type": "boolean" }
+            }
+        },
+
+        "screen": {   
+            "properties": {
+                "name": { "enum": ["tv", "computer_monitor"] },
+                "screen_size": { 
+                    "type": "number",
+                    "description": "diagonal size in inches",
+                    "minimum": 0,
+                    "exclusiveMinimum": true
+                }
+            }
+        },
+
+        "projector": {
+            "properties": {
+                "name": { "enum": ["projector"] },
+            }
+        }
+    }
 }
