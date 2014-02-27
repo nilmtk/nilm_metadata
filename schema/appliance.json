@@ -4,10 +4,8 @@
     "title": "Appliance",
     "description": "Metadata for a Appliances",
     "type": "object",
-    "anyOf": [
+    "allOf": [
         { "properties": {
-            "name": { "enum": ["tv", "toaster"] },
-            "category": { "enum": ["cold", "hot"] },
             "instance": { "$ref": "instance.json" },
             "room": { "$ref": "room.json" },
             "meters": { 
@@ -27,8 +25,18 @@
           "additionalProperties": true
         },
         { "oneOf": [
-            {"$ref": "fridge.json"}
+            {"$ref": "#/subclasses/fridge"}
         ]
         }
-    ]
+    ],
+    "subclasses": {
+        "fridge": {
+            "properties": {
+                "name": { "enum": ["fridge", "fridge-freezer", "freezer"] },
+                "category": { "enum": ["cold"] },
+                "type": { "enum": ["upright", "chest", "american"] },
+                "freezer_is_separate_thermal_zone": { "type": "boolean" }
+            }            
+        }
+    }
 }
