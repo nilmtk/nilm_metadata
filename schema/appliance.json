@@ -134,7 +134,7 @@
                     "boiler", "space heater", "storage heater",
                     "domestic hot water heater" ] },
                 "fuel": { "$ref": "#/definitions/fuel" }
-            },
+            }
         },
 
         "heat_pump": {
