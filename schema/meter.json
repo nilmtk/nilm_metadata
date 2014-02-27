@@ -1,14 +1,13 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "id": "https://raw.github.com/nilmtk/nilmschema/master/schema/meter.json",
+    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/meter.json",
     "title": "Meter",
     "description": "Metadata for a Meter",
     "type": "object",
     "properties": {
         "id": {
             "description": "The ID of this meter, unique within the building.",
-            "type": "integer",
-            "miniumum": 1
+            "$ref": "instance.json"
         },
         "sample_period": {
             "description": "The sample period in seconds",
@@ -22,12 +21,8 @@
             "minimum": 0,
             "exclusiveMinimum": true
         }, 
-        "manufacturer": {
-            "type": "string"
-        },
-        "model": {
-            "type": "string"
-        },
+        "manufacturer": { "type": "string" },
+        "model": { "type": "string" },
         "available_measurements": {
             "type": "array",
             "items": { "$ref": "measurement.json" },
@@ -46,7 +41,7 @@
                 "required": ["measurement", "min", "max"]
             }
         },
-        "upstreamOf": {
+        "upstream_of": {
             "type": "array",
             "items": {
                 "type": "object",
@@ -55,7 +50,7 @@
                         "type": "string",
                         "oneOf": [
                             {"enum": ["meter"]},
-                            {"$ref": "appliance.json#/name"}
+                            {"$ref": "appliance.json#/properties/name"}
                             ]
                     },
                     "instance": {
@@ -64,11 +59,52 @@
                         "exclusiveMinimum": true
                         }
                 },
-                "uniqueItems": true,
                 "required": ["name", "instance"]
+            },
+            "uniqueItems": true
+        },
+        "downstream_of_meter": {
+            "type": "integer",
+            "miniumum": 1
+        },
+        "preprocessing_applied": {
+            "type": "array",
+            "items": {
+                "enum": ["gaps_bookended_with_zeros", 
+                         "implausable_values_removed"]
             }
-        }
+        },
+        "gap_free_segments": {
+            "type": "array",
+            "items": { "$ref": "timeframe.json" },
+            "unique": true
+        },
+        "contiguous_segments": {
+            "type": "array",
+            "items": { "$ref": "timeframe.json" },
+            "unique": true
+        },
+        "energy": {
+            "type": "array",
+            "items": {
+                "allOf": [ 
+                    { "$ref": "timeframe.json" },
+                    { "properties": {
+                        "active": { "type": "number" },
+                        "reactive": { "type": "number" },
+                        "apparent": { "type": "number" } }
+                    }
+                ]
+            }
+        },
+        "room": {
+            "type": "object",
+            "properties": {
+                "name": { "$ref": "room.json#/properties/name" },
+                "instance": { "$ref": "instance.json" }
+                }
+            }
     },
-    "required": ["id", "sample_period", "max_sample_period"],
+    "required": ["id", "manufacturer", "model"],
     "additionalProperties": false
 }

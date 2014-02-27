@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/building.json",
+    "title": "Building",
+    "description": "Represent a physical building",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "dataset": { "type": "string" },
+        "name": { "type": "string", "description": "name used in dataset" },
+        "geo": { "$ref": "http: //json-schema.org/geo" },
+        "timezone": { "type": "string" },
+        "utilities": {
+            "type": "object",
+            "properties": {
+                "electric": { "$ref": "electric.json" }
+            }
+        }
+    }
+}

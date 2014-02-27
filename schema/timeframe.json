@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/timeframe.json",
+    "title": "TimeFrame",
+    "description": "Represent an arbitrary time frame",
+    "type": "object",
+    "properties": {
+        "start": {
+            "format": "date-time",
+            "type": "string",
+            "description": "time span start date time"
+            },
+        "end": {
+            "format": "date-time",
+            "type": "string",
+            "description": "time span end date time"
+            }
+    },
+    "required": ["start", "end"],
+    "additionalProperties": false
+}
