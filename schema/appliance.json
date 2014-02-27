@@ -10,6 +10,8 @@
             "properties": {
                 "instance": { "$ref": "instance.json" },
                 "room": { "$ref": "room.json" },
+                "manufacturer": { "type": "string" },
+                "model": { "type": "string" },
                 "meters": { 
                     "type": "array", 
                     "items": { "$ref": "instance.json" },
@@ -30,7 +32,8 @@
             "oneOf": [
                 { "$ref": "#/subclasses/fridge" },
                 { "$ref": "#/subclasses/screen" },
-                { "$ref": "#/subclasses/projector" }
+                { "$ref": "#/subclasses/projector" },
+                { "$ref": "#/subclasses/kitchen_misc" }
             ]
         }
     ],
@@ -41,6 +44,18 @@
                 "name": { "enum": ["fridge", "fridge_freezer", "freezer"] },
                 "type": { "enum": ["upright", "chest", "american"] },
                 "freezer_is_separate_thermal_zone": { "type": "boolean" }
+            }
+        },
+
+        "kitchen_misc": {
+            "properties": {
+                "name": { "enum": ["wine_cooler",
+                                   "food_mixer", 
+                                   "vacuum_cleaner", 
+                                   "mini_vacuum_cleaner_charger",
+                                   "yoghurt_maker",
+                                   "water_filter",
+                                   "kitchen_outlets"] }
             }
         },
 
@@ -61,5 +76,6 @@
                 "name": { "enum": ["projector"] }
             }
         }
+
     }
 }
