@@ -30,5 +30,13 @@
         "name": "sockets",
         "instance": 1,
         "room": { "name": "kitchen", "instance": 1 }
+    },
+    {
+        "name": "shower",
+        "instance": 1,
+        "components": [
+            { "name": "water heater" },
+            { "name": "pump" }
+        ]
     }
 ]

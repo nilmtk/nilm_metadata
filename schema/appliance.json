@@ -45,6 +45,8 @@
                 { "$ref": "#/subclasses/sockets" },
                 { "$ref": "#/subclasses/heating" },
                 { "$ref": "#/subclasses/heat_pump" },
+                { "$ref": "#/subclasses/shower_or_tub" },
+                { "$ref": "#/subclasses/pump" },
                 { "$ref": "#/subclasses/misc" }
         ]
     },
@@ -132,7 +134,7 @@
             "properties": {
                 "name": { "enum": [ 
                     "boiler", "space heater", "storage heater",
-                    "domestic hot water heater" ] },
+                    "water heater" ] },
                 "fuel": { "$ref": "#/definitions/fuel" }
             }
         },
@@ -144,10 +146,31 @@
             }
         },
 
+        "shower_or_tub": {
+            "properties": {
+                "name": { "enum": ["shower", "hot tub"] },
+                "components": { 
+                    "type": "array",
+                    "description": "meta-appliance made up of other appliances",
+                    "items": {
+                        "anyOf": [
+                            { "$ref": "#/subclasses/heating" },
+                            { "$ref": "#/subclasses/pump" }
+                        ]
+                    }
+                }
+            }
+        }
+
+        "pump": {
+            "properties": {
+                "name": { "enum": ["pump"] }
+            }
+        }
+
         "misc": {
             "properties": {
-                "name": { "enum": [
-                    "fan", "circulation pump" ] }
+                "name": { "enum": ["fan" ] }
             }
         }
 
