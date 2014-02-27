@@ -29,7 +29,11 @@
             "required": ["name"]
         },
         { 
-            "oneOf": [
+            "oneOf": {"$ref": "#/all_subclasses"}
+        }
+    ],
+    "all_subclasses":
+    [
                 { "$ref": "#/subclasses/fridge" },
                 { "$ref": "#/subclasses/screen" },
                 { "$ref": "#/subclasses/projector" },
@@ -37,9 +41,8 @@
                 { "$ref": "#/subclasses/cooker" },
                 { "$ref": "#/subclasses/oven" },
                 { "$ref": "#/subclasses/hob_or_grill" }
-            ]
-        }
     ],
+    
     "subclasses": {
 
         "fridge": {   
