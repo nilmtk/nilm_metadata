@@ -58,7 +58,7 @@
 
         "projector": {
             "properties": {
-                "name": { "enum": ["projector"] },
+                "name": { "enum": ["projector"] }
             }
         }
     }
