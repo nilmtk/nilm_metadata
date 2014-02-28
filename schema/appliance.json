@@ -5,6 +5,7 @@
     "description": "Metadata for a Appliances",
     "type": "object",
     "allOf": [ { "$ref": "#/superclass" },  { "$ref": "#/one_subclass" } ],
+    "additionalProperties": false,
 
     "superclass": {            
         "properties": {
