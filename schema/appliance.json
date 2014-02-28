@@ -24,7 +24,11 @@
                 },
                 "min_off_duration": { "format": "time", "type": "string" },
                 "min_on_duration": { "format": "time", "type": "string" },
-                "category": { "type": "string" }
+                "category": { "type": "string" },
+                "dates_active": {
+                    "type": "array",
+                    "items": { "$ref": "timeframe.json" }
+                }
             },
             "required": ["name"]
         },
