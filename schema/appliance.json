@@ -31,8 +31,7 @@
                 "items": { "$ref": "timeframe.json" }
             }
         },
-        "required": ["name"],
-        "additionalProperties": false
+        "required": ["name"]
     },
 
     "one_subclass": {
