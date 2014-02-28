@@ -1,0 +1,25 @@
+{
+    "name": "UKPD",
+    "buildings": [
+        {
+            "id": 1,
+            "geo": (324, 123),
+            "utilities": {
+                "electric": {
+                    "appliances": [
+                        {
+                            "name": "fridge",
+                            "instance": 1,
+                            "meters": [1]
+                        },
+                        {
+                            "name": "kettle",
+                            "instance": 1,
+                            "meters": [2]
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
