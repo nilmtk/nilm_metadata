@@ -16,7 +16,6 @@
         "name": "computer monitor",
         "instance": 1,
         "category": "ict",
-        "gah": 3,
         "room": {"name": "kitchen", "instance": 1}
     },
     {

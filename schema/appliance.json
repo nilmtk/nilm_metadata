@@ -5,7 +5,6 @@
     "description": "Metadata for a Appliances",
     "type": "object",
     "allOf": [ { "$ref": "#/superclass" },  { "$ref": "#/one_subclass" } ],
-    "additionalProperties": false,
 
     "superclass": {            
         "properties": {
@@ -32,7 +31,8 @@
                 "items": { "$ref": "timeframe.json" }
             }
         },
-        "required": ["name"]
+        "required": ["name"],
+        "additionalProperties": false
     },
 
     "one_subclass": {
@@ -66,7 +66,8 @@
                 "name": { "enum": ["fridge", "fridge freezer", "freezer"] },
                 "type": { "enum": ["upright", "chest", "american"] },
                 "freezer_is_separate_thermal_zone": { "type": "boolean" }
-            }
+            },
+            "additionalProperties": false
         },
 
         "kitchen_misc": {
