@@ -3,6 +3,11 @@
     "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/appliance_group.json",
     "title": "Appliance Group",
     "description": "Metadata for a group of Appliances",
-    "type": "array",
-    "items": { "$ref": "appliance.json" }
+    "type": "object",
+    "properties": {
+        "appliances": {
+            "type": "array",
+            "items": { "$ref": "appliance.json" }
+        }
+    }
 }

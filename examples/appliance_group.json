@@ -1,4 +1,5 @@
-[
+{
+    "appliances": [
     { 
         "name": "fridge",
         "instance": 1,
@@ -39,4 +40,5 @@
             { "name": "pump" }
         ]
     }
-]
+    ]
+}

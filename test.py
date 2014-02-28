@@ -16,5 +16,11 @@ class TestSchema(unittest.TestCase):
         validate(json.load(open('examples/appliance_group.json')),
                  json.load(open('schema/appliance_group.json')))
 
+    def test_meter(self):
+        validate(json.load(open('examples/meter.json')),
+                 json.load(open('schema/meter.json')))
+        pass
+
+
 if __name__ == '__main__':
     unittest.main()

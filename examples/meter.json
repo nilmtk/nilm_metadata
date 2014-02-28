@@ -11,7 +11,5 @@
                             },
                             "min":0, 
                             "max": 1000}],
-    "upstream_of": [{"name": "meter", "instance": 1},
-                   {"name": "tv", "instance": 1}],
     "room": {"name": "kitchen", "instance": 1}
 }

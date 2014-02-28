@@ -4,41 +4,38 @@
     "title": "Appliance",
     "description": "Metadata for a Appliances",
     "type": "object",
-    "allOf": [
-        { 
-            "_comments": "------PROPERTIES COMMON TO ALL APPLIANCES----------",
-            "properties": {
-                "instance": { "$ref": "instance.json" },
-                "room": { "$ref": "room.json" },
-                "manufacturer": { "type": "string" },
-                "model": { "type": "string" },
-                "meters": { 
-                    "type": "array", 
-                    "items": { "$ref": "instance.json" },
-                    "unique": true 
-                },
-                "on_power_threshold": { 
-                    "type": "number", 
-                    "description": "watts", 
-                    "minimum": 0
-                },
-                "min_off_duration": { "format": "time", "type": "string" },
-                "min_on_duration": { "format": "time", "type": "string" },
-                "category": { "type": "string" },
-                "dates_active": {
-                    "type": "array",
-                    "items": { "$ref": "timeframe.json" }
-                }
+    "allOf": [ { "$ref": "#/superclass" },  { "$ref": "#/one_subclass" } ],
+
+    "superclass": {            
+        "properties": {
+            "instance": { "$ref": "instance.json" },
+            "room": { "$ref": "room.json" },
+            "manufacturer": { "type": "string" },
+            "model": { "type": "string" },
+            "meters": { 
+                "type": "array", 
+                "items": { "$ref": "instance.json" },
+                "unique": true,
+                "description": "An array of the meter ID(s) used to monitor this appliance."
             },
-            "required": ["name"]
+            "on_power_threshold": { 
+                "type": "number", 
+                "description": "watts", 
+                "minimum": 0
+            },
+            "min_off_duration": { "format": "time", "type": "string" },
+            "min_on_duration": { "format": "time", "type": "string" },
+            "category": { "type": "string" },
+            "dates_active": {
+                "type": "array",
+                "items": { "$ref": "timeframe.json" }
+            }
         },
-        { 
-            "$ref": "#/all_subclasses"
-        }
-    ],
-    "all_subclasses": {
-        "oneOf": 
-        [
+        "required": ["name"]
+    },
+
+    "one_subclass": {
+        "oneOf": [
                 { "$ref": "#/subclasses/fridge" },
                 { "$ref": "#/subclasses/screen" },
                 { "$ref": "#/subclasses/games_console" },

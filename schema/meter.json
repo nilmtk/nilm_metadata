@@ -43,25 +43,15 @@
                 "required": ["measurement", "min", "max"]
             }
         },
-        "upstream_of": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "oneOf": [
-                            {"enum": ["meter"]},
-                            {"$ref": "appliance.json#/properties/name"}
-                            ]
-                    },
-                    "instance": { "$ref": "instance.json" }
-                },
-                "required": ["name", "instance"]
-            },
-            "uniqueItems": true
+        "site_meter": {
+            "type": "boolean",
+            "description": "True if this meter measure the whole building."
         },
-        "downstream_of_meter": { "$ref": "instance.json" },
+        "submeter_of": { 
+            "type": "integer",
+            "minimum": 0,
+            "description": "Either the ID of the upstream meter, or if this meter is downstream of a site meter but the precise site meter is not known then use 0. "
+        },
         "preprocessing_applied": {
             "type": "array",
             "items": {
