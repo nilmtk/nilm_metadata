@@ -68,6 +68,10 @@
                     "rooms": { 
                         "type": "string",
                         "description": "Distribution over the rooms where this appliance is likely to be used. e.g. for a fridge this might be 'kitchen:0.9, garage:0.1'"
+                    },
+                    "appliance_correlations": { 
+                        "type": "string",
+                        "description": "e.g. 'tv:0.1, amp:0.4, ...'"
                     }
                 }
             }
