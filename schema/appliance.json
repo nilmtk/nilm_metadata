@@ -270,9 +270,8 @@
         "lighting": {
             "properties": {
                 "name": { "enum": ["light"] },
-                "lamp type": { "enum": ["incandescent", "led", "fluorescent"
-                                       ] },
-                "lamp subtype": { "enum": }
+                "lamp type": { "enum": ["incandescent", "led", "fluorescent"] },
+                "lamp subtype": { "enum": [] }
             }
         },
 
