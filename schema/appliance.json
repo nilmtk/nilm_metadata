@@ -34,7 +34,7 @@
                 "type": "arary",
                 "items": { "enum": [ 
                     "timer", "manual", "motion sensor", "light sensor",
-                    "temperature sensor"] }
+                    "temperature sensor"] },
                 "description": "Give a list of all control methods which apply.  For example, a video recorder would be both 'manual' and 'timer'."
             },
             "energy_rating": { "type": "string" },
