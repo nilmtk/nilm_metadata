@@ -5,7 +5,8 @@
         "instance": 1,
         "category": "cold",
         "on_power_threshold": 5,
-        "type": "chest"
+        "type": "chest",
+        "meter_ids": [2]
     },
     {
         "name": "tv",

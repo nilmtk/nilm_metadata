@@ -11,5 +11,5 @@
                             },
                             "min":0, 
                             "max": 1000}],
-    "room": {"name": "kitchen", "instance": 1}
+    "room_id": {"name": "kitchen", "instance": 1}
 }

@@ -82,7 +82,7 @@
                 ]
             }
         },
-        "room": { "$ref": "room.json" },
+        "room_id": { "$ref": "room.json" },
         "dates_active": {
             "type": "array",
             "items": { "$ref": "timeframe.json" }
