@@ -61,11 +61,30 @@
     "subclasses": {
 
         "fridge": {   
-            "properties": {
-                "name": { "enum": ["fridge", "fridge freezer", "freezer"] },
-                "type": { "enum": ["upright", "chest", "american"] },
-                "freezer_is_separate_thermal_zone": { "type": "boolean" }
-            }
+            "allOf": 
+            [
+                {
+                    "properties": {
+                        "type": { "enum": ["upright", "chest", "american"] },
+                    }
+                },
+
+                "oneOf": [
+                    {
+                        "properties": {
+                            "name": { "enum": ["fridge freezer", "freezer"] },
+                            "freezer_is_separate_thermal_zone": { 
+                                "type": "boolean" 
+                            }
+                        }
+                    },
+                    {
+                        "properties": {
+                            "name": { "enum": ["fridge"] },
+                            }
+                    }
+                ]
+            ]
         },
 
         "kitchen_misc": {
@@ -243,6 +262,15 @@
                 "name": { "enum": ["charger"] },
                 "type": { "enum": ["mobile phone", "tablet", "ebook", 
                                    "baby hoover", "cordless phone"] }
+            }
+        },
+
+        "lighting": {
+            "properties": {
+                "name": { "enum": ["light"] },
+                "lamp type": { "enum": ["incandescent", "led", "fluorescent"
+                                       ] },
+                "lamp subtype": { "enum": }
             }
         },
 
