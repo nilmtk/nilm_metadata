@@ -1,5 +1,4 @@
 {
-    "id": 1,
     "sample_period": 6,
     "max_sample_period": 15,
     "manufacturer": "Current Cost",
@@ -10,6 +9,5 @@
                                 "type": "active"
                             },
                             "min":0, 
-                            "max": 1000}],
-    "room_id": {"name": "kitchen", "instance": 1}
+                            "max": 1000}]
 }
