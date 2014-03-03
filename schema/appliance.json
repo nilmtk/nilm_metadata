@@ -363,7 +363,7 @@
                                     "mercury-vapor", "metal-halide", 
                                     "sodium-vapor", "neon"] }
                             }
-                        },
+                        }
 
                     ]
                 }
