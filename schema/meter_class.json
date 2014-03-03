@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/meter_class.json",
+    "title": "Meter Class",
+    "description": "Metadata for a Meter Class (i.e. a model)",
+    "type": "object",
+    "properties": {
+        "model": { "type": "string" },
+        "manufacturer": { "type": "string" },
+        "sample_period": {
+            "description": "The sample period in seconds",
+            "type": "number",
+            "minimum": 0,
+            "exclusiveMinimum": true
+        },
+        "max_sample_period": {
+            "description": "The maximum allowed sample period in seconds",
+            "type": "number",
+            "minimum": 0,
+            "exclusiveMinimum": true
+        }, 
+        "available_measurements": {
+            "type": "array",
+            "items": { "$ref": "measurement.json" },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "measurement_limits": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "measurement": {"$ref": "measurement.json"},
+                    "min": {"type": "number"},
+                    "max": {"type": "number"}
+                },
+                "required": ["measurement", "min", "max"]
+            }
+        }
+    },
+    "required": ["manufacturer", "model"],
+    "additionalProperties": false
+}
