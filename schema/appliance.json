@@ -69,21 +69,23 @@
                     }
                 },
 
-                "oneOf": [
-                    {
-                        "properties": {
-                            "name": { "enum": ["fridge freezer", "freezer"] },
-                            "freezer_is_separate_thermal_zone": { 
-                                "type": "boolean" 
+                {
+                    "oneOf": [
+                        {
+                            "properties": {
+                                "name": { "enum": ["fridge freezer", "freezer"] },
+                                "freezer_is_separate_thermal_zone": { 
+                                    "type": "boolean" 
+                                }
+                            }
+                        },
+                        {
+                            "properties": {
+                                "name": { "enum": ["fridge"] }
                             }
                         }
-                    },
-                    {
-                        "properties": {
-                            "name": { "enum": ["fridge"] }
-                        }
-                    }
-                ]
+                    ]
+                }
             ]
         },
 
