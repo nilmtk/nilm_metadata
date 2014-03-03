@@ -9,10 +9,10 @@
     "superclass": {            
         "properties": {
             "instance": { "$ref": "instance.json" },
-            "room": { "$ref": "room.json" },
+            "room_id": { "$ref": "room.json" },
             "manufacturer": { "type": "string" },
             "model": { "type": "string" },
-            "meters": { 
+            "meter_ids": { 
                 "type": "array", 
                 "items": { "$ref": "instance.json" },
                 "unique": true,
@@ -175,7 +175,7 @@
             "properties": {
                 "name": { "enum": ["sockets", "misc"] }
             },
-            "required": ["name", "room"]
+            "required": ["name", "room_id"]
         },
 
         "heating": {

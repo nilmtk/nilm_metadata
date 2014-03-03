@@ -16,7 +16,7 @@
         "name": "computer monitor",
         "instance": 1,
         "category": "ict",
-        "room": {"name": "kitchen", "instance": 1}
+        "room_id": {"name": "kitchen", "instance": 1}
     },
     {
         "name": "cooker",
@@ -30,7 +30,7 @@
     {
         "name": "sockets",
         "instance": 1,
-        "room": { "name": "kitchen", "instance": 1 }
+        "room_id": { "name": "kitchen", "instance": 1 }
     },
     {
         "name": "shower",
