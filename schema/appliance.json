@@ -29,6 +29,24 @@
             "dates_active": {
                 "type": "array",
                 "items": { "$ref": "timeframe.json" }
+            },
+            "control": { 
+                "type": "arary",
+                "items": { "enum": [ 
+                    "timer", "manual", "motion sensor", "light sensor",
+                    "temperature sensor"] }
+                "description": "Give a list of all control methods which apply.  For example, a video recorder would be both 'manual' and 'timer'."
+            },
+            "energy_rating": { "type": "string" },
+            "nominal_power": { 
+                "type": "number",
+                "miniumum": 0,
+                "exclusiveMinimum": true,
+                "description": "active power in watts" 
+            },
+            "images": { 
+                "type": "array", 
+                "items": { "type": "string", "format": "uri" } 
             }
         },
         "required": ["name"]
@@ -54,6 +72,7 @@
                 { "$ref": "#/subclasses/printer" },
                 { "$ref": "#/subclasses/office" },
                 { "$ref": "#/subclasses/charger" },
+                { "$ref": "#/subclasses/lighting" },
                 { "$ref": "#/subclasses/misc" }
         ]
     },
@@ -125,10 +144,14 @@
         "games_console": {
             "properties": {
                 "name": { "enum": ["games console"] },
-                "model": { "enum": ["xbox", "xbox 360", "xbox one",
-                                    "ps1", "ps2", "ps3", "ps4", 
-                                    "wii", "wii u",
-                                    "steam box"] }
+                "model": { 
+                    "enum": [
+                        "xbox", "xbox 360", "xbox one",
+                        "ps1", "ps2", "ps3", "ps4", 
+                        "wii", "wii u", 
+                        "steam box" 
+                    ] 
+                }
             }
         },        
 
@@ -267,13 +290,86 @@
             }
         },
 
-        "lighting": {
-            "properties": {
-                "name": { "enum": ["light"] },
-                "lamp type": { "enum": ["incandescent", "led", "fluorescent"] },
-                "lamp subtype": { "enum": [] }
-            }
+        "lighting": {   
+            "description": "we distinguish between the 'luminaire' (light fitting) and the electric lamp(s) within the light fitting.  See https://en.wikipedia.org/wiki/Luminaire and https://en.wikipedia.org/wiki/Lamp_%28electrical_component%29",
+            "allOf": 
+            [
+                {
+                    "properties": {
+                        "name": { "enum": ["light"] },
+                        "dimmable": { "type": "boolean" },
+                        "dimmer_type": { 
+                            "type": "string",
+                            "description": "see https://en.wikipedia.org/wiki/Dimmer#Types_of_dimmer"
+                        },
+                        "number_of_dimmer_levels": { 
+                            "type": "integer",
+                            "description": "some dimmers have, say, 5 discrete levels.  If this dimmer is constinuously variable then do not specify a number_of_dimmer_levels.",
+                            "minimum": 0, 
+                            "exclusiveMinimum": true
+                        },
+                        "fixture_type": { 
+                            "enum": [ 
+                                "ceiling", "wall", "table", "floor standing", 
+                                "floor level", "decoration", "night light", 
+                                "signage", "outdoor" ] 
+                        },
+                        "nominal_power_per_lamp": { 
+                            "type": "number", 
+                            "minimum": 0, 
+                            "exclusiveMinimum": true,
+                            "description": "active power in watts" 
+                        },
+                        "number_of_lamps_in_fixture": {
+                            "type": "integer",
+                            "minimum": 0, 
+                            "exclusiveMinimum": true
+                        }
+                    }
+                },
+
+                {
+                    "oneOf": [
+                        {
+                            "properties": {
+                                "lamp_type": { "enum": ["incandescent"] },
+                                "lamp_subtype": { "enum": [
+                                    "halogen", "tungsten"] }
+                            }
+                        },
+                        {
+                            "properties": {
+                                "lamp_type": { "enum": ["led"] },
+                            }
+                        },
+                        {
+                            "properties": {
+                                "lamp_type": { "enum": ["fluorescent"] },
+                                "lamp_subtype": { "enum": [
+                                    "linear", "compact", "cold cathode"] }
+                            }
+                        },
+
+                        {
+                            "properties": {
+                                "lamp_type": { "enum": ["arc"] }
+                            }
+                        },
+
+                        {
+                            "properties": {
+                                "lamp_type": { "enum": ["gas discharge"] },
+                                "lamp_subtype": { "enum": [
+                                    "mercury-vapor", "metal-halide", 
+                                    "sodium-vapor", "neon"] }
+                            }
+                        },
+
+                    ]
+                }
+            ]
         },
+
 
         "misc": {
             "properties": {
