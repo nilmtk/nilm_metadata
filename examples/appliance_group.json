@@ -48,6 +48,17 @@
             { "name": "water heater" },
             { "name": "pump" }
         ]
+    },
+    {
+        "name": "light",
+        "instance": 3,
+        "dimmable": true,
+        "lamp_type": "led",
+        "room_id": {"name": "kitchen", "instance": 1},
+        "fixture_type": "ceiling",
+        "nominal_power_per_lamp": 10,
+        "number_of_lamps_in_fixture": 10,
+        "images": ["http://json-schema.org/latest/light.jpg"]
     }
     ]
 }

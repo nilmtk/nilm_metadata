@@ -23,15 +23,14 @@
                 "description": "watts", 
                 "minimum": 0
             },
-            "min_off_duration": { "format": "time", "type": "string" },
-            "min_on_duration": { "format": "time", "type": "string" },
-            "category": { "type": "string" },
+            "minimum_off_duration": { "type": "number", "description": "seconds" },
+            "minimum_on_duration": { "type": "number", "description": "seconds" },
             "dates_active": {
                 "type": "array",
                 "items": { "$ref": "timeframe.json" }
             },
             "control": { 
-                "type": "arary",
+                "type": "array",
                 "items": { "enum": [ 
                     "timer", "manual", "motion sensor", "light sensor",
                     "temperature sensor"] },
@@ -47,6 +46,30 @@
             "images": { 
                 "type": "array", 
                 "items": { "type": "string", "format": "uri" } 
+            },
+            "distributions": {
+                "type": "object",
+                "description": "Distributions of the data expressed as normalised frequencies over discrete intervals (bins).",
+                "properties": {
+                    "on_power": { 
+                        "type": "string",
+                        "description": "e.g. '0:0.0, 1:0.5, 2:0.25, 3:0.25, 4:0' meaning the bin from [0,1) has 0 mass; the bin [1,2) has 0.5 mass etc. Watts"
+                    },
+                    "on_duration": { 
+                        "type": "string",
+                        "description": "e.g. '0:0.2, 100:0.1, 200:0.0, ...'. Meaning the bin from [0,100) seconds has 0.2 mass, the bin from [100,200) has 0.1 mass etc"
+                    },
+                    "daily_usage": { 
+                        "type": "string",
+                        "description": "e.g. 'mon:0.2, tue:0.1, wed:0.0, ...'"
+                    },
+                    "weekly_usage": { "type": "string" },
+                    "monthly_usage": { "type": "string" },
+                    "rooms": { 
+                        "type": "string",
+                        "description": "Distribution over the rooms where this appliance is likely to be used. e.g. for a fridge this might be 'kitchen:0.9, garage:0.1'"
+                    }
+                }
             }
         },
         "required": ["name"]
@@ -60,7 +83,6 @@
                 { "$ref": "#/subclasses/projector" },
                 { "$ref": "#/subclasses/av_source" },
                 { "$ref": "#/subclasses/amp" },
-                { "$ref": "#/subclasses/kitchen_misc" },
                 { "$ref": "#/subclasses/cooker" },
                 { "$ref": "#/subclasses/oven" },
                 { "$ref": "#/subclasses/hob_or_grill" },
@@ -69,6 +91,7 @@
                 { "$ref": "#/subclasses/heat_pump" },
                 { "$ref": "#/subclasses/shower_or_tub" },
                 { "$ref": "#/subclasses/pump" },
+                { "$ref": "#/subclasses/fan" },
                 { "$ref": "#/subclasses/printer" },
                 { "$ref": "#/subclasses/office" },
                 { "$ref": "#/subclasses/charger" },
@@ -106,19 +129,6 @@
                     ]
                 }
             ]
-        },
-
-        "kitchen_misc": {
-            "properties": {
-                "name": { "enum": [
-                    "wine cooler", "food mixer", 
-                    "vacuum cleaner", 
-                    "yoghurt maker", "water filter",
-                    "microwave", "kettle", "toaster", "fryer", "bread maker", 
-                    "coffee maker", "food steamer", "bottle warmer", 
-                    "steriliser", "plate warmer", "slow cooker", "other cooking"
-                ] }
-            }
         },
 
         "screen": {   
@@ -226,7 +236,7 @@
             "properties": {
                 "name": { "enum": [ 
                     "boiler", "space heater", "storage heater",
-                    "water heater" ] },
+                    "water heater", "swimming pool heater" ] },
                 "fuel": { "$ref": "#/definitions/fuel" }
             }
         },
@@ -256,7 +266,19 @@
 
         "pump": {
             "properties": {
-                "name": { "enum": ["pump"] }
+                "name": { "enum": ["pump"] },
+                "type": { 
+                    "enum": [
+                        "shower", "swimming pool", "acquarium", "pond"] }
+            }
+        },
+
+        "fan": {
+            "properties": {
+                "name": { "enum": ["fan"] },
+                "type": { 
+                    "enum": [
+                        "desktop", "ceiling", "extractor" ] }
             }
         },
 
@@ -364,7 +386,6 @@
                                     "sodium-vapor", "neon"] }
                             }
                         }
-
                     ]
                 }
             ]
@@ -374,10 +395,13 @@
         "misc": {
             "properties": {
                 "name": { "enum": [
-                    "fan", 
-
                     "spin dryer", "tumble dryer", "washing machine", 
-                    "washer dryer", "dish washer",
+                    "washer dryer", "dish washer", "wine cooler", "food mixer", 
+                    "vacuum cleaner", "yoghurt maker", "water filter",
+                    "microwave", "kettle", "toaster", "fryer", "bread maker", 
+                    "coffee maker", "food steamer", "bottle warmer", 
+                    "steriliser", "plate warmer", "slow cooker", 
+                    "other cooking", "dehumidifyer",
 
                     "rf booster", "video sender", "digital picture frame",
 
@@ -390,8 +414,16 @@
                     "laptop computer", "desktop computer",
                     "external hard drive", "ups", "paper shredder",
 
-                    "soldering iron", "drill", "saw"
+                    "musical instrument",
 
+                    "soldering iron", "drill", "saw", "sewing machine",
+                    "lawn sprinkler",
+
+                    "motorised chair", "massage bed",
+
+                    "door bell", "security alarm", "fire alarm",
+
+                    "electric vehicle"
                 ] }
             }
         }

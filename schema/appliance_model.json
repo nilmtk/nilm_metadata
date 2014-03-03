@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/model_parameters.json",
+    "title": "Parameters for Appliance Models",
+    "type": "object",
+    "properties": {
+        "appliance": { "$ref": "appliance.json" },
+        "model": {
+            "type": "object",
+            "properties": {
+                "type": { "enum": ["hmm", "fhmm", "combinatorial optimisation"] },
+                "software": {
+                    "type": "object",
+                    "properties": {
+                        "name": { "type": "string" },
+                        "version": { "type": "string" }
+                    }
+                }
+            }
+        },
+        "data_used_for_training": { 
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": { 
+                    "dataset": { "type": "string" },
+                    "buildings": { 
+                        "type": "array", 
+                        "items": { "type": "integer" }
+                    },
+                    "timeframe": { "$ref": "timeframe.json" }
+                }
+            }
+        },
+        "parameters": {
+            "type": "object"
+        }
+    }
+}
