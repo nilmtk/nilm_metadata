@@ -65,7 +65,7 @@
             [
                 {
                     "properties": {
-                        "type": { "enum": ["upright", "chest", "american"] },
+                        "type": { "enum": ["upright", "chest", "american"] }
                     }
                 },
 
@@ -80,8 +80,8 @@
                     },
                     {
                         "properties": {
-                            "name": { "enum": ["fridge"] },
-                            }
+                            "name": { "enum": ["fridge"] }
+                        }
                     }
                 ]
             ]

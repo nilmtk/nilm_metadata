@@ -8,6 +8,14 @@
         "type": "chest",
         "meter_ids": [2]
     },
+    { 
+        "name": "fridge freezer",
+        "instance": 2,
+        "on_power_threshold": 5,
+        "freezer_is_separate_thermal_zone": true,
+        "type": "chest",
+        "meter_ids": [3]
+    },
     {
         "name": "tv",
         "instance": 1,
