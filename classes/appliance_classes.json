@@ -1,0 +1,53 @@
+{
+    "Appliance": {
+        "on_power_threshold": 5,
+        "minimum_off_duration": 10,
+        "minimum_on_duration": 10
+    },
+
+    "Refrigeration": {
+        "additional_properties": {
+            "name": { 
+                "enum": [ 
+                    "fridge", "freezer", "fridge/freezer", "wine cooler" ] 
+            },
+            "type": { 
+                "enum": [ 
+                    "top-mount fridge", "bottom-mount fridge", 
+                    "chest", "side-by-side"
+                ],
+                "description": "side-by-side is a synonym for American style"
+            },
+            "fridge_volume": { "type": "number", "description": "litres" },
+            "freezer_volume": { "type": "number", "description": "litres" }
+        },
+        "control": ["temperature sensor", "manual"],
+        "subtype_of": "Appliance",
+        "categories": ["major", "refrigeration", "cold"],
+        "distributions": {
+            "room": "kitchen:0.9"
+        }
+    },
+
+    "ICT": {
+        "subtype_of": "Appliance",
+        "categories": ["ict", "small appliances"],
+        "distributions": {
+            "rooms": "office:0.6, bedroom:0.1, lounge:0.1"
+        }
+    },
+
+    "Computer": {
+        "subtype_of": "ICT",
+        "categories": ["computers"],
+        "additional_properties": {
+            "name": { "enum": [ "computer" ] },
+            "type": { "enum": [ "laptop", "desktop", "tablet" ] },
+            "cpu": { 
+                "type": "string", 
+                "description": "e.g. 'Intel Core i5 M450 2.4GHz'" 
+            },
+            "screen": { "$ref": "#/components/screen" }
+        }
+    }
+}

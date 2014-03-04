@@ -4,96 +4,23 @@ appliances.
 
 To assemble this complete data per appliance/meter in-memory, we traverse
 the following hierarchy.  i.e. if we find an appliance instance 
-which is a subtype of "kitchen:FridgeOrFreezer:Samsung:RSH7UNBP" then we first
+which is a subtype of "Refrigeration:Samsung:RSH7UNBP" then we first
 follow the tree to the top.  Then, starting from the top, we form a set of
 key:value pairs where subclasses override previous values (just use dict.update).
 
+
 TODO:
 
-* Build the code to traverse the class hierarchy 
+* Move all information from schema/appliance_old.json to classes/appliance_classes.json
+* Get it working with appliance_catalogue
+* Do data for meters, using same pattern
 * Test it out on HES
 * Write my UKPD metadata
-
-classes/appliances_classes.json:
-{
-    "Appliance": {
-        "on_power_threshold": 5,
-        "minimum_off_duration": 10,
-        "minimum_on_duration": 10
-    },
-
-    "KitchenAppliance": {
-        "category": "kitchen appliance",
-        "distributions": {
-            "room": "kitchen:0.9"
-        },
-        "subtype_of": "Appliance"
-    },
-
-    "FridgeOrFreezer": {
-        "control": ["temperature sensor", "manual"],
-        "subtype_of": "KitchenAppliance",
-        "distributions": {
-            "on_power": "0:0.0, 1:0.5"
-        }
-    },
-
-    "ICT": {
-        "subtype_of": "Appliance",
-        "category": "ict",
-        "distributions": {
-            "rooms": "office:0.6, bedroom:0.1, lounge:0.1"
-        }
-    },
-
-    "Laptop": {
-        "subtype_of": "ICT",
-        "name": "laptop",
-    },
-
-    "Lighting": {
-        "category": "lighting",
-        "subtype_of": "Appliance"
-    }
-
-}
-
-catalogue/appliance_catalogue.json
-{
-    "FridgeOrFreezer": {
-        "Samsung": {
-            "RSH7UNBP":
-            {
-                "name": "fridge/freezer",
-                "energy_rating": "A++",
-                "style": "top-mount fridge",
-                "nominal_power": 120,
-                "distributions": {
-                    "on_power": "foo bar"
-                }
-            }
-        }
-    }
-}
-
-ukpd.json:
-{
-    [
-        {
-            "subtype_of": "FridgeOrFreezer:Samsung:RSH7UNBP",
-            "instance": 1,
-            "meters": [1],
-            "year_bought": 2008,
-        },
-        {
-            "comment": "there are times when we don't know the make or model, e.g. most public datasets",
-            "subtype_of": "FridgeOrFreezer",
-            "instance": 1,
-            "name": "fridge/freezer",
-            "original_name": "FGE",
-            "meters": [1]
-        }
-    ]
-}
+* Write docs
+* Make it work with nilmtk
 
 
+
+DONE:
+
+* Build the code to traverse the class hierarchy 

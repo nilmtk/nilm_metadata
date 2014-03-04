@@ -59,6 +59,19 @@
         "nominal_power_per_lamp": 10,
         "number_of_lamps_in_fixture": 10,
         "images": ["http://json-schema.org/latest/light.jpg"]
-    }
+    },
+    {
+        "subtype_of": "Refrigeration:Samsung:RSH7UNBP",
+        "instance": 1,
+        "meters": [1],
+        "year_bought": 2008,
+    },
+    {
+        "comment": "there are times when we don't know the make or model, e.g. most public datasets",
+        "instance": 1,
+        "name": "fridge/freezer",
+        "original_name": "FGE",
+        "meters": [1]
+    }       
     ]
 }
