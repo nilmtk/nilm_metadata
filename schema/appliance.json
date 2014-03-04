@@ -97,6 +97,7 @@
                 { "$ref": "#/subclasses/pump" },
                 { "$ref": "#/subclasses/fan" },
                 { "$ref": "#/subclasses/printer" },
+                { "$ref": "#/subclasses/multi_function_printer" },
                 { "$ref": "#/subclasses/office" },
                 { "$ref": "#/subclasses/charger" },
                 { "$ref": "#/subclasses/lighting" },
@@ -289,22 +290,29 @@
         "printer": {
             "properties": {
                 "name": { "enum": ["printer"] },
-                "type": { "enum": ["laser", "led", "ink jet", "dot matrix"] },
-                "components": { 
-                    "type": "array",
-                    "description": "meta-appliance made up of other appliances",
-                    "items": {
-                        "anyOf": [
-                            { "$ref": "#/subclasses/office" }
-                        ]
-                    }
-                }
+                "type": { "enum": ["laser", "led", "ink jet", "dot matrix"] }
             }
         },
 
         "office": {
             "properties": {
                 "name": { "enum": ["scanner", "fax", "photocopier"] }
+            }
+        },
+
+        "multi_function_printer": {
+            "properties": {
+                "name": { "enum": ["multi-function printer"] },
+                "components": { 
+                    "type": "array",
+                    "description": "meta-appliance made up of other appliances",
+                    "items": {
+                        "anyOf": [
+                            { "$ref": "#/subclasses/office" },
+                            { "$ref": "#/subclasses/printer" }
+                        ]
+                    }
+                }
             }
         },
 

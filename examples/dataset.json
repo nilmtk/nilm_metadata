@@ -3,7 +3,7 @@
     "buildings": [
         {
             "id": 1,
-            "geo": (324, 123),
+            "geo": [324, 123],
             "utilities": {
                 "electric": {
                     "appliances": [
