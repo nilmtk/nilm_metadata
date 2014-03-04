@@ -8,6 +8,12 @@ which is a subtype of "kitchen:FridgeOrFreezer:Samsung:RSH7UNBP" then we first
 follow the tree to the top.  Then, starting from the top, we form a set of
 key:value pairs where subclasses override previous values (just use dict.update).
 
+TODO:
+
+* Build the code to traverse the class hierarchy 
+* Test it out on HES
+* Write my UKPD metadata
+
 classes/appliances_classes.json:
 {
     "Appliance": {
@@ -21,7 +27,7 @@ classes/appliances_classes.json:
         "distributions": {
             "room": "kitchen:0.9"
         },
-        "subtype_of": "appliance:Appliance"
+        "subtype_of": "Appliance"
     },
 
     "FridgeOrFreezer": {
@@ -33,7 +39,7 @@ classes/appliances_classes.json:
     },
 
     "ICT": {
-        "subtype_of": "appliance:Appliance",
+        "subtype_of": "Appliance",
         "category": "ict",
         "distributions": {
             "rooms": "office:0.6, bedroom:0.1, lounge:0.1"
@@ -91,8 +97,3 @@ ukpd.json:
 }
 
 
-TODO:
-
-In the schema, can we say "properties" is itself a subschema?
-
-Try doing a metadata instance.
