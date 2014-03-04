@@ -1,0 +1,126 @@
+
+classes/appliances/appliance.json:
+{
+    "Appliance": {
+        "on_power_threshold": 5,
+        "minimum_off_duration": 10,
+        "minimum_on_duration": 10
+        }
+}
+
+classes/appliances/kitchen.json:
+{
+    "KitchenAppliance": {
+        "category": "kitchen appliance",
+        "distributions": {
+            "room": "kitchen:0.9"
+        },
+        "subtype_of": "appliance:Appliance"
+    },
+
+    "Fridge_Or_Freezer": {
+        "additional_properties": {
+            "name": { "enum": [ "fridge", "freezer", "fridge/freezer" ] },
+            "style": { 
+                "enum": [ 
+                    "top-mount fridge", "bottom-mount fridge", 
+                    "chest", "side-by-side"
+                ],
+                "description": "side-by-side is a synonym for American style"
+            },
+            "fridge_volume": { "type": "number", "description": "litres" },
+            "freezer_volume": { "type": "number", "description": "litres" }
+        },
+        "control": ["temperature sensor", "manual"],
+        "subtype_of": "KitchenAppliance",
+        "distributions": {
+            "on_power": "0:0.0, 1:0.5"
+        }
+    }
+}
+
+classes/appliances/ict_and_entertainment.json:
+{
+    "Screen": {
+        "name": "screen",
+        "properties": {
+            "screen_size": { 
+                "type": "number",
+                "description": "diagonal size in inches",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "display": { "enum": ["crt", "lcd", "plasma", "oled" ] },
+            "backlight": { "enum": ["led", "cold cathode"] }
+        },
+        "control": ["manual", "timer"]
+    },
+
+    "ICT": {
+        "subtype_of": "appliance:Appliance",
+        "category": "ict",
+        "distributions": {
+            "rooms": "office:0.6, bedroom:0.1, lounge:0.1"
+        }
+    },
+
+    "Laptop": {
+        "subtype_of": ["ICT", "Screen"],
+        "name": "laptop",
+        "additional_properties": {
+        }
+    }
+}
+
+{
+    "Lighting": {
+        "category": "lighting",
+        "subtype_of": "Appliance"
+    }
+
+}
+
+catalogue/appliance_catalogue.json
+{
+    "kitchen:Fridge_Or_Freezer": {
+        "manufacturer": "Samsung",
+        "url": "",
+        "models": {
+            "RSH7UNBP":
+            {
+                "name": "fridge/freezer",
+                "energy_rating": "A++",
+                "style": "top-mount fridge",
+                "nominal_power": 120,
+                "distributions": {
+                    "on_power": "foo bar"
+                }
+            }
+        }
+    }
+}
+
+{
+    [
+        {
+            "subtype_of": "kitchen:Fridge_Or_Freezer:Samsung:RSH7UNBP",
+            "instance": 1,
+            "meters": [1],
+            "year_bought": 2008,
+        },
+        {
+            "comment": "there are times when we don't know the make or model, e.g. most public datasets",
+            "subtype_of": "Fridge_or_Freezer",
+            "instance": 1,
+            "name": "fridge/freezer",
+            "original_name": "FGE",
+            "meters": [1]
+        }
+    ]
+}
+
+TODO:
+
+In the schema, can we say "properties" is itself a subschema?
+
+Try doing a metadata instance.

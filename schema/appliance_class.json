@@ -1,84 +1,77 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/appliance.json",
-    "title": "Appliance",
-    "description": "Metadata for a Appliances",
+    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/appliance_class.json",
+    "title": "Appliance Class",
+    "description": "Metadata for an Appliance Class",
     "type": "object",
-    "allOf": [ { "$ref": "#/superclass" },  { "$ref": "#/one_subclass" } ],
-
-    "superclass": {            
-        "properties": {
-            "instance": { "$ref": "instance.json" },
-            "room_id": { "$ref": "room.json" },
-            "manufacturer": { "type": "string" },
-            "model": { "type": "string" },
-            "meter_ids": { 
-                "type": "array", 
-                "items": { "$ref": "instance.json" },
-                "unique": true,
-                "description": "An array of the meter ID(s) used to monitor this appliance."
-            },
-            "on_power_threshold": { 
-                "type": "number", 
-                "description": "watts", 
-                "minimum": 0
-            },
-            "minimum_off_duration": { "type": "number", "description": "seconds" },
-            "minimum_on_duration": { "type": "number", "description": "seconds" },
-            "dates_active": {
-                "type": "array",
-                "items": { "$ref": "timeframe.json" }
-            },
-            "control": { 
-                "type": "array",
-                "items": { "enum": [ 
-                    "timer", "manual", "motion sensor", "light sensor",
-                    "temperature sensor"] },
-                "description": "Give a list of all control methods which apply.  For example, a video recorder would be both 'manual' and 'timer'."
-            },
-            "energy_rating": { "type": "string" },
-            "nominal_power": { 
-                "type": "number",
-                "miniumum": 0,
-                "exclusiveMinimum": true,
-                "description": "active power in watts" 
-            },
-            "images": { 
-                "type": "array", 
-                "items": { "type": "string", "format": "uri" } 
-            },
-            "distributions": {
-                "type": "object",
-                "description": "Distributions of the data expressed as normalised frequencies over discrete intervals (bins).",
-                "properties": {
-                    "on_power": { 
-                        "type": "string",
-                        "description": "e.g. '0:0.0, 1:0.5, 2:0.25, 3:0.25, 4:0' meaning the bin from [0,1) has 0 mass; the bin [1,2) has 0.5 mass etc. Watts"
-                    },
-                    "on_duration": { 
-                        "type": "string",
-                        "description": "e.g. '0:0.2, 100:0.1, 200:0.0, ...'. Meaning the bin from [0,100) seconds has 0.2 mass, the bin from [100,200) has 0.1 mass etc"
-                    },
-                    "daily_usage": { 
-                        "type": "string",
-                        "description": "e.g. 'mon:0.2, tue:0.1, wed:0.0, ...'"
-                    },
-                    "weekly_usage": { "type": "string" },
-                    "monthly_usage": { "type": "string" },
-                    "rooms": { 
-                        "type": "string",
-                        "description": "Distribution over the rooms where this appliance is likely to be used. e.g. for a fridge this might be 'kitchen:0.9, garage:0.1'"
-                    },
-                    "appliance_correlations": { 
-                        "type": "string",
-                        "description": "e.g. 'tv:0.1, amp:0.4, ...'"
-                    }
+    "properties": {
+        "manufacturer": { "type": "string" },
+        "model": { "type": "string" },
+        "on_power_threshold": { 
+            "type": "number", 
+            "description": "watts", 
+            "minimum": 0
+        },
+        "minimum_off_duration": { "type": "number", "description": "seconds" },
+        "minimum_on_duration": { "type": "number", "description": "seconds" },
+        "control": { 
+            "type": "array",
+            "items": { "enum": [ 
+                "timer", "manual", "motion sensor", "light sensor",
+                "temperature sensor"] },
+            "description": "Give a list of all control methods which apply.  For example, a video recorder would be both 'manual' and 'timer'."
+        },
+        "energy_rating": { "type": "string" },
+        "nominal_power": { 
+            "type": "number",
+            "miniumum": 0,
+            "exclusiveMinimum": true,
+            "description": "active power in watts" 
+        },
+        "images": { 
+            "type": "array", 
+            "items": { "type": "string", "format": "uri" } 
+        },
+        "components": {
+            "type": "array",
+            "items": { "$ref": "#/properties" }
+        },
+        "additional_properties": {
+            "type": "object",
+            "description": "JSON-Schema of additional properties."
+        },
+        "distributions": {
+            "type": "object",
+            "description": "Distributions of the data expressed as normalised frequencies over discrete intervals (bins).",
+            "properties": {
+                "on_power": { 
+                    "type": "string",
+                    "description": "e.g. '0:0.0, 1:0.5, 2:0.25, 3:0.25, 4:0' meaning the bin from [0,1) has 0 mass; the bin [1,2) has 0.5 mass etc. Watts"
+                },
+                "on_duration": { 
+                    "type": "string",
+                    "description": "e.g. '0:0.2, 100:0.1, 200:0.0, ...'. Meaning the bin from [0,100) seconds has 0.2 mass, the bin from [100,200) has 0.1 mass etc"
+                },
+                "daily_usage": { 
+                    "type": "string",
+                    "description": "e.g. 'mon:0.2, tue:0.1, wed:0.0, ...'"
+                },
+                "weekly_usage": { "type": "string" },
+                "monthly_usage": { "type": "string" },
+                "rooms": { 
+                    "type": "string",
+                    "description": "Distribution over the rooms where this appliance is likely to be used. e.g. for a fridge this might be 'kitchen:0.9, garage:0.1'"
+                },
+                "appliance_correlations": { 
+                    "type": "string",
+                    "description": "e.g. 'tv:0.1, amp:0.4, ...'"
                 }
             }
-        },
-        "required": ["name"]
-    },
+        }
+    }
+}
 
+{
     "one_subclass": {
         "oneOf": [
                 { "$ref": "#/subclasses/fridge" },
@@ -120,7 +113,7 @@
                     "oneOf": [
                         {
                             "properties": {
-                                "name": { "enum": ["fridge freezer", "freezer"] },
+                                "name": { "enum": ["fridge freezer"] },
                                 "freezer_is_separate_thermal_zone": { 
                                     "type": "boolean" 
                                 }
@@ -128,7 +121,7 @@
                         },
                         {
                             "properties": {
-                                "name": { "enum": ["fridge"] }
+                                "name": { "enum": ["fridge", "freezer"] }
                             }
                         }
                     ]

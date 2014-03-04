@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/appliance_instance.json",
+    "title": "Appliance Instance",
+    "description": "Metadata for an Appliance Instance",
+    "type": "object",
+    "allOf": [
+        { 
+            "$ref": "appliance_class.json" 
+        },
+        {
+            "properties": {
+                "instance": { "$ref": "instance.json" },
+                "room_id": { "$ref": "room.json" },
+                "meter_ids": { 
+                    "type": "array", 
+                    "items": { "$ref": "instance.json" },
+                    "unique": true,
+                    "description": "An array of the meter ID(s) used to monitor this appliance."
+                },
+                "dates_active": {
+                    "type": "array",
+                    "items": { "$ref": "timeframe.json" }
+                }
+            }
+        }
+    ]
+}
