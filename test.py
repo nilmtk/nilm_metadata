@@ -35,7 +35,7 @@ class TestSchema(unittest.TestCase):
             except:
                 print('Error loading ', json_file, file=sys.stderr)
                 raise
-        print("done")
+        print("done and all are OK!")
 
     def test_appliance_group(self):
         validate(json.load(open('examples/appliance_group.json')),
