@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/prior.json",
+    "title": "Prior",
+    "description": "Metadata for Priors",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "distribution": { "type": "string" },
+        "num_datapoints": { "type": "integer" },
+        "date_prepared": { "type": "string", "format": "date" },
+        "software": { 
+            "type": "object",
+            "properties": {
+                "name": { "type": "string" },
+                "version": { "type": "string" }
+            }
+        },
+        "training_data": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "dataset": { "type": "string" },
+                    "buildings": { 
+                        "type": "array", 
+                        "items": { 
+                            "type": "object",
+                            "properties": {
+                                "building_id": { "type": "integer" },
+                                "dates": { 
+                                    "type": "array",
+                                    "items": { "$ref": "timeframe.json" }
+                                },
+                                "country": { "type": "string" }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

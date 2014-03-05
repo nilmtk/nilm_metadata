@@ -3,7 +3,6 @@
     { 
         "name": "fridge",
         "instance": 1,
-        "category": "cold",
         "on_power_threshold": 5,
         "type": "chest",
         "meter_ids": [2]
@@ -24,7 +23,6 @@
     {
         "name": "computer monitor",
         "instance": 1,
-        "category": "ict",
         "room_id": {"name": "kitchen", "instance": 1}
     },
     {
@@ -64,7 +62,7 @@
         "subtype_of": "Refrigeration:Samsung:RSH7UNBP",
         "instance": 1,
         "meters": [1],
-        "year_bought": 2008,
+        "year_bought": 2008
     },
     {
         "comment": "there are times when we don't know the make or model, e.g. most public datasets",

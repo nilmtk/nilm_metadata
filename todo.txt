@@ -11,9 +11,19 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
+* look at JavaScript inheritance mechanism
+* Look again at SQLite.  EER generalisation. Can't do inheritance?
+  Lots of empty fields?
 * Move all information from schema/appliance_old.json to classes/appliance_classes.json
 * Get it working with appliance_catalogue
+* Build functionality so we can just specify the name and find the
+  class from the name.
 * Do data for meters, using same pattern
+* Building schema
+* Dataset schema.
+  * where to find a canonical list of country names?
+  * look at http://schema.datacite.org/
+  * and look at UKERC EDC's schemas
 * Test it out on HES
 * Write my UKPD metadata
 * Write docs
