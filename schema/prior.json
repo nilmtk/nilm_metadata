@@ -6,15 +6,31 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "distribution": { "type": "string" },
+        "data": { 
+            "type": "string",
+            "description": "Normalised frequencies per discrete bin e.g. '0:0.1, 10:0.2, 20:0.3'.  The sum of frequencies must be <= 1."
+        },
+        "models": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "description": "use additional properties for the relevant parameters, favoring Greek letters spelt out in lowercase English e.g. 'mu' and 'lambda'",
+                "properties": {
+                    "distribution_name": { 
+                        "enum": [ "normal", "inverse gaussian" ] }
+                },
+                "additionalProperties": true
+            }
+        },
         "num_datapoints": { "type": "integer" },
         "date_prepared": { "type": "string", "format": "date" },
         "subjective": { 
             "type": "boolean",
-            "description": "Is this distribution just a manual estimate / guess?" 
+            "description": "Is this distribution a subjective estimate (guess)?"
         },
         "software": { 
             "type": "object",
+            "description": "the software used to generate the prior",
             "properties": {
                 "name": { "type": "string" },
                 "version": { "type": "string" }
