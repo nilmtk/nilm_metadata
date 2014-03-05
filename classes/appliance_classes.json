@@ -22,23 +22,35 @@
             "freezer_volume": { "type": "number", "description": "litres" }
         },
         "control": ["temperature sensor", "manual"],
-        "subtype_of": "Appliance",
+        "parent": "Appliance",
         "categories": ["major", "refrigeration", "cold"],
         "distributions": {
-            "room": "kitchen:0.9"
+            "rooms": [
+                {
+                    "distribution": "kitchen:0.9",
+                    "date_prepared": "2014-03-05",
+                    "subjective": true
+                }
+            ]
         }
     },
 
     "ICT": {
-        "subtype_of": "Appliance",
+        "parent": "Appliance",
         "categories": ["ict", "small appliances"],
         "distributions": {
-            "rooms": "office:0.6, bedroom:0.1, lounge:0.1"
+            "rooms": [
+                {
+                    "distribution": "office:0.6, bedroom:0.1, lounge:0.1",
+                    "date_prepared": "2014-03-05",
+                    "subjective": true
+                }
+            ]
         }
     },
 
     "Computer": {
-        "subtype_of": "ICT",
+        "parent": "ICT",
         "categories": ["computers"],
         "additional_properties": {
             "name": { "enum": [ "computer" ] },

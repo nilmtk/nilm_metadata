@@ -49,6 +49,14 @@
             "type": "array", 
             "items": { "type": "string", "format": "uri" } 
         },
+        "additional_properties": {
+            "type": "object",
+            "description": "JSON-Schema describing additional properties"
+        },
+        "parent": {
+            "type": "string",
+            "description": "Key of parent object"
+        },
         "distributions": {
             "type": "object",
             "description": "Distributions of the data expressed as normalised frequencies over discrete intervals (bins).",

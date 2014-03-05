@@ -24,6 +24,9 @@ TODO:
   * where to find a canonical list of country names?
   * look at http://schema.datacite.org/
   * and look at UKERC EDC's schemas
+* come up with a canonical list of categories:
+  * ones used in HES
+  * ones used in wikipedia
 * Test it out on HES
 * Write my UKPD metadata
 * Write docs

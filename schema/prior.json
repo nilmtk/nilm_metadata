@@ -9,6 +9,10 @@
         "distribution": { "type": "string" },
         "num_datapoints": { "type": "integer" },
         "date_prepared": { "type": "string", "format": "date" },
+        "subjective": { 
+            "type": "boolean",
+            "description": "Is this distribution just a manual estimate / guess?" 
+        },
         "software": { 
             "type": "object",
             "properties": {

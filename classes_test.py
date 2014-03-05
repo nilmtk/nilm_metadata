@@ -40,11 +40,11 @@ def get_complete_class(class_name):
     subclass = classes[class_name]
     complete = subclass.copy()
 
-    while complete.get('subtype_of'):
-        parent = classes[complete['subtype_of']]
+    while complete.get('parent'):
+        parent = classes[complete['parent']]
         complete = merge_dicts(complete, parent)
-        if parent.get('subtype_of') is None:
-            del complete['subtype_of'] 
+        if parent.get('parent') is None:
+            del complete['parent'] 
 
     try:
         properties = complete.pop('additional_properties')
