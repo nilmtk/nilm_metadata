@@ -6,6 +6,7 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
+        "name": { "type": "string" },
         "instance": { "$ref": "instance.json" },
         "room_id": { "$ref": "room.json" },
         "meter_ids": { 
@@ -20,9 +21,26 @@
         },
         "manufacturer": { "type": "string" },
         "model": { "type": "string" },
+        "part_number": { "type": "string" },
+        "gtin": { 
+            "type": "integer", 
+            "description": "http://en.wikipedia.org/wiki/Global_Trade_Item_Number" 
+        },
         "categories": { 
             "type": "array",
-            "items": { "type": "string" }
+            "items": { 
+                "enum": [
+                    "small", "large",
+
+                    "cooking", "washing/drying", "cold", "hot", "wet",
+                    "space heating", "space cooling", 
+                    "water heating", "showers",
+                    "lighting",
+
+                    "ict", "computers", "entertainment", "office"
+                ]
+            },
+            "description": "synonyms: large=white goods; small=brown goods; "
         },
         "on_power_threshold": { 
             "type": "number", 
@@ -39,11 +57,28 @@
             "description": "Give a list of all control methods which apply.  For example, a video recorder would be both 'manual' and 'timer'."
         },
         "energy_rating": { "type": "string" },
-        "nominal_power": { 
-            "type": "number",
-            "minimum": 0,
-            "exclusiveMinimum": true,
-            "description": "active power in watts" 
+        "nominal_consumption": {             
+            "type": "object",
+            "properties": {
+                "on_power": {
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true,
+                    "description": "active power in watts when on" 
+                },
+                "standby_power": {
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true,
+                    "description": "active power in watts when in standby" 
+                },
+                "energy_per_year": {
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true,
+                    "description": "kWh per year" 
+                }
+            }
         },
         "images": { 
             "type": "array", 
@@ -116,22 +151,61 @@
         "screen": {
             "type": "object",
             "properties": {
-                "size": { 
+                "diagonal_size": { 
                     "type": "number",
                     "description": "diagonal size in inches",
                     "minimum": 0,
                     "exclusiveMinimum": true
                 },
-                "display": { "enum": ["crt", "lcd", "plasma", "oled" ] },
-                "backlight": { "enum": ["led", "cold cathode"] }
-            },
-            "additionalProperties": false
+                "max_resolution": { 
+                    "type": "object",
+                    "properties": {
+                        "horizontal": { "type": "integer" },
+                        "vertical": { "type": "integer" }
+                    }
+                },
+                "display_format": { 
+                    "type": "string", 
+                    "description": "e.g. <1080p,PAL,NTSC,1080i> etc." 
+                },
+                "max_refresh_rate": { "type": "number", "description": "Hz" },
+                "display_technology": { 
+                    "enum": [
+                        "crt", "lcd", "plasma", "oled", "projector" ] 
+                },
+                "backlight_technology": { "enum": ["led", "cold cathode"] }
+            }
+        },
+        "av_sources": {
+            "type": "array",
+            "items": { 
+                "enum": [
+                    "digital tv", "analogue tv",
+                    "videodisc", "cd", "dvr", "dvd", "blu-ray",
+                    "tape",
+                    "analogue radio", "digital radio", 
+                    "satellite", "cable", "broadband", "fibre"
+                ]
+            }
+        },
+        "cooking": {
+            "type": "object",
+            "properties": {
+                "name": { "enum": [ "oven", "hob", "grill" ] },
+                "fuel": { "$ref": "#/definitions/fuel" },
+                "fan": { "type": "boolean" }
+            }
         }
     },
     "definitions": {
         "array_of_priors": {
             "type": "array",
             "items": { "$ref": "prior.json" }
+        },
+        "fuel": { 
+            "enum": [ 
+                "electricity", "gas", "oil", "coal", "wood", "biomass" 
+            ] 
         }
     }
 }

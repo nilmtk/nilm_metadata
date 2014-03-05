@@ -5,6 +5,13 @@ NILM Metadata is a [JSON Schema](http://json-schema.org/) for
 modelling appliances, meters, measurements, buildings and datasets.
 Default properties for appliances and meters are also provided.
 
+Version numbering and contributing
+==================================
+
+The current release is version 0.1.  There are definitely plenty of
+improvements that can be made so please submit pull requests for the
+dev version!
+
 
 Validating a new JSON file against the schema
 =============================================

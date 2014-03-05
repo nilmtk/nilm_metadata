@@ -393,11 +393,10 @@
                 "name": { "enum": [
                     "spin dryer", "tumble dryer", "washing machine", 
                     "washer dryer", "dish washer", "wine cooler", "food mixer", 
-                    "vacuum cleaner", "yoghurt maker", "water filter",
-                    "microwave", "kettle", "toaster", "fryer", "bread maker", 
-                    "coffee maker", "food steamer", "bottle warmer", 
-                    "steriliser", "plate warmer", "slow cooker", 
-                    "other cooking", "dehumidifyer",
+
+                    "vacuum cleaner", 
+
+                    "dehumidifyer",
 
                     "rf booster", "video sender", "digital picture frame",
 
@@ -413,14 +412,17 @@
                     "musical instrument",
 
                     "soldering iron", "drill", "saw", "sewing machine",
-                    "lawn sprinkler",
 
                     "motorised chair", "massage bed",
 
                     "door bell", "security alarm", "fire alarm",
 
                     "electric vehicle"
-                ] }
+                ] },
+                "done": { "enum": [
+                    "lawn sprinkler"
+                    ]
+                        }
             }
         }
 

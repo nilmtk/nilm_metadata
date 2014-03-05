@@ -8,7 +8,16 @@
     "properties": {
         "dataset": { "type": "string" },
         "name": { "type": "string", "description": "name used in dataset" },
-        "geo": { "$ref": "http: //json-schema.org/geo" },
+        "geo_location": {
+            "type": "object",
+            "properties": {
+                "country": { "type": "string" }, 
+                "city_or_town": {"type": "string" },
+                "latitude": { "type": "number" },
+                "longitude": { "type": "number" }
+            }
+        },
+        "rooms": { "type": "array", "items": { "$ref": "room.json" } },
         "timezone": { "type": "string" },
         "utilities": {
             "type": "object",

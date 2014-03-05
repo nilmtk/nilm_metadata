@@ -11,10 +11,12 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
-* look at JavaScript inheritance mechanism
-* Look again at SQLite.  EER generalisation. Can't do inheritance?
-  Lots of empty fields?
-* Move all information from schema/appliance_old.json to classes/appliance_classes.json
+* Move all information from schema/appliance_old.json to
+  classes/appliance_classes.json. Only have 'misc' left to do.  Tricky
+  categorising them.  Should look at HES categorisations for these.
+* Check categories are valid JSON and that they all run through my
+  code, at this point I might as well shove them into a graphical
+  model for display!
 * Get it working with appliance_catalogue
 * Build functionality so we can just specify the name and find the
   class from the name.
@@ -27,8 +29,12 @@ TODO:
 * come up with a canonical list of categories:
   * ones used in HES
   * ones used in wikipedia
+* maybe "classes" isn't a good name.  "object_hierarchy"?  "objects"?
+  "hierarchy"?  "appliance_hierarchy"?
 * Test it out on HES
 * Write my UKPD metadata
+* have a "generated" folder for a list of all appliance names, along with
+  their categories.  Also for graph showing hierarchy.  
 * Write docs
 * Make it work with nilmtk
 
@@ -37,3 +43,14 @@ TODO:
 DONE:
 
 * Build the code to traverse the class hierarchy 
+* look at JavaScript inheritance mechanism
+  * yes, our inheritance is a little like JS prototypical inheritance
+    http://www.htmlgoodies.com/html5/tutorials/javascript-prototypical-inheritance-explained.html#fbid=Poq4adKWLGy
+    Our properties are overriden / updated...
+        lists get extended
+        dictionaries get updated
+        all other types are replaced
+* Look again at SQLite.  EER generalisation. Can't do inheritance?
+  Lots of empty fields?
+  - Yes, we can do inheritance, but it doesn't feel like the right way
+    to go... http://stackoverflow.com/a/3579462/732596
