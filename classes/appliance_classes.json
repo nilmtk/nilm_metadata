@@ -37,10 +37,10 @@
         }
     },
 
-    "Clothes": {
+    "WashingDrying": {
         "parent": "Appliance",
         "control": ["manual"],
-        "categories": ["large", "washing/drying"],
+        "categories": ["large", "washing/drying", "wet"],
         "distributions": {
             "rooms": [
                 {
@@ -65,6 +65,7 @@
         "parent": "Appliance",
         "control": ["manual"],
         "categories": ["large", "cooking"],
+        "description": "abstract super class",
         "distributions": {
             "rooms": [
                 {
@@ -96,13 +97,22 @@
     "SmallCookingAppliances": {
         "parent": "Appliance",
         "categories": ["small", "cooking"],
+        "distributions": {
+            "rooms": [
+                {
+                    "distribution": "kitchen:0.9",
+                    "date_prepared": "2014-03-05",
+                    "subjective": true
+                }
+            ]
+        },
         "additional_properties": {
             "name": { 
                 "enum": [
                     "yoghurt maker", "microwave", "kettle", "toaster", 
                     "fryer", "bread maker", "coffee maker", "food steamer", 
                     "bottle warmer", "steriliser", "plate warmer", 
-                    "slow cooker", "other cooking"
+                    "slow cooker", "other cooking", "food mixer"
                 ] 
             }
         }

@@ -391,36 +391,50 @@
         "misc": {
             "properties": {
                 "name": { "enum": [
-                    "spin dryer", "tumble dryer", "washing machine", 
-                    "washer dryer", "dish washer", "wine cooler", "food mixer", 
+                    TODO: try to find an authoritive source for 
+                        appliance categories.  Google "hot cold ict wet appliance categories"
 
+                    "TOOLS"
                     "vacuum cleaner", 
-
-                    "dehumidifyer",
-
-                    "rf booster", "video sender", "digital picture frame",
-
-                    "hair dryer", "hair straightener", "trouser press", 
-                    "sun bed", "electric blanket", 
-                    "baby monitor rx", "baby monitor tx", "clothes iron",
-
-                    "broadband router", "wifi base station", 
-                    "ethernet hub", "usb hub", "modem",
-                    "laptop computer", "desktop computer",
-                    "external hard drive", "ups", "paper shredder",
-
-                    "musical instrument",
-
                     "soldering iron", "drill", "saw", "sewing machine",
 
+                    "CLIMATE CONTROL" 
+                    "dehumidifyer",
+
+                    "ENTERTAINMENT"
+                    "rf booster", "video sender", "digital picture frame",
+
+                    "HOT"
+                    "hair dryer", "hair straightener",  
+                    "sun bed", "electric blanket", 
+
+                    "HOT" + "WASHING/DRYING"
+                    "trouser press", "clothes iron",
+
+                    "ICT"
+                    "broadband router", "wifi base station", 
+                    "ethernet hub", "usb hub", "modem",
+                    "ups", 
+
+                    "OFFICE"
+                    "paper shredder",
+
+                    "ENTERTAINMENT"
+                    "musical instrument",
+
+
+                    "OTHER"
                     "motorised chair", "massage bed",
-
+                    "baby monitor rx", "baby monitor tx", 
                     "door bell", "security alarm", "fire alarm",
-
                     "electric vehicle"
                 ] },
                 "done": { "enum": [
-                    "lawn sprinkler"
+                    "lawn sprinkler", "food mixer", "spin dryer",
+                    "tumble dryer", "washing machine", "washer dryer", 
+                    "dish washer", "wine cooler",  
+
+
                     ]
                         }
             }

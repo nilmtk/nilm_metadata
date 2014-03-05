@@ -33,11 +33,14 @@
                     "small", "large",
 
                     "cooking", "washing/drying", "cold", "hot", "wet",
+                    "climate control",
                     "space heating", "space cooling", 
                     "water heating", "showers",
                     "lighting",
 
-                    "ict", "computers", "entertainment", "office"
+                    "ict", "computers", "entertainment", "office",
+
+                    "tools", "other"
                 ]
             },
             "description": "synonyms: large=white goods; small=brown goods; "

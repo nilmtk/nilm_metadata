@@ -14,6 +14,14 @@ TODO:
 * Move all information from schema/appliance_old.json to
   classes/appliance_classes.json. Only have 'misc' left to do.  Tricky
   categorising them.  Should look at HES categorisations for these.
+
+* also replace the following existing categories: 
+  space heating -> "hot" + "climate control"
+  space cooling -> "cold" + "climate control", 
+  water heating -> "hot" + "wet"
+
+* read and use the distributions in http://arxiv.org/pdf/1306.0802.pdf
+
 * Check categories are valid JSON and that they all run through my
   code, at this point I might as well shove them into a graphical
   model for display!
@@ -35,6 +43,9 @@ TODO:
 * Write my UKPD metadata
 * have a "generated" folder for a list of all appliance names, along with
   their categories.  Also for graph showing hierarchy.  
+* maybe have a separate file for listing synonyms for each appliance
+  name.  This would be used to automatically import each dataset.
+  Although that's what the "original_name" field is for.
 * Write docs
 * Make it work with nilmtk
 
