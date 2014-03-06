@@ -19,6 +19,7 @@
             "type": "array",
             "items": { "$ref": "timeframe.json" }
         },
+        "description": { "type": "string" },
         "manufacturer": { "type": "string" },
         "model": { "type": "string" },
         "type": { "type": "string" },

@@ -1,4 +1,4 @@
-# The Idea:
+## The Idea:
 The schema in the schema directory describes the complete schema for meters and
 appliances.
 
@@ -14,7 +14,6 @@ TODO:
 * continue building out resolve_yaml_appliance.py to implement all the
   new features in our new system:
 
-  * check the inheritance hierarchy runs in the correct direction!
   * synonyms never inherited
   * implement "do_not_inherit"
 
@@ -79,6 +78,7 @@ TODO:
 
 DONE:
 
+* check the inheritance hierarchy runs in the correct direction!
 * Build the code to traverse the class hierarchy 
 * look at JavaScript inheritance mechanism
   * yes, our inheritance is a little like JS prototypical inheritance

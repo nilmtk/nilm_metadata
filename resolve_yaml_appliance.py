@@ -48,21 +48,33 @@ def test_merge_dicts():
 
 def get_complete_class(class_name):
     classes = yaml.load(open('appliances/lights.yaml'))
-    complete = classes[class_name].copy()
 
-    while complete.get('parent'):
-        parent_name = complete['parent']
-        parent = classes[parent_name]
-        merge_dicts(complete, parent)
-        if parent.get('parent') is None:
-            del complete['parent'] 
+    # walk the inheritance tree from 
+    # most-derived class upwards (which is the wrong direction
+    # for actually doing inheritance)
+    class_list = [class_name]
+    current_class = classes[class_name]
+    while current_class.get('parent'):
+        parent_name = current_class['parent']
+        class_list.append(parent_name)
+        current_class = classes[parent_name]
+
+    # Now descend from super-class downwards,
+    # collecting and updating properties as we go.
+    class_list.reverse()
+    merged_class = classes[class_list[0]].copy()
+    for class_name in class_list[1:]:
+        merge_dicts(merged_class, classes[class_name])
+
+    for property_to_remove in ['parent', 'description']:
+        del merged_class[property_to_remove]
 
     try:
-        properties = complete.pop('additional_properties')
+        properties = merged_class.pop('additional_properties')
     except KeyError:
         properties = {}
 
-    return complete, properties
+    return merged_class, properties
 
 def validate_complete_appliance(complete_appliance, additional_properties):
     appliance_schema = json.load(open('schema/appliance.json'))
@@ -73,12 +85,14 @@ def validate_complete_appliance(complete_appliance, additional_properties):
 def get_complete_appliance(appliance):
     class_name = appliance['class']
     cls, properties = get_complete_class(class_name)
-    print(cls)
+    print(json.dumps(cls, indent=4))
     cls.update(appliance)
+    print(json.dumps(cls, indent=4))
     for property_to_remove in [
-            'types', 'default_components', 'description', 
+            'types', 'default_components', 
             'additional_components_allowed']:
         del cls[property_to_remove]
+    print(json.dumps(cls, indent=4))
     return cls, properties
 
 test_merge_dicts()
