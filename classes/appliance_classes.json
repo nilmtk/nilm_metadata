@@ -14,9 +14,12 @@
         "distributions": {
             "rooms": [
                 {
-                    "distribution": "kitchen:0.9",
+                    "distribution_of_data": {
+                        "categories": ["kitchen"],
+                        "values": [0.9]
+                    } ,
                     "date_prepared": "2014-03-05",
-                    "subjective": true
+                    "source": "subjective"
                 }
             ]
         },
@@ -44,9 +47,12 @@
         "distributions": {
             "rooms": [
                 {
-                    "distribution": "kitchen:0.3, utility:0.3, basement:0.2, garage:0.1",
+                    "distribution_of_data": {
+                        "categories": ["kitchen", "utility", "basement", "garage"],
+                        "values": [0.3, 0.3, 0.2, 0.1]
+                    } ,
                     "date_prepared": "2014-03-05",
-                    "subjective": true
+                    "source": "subjective"
                 }
             ]
         },
@@ -69,9 +75,12 @@
         "distributions": {
             "rooms": [
                 {
-                    "distribution": "kitchen:0.9",
+                    "distribution_of_data": {
+                        "categories": ["kitchen"],
+                        "values": [0.9]
+                    } ,
                     "date_prepared": "2014-03-05",
-                    "subjective": true
+                    "source": "subjective"
                 }
             ]
         }
@@ -100,9 +109,12 @@
         "distributions": {
             "rooms": [
                 {
-                    "distribution": "kitchen:0.9",
+                    "distribution_of_data": {
+                        "categories": ["kitchen"],
+                        "values": [0.9]
+                    } ,
                     "date_prepared": "2014-03-05",
-                    "subjective": true
+                    "source": "subjective"
                 }
             ]
         },
@@ -198,9 +210,12 @@
         "distributions": {
             "rooms": [
                 {
-                    "distribution": "office:0.6, bedroom:0.1, lounge:0.1",
+                    "distribution_of_data": {
+                        "categories": ["office", "bedroom", "lounge"],
+                        "values": [         0.6,        0.1,     0.1]
+                    } ,
                     "date_prepared": "2014-03-05",
-                    "subjective": true
+                    "source": "subjective"
                 }
             ]
         }
@@ -269,9 +284,12 @@
         "distributions": {
             "rooms": [
                 {
-                    "distribution": "lounge:0.5, kitchen:0.2, bedroom:0.1, office:0.1",
+                    "distribution_of_data": {
+                        "categories": ["lounge", "kitchen", "bedroom", "office"],
+                        "values": [         0.5,       0.2,       0.1,     0.1]
+                    } ,
                     "date_prepared": "2014-03-05",
-                    "subjective": true
+                    "source": "subjective"
                 }
             ]
         }

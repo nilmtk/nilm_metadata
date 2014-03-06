@@ -102,49 +102,49 @@
                 "on_power": {
                     "allOf": [
                         { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "e.g. '0:0.0, 1:0.5, 2:0.25, 3:0.25, 4:0' meaning the bin from [0,1) has 0 mass; the bin [1,2) has 0.5 mass etc. Watts" }
+                        { "description": "bin_edges in units of watts" }
                     ]
                 },
                 "on_duration": { 
                     "allOf": [
                         { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "e.g. '0:0.2, 100:0.1, 200:0.0, ...'. Meaning the bin from [0,100) seconds has 0.2 mass, the bin from [100,200) has 0.1 mass etc" }
+                        { "description": "bin_edges in units of seconds" }
                     ]
                 },
                 "off_duration": { 
                     "allOf": [
                         { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "e.g. '0:0.2, 100:0.1, 200:0.0, ...'. Meaning the bin from [0,100) seconds has 0.2 mass, the bin from [100,200) has 0.1 mass etc" }
+                        { "description": "bin_edges in units of seconds" }
                     ]
                 },
                 "usage_hour_per_day": { 
                     "allOf": [
                         { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "e.g. '0:0.2, 1:0.1, 2:0.0, ..., 23:0.0'" }
+                        { "description": "bin_edges = [0,1,2,...,24]" }
                     ]
                 },
                 "usage_day_per_week": { 
                     "allOf": [
                         { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "e.g. 'mon:0.2, tue:0.1, wed:0.0, ...'" }
+                        { "description": "categories = ['mon', 'tue', ..., 'sun']" }
                     ]
                 },
                 "usage_month_per_year": { 
                     "allOf": [
                         { "$ref": "#/definitions/array_of_priors" },
-                        {}
+                        { "description": "bin_edges are in units of days (we need bin edges because months are not equal lengths).  The first bin represents January." }
                     ]
                 },
                 "rooms": { 
                     "allOf": [
                         { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "Distribution over the rooms where this appliance is likely to be used. e.g. for a fridge this might be 'kitchen:0.9, garage:0.1'" }
+                        { "description": "Categorical distribution over the rooms where this appliance is likely to be used. e.g. for a fridge this might be 'kitchen:0.9, garage:0.1'" }
                     ]
                 },
                 "appliance_correlations": { 
                     "allOf": [
                         { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "list of other appliances. Probability of this appliance being on given that the other appliance is on. e.g. 'tv:0.1, amp:0.4, ...' means that there is a 10% probability of this appliance being on if the TV is on." }
+                        { "description": "list of other appliances. Probability of this appliance being on given that the other appliance is on. e.g. 'tv:0.1, amp:0.4, ...' means that there is a 10% probability of this appliance being on if the TV is on.  Each category name can either be just an appliance name (e.g. 'fridge') or <appliance name>,<appliance instance> e.g. 'fridge,1'" }
                     ]
                 }
             }

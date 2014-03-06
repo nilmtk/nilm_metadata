@@ -2,35 +2,66 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/prior.json",
     "title": "Prior",
-    "description": "Metadata for Priors",
+    "description": "Represent prior knowledge. For continuous variables, specify either the distribution of data (i.e. the data represented in a histogram), or a density estimate (a model fitted to the data), or both.  For categorical variables, specify the categorical distribution.",
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "data": { 
-            "type": "string",
-            "description": "Normalised frequencies per discrete bin e.g. '0:0.1, 10:0.2, 20:0.3'.  The sum of frequencies must be <= 1."
-        },
-        "models": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "description": "use additional properties for the relevant parameters, favoring Greek letters spelt out in lowercase English e.g. 'mu' and 'lambda'",
-                "properties": {
-                    "distribution_name": { 
-                        "enum": [ "normal", "inverse gaussian" ] }
+        "distribution_of_data": {
+            "type": "object",
+            "description": "Distribution of the data expressed as normalised frequencies per discrete bin (for continuous variables) or per category (for categorical variables).  'categories' can be used instead of 'bin_edges' for continuous variables where it makes sense; e.g. where each bin represents a day of the week",
+            "properties": {
+                "bin_edges": { 
+                    "type": "array", 
+                    "items": { 
+                        "oneOf": [ 
+                            { "type": "number" }, 
+                            { "type": "string" } 
+                        ] 
+                    },
+                    "required": true,
+                    "description": "|bin_edges| == |values| + 1"
                 },
-                "additionalProperties": true
+                "categories": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "required": true,
+                    "description": "|bin_edges| == |values|"
+                },
+                "values": {
+                    "type": "array",
+                    "items": { "type": "number" },
+                    "description": "The normalised frequencies.  For continuous variables, in integral over the range must be 1.  For categorical variables, the sum of frequences can be <= 1.  If < 1 then the system will assume that the remaining mass is distributed equaly across all other categories.  For example, for the probability of a fridge being in a specific room, it is sufficient to just state that the probability is 0.9 for a fridge to be in the kitchen.",
+                    "required": true
+                }
             }
+        },
+        "model": {
+            "type": "object",
+            "description": "A fitted model to describe the probability density function (for continuous variables) or the probability mass function (for discrete variables).  Use additional properties for the relevant parameters, written as Greek letters spelt out in lowercase English e.g. 'mu' and 'lambda'",
+            "properties": {
+                "distribution_name": { 
+                    "enum": [ "normal", "inverse gaussian" ] },
+                "sum_of_squared_error": { "type": "number" }
+            },
+            "additionalProperties": true
         },
         "num_datapoints": { "type": "integer" },
         "date_prepared": { "type": "string", "format": "date" },
-        "subjective": { 
-            "type": "boolean",
-            "description": "Is this distribution a subjective estimate (guess)?"
+        "source": { 
+            "enum": [ 
+                "subjective", 
+                "empirical from data",
+                "empirical from publication" 
+            ],
+            "description": "What is the source of this prior?"
+        },
+        "reference": { 
+            "type": "string",
+            "description": "If source=='empirical from publication' then enter the refenerence here."
         },
         "software": { 
             "type": "object",
-            "description": "the software used to generate the prior",
+            "description": "the software used to generate the prior from data.",
             "properties": {
                 "name": { "type": "string" },
                 "version": { "type": "string" }
