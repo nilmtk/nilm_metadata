@@ -17,10 +17,10 @@ light:
   parent: appliance
 
   default_components:
-    - name: lamp
+    lamp:
 
   additional_components_allowed:
-    - name: dimmer
+    dimmer:
 
   additional_properties:
     main_room_light:
@@ -102,7 +102,8 @@ dimmer:
 #-------------- TEST -----------------#
 
 test_appliance_group:
-  - class: light
+  light,1:
+    class: light
     instance: 1
     type: ceiling
     main_room_light: true

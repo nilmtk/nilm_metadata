@@ -83,21 +83,39 @@ def validate_complete_appliance(complete_appliance, additional_properties):
     return appliance_schema
 
 def get_complete_appliance(appliance):
-    class_name = appliance['class']
-    cls, properties = get_complete_class(class_name)
-    print(json.dumps(cls, indent=4))
-    cls.update(appliance)
-    print(json.dumps(cls, indent=4))
+    appliance_class_name = appliance['class']
+    cls, properties = get_complete_class(appliance_class_name)
+    complete_appliance = cls.copy()
+    complete_appliance.update(appliance)
+    print(json.dumps(complete_appliance, indent=4))
+
+    # Merge components
+    default_components = cls.get('default_components', {})
+    components = default_components.copy()
+    components.update(appliance.get('components', {}))
+
+    # Check components are valid
+    additional_components_allowed = cls.get('additional_components_allowed',{})
+    all_allowed_components = (set(default_components.keys())
+                              .union(set(additional_components_allowed.keys())))
+
+    if not set(components.keys()).issubset(all_allowed_components):
+        incorrect_components = set(components.keys()) - all_allowed_components
+        raise KeyError(str(list(incorrect_components)) + ' are not allowed for '
+                       + appliance_class_name)
+    else:
+        complete_appliance['components'] = components
+
     for property_to_remove in [
             'types', 'default_components', 
             'additional_components_allowed']:
-        del cls[property_to_remove]
-    print(json.dumps(cls, indent=4))
-    return cls, properties
+        del complete_appliance[property_to_remove]
+    print(json.dumps(complete_appliance, indent=4))
+    return complete_appliance, properties
 
 test_merge_dicts()
 appliances = yaml.load(open('appliances/lights.yaml'))['test_appliance_group']
-complete_appliance, additional_properties = get_complete_appliance(appliances[0])
+complete_appliance, additional_properties = get_complete_appliance(appliances['light,1'])
 # validate_complete_appliance(complete_appliance, additional_properties)
 print('done validation')
 
