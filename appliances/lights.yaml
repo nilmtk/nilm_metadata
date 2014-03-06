@@ -1,0 +1,124 @@
+appliance:
+  on_power_threshold: 5
+  minimum_on_duration: 10
+  minimum_off_duration: 10
+
+light:
+  description: |
+    We distinguish between the 'luminaire' (light fitting) and the
+    electric lamp(s) within the light fitting.
+
+    See:
+      - https://en.wikipedia.org/wiki/Luminaire 
+      - https://en.wikipedia.org/wiki/Lamp_%28electrical_component%29
+
+    The light appliance takes its category from the lamp type fitted.
+
+  parent: appliance
+
+  default_components:
+    - name: lamp
+
+  additional_components_allowed:
+    - name: dimmer
+
+  additional_properties:
+    main_room_light:
+      type: boolean
+
+  types:
+    ceiling:
+    desk:
+    wall:
+    table:
+    floor standing: 
+    floor level:
+    decorative:
+    night light: 
+    signage:
+    outdoor:
+
+
+# ----------------- COMPONENTS ------------------------ #
+
+lamp:
+  categories:
+    traditional: lighting
+
+  types:
+    # --------- INCANDESENT --------- #
+    incandescent:
+
+      categories:
+        electrical: GIL
+
+      distributions:
+        on_power:
+          model:
+            distribution_name: normal
+            mu: 50
+            lambda: 10
+
+      subtypes:
+        halogen:
+          categories:
+            electrical: HIL
+        tungsten:
+
+    # --------- FLUORESCENT --------- #
+    fluorescent:
+      subtypes:
+        linear:
+          categories:
+            electrical: LFL
+          synonyms: [ strip light ]
+
+        compact:
+          categories:
+            electrical: CFL
+          synonyms: [ CFL ]
+
+        cold cathode:
+
+    # --------- ARC --------- #
+    arc:
+
+    # --------- GAS DISCHARGE --------- #
+    gas_discharge:
+      subtypes:
+        mercury-vapor:
+        metal-halide:
+        sodium-vapor: 
+        neon:
+
+dimmer:
+  additional_properties:
+    number_of_dimmer_levels:
+      type: integer
+
+  types:
+    triac:
+
+#-------------- TEST -----------------#
+
+test_appliance_group:
+  - class: light
+    instance: 1
+    type: ceiling
+    main_room_light: true
+
+    room:
+      name: kitchen
+      instance: 1
+
+    # components:
+    #   - name: lamp
+    #     type: led
+    #     count: 10
+    #     nominal_consumption:
+    #       on_power: 10
+    #       standby_power: 1
+
+    #   - name: dimmer
+    #     number_of_dimmer_levels: 5
+    #     type: TRIAC

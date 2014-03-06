@@ -6,9 +6,9 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "name": { "type": "string" },
+        "class": { "type": "string" },
         "instance": { "$ref": "instance.json" },
-        "room_id": { "$ref": "room.json" },
+        "room": { "$ref": "room.json" },
         "meter_ids": { 
             "type": "array", 
             "items": { "$ref": "instance.json" },
@@ -21,29 +21,50 @@
         },
         "manufacturer": { "type": "string" },
         "model": { "type": "string" },
+        "type": { "type": "string" },
+        "subtype": { "type": "string" },
+        "count": { "type": "integer", "description": "number of instances of this component.  Only used when this appliance is used as a component of an appliance." },
         "part_number": { "type": "string" },
         "gtin": { 
             "type": "integer", 
             "description": "http://en.wikipedia.org/wiki/Global_Trade_Item_Number" 
         },
         "categories": { 
-            "type": "array",
-            "items": { 
-                "enum": [
-                    "small", "large",
+            "type": "object",
+            "properties": {
+                "traditional": {
+                    "enum": [ "wet", "cold", "consumer electronics", "ICT", 
+                              "cooking", "heating", "lighting" ]
+                },
+                "electrical": {
+                    "enum": [ "general incandescent lamps", "halogen lamps",
+                              "compact fluorescent lamps", 
+                              "linear fluorsecent lamps", "LED" ],
+                    "description": "From Tsagarakid, Collin & Kiprakis 2013"
+                },
+                "size": { "enum": [ "small", "large" ] },
+                "google_shopping": {
+                    "enum": [ "TODO" ]
+                },
+                "HES": {
+                    "enum": [ "TODO" ]
+                },
+                "TO CONVERT": {
+                    "enum": [
+                        "small", "large",
+                        
+                        "cooking", "washing/drying", "cold", "hot", "wet",
+                        "climate control",
+                        "space heating", "space cooling", 
+                        "water heating", "showers",
+                        "lighting",
 
-                    "cooking", "washing/drying", "cold", "hot", "wet",
-                    "climate control",
-                    "space heating", "space cooling", 
-                    "water heating", "showers",
-                    "lighting",
-
-                    "ict", "computers", "entertainment", "office",
-
-                    "tools", "other"
-                ]
-            },
-            "description": "synonyms: large=white goods; small=brown goods; "
+                        "ict", "computers", "entertainment", "office",
+                        
+                        "tools", "other"
+                    ]                    
+                }
+            }
         },
         "on_power_threshold": { 
             "type": "number", 
@@ -53,10 +74,15 @@
         "minimum_off_duration": { "type": "number", "description": "seconds" },
         "minimum_on_duration": { "type": "number", "description": "seconds" },
         "control": { 
-            "type": "array",
-            "items": { "enum": [ 
-                "timer", "manual", "motion sensor", "light sensor",
-                "temperature sensor"] },
+            "type": "object",
+            "additionalProperties": { 
+                "type": "array",
+                "items": {
+                    "enum": [ 
+                        "timer", "manual", "motion sensor", "light sensor",
+                        "temperature sensor" ] 
+                }
+            },
             "description": "Give a list of all control methods which apply.  For example, a video recorder would be both 'manual' and 'timer'."
         },
         "energy_rating": { "type": "string" },
@@ -80,6 +106,12 @@
                     "minimum": 0,
                     "exclusiveMinimum": true,
                     "description": "kWh per year" 
+                },
+                "energy_per_cycle": {
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true,
+                    "description": "kWh per cycle" 
                 }
             }
         },
@@ -87,13 +119,9 @@
             "type": "array", 
             "items": { "type": "string", "format": "uri" } 
         },
-        "additional_properties": {
-            "type": "object",
-            "description": "JSON-Schema describing additional properties"
-        },
-        "parent": {
-            "type": "string",
-            "description": "Key of parent object"
+        "components": {
+            "type": "array",
+            "items": { "$ref": "#/" }
         },
         "distributions": {
             "type": "object",

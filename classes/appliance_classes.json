@@ -365,6 +365,7 @@
             "allOf": [
                 {
                     "name": { "enum": ["light"] },
+                    "main_room_light": { "type": "boolean" },
                     "dimmable": { "type": "boolean" },
                     "dimmer_type": { 
                         "type": "string",

@@ -11,6 +11,32 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
+* continue building out resolve_yaml_appliance.py to implement all the
+  new features in our new system:
+
+  * check the inheritance hierarchy runs in the correct direction!
+  * synonyms never inherited
+  * implement "do_not_inherit"
+
+  * types:
+    * check the instance does not specify non-allowed types
+    * insert correct subtype into the inheritance hierarchy
+ 
+  * components
+    * uncomment compoents in test_appliance_group/components
+    * check that the instance doesn't specify any components not in
+      additional_components_allowed
+    * collect together all components from default_components and
+      components specified in instance.  Update default components.
+    * instantiate these components.
+
+  * allow multiple inheritance
+
+  * test with details in my spreadsheet sketch of ideas.
+
+* try to find an authoritive source for 
+  appliance categories.  Google "hot cold ict wet appliance categories"
+
 * Move all information from schema/appliance_old.json to
   classes/appliance_classes.json. Only have 'misc' left to do.  Tricky
   categorising them.  Should look at HES categorisations for these.
@@ -65,3 +91,8 @@ DONE:
   Lots of empty fields?
   - Yes, we can do inheritance, but it doesn't feel like the right way
     to go... http://stackoverflow.com/a/3579462/732596
+
+
+
+------------
+
