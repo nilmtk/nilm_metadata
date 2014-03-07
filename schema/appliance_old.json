@@ -392,48 +392,47 @@
             "properties": {
                 "name": { "enum": [
 
-                    "TOOLS"
+                    "TOOLS",
                     "vacuum cleaner", 
                     "soldering iron", "drill", "saw", "sewing machine",
 
-                    "CLIMATE CONTROL" 
+                    "CLIMATE CONTROL",
                     "dehumidifyer",
 
-                    "ENTERTAINMENT"
+                    "ENTERTAINMENT",
                     "rf booster", "video sender", "digital picture frame",
 
-                    "HOT"
+                    "HOT",
                     "hair dryer", "hair straightener",  
                     "sun bed", "electric blanket", 
 
-                    "HOT" + "WASHING/DRYING"
+                    "HOT + WASHING/DRYING",
                     "trouser press", "clothes iron",
 
-                    "ICT"
+                    "ICT",
                     "broadband router", "wifi base station", 
                     "ethernet hub", "usb hub", "modem",
                     "ups", 
 
-                    "OFFICE"
+                    "OFFICE",
                     "paper shredder",
 
-                    "ENTERTAINMENT"
+                    "ENTERTAINMENT",
                     "musical instrument",
 
 
-                    "OTHER"
+                    "OTHER",
                     "motorised chair", "massage bed",
                     "baby monitor rx", "baby monitor tx", 
                     "door bell", "security alarm", "fire alarm",
                     "electric vehicle"
-                ] },
+                ] 
+                        },
                 "done": { "enum": [
                     "lawn sprinkler", "food mixer", "spin dryer",
                     "tumble dryer", "washing machine", "washer dryer", 
-                    "dish washer", "wine cooler",  
-
-
-                    ]
+                    "dish washer", "wine cooler"
+                ]
                         }
             }
         }

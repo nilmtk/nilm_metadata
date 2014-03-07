@@ -17,11 +17,10 @@ light:
   parent: appliance
   name: light
 
-  default_components:
+  components:
     lamp:
 
-  additional_components_allowed:
-    dimmer:
+  all_allowed_components: [dimmer, lamp]
 
   additional_properties:
     main_room_light:
@@ -99,28 +98,3 @@ dimmer:
 
   types:
     triac:
-
-#-------------- TEST -----------------#
-
-test_appliance_group:
-  light,1:
-    parent: light
-    instance: 1
-    type: ceiling
-    main_room_light: true
-
-    room:
-      name: kitchen
-      instance: 1
-
-    # components:
-    #   - name: lamp
-    #     type: led
-    #     count: 10
-    #     nominal_consumption:
-    #       on_power: 10
-    #       standby_power: 1
-
-    #   - name: dimmer
-    #     number_of_dimmer_levels: 5
-    #     type: TRIAC

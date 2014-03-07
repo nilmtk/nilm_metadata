@@ -10,6 +10,7 @@ except ImportError as er:
 
 import json, unittest, sys
 from os.path import walk, join
+from ..file_management import get_schema_directory
 
 class TestSchema(unittest.TestCase):
 
@@ -24,7 +25,7 @@ class TestSchema(unittest.TestCase):
             json_files.extend(new_json_files)
             fnames = filter(lambda fname: fname != '.git', fnames)
 
-        walk('.', select_json_files, json_files)
+        walk(get_schema_directory(), select_json_files, json_files)
         print("Found", len(json_files), "JSON files..."
               " will now test they are valid JSON... ", end="")
 
@@ -37,13 +38,13 @@ class TestSchema(unittest.TestCase):
                 raise
         print("done and all are OK!")
 
-    def test_appliance_group(self):
-        validate(json.load(open('examples/appliance_group.json')),
-                 json.load(open('schema/appliance_group.json')))
+    # def test_appliance_group(self):
+    #     validate(json.load(open('examples/appliance_group.json')),
+    #              json.load(open('schema/appliance_group.json')))
 
-    def test_meter(self):
-        validate(json.load(open('examples/meter.json')),
-                 json.load(open('schema/meter.json')))
+    # def test_meter(self):
+    #     validate(json.load(open('examples/meter.json')),
+    #              json.load(open('schema/meter.json')))
 
 
 if __name__ == '__main__':

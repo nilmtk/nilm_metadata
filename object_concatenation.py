@@ -1,7 +1,8 @@
 from __future__ import print_function, division
 import json, yaml
 from jsonschema import validate
-from utils import path_to_prototypes
+from file_management import map_obj_names_to_filenames, get_schema_directory, get_module_directory
+from os.path import join
 
 def merge_dicts(old, new):
     """ Recursively extends lists in old with lists in new,
@@ -20,110 +21,92 @@ def merge_dicts(old, new):
         else:
             old[key] = new_value
 
-def test_merge_dicts():
-    d1 = {}
-    d2 = {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20} }
-    merge_dicts(d1,d2)
-    assert d1 == d2
 
-    d1 = {'a':-1, 'b':-3, 'c': {}}
-    d2 = {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20} }
-    merge_dicts(d1,d2)
-    assert d1 == d2
-
-    d1 = {'a':-1, 'b':-3, 'c': {}, 'list': [1,2,3]}
-    d2 = {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20}, 'list': [4,5,6] }
-    merge_dicts(d1,d2)
-    assert d1 == {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20}, 'list': [1,2,3,4,5,6] }
-
-    d1 = {'a':-1, 'b':-3}
-    d2 = {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20} }
-    merge_dicts(d1,d2)
-    assert d1 == d2
-
-    d1 = {'a':-1, 'b':-3, 'c': {'ca':-10, 'cc': 30} }
-    d2 = {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20} }
-    merge_dicts(d1,d2)
-    assert d1 == {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20, 'cc': 30} }
-
-
-def get_inheritance_sequence(object_name):
-    prototypees = yaml.load(open('appliances/lights.yaml'))
+def get_ancestors(object_name):
+    """
+    Arguments
+    ---------
+    object_name: string
+    
+    Returns
+    -------
+    A list of dicts where each dict is an object. The first
+    dict is the highest on the inheritance hierarchy; the last dict
+    is the object with name == `object_name`.
+    """
+    object_filenames = map_obj_names_to_filenames()
+    name_of_file_containing_object = object_filenames[object_name]
+    yaml_file = yaml.load(open(name_of_file_containing_object))
 
     # walk the inheritance tree from 
     # bottom upwards (which is the wrong direction
     # for actually doing inheritance)
-    prototype_list = [object_name]
-    current_prototype = prototypees[object_name]
-    while current_prototype.get('parent'):
-        parent_name = current_prototype['parent']
-        prototype_list.append(parent_name)
-        current_prototype = prototypees[parent_name]
+    current_object = yaml_file[object_name]
+    ancestors = [current_object]
+    while current_object.get('parent'):
+        parent_name = current_object['parent']
+        name_of_file_containing_parent = object_filenames[parent_name]
+        if name_of_file_containing_object != name_of_file_containing_parent:
+            name_of_file_containing_object = name_of_file_containing_parent
+            yaml_file = yaml.load(open(name_of_file_containing_object))
 
-    prototype_list.reverse()
-    return prototype_list
+        current_object = yaml_file[parent_name]
+        ancestors.append(current_object)
+
+    ancestors.reverse()
+    return ancestors
     
 
-def get_complete_prototype(prototype_name):
-    prototypees = yaml.load(open('appliances/lights.yaml'))
-    prototype_list = get_inheritance_sequence(prototype_name)
+def concatenate_complete_object(object_name):
+    ancestors = get_ancestors(object_name)
 
-    # Now descend from super-prototype downwards,
+    # Now descend from super-object downwards,
     # collecting and updating properties as we go.
-    merged_prototype = prototypees[prototype_list[0]].copy()
-    for prototype_name in prototype_list[1:]:
-        merge_dicts(merged_prototype, prototypees[prototype_name])
+    merged_object = ancestors[0].copy()
+    for obj in ancestors[1:]:
+        merge_dicts(merged_object, obj)
 
-    for property_to_remove in ['parent', 'description']:
-        del merged_prototype[property_to_remove]
+    return merged_object
 
+
+def concatenate_complete_appliance(appliance_obj):
+    parent_name = appliance_obj['parent']
+    complete_parent = concatenate_complete_object(parent_name)
+    complete_appliance = complete_parent.copy()
+    complete_appliance.update(appliance_obj)
+    print(json.dumps(complete_appliance, indent=4))
+
+    # Check components are valid
+    all_allowed_components = complete_parent.get('all_allowed_components', [])
+    all_allowed_components = set(all_allowed_components)
+    components = set(complete_appliance['components'].keys())
+
+    if not components.issubset(all_allowed_components):
+        incorrect_components = components - all_allowed_components
+        raise KeyError('Components: ' + str(list(incorrect_components)) + 
+                       ' are not allowed for appliance ' + parent_name)
+
+    for property_to_remove in ['types', 'all_allowed_components']:
+        del complete_appliance[property_to_remove]
+    print(json.dumps(complete_appliance, indent=4))
+
+    return complete_appliance
+
+
+def validate_complete_appliance(complete_appliance):
     try:
-        properties = merged_prototype.pop('additional_properties')
+        additional_properties = complete_appliance.pop('additional_properties')
     except KeyError:
-        properties = {}
-
-    return merged_prototype, properties
-
-def validate_complete_appliance(complete_appliance, additional_properties):
-    appliance_schema = json.load(open('schema/appliance.json'))
+        additional_properties = {}
+    schema_filename = join(get_schema_directory(), 'appliance.json')
+    appliance_schema = json.load(open(schema_filename))
     appliance_schema['properties'].update(additional_properties)
     validate(complete_appliance, appliance_schema)
     return appliance_schema
 
-def get_complete_appliance(appliance):
-    appliance_prototype_name = appliance['parent']
-    cls, properties = get_complete_prototype(appliance_prototype_name)
-    complete_appliance = cls.copy()
-    complete_appliance.update(appliance)
-    print(json.dumps(complete_appliance, indent=4))
 
-    # Merge components
-    default_components = cls.get('default_components', {})
-    components = default_components.copy()
-    components.update(appliance.get('components', {}))
-
-    # Check components are valid
-    additional_components_allowed = cls.get('additional_components_allowed',{})
-    all_allowed_components = (set(default_components.keys())
-                              .union(set(additional_components_allowed.keys())))
-
-    if not set(components.keys()).issubset(all_allowed_components):
-        incorrect_components = set(components.keys()) - all_allowed_components
-        raise KeyError(str(list(incorrect_components)) + ' are not allowed for '
-                       + appliance_prototype_name)
-    else:
-        complete_appliance['components'] = components
-
-    for property_to_remove in [
-            'types', 'default_components', 
-            'additional_components_allowed']:
-        del complete_appliance[property_to_remove]
-    print(json.dumps(complete_appliance, indent=4))
-    return complete_appliance, properties
-
-test_merge_dicts()
-appliances = yaml.load(open('appliances/lights.yaml'))['test_appliance_group']
-complete_appliance, additional_properties = get_complete_appliance(appliances['light,1'])
-# validate_complete_appliance(complete_appliance, additional_properties)
-print('done validation')
-
+def old_tests():
+    appliances = yaml.load(open(join(get_module_directory(), 'examples/appliance_group.yaml')))['test_appliance_group']
+    complete_appliance = concatenate_complete_appliance( appliances['light,1'])
+    validate_complete_appliance(complete_appliance)
+    print('done validation')

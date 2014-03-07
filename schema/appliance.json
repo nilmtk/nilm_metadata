@@ -6,7 +6,8 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "class": { "type": "string" },
+        "name": { "type": "string" },
+        "parent": { "type": "string" },
         "instance": { "$ref": "instance.json" },
         "room": { "$ref": "room.json" },
         "meter_ids": { 
@@ -121,8 +122,8 @@
             "items": { "type": "string", "format": "uri" } 
         },
         "components": {
-            "type": "array",
-            "items": { "$ref": "#/" }
+            "type": "object",
+            "items": { "$ref": "#" }
         },
         "distributions": {
             "type": "object",
