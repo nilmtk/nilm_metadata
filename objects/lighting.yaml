@@ -19,7 +19,6 @@ light:
 
   components:
     lamp:
-      name: bar
 
   all_allowed_components: [dimmer, lamp]
 
