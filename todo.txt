@@ -27,8 +27,9 @@ TODO:
     * check the instance does not specify non-allowed types
     * insert correct subtype into the inheritance hierarchy
  
-
   * allow multiple inheritance
+
+  * implement inheriting from appliance catalogue
 
   * test with details in my spreadsheet sketch of ideas.
 

@@ -46,7 +46,7 @@ def test_merge_dicts():
     assert d1 == {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20, 'cc': 30} }
 
 
-def get_complete_class(class_name):
+def get_inheritance_sequence(class_name):
     classes = yaml.load(open('appliances/lights.yaml'))
 
     # walk the inheritance tree from 
@@ -59,9 +59,16 @@ def get_complete_class(class_name):
         class_list.append(parent_name)
         current_class = classes[parent_name]
 
+    class_list.reverse()
+    return class_list
+    
+
+def get_complete_class(class_name):
+    classes = yaml.load(open('appliances/lights.yaml'))
+    class_list = get_inheritance_sequence(class_name)
+
     # Now descend from super-class downwards,
     # collecting and updating properties as we go.
-    class_list.reverse()
     merged_class = classes[class_list[0]].copy()
     for class_name in class_list[1:]:
         merge_dicts(merged_class, classes[class_name])
