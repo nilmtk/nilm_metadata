@@ -1,6 +1,7 @@
 from __future__ import print_function, division
 import json, yaml
 from jsonschema import validate
+from utils import path_to_prototypes
 
 def merge_dicts(old, new):
     """ Recursively extends lists in old with lists in new,
@@ -50,7 +51,7 @@ def get_inheritance_sequence(object_name):
     prototypees = yaml.load(open('appliances/lights.yaml'))
 
     # walk the inheritance tree from 
-    # most-derived prototype upwards (which is the wrong direction
+    # bottom upwards (which is the wrong direction
     # for actually doing inheritance)
     prototype_list = [object_name]
     current_prototype = prototypees[object_name]
