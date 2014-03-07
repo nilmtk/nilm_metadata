@@ -15,6 +15,7 @@ light:
     The light appliance takes its category from the lamp type fitted.
 
   parent: appliance
+  name: light
 
   default_components:
     lamp:

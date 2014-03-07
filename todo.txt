@@ -33,6 +33,8 @@ TODO:
 
   * test with details in my spreadsheet sketch of ideas.
 
+  * enforce appliance names
+
 * try to find an authoritive source for 
   appliance categories.  Google "hot cold ict wet appliance categories"
 
