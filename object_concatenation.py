@@ -88,6 +88,8 @@ def concatenate_complete_appliance(appliance_obj):
     for property_to_remove in ['types', 'all_allowed_components']:
         del complete_appliance[property_to_remove]
 
+    print(json.dumps(complete_appliance, indent=4))
+
     return complete_appliance
 
 

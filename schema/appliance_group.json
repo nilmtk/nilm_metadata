@@ -6,5 +6,6 @@
     "type": "object",
     "properties": {
         "patternProperties": { "": { "$ref": "appliance.json" }}
-    }
+    },
+    "additionalProperties": false
 }
