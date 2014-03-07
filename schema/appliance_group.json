@@ -5,7 +5,7 @@
     "description": "Metadata for a group of Appliances",
     "type": "object",
     "properties": {
-        "patternProperties": { "": { "$ref": "appliance.json" }}
+        "patternProperties": { "^(/[^/]+)+$": { "$ref": "appliance.json" }}
     },
     "additionalProperties": false
 }
