@@ -74,7 +74,6 @@ def concatenate_complete_appliance(appliance_obj):
     complete_parent = concatenate_complete_object(parent_name)
     complete_appliance = complete_parent.copy()
     complete_appliance.update(appliance_obj)
-    print(json.dumps(complete_appliance, indent=4))
 
     # Check components are valid
     all_allowed_components = complete_parent.get('all_allowed_components', [])
@@ -88,7 +87,6 @@ def concatenate_complete_appliance(appliance_obj):
 
     for property_to_remove in ['types', 'all_allowed_components']:
         del complete_appliance[property_to_remove]
-    print(json.dumps(complete_appliance, indent=4))
 
     return complete_appliance
 

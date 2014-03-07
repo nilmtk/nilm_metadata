@@ -121,10 +121,7 @@
             "type": "array", 
             "items": { "type": "string", "format": "uri" } 
         },
-        "components": {
-            "type": "object",
-            "items": { "$ref": "#" }
-        },
+        "components": { "$ref": "appliance_group.json" },
         "distributions": {
             "type": "object",
             "description": "Distributions of the data expressed as normalised frequencies over discrete intervals (bins).",
