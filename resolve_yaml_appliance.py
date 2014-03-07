@@ -46,42 +46,42 @@ def test_merge_dicts():
     assert d1 == {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20, 'cc': 30} }
 
 
-def get_inheritance_sequence(class_name):
-    classes = yaml.load(open('appliances/lights.yaml'))
+def get_inheritance_sequence(object_name):
+    prototypees = yaml.load(open('appliances/lights.yaml'))
 
     # walk the inheritance tree from 
-    # most-derived class upwards (which is the wrong direction
+    # most-derived prototype upwards (which is the wrong direction
     # for actually doing inheritance)
-    class_list = [class_name]
-    current_class = classes[class_name]
-    while current_class.get('parent'):
-        parent_name = current_class['parent']
-        class_list.append(parent_name)
-        current_class = classes[parent_name]
+    prototype_list = [object_name]
+    current_prototype = prototypees[object_name]
+    while current_prototype.get('parent'):
+        parent_name = current_prototype['parent']
+        prototype_list.append(parent_name)
+        current_prototype = prototypees[parent_name]
 
-    class_list.reverse()
-    return class_list
+    prototype_list.reverse()
+    return prototype_list
     
 
-def get_complete_class(class_name):
-    classes = yaml.load(open('appliances/lights.yaml'))
-    class_list = get_inheritance_sequence(class_name)
+def get_complete_prototype(prototype_name):
+    prototypees = yaml.load(open('appliances/lights.yaml'))
+    prototype_list = get_inheritance_sequence(prototype_name)
 
-    # Now descend from super-class downwards,
+    # Now descend from super-prototype downwards,
     # collecting and updating properties as we go.
-    merged_class = classes[class_list[0]].copy()
-    for class_name in class_list[1:]:
-        merge_dicts(merged_class, classes[class_name])
+    merged_prototype = prototypees[prototype_list[0]].copy()
+    for prototype_name in prototype_list[1:]:
+        merge_dicts(merged_prototype, prototypees[prototype_name])
 
     for property_to_remove in ['parent', 'description']:
-        del merged_class[property_to_remove]
+        del merged_prototype[property_to_remove]
 
     try:
-        properties = merged_class.pop('additional_properties')
+        properties = merged_prototype.pop('additional_properties')
     except KeyError:
         properties = {}
 
-    return merged_class, properties
+    return merged_prototype, properties
 
 def validate_complete_appliance(complete_appliance, additional_properties):
     appliance_schema = json.load(open('schema/appliance.json'))
@@ -90,8 +90,8 @@ def validate_complete_appliance(complete_appliance, additional_properties):
     return appliance_schema
 
 def get_complete_appliance(appliance):
-    appliance_class_name = appliance['class']
-    cls, properties = get_complete_class(appliance_class_name)
+    appliance_prototype_name = appliance['parent']
+    cls, properties = get_complete_prototype(appliance_prototype_name)
     complete_appliance = cls.copy()
     complete_appliance.update(appliance)
     print(json.dumps(complete_appliance, indent=4))
@@ -109,7 +109,7 @@ def get_complete_appliance(appliance):
     if not set(components.keys()).issubset(all_allowed_components):
         incorrect_components = set(components.keys()) - all_allowed_components
         raise KeyError(str(list(incorrect_components)) + ' are not allowed for '
-                       + appliance_class_name)
+                       + appliance_prototype_name)
     else:
         complete_appliance['components'] = components
 

@@ -103,7 +103,7 @@ dimmer:
 
 test_appliance_group:
   light,1:
-    class: light
+    parent: light
     instance: 1
     type: ceiling
     main_room_light: true
