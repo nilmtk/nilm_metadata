@@ -4,8 +4,5 @@
     "title": "Appliance Group",
     "description": "Metadata for a group of Appliances",
     "type": "object",
-    "properties": {
-        "patternProperties": { "^\\w*$": { "$ref": "appliance.json" }}
-    },
-    "additionalProperties": false
+    "additionalProperties": { "$ref": "appliance.json" }
 }
