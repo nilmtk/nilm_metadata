@@ -1,6 +1,6 @@
 from __future__ import print_function, division
 import json, yaml
-from jsonschema import validate
+from jsonschema import validate, ValidationError
 from file_management import map_obj_names_to_filenames, get_schema_directory, get_module_directory
 from os.path import join
 
@@ -42,6 +42,7 @@ def get_ancestors(object_name):
     # bottom upwards (which is the wrong direction
     # for actually doing inheritance)
     current_object = yaml_file[object_name]
+    current_object['name'] = object_name
     ancestors = [current_object]
     while current_object.get('parent'):
         parent_name = current_object['parent']
@@ -51,6 +52,7 @@ def get_ancestors(object_name):
             yaml_file = yaml.load(open(name_of_file_containing_object))
 
         current_object = yaml_file[parent_name]
+        current_object['name'] = parent_name
         ancestors.append(current_object)
 
     ancestors.reverse()
@@ -69,26 +71,55 @@ def concatenate_complete_object(object_name):
     return merged_object
 
 
-def concatenate_complete_appliance(appliance_obj):
-    parent_name = appliance_obj['parent']
+def concatenate_complete_appliance(appliance_obj, parent_name):
     complete_parent = concatenate_complete_object(parent_name)
     complete_appliance = complete_parent.copy()
-    complete_appliance.update(appliance_obj)
+    if appliance_obj:
+        complete_appliance.update(appliance_obj)
 
-    # Check components are valid
+    ##############################
+    # Check components_set are valid
     all_allowed_components = complete_parent.get('all_allowed_components', [])
     all_allowed_components = set(all_allowed_components)
-    components = set(complete_appliance['components'].keys())
+    components = complete_appliance.get('components', {})
+    components_set = set(components.keys())
+    if not components_set.issubset(all_allowed_components):
+        incorrect_components = components_set - all_allowed_components
+        # For each incorrect component, check to see if it is a 
+        # child of an allowed component
+        for c in incorrect_components:
+            ancestors = get_ancestors(c)
+            ancestors = [a['name'] for a in ancestors]
+            if not any([ancestor in all_allowed_components
+                        for ancestor in ancestors]):
+                msg = ('Components ' + c + ' nor any of its ancestors'
+                       ' are allowed for appliance ' + parent_name)
+                raise ValidationError(msg)
 
-    if not components.issubset(all_allowed_components):
-        incorrect_components = components - all_allowed_components
-        raise KeyError('Components: ' + str(list(incorrect_components)) + 
-                       ' are not allowed for appliance ' + parent_name)
+    ########################
+    # Check subtype is valid
+    subtype = complete_appliance.get('subtype')
+    subtypes = complete_parent.get('subtypes')
+    if subtype:
+        if subtype not in subtypes:
+            raise ValidationError(subtype + 
+                                  ' is not a valid subtype for appliance ' +
+                                  parent_name)
 
-    for property_to_remove in ['types', 'all_allowed_components']:
-        del complete_appliance[property_to_remove]
+    ############################################
+    # Remove properties not allowed in completed appliance object
+    for property_to_remove in ['subtypes', 'all_allowed_components']:
+        try:
+            del complete_appliance[property_to_remove]
+        except KeyError:
+            pass
 
-    print(json.dumps(complete_appliance, indent=4))
+    # Instantiate components recursively
+    for component_name, component_obj in components.iteritems():
+        component_obj = concatenate_complete_appliance(component_obj, 
+                                                       component_name)
+        components[component_name] = component_obj
+        complete_appliance['categories'].update(component_obj.get('categories', {}))
 
     return complete_appliance
 
@@ -102,11 +133,16 @@ def validate_complete_appliance(complete_appliance):
     appliance_schema = json.load(open(schema_filename))
     appliance_schema['properties'].update(additional_properties)
     validate(complete_appliance, appliance_schema)
-    return appliance_schema
+    
+    # now validate each component recursively
+    components = complete_appliance.get('components', {})
+    for component_obj in components.values():
+        validate_complete_appliance(component_obj)
 
 
 def old_tests():
     appliances = yaml.load(open(join(get_module_directory(), 'examples/appliance_group.yaml')))['test_appliance_group']
-    complete_appliance = concatenate_complete_appliance( appliances['light,1'])
+    complete_appliance = concatenate_complete_appliance(appliances['light,1'], 'light')
+    print(json.dumps(complete_appliance, indent=4))
     validate_complete_appliance(complete_appliance)
     print('done validation')

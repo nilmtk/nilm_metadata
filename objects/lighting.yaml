@@ -15,7 +15,9 @@ light:
     The light appliance takes its category from the lamp type fitted.
 
   parent: appliance
-  name: light
+
+  categories:
+    traditional: lighting
 
   components:
     lamp:
@@ -26,7 +28,7 @@ light:
     main_room_light:
       type: boolean
 
-  types:
+  subtypes:
     ceiling:
     desk:
     wall:
@@ -41,60 +43,85 @@ light:
 
 # ----------------- COMPONENTS ------------------------ #
 
-lamp:
+component:
+  parent: appliance
+
+lighting component:
+  parent: component
   categories:
     traditional: lighting
 
-  types:
-    # --------- INCANDESENT --------- #
-    incandescent:
+# --------- LAMPS -------------------- #
 
+lamp:
+  parent: component
+
+  distributions:
+    on_power:
+      - model:
+          distribution_name: normal
+          mu: 500
+          lambda: 100
+
+# --------- INCANDESENT --------- #
+incandescent lamp:
+  parent: lamp
+
+  categories:
+    electrical: GIL
+
+  subtypes:
+    halogen:
       categories:
-        electrical: GIL
+        electrical: HIL
+    tungsten:
 
-      distributions:
-        on_power:
-          model:
-            distribution_name: normal
-            mu: 50
-            lambda: 10
+# --------- INCANDESENT --------- #
+LED lamp:
+  parent: lamp
 
-      subtypes:
-        halogen:
-          categories:
-            electrical: HIL
-        tungsten:
+  categories:
+    electrical: LED
 
-    # --------- FLUORESCENT --------- #
-    fluorescent:
-      subtypes:
-        linear:
-          categories:
-            electrical: LFL
-          synonyms: [ strip light ]
+  distributions:
+    on_power:
+      -  model:
+           distribution_name: normal
+           mu: 50
+           lambda: 10
 
-        compact:
-          categories:
-            electrical: CFL
-          synonyms: [ CFL ]
+# --------- FLUORESCENT --------- #
+fluorescent lamp:
+  parent: lamp
 
-        cold cathode:
+linear fluorescent lamp:
+  parent: fluorescent lamp
+  categories:
+    electrical: LFL
+  synonyms: [ strip light ]
 
-    # --------- ARC --------- #
-    arc:
+compact fluorescent lamp:
+  parent: fluorescent lamp
+  categories:
+    electrical: CFL
+  synonyms: [ CFL ]
 
-    # --------- GAS DISCHARGE --------- #
-    gas_discharge:
-      subtypes:
-        mercury-vapor:
-        metal-halide:
-        sodium-vapor: 
-        neon:
+# --------- ARC --------- #
+arc lamp:
+  parent: lamp
 
+# --------- GAS DISCHARGE --------- #
+gas discharge lamp:
+  parent: lamp
+  subtypes:
+    mercury-vapor:
+    metal-halide:
+    sodium-vapor: 
+    neon:
+
+# --------- DIMMER --------- #
 dimmer:
+  parent: lighting component
   additional_properties:
     number_of_dimmer_levels:
       type: integer
-
-  types:
-    triac:

@@ -23,7 +23,6 @@
         "description": { "type": "string" },
         "manufacturer": { "type": "string" },
         "model": { "type": "string" },
-        "type": { "type": "string" },
         "subtype": { "type": "string" },
         "count": { "type": "integer", "description": "number of instances of this component.  Only used when this appliance is used as a component of an appliance." },
         "part_number": { "type": "string" },
@@ -121,7 +120,7 @@
             "type": "array", 
             "items": { "type": "string", "format": "uri" } 
         },
-        "components": { "$ref": "appliance_group.json" },
+        "components": { "type": "object" },
         "distributions": {
             "type": "object",
             "description": "Distributions of the data expressed as normalised frequencies over discrete intervals (bins).",
