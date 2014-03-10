@@ -20,17 +20,17 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
-* Do data for meters, using same pattern
-* Building schema
+
+* propagate nominal_voltage from dataset to building/electric
+
+* Test it out on HES column names
+* Write my UKPD metadata
+
 * Dataset schema.
   * where to find a canonical list of country names?
   * look at http://schema.datacite.org/
   * and look at UKERC EDC's schemas
   * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
-
-* Test it out on HES column names
-* Write my UKPD metadata
-
 
 * continue building out object_concatenation.py to implement all the
   new features in our new system:
@@ -77,6 +77,9 @@ TODO:
 
 DONE:
 
+* Inheritance for meters
+
+* Building schema
   * implement "do_not_inherit"
   * synonyms never inherited
 

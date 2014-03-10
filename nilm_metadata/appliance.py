@@ -70,5 +70,3 @@ def validate_complete_appliance(complete_appliance):
     components = complete_appliance.get('components', {})
     for component_obj in components.values():
         validate_complete_appliance(component_obj)
-
-

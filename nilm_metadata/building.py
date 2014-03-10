@@ -8,16 +8,26 @@ from file_management import get_schema_directory
 from appliance import concatenate_complete_appliance, validate_complete_appliance
 
 
-def get_appliances(building_obj):
-    return building_obj.get('utilities', {}).get('electric', {}).get('appliances', {})
+def get_electric(building_obj):
+    return building_obj.get('utilities', {}).get('electric', {})    
 
+def get_appliances(building_obj):
+    return get_electric(building_obj).get('appliances', {})
+
+def get_meters(building_obj):
+    return get_electric(building_obj).get('meters', {})
 
 def concatenate_complete_building(building_obj):
     complete_building = building_obj.copy()
     appliances = get_appliances(complete_building)
     for appliance_id, appliance_obj in appliances.iteritems():
-        print('appliance id:', appliance_id)
         appliances[appliance_id] = concatenate_complete_appliance(appliance_obj)
+
+    meters = get_meters(complete_building)
+    for meter_id, meter_obj in meters.iteritems():
+        meters[meter_id] = concatenate_complete_object(meter_obj['parent'], 
+                                                       meter_obj,
+                                                       do_not_inherit_extension_list=['name'])
 
     return complete_building
 

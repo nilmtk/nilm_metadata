@@ -1,0 +1,9 @@
+CurrentCost~SuperClass:
+  sample_period: 6
+  manufacturer: Current Cost
+
+CurrentCost~CT:
+  parent: CurrentCost~SuperClass
+
+CurrentCost~IAM:
+  parent: CurrentCost~SuperClass

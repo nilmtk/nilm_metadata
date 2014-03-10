@@ -49,7 +49,6 @@ class TestSchema(unittest.TestCase):
         appliances = yaml.load(open(join(examples_directory(), 
                                          'appliance_group.yaml')))
         complete_appliance = concatenate_complete_appliance(appliances['light,1'])
-#        print(json.dumps(complete_appliance, indent=4))
         validate_complete_appliance(complete_appliance)
         self.assertFalse(complete_appliance.get('synonyms'))
         self.assertFalse(complete_appliance.get('description'))
@@ -61,18 +60,16 @@ class TestSchema(unittest.TestCase):
                                          'dataset.yaml')))
         building = dataset['buildings'][1]
         complete_building = concatenate_complete_building(building)
-        print(json.dumps(complete_building, indent=4))
         validate_complete_building(complete_building)
 
     def test_dataset(self):
         dataset = yaml.load(open(join(examples_directory(), 
                                          'dataset.yaml')))
         complete_dataset = concatenate_complete_dataset(dataset)
-#        print(json.dumps(complete_dataset, indent=4))
         self.assertEqual(complete_dataset['buildings'][1]['timezone'], 
                          'Europe/London')
         validate_complete_dataset(complete_dataset)
-
+        print(json.dumps(complete_dataset, indent=4))
 
 
 if __name__ == '__main__':

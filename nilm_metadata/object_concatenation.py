@@ -58,7 +58,8 @@ def get_ancestors(object_name):
     return ancestors
     
 
-def concatenate_complete_object(object_name, child_object=None):
+def concatenate_complete_object(object_name, child_object=None, 
+                                do_not_inherit_extension_list=None):
     """
     Returns
     -------
@@ -82,6 +83,8 @@ def concatenate_complete_object(object_name, child_object=None):
         # Remove properties that the child does not want to inherit
         do_not_inherit = next_child.get('do_not_inherit', [])
         do_not_inherit.extend(['synonyms', 'description'])
+        if do_not_inherit_extension_list:
+            do_not_inherit.extend(do_not_inherit_extension_list)
         for property_to_not_inherit in do_not_inherit:
             try:
                 merged_object.pop(property_to_not_inherit)
