@@ -10,7 +10,9 @@ except ImportError as er:
 
 import json, unittest, sys
 from os.path import walk, join
-from ..file_management import get_schema_directory
+from ..file_management import get_schema_directory, get_module_directory
+from ..object_concatenation import concatenate_complete_appliance, validate_complete_appliance
+import yaml
 
 class TestSchema(unittest.TestCase):
 
@@ -37,6 +39,17 @@ class TestSchema(unittest.TestCase):
                 print('Error loading ', json_file, file=sys.stderr)
                 raise
         print("done and all are OK!")
+
+    def test_appliance_group(self):
+        appliances = yaml.load(open(join(get_module_directory(),
+                                         'examples', 'appliance_group.yaml')))
+        complete_appliance = concatenate_complete_appliance(appliances['light,1'], 'light')
+#        print(json.dumps(complete_appliance, indent=4))
+        validate_complete_appliance(complete_appliance)
+        self.assertFalse(complete_appliance.get('synonyms'))
+        self.assertFalse(complete_appliance.get('description'))
+        print('done validation')
+        
 
     # def test_appliance_group(self):
     #     validate(json.load(open('examples/appliance_group.json')),

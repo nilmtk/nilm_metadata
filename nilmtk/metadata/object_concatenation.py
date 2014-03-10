@@ -59,27 +59,34 @@ def get_ancestors(object_name):
     return ancestors
     
 
-def concatenate_complete_object(object_name):
+def concatenate_complete_object(object_name, most_derived_obj=None):
     ancestors = get_ancestors(object_name)
+    if most_derived_obj:
+        ancestors.append(most_derived_obj)
 
     # Now descend from super-object downwards,
     # collecting and updating properties as we go.
     merged_object = ancestors[0].copy()
-    for obj in ancestors[1:]:
-        merge_dicts(merged_object, obj)
+    for next_child in ancestors[1:]:
+        do_not_inherit = next_child.get('do_not_inherit', [])
+        do_not_inherit.extend(['synonyms', 'description'])
+        for property_to_not_inherit in do_not_inherit:
+            try:
+                merged_object.pop(property_to_not_inherit)
+            except KeyError:
+                pass
+            
+        merge_dicts(merged_object, next_child)
 
     return merged_object
 
 
 def concatenate_complete_appliance(appliance_obj, parent_name):
-    complete_parent = concatenate_complete_object(parent_name)
-    complete_appliance = complete_parent.copy()
-    if appliance_obj:
-        complete_appliance.update(appliance_obj)
+    complete_appliance = concatenate_complete_object(parent_name, appliance_obj).copy()
 
     ##############################
     # Check components_set are valid
-    all_allowed_components = complete_parent.get('all_allowed_components', [])
+    all_allowed_components = complete_appliance.get('all_allowed_components', [])
     all_allowed_components = set(all_allowed_components)
     components = complete_appliance.get('components', {})
     components_set = set(components.keys())
@@ -99,7 +106,7 @@ def concatenate_complete_appliance(appliance_obj, parent_name):
     ########################
     # Check subtype is valid
     subtype = complete_appliance.get('subtype')
-    subtypes = complete_parent.get('subtypes')
+    subtypes = complete_appliance.get('subtypes')
     if subtype:
         if subtype not in subtypes:
             raise ValidationError(subtype + 
@@ -140,9 +147,3 @@ def validate_complete_appliance(complete_appliance):
         validate_complete_appliance(component_obj)
 
 
-def old_tests():
-    appliances = yaml.load(open(join(get_module_directory(), 'examples/appliance_group.yaml')))['test_appliance_group']
-    complete_appliance = concatenate_complete_appliance(appliances['light,1'], 'light')
-    print(json.dumps(complete_appliance, indent=4))
-    validate_complete_appliance(complete_appliance)
-    print('done validation')

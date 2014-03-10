@@ -14,8 +14,8 @@ TODO:
 * continue building out resolve_yaml_appliance.py to implement all the
   new features in our new system:
 
-  * synonyms never inherited
   * implement "do_not_inherit"
+  * synonyms never inherited
 
   * allow multiple inheritance
 
@@ -51,6 +51,7 @@ TODO:
   * where to find a canonical list of country names?
   * look at http://schema.datacite.org/
   * and look at UKERC EDC's schemas
+  * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
 * come up with a canonical list of categories:
   * ones used in HES
   * ones used in wikipedia

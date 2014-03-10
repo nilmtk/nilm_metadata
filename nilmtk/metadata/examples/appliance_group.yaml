@@ -1,0 +1,25 @@
+# For appliance groups (and for components, which are treated like
+# appliance groups), we do not specify a separate
+# 'parent', instead the key for each appliance / component is taken as 
+# the name of the parent.
+
+light,1:
+  instance: 1
+  subtype: ceiling
+  main_room_light: true
+
+  room:
+    name: kitchen
+    instance: 1
+
+  # Components can be anything in 'all_allowed_components' or
+  # a child of anything in all_allower_components
+  components:
+    LED lamp:
+      count: 10
+      nominal_consumption:
+        on_power: 10
+        standby_power: 1
+
+    dimmer:
+      number_of_dimmer_levels: 5

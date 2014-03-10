@@ -24,6 +24,7 @@
         "manufacturer": { "type": "string" },
         "model": { "type": "string" },
         "subtype": { "type": "string" },
+        "synonyms": { "type": "array", "items": { "type": "string" } },
         "count": { "type": "integer", "description": "number of instances of this component.  Only used when this appliance is used as a component of an appliance." },
         "part_number": { "type": "string" },
         "gtin": { 

@@ -19,6 +19,8 @@ light:
   categories:
     traditional: lighting
 
+  synonyms: [luminaire, light fitting]
+
   components:
     lamp:
 
