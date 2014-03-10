@@ -6,23 +6,20 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "type": "object",
-        "properties": {
-            "meters": { 
-                "type": "array", 
-                "items": { "$ref": "meter.json" },
-                "unique": true 
-            },
-            "appliances": { 
-                "type": "array", 
-                "items": { "$ref": "appliance.json" },
-                "unique": true 
-            },
-            "nominal_mains_voltage": {
-                "type": "number",
-                "minimum": 0,
-                "exclusiveMinimum": true
-            }
+        "meters": { 
+            "type": "array", 
+            "items": { "$ref": "meter.json" },
+            "unique": true 
+        },
+        "appliances": { 
+            "type": "array", 
+            "items": { "$ref": "appliance.json" },
+            "unique": true 
+        },
+        "nominal_mains_voltage": {
+            "type": "number",
+            "minimum": 0,
+            "exclusiveMinimum": true
         }
     }
 }
