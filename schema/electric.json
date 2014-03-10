@@ -7,12 +7,10 @@
     "additionalProperties": false,
     "properties": {
         "meters": { 
-            "type": "object", 
-            "additionalProperties": { "$ref": "meter.json" }
+            "type": "object"
         },
         "appliances": { 
-            "type": "object", 
-            "additionalProperties": { "$ref": "appliance.json" }
+            "type": "object"
         },
         "nominal_mains_voltage": {
             "type": "number",
