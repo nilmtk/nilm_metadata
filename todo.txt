@@ -20,7 +20,19 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
-* continue building out resolve_yaml_appliance.py to implement all the
+* Do data for meters, using same pattern
+* Building schema
+* Dataset schema.
+  * where to find a canonical list of country names?
+  * look at http://schema.datacite.org/
+  * and look at UKERC EDC's schemas
+  * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
+
+* Test it out on HES column names
+* Write my UKPD metadata
+
+
+* continue building out object_concatenation.py to implement all the
   new features in our new system:
 
   * test with details in my spreadsheet sketch of ideas.
@@ -49,20 +61,12 @@ TODO:
 * Check categories are valid JSON and that they all run through my
   code, at this point I might as well shove them into a graphical
   model for display!
-* Do data for meters, using same pattern
-* Building schema
-* Dataset schema.
-  * where to find a canonical list of country names?
-  * look at http://schema.datacite.org/
-  * and look at UKERC EDC's schemas
-  * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
+
 * come up with a canonical list of categories:
   * ones used in HES
   * ones used in wikipedia
 * maybe "classes" isn't a good name.  "object_hierarchy"?  "objects"?
   "hierarchy"?  "appliance_hierarchy"?
-* Test it out on HES column names
-* Write my UKPD metadata
 * have a "generated" folder for a graph showing hierarchy.  
 * Write docs
 * Make it work with nilmtk

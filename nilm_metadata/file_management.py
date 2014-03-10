@@ -20,18 +20,18 @@ def get_module_directory():
     return path_to_this_file
 
 
-def _path_to_directory(directory):
-    path_to_directory = join(get_module_directory(), directory)
+def _path_to_directory(*args):
+    path_to_directory = join(get_module_directory(), *args)
     assert isdir(path_to_directory)
     return path_to_directory
 
 
 def get_objects_directory():
-    return _path_to_directory('objects')
+    return _path_to_directory('..', 'objects')
 
 
 def get_schema_directory():
-    return _path_to_directory('schema')
+    return _path_to_directory('..', 'schema')
 
 
 def find_all_files_with_suffix(suffix, directory):

@@ -41,7 +41,7 @@ class TestSchema(unittest.TestCase):
         print("done and all are OK!")
 
     def test_appliance_group(self):
-        appliances = yaml.load(open(join(get_module_directory(),
+        appliances = yaml.load(open(join(get_module_directory(), '..',
                                          'examples', 'appliance_group.yaml')))
         complete_appliance = concatenate_complete_appliance(appliances['light,1'], 'light')
 #        print(json.dumps(complete_appliance, indent=4))
