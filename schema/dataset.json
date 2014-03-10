@@ -28,6 +28,7 @@
                 "type": "string"
             }
         },
+        "contact": { "type": "string" },
         "institution": { "type": "string" },
         "description": { "type": "string" },
         "mains_voltage": {

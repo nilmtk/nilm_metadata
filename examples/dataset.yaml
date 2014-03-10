@@ -1,5 +1,6 @@
 name: UKPD
 full_name: UK Power Dataset
+contact: jack.kelly@imperial.ac.uk
 urls: ["http://www.doc.ic.ac.uk/~dk3810/data"]
 citations: [""]
 mains_voltage: 
@@ -10,8 +11,10 @@ timezone: Europe/London
 geo_location:
   country: UK
   city: London
+  latitude: 51.464462
+  longitude: -0.076544
 description: >
-  This is designed to be used with nilm_metadata.
+  TODO
 institution: Imperial College London
 buildings:
   1:

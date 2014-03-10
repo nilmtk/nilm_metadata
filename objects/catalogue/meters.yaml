@@ -16,7 +16,7 @@ EDFEnergy~EcoManagerTxPlug:
   model: EcoManager Transmitter Plug
   model_url: "https://shop.edfenergy.com/Item.aspx?id=540"
   measurements:
-    - physical_quanitity: power
+    - physical_quantity: power
       type: active
       cummulative: false
       minimum: 0
@@ -27,7 +27,7 @@ EDFEnergy~EcoManagerWholeHouseTx:
   model: EcoManager Whole House Transmitter
   model_url: "https://shop.edfenergy.com/Item.aspx?id=547"
   measurements:
-    - physical_quanitity: power
+    - physical_quantity: power
       type: apparent
       cummulative: false
       minimum: 0
@@ -41,19 +41,19 @@ JackKelly~SoundCardPowerMeter:
   max_sample_period: 3
   wireless: false
   measurements:
-    - physical_quanitity: power
+    - physical_quantity: power
       type: active
       cummulative: false
       minimum: 0
       maximum: 25000
 
-    - physical_quanitity: power
+    - physical_quantity: power
       type: apparent
       cummulative: false
       minimum: 0
       maximum: 25000
 
-    - physical_quanitity: voltage
+    - physical_quantity: voltage
       minimum: 180
       maximum: 275
       description: RMS voltage

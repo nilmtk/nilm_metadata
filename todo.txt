@@ -22,9 +22,13 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
+* dataset version (JSON Meta-Schema???)
+
+* Write my UKPD metadata
+  * start and end dates for each channel
+  * multiple, sequential kitchen lighting configs
 
 * Test it out on HES column names
-* Write my UKPD metadata
 
 * Dataset schema.
   * where to find a canonical list of country names?
