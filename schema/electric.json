@@ -24,11 +24,11 @@
                 },
                 "tolerance_upper_bound": {
                     "type": "number",
-                    "description": "percentage.  e.g. 10 for +10%."
+                    "description": "percentage.  e.g. 10 for +10%. Optional."
                 },
                 "tolerance_lower_bound": {
                     "type": "number",
-                    "description": "percentage.  e.g. 10 for -10%."
+                    "description": "percentage.  e.g. 10 for -10%. Optional."
                 }
             }
         }

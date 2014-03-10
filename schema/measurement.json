@@ -12,7 +12,10 @@
         },
         "cummulative": {
             "type": "boolean"
-        }
+        },
+        "minimum": { "type": "number" },
+        "maximum": { "type": "number" },
+        "description": { "type": "string" }
     },
     "required": ["physical_quantity"],
     "additionalProperties": false

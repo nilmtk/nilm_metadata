@@ -34,13 +34,7 @@
             "$ref": "electric.json#/properties/mains_voltage"
         },
         "geo_location": {
-            "type": "object",
-            "properties": {
-                "country": { "type": "string" }, 
-                "city_or_town": {"type": "string" },
-                "latitude": { "type": "number" },
-                "longitude": { "type": "number" }
-            }
+            "$ref": "building.json#/properties/geo_location"
         },
         "timezone": { "type": "string" },
         "buildings": {

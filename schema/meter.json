@@ -12,7 +12,11 @@
             ]
         },
         "model": { "type": "string" },
+        "model_url": { "type": "string" },
         "manufacturer": { "type": "string" },
+        "distributor": { "type": "string" },
+        "brand": { "type": "string" },
+        "brand_url": { "type": "string" },
         "parent": { "type": "string" },
         "site_meter": {
             "type": "boolean",
@@ -36,23 +40,11 @@
             "minimum": 0,
             "exclusiveMinimum": true
         }, 
-        "available_measurements": {
+        "measurements": {
             "type": "array",
             "items": { "$ref": "measurement.json" },
             "minItems": 1,
             "uniqueItems": true
-        },
-        "measurement_limits": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "measurement": {"$ref": "measurement.json"},
-                    "min": {"type": "number"},
-                    "max": {"type": "number"}
-                },
-                "required": ["measurement", "min", "max"]
-            }
         },
         "preprocessing_applied": {
             "type": "array",
@@ -88,7 +80,12 @@
         "dates_active": {
             "type": "array",
             "items": { "$ref": "timeframe.json" }
-        }
+        },
+        "wireless": { "type": "boolean" },
+        "wireless_base": { "type": "string" },
+        "wireless_base_url": { "type": "string" },
+        "data_logger": { "type": "string" },
+        "data_logger_url": { "type": "string" }
     },
     "additionalProperties": false
 }

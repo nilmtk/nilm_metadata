@@ -17,11 +17,11 @@ key:value pairs where subclasses override previous values (just use dict.update)
       * validating schema
       * producing 'full' metadata       
       * producing 'minimal + catalogue' metadata
+    * later, NILMTK can learn to use nilm_metadata directly and to
+      store the object hierarchy in memory, perhaps as a DAG.
 
 TODO:
 
-
-* propagate nominal_voltage from dataset to building/electric
 
 * Test it out on HES column names
 * Write my UKPD metadata
@@ -76,6 +76,8 @@ TODO:
 
 
 DONE:
+
+* propagate nominal_voltage from dataset to building/electric
 
 * Inheritance for meters
 

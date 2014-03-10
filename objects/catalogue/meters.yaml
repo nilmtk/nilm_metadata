@@ -1,9 +1,62 @@
-CurrentCost~SuperClass:
+EDF:
+  distributor: EDF Energy
   sample_period: 6
-  manufacturer: Current Cost
+  max_sample_period: 120
+  brand: EcoManager
+  brand_url: "http://www.edfenergy.com/products-services/for-your-home/ecomanager"
+  manufacturer: Current Cost / Sailwider
+  wireless: true
+  wireless_base: rfm_edf_ecomanager
+  wireless_base_url: "https://github.com/JackKelly/rfm_edf_ecomanager/"
+  data_logger: rfm_ecomanager_logger
+  data_logger_url: "https://github.com/JackKelly/rfm_ecomanager_logger"
 
-CurrentCost~CT:
-  parent: CurrentCost~SuperClass
+EDFEnergy~EcoManagerTxPlug:
+  parent: EDF
+  model: EcoManager Transmitter Plug
+  model_url: "https://shop.edfenergy.com/Item.aspx?id=540"
+  measurements:
+    - physical_quanitity: power
+      type: active
+      cummulative: false
+      minimum: 0
+      maximum: 3300
 
-CurrentCost~IAM:
-  parent: CurrentCost~SuperClass
+EDFEnergy~EcoManagerWholeHouseTx:
+  parent: EDF
+  model: EcoManager Whole House Transmitter
+  model_url: "https://shop.edfenergy.com/Item.aspx?id=547"
+  measurements:
+    - physical_quanitity: power
+      type: apparent
+      cummulative: false
+      minimum: 0
+      maximum: 25000
+
+JackKelly~SoundCardPowerMeter:
+  manufacturer: Jack Kelly / Imperial College London
+  model: Sound Card Power Meter
+  model_url: "https://github.com/JackKelly/snd_card_power_meter"
+  sample_period: 1
+  max_sample_period: 3
+  wireless: false
+  measurements:
+    - physical_quanitity: power
+      type: active
+      cummulative: false
+      minimum: 0
+      maximum: 25000
+
+    - physical_quanitity: power
+      type: apparent
+      cummulative: false
+      minimum: 0
+      maximum: 25000
+
+    - physical_quanitity: voltage
+      minimum: 180
+      maximum: 275
+      description: RMS voltage
+      # the mins and maxs are actually 230v +/- 20%, 
+      # which is a rather generous tolerance range.
+

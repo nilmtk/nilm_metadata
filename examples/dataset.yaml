@@ -2,7 +2,10 @@ name: UKPD
 full_name: UK Power Dataset
 urls: ["http://www.doc.ic.ac.uk/~dk3810/data"]
 citations: [""]
-nominal_voltage: 230
+mains_voltage: 
+  nominal: 230
+  tolerance_upper_bound: 6
+  tolerance_lower_bound: 10
 timezone: Europe/London
 geo_location:
   country: UK
@@ -16,20 +19,20 @@ buildings:
       electric:
         meters:
           1:
-            parent: CurrentCost~CT
+            parent: JackKelly~SoundCardPowerMeter
             site_meter: true
 
           2:
-            parent: CurrentCost~IAM
-            submeter_of: 1
+            parent: EDFEnergy~EcoManagerWholeHouseTx
+            site_meter: true
           
           3:
-            parent: CurrentCost~IAM
-            submeter_of: 1
+            parent: EDFEnergy~EcoManagerTxPlug
+            submeter_of: 0
 
           4:
-            parent: CurrentCost~IAM
-            submeter_of: 1
+            parent: EDFEnergy~EcoManagerTxPlug
+            submeter_of: 0
 
         appliances:
           lights,1:
