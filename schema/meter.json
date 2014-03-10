@@ -5,8 +5,25 @@
     "description": "Metadata for a Meter",
     "type": "object",
     "properties": {
+        "id": {
+            "allOf": [
+                { "$ref": "instance.json" },
+                { "description": "The ID of this meter, unique within the building." }
+            ]
+        },
         "model": { "type": "string" },
         "manufacturer": { "type": "string" },
+        "parent": { "type": "string" },
+        "site_meter": {
+            "type": "boolean",
+            "description": "True if this meter measure the whole building."
+        },
+        "submeter_of": { 
+            "type": "integer",
+            "minimum": 0,
+            "description": "Either the ID of the upstream meter, or if this meter is downstream of a site meter but the precise site meter is not known then use 0. "
+        },
+
         "sample_period": {
             "description": "The sample period in seconds",
             "type": "number",
@@ -36,23 +53,6 @@
                 },
                 "required": ["measurement", "min", "max"]
             }
-        },
-        "id": {
-            "allOf": [
-                { "$ref": "instance.json" },
-                { "description": "The ID of this meter, unique within the building." }
-            ]
-        },
-        "model": { "type": "string" },
-        "manufacturer": { "type": "string" },
-        "site_meter": {
-            "type": "boolean",
-            "description": "True if this meter measure the whole building."
-        },
-        "submeter_of": { 
-            "type": "integer",
-            "minimum": 0,
-            "description": "Either the ID of the upstream meter, or if this meter is downstream of a site meter but the precise site meter is not known then use 0. "
         },
         "preprocessing_applied": {
             "type": "array",
