@@ -32,15 +32,6 @@ buildings:
             submeter_of: 1
 
         appliances:
-          fridge,1: 
-            parent: SamsungModelA
-            meter_ids: [1]
-          tv,1:
-            parent: PanasonicModelB
-            meter_ids: [2]
-            dates_active:
-              - start: 2012
-                end: 2013
           lights,1:
             parent: light
             main_room_light: true
@@ -58,20 +49,3 @@ buildings:
               dimmer:
                 parent: dimmer
                 number_of_dimmer_levels: 5
-
-
-catalogue:
-  CurrentCostCT:
-    sample_period: 6
-
-  CurrentCostIAM:
-    sample_period: 6
-
-  SamsungModelA:
-    manufacturer: Samsung
-    model: ModelA
-
-  PanasonicModelB:
-    manufacturer: Samsung
-    model: ModelA
-

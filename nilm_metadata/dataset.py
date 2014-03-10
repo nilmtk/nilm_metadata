@@ -7,7 +7,7 @@ from object_concatenation import concatenate_complete_object, get_ancestors
 from file_management import get_schema_directory
 
 def concatenate_complete_dataset(dataset_obj):
-    # propagate geo_location and timezone to each building
+    # propagate geo_location, timezone to each building
     tz = dataset_obj.get('timezone')
     geo = dataset_obj.get('geo_location')
     
@@ -18,6 +18,8 @@ def concatenate_complete_dataset(dataset_obj):
             building['timezone'] = tz
         if geo and building.get('geo_location') is None:
             building['geo_location'] = geo
+            
+        # TODO: propagate voltage to electric.nominal_voltage
 
         # TODO:
         # building = concatenate_complete_building(building)
@@ -33,8 +35,5 @@ def validate_complete_dataset(complete_dataset):
     validate(complete_dataset, schema)
     
     # TODO: validate each building???
-    # components = complete_appliance.get('components', {})
-    # for component_obj in components.values():
-    #     validate_complete_appliance(component_obj)
 
 

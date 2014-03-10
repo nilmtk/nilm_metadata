@@ -4,6 +4,7 @@
 # the name of the parent.
 
 light,1:
+  parent: light
   instance: 1
   subtype: ceiling
   main_room_light: true
@@ -16,10 +17,12 @@ light,1:
   # a child of anything in all_allower_components
   components:
     LED lamp:
+      parent: "LED lamp"
       count: 10
       nominal_consumption:
         on_power: 10
         standby_power: 1
 
     dimmer:
+      parent: dimmer
       number_of_dimmer_levels: 5

@@ -29,7 +29,7 @@
         },
         "periods_unoccupied": {
             "type": "array",
-            "items": "timeframe.json",
+            "items": { "$ref": "timeframe.json"},
             "description": "Periods when this building was empty for more than a day (e.g. holidays)"
         },
         "utilities": {

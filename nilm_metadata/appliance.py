@@ -6,7 +6,8 @@ from os.path import join
 from object_concatenation import concatenate_complete_object, get_ancestors
 from file_management import get_schema_directory
 
-def concatenate_complete_appliance(appliance_obj, parent_name):
+def concatenate_complete_appliance(appliance_obj):
+    parent_name = appliance_obj['parent']
     complete_appliance = concatenate_complete_object(parent_name, appliance_obj).copy()
 
     ##############################
@@ -48,8 +49,7 @@ def concatenate_complete_appliance(appliance_obj, parent_name):
 
     # Instantiate components recursively
     for component_name, component_obj in components.iteritems():
-        component_obj = concatenate_complete_appliance(component_obj, 
-                                                       component_name)
+        component_obj = concatenate_complete_appliance(component_obj)
         components[component_name] = component_obj
         complete_appliance['categories'].update(component_obj.get('categories', {}))
 
