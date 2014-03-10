@@ -13,10 +13,11 @@
         "appliances": { 
             "type": "object"
         },
-        "nominal_mains_voltage": {
+        "nominal_voltage": {
             "type": "number",
             "minimum": 0,
-            "exclusiveMinimum": true
+            "exclusiveMinimum": true,
+            "description": "nominal mains voltage"
         }
     }
 }

@@ -11,6 +11,7 @@ def concatenate_complete_dataset(dataset_obj):
     # propagate geo_location and timezone to each building
     tz = dataset_obj.get('timezone')
     geo = dataset_obj.get('geo_location')
+    voltage = dataset_obj.get('nominal_voltage')
     
     complete_dataset = dataset_obj.copy()
     buildings = complete_dataset.get('buildings', {})
@@ -19,8 +20,10 @@ def concatenate_complete_dataset(dataset_obj):
             building['timezone'] = tz
         if geo and building.get('geo_location') is None:
             building['geo_location'] = geo
-            
-        # TODO: propagate voltage to electric.nominal_voltage
+
+        electric = building.get('utilities', {}).get('electric', {})
+        if voltage and electric and electric.get('nominal_voltage') is None:
+            electric['nominal_voltage'] = voltage
 
         building = concatenate_complete_building(building)        
         buildings[building_id] = building
