@@ -9,15 +9,19 @@ follow the tree to the top.  Then, starting from the top, we form a set of
 key:value pairs where subclasses override previous values (just use dict.update).
 
 
+* keep nilm_metadata as a separate project
+  * the workflow will be:
+    * publish both 'minimal' and 'full' versions of the metadata
+    * at least to start with, nilmtk will use the 'full' version
+    * and nilm_metadata will be a separate project responsible for:
+      * validating schema
+      * producing 'full' metadata       
+      * producing 'minimal + catalogue' metadata
+
 TODO:
 
 * continue building out resolve_yaml_appliance.py to implement all the
   new features in our new system:
-
-  * implement "do_not_inherit"
-  * synonyms never inherited
-
-  * allow multiple inheritance
 
   * test with details in my spreadsheet sketch of ideas.
 
@@ -67,6 +71,9 @@ TODO:
 
 DONE:
 
+  * implement "do_not_inherit"
+  * synonyms never inherited
+
 * Get it working with appliance_catalogue
 * Build functionality so we can just specify the name and find the
   class from the name.
@@ -108,3 +115,22 @@ DONE:
 
 ------------
 
+* the object hierarchy should be represented in-memory in NILMTK (by a DAG?) 
+  * but only load the objects required by the dataset
+  * dynamically concatenate each object on demand???  using properties?
+
+PROs and CONs of scenario where nilm_metadata is a separate project
+which is responsible for validation and for producing a 'concatenated'
+metadata output:
+
+PROS:
+  * keeps the metadata simple in nilmtk
+  * allows 3rd party tools to use the metadata easily
+  * allows users to see what's going on with the metadata
+
+CONS:
+  * if a parent changes then metadata needs to be
+    re-compiled by nilm_metadata, e.g. if priors change
+  * no elegant way for nilmtk to produce metadata (e.g. if we
+    want to save to disk a subset of appliances).
+  * repetition

@@ -1,0 +1,74 @@
+# For appliance groups (and for components, which are treated like
+# appliance groups), we do not specify a separate
+# 'parent', instead the key for each appliance / component is taken as 
+# the name of the parent.
+
+
+citations:
+  - foo
+  - bar
+description: >
+  This is designed to be used with nilm_metadata.
+institution: Imperial College London
+buildings:
+  - utilities:
+      electric:
+
+        meters:
+          1: 
+            parent: CurrentCostCT
+            site_meter: true
+          2: 
+            parent: CurrentCostIAM
+            submeter_of: 1
+          3:
+            parent: CurrentCostIAM
+            submeter_of: 1
+          4:
+            parent: CurrentCostIAM
+            submeter_of: 1
+
+        appliances:
+          fridge,1: 
+            parent: SamsungModelA
+            meter_ids: [1]
+          tv,1:
+            parent: PanasonicModelB
+            meter_ids: [2]
+            dates_active:
+              - start: 2012
+                end: 2013
+          lights,1:
+            parent: light
+            main_room_light: true
+            room: 
+              name: kitchen
+              instance: 1
+            components:
+              LED lamp:
+                parent: LED lamp
+                count: 10
+                nominal_consumption:
+                  on_power: 10
+                  standby_power: 1
+                  
+              dimmer:
+                parent: dimmer
+                number_of_dimmer_levels: 5
+
+
+catalogue:
+  CurrentCostCT:
+    sample_period: 6
+
+  CurrentCostIAM:
+    sample_period: 6
+
+  SamsungModelA:
+    manufacturer: Samsung
+    model: ModelA
+
+  PanasonicModelB:
+    manufacturer: Samsung
+    model: ModelA
+

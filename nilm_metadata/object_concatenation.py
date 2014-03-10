@@ -59,15 +59,28 @@ def get_ancestors(object_name):
     return ancestors
     
 
-def concatenate_complete_object(object_name, most_derived_obj=None):
+def concatenate_complete_object(object_name, child_object=None):
+    """
+    Returns
+    -------
+    merged_object: dict.  
+        If `child_object` is None then merged_object will be the object
+        identified by `object_name` merged with its ancestor tree.
+        If `child_object` is not None then it will be merged as the 
+        most-derived object (i.e. a child of object_name).  This is 
+        useful for appliances.
+    """
     ancestors = get_ancestors(object_name)
-    if most_derived_obj:
-        ancestors.append(most_derived_obj)
+    if child_object:
+        ancestors.append(child_object)
+
+    n_ancestors = len(ancestors)
 
     # Now descend from super-object downwards,
     # collecting and updating properties as we go.
     merged_object = ancestors[0].copy()
-    for next_child in ancestors[1:]:
+    for i, next_child in enumerate(ancestors[1:]):
+        # Remove properties that the child does not want to inherit
         do_not_inherit = next_child.get('do_not_inherit', [])
         do_not_inherit.extend(['synonyms', 'description'])
         for property_to_not_inherit in do_not_inherit:
@@ -75,7 +88,12 @@ def concatenate_complete_object(object_name, most_derived_obj=None):
                 merged_object.pop(property_to_not_inherit)
             except KeyError:
                 pass
-            
+        
+        # for parameter in merged_object.get('distributions', {}).values():
+        #     for dist in parameter:
+        #         dist['ancestor'] = n_ancestors - i
+        #         print(dist)
+
         merge_dicts(merged_object, next_child)
 
     return merged_object
