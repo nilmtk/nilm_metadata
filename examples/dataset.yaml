@@ -1,7 +1,7 @@
 name: UKPD
 full_name: UK Power Dataset
 urls: ["http://www.doc.ic.ac.uk/~dk3810/data"]
-citations: 
+citations: [""]
 nominal_voltage: 230
 timezone: Europe/London
 geo_location:

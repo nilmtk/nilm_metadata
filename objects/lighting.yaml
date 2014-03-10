@@ -21,10 +21,6 @@ light:
 
   synonyms: [luminaire, light fitting]
 
-  components:
-    lamp:
-      parent: lamp
-
   all_allowed_components: [dimmer, lamp]
 
   additional_properties:

@@ -28,6 +28,8 @@
                 "type": "string"
             }
         },
+        "institution": { "type": "string" },
+        "description": { "type": "string" },
         "nominal_voltage": {
             "type": "number"
         },
