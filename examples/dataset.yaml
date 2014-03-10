@@ -15,19 +15,19 @@ buildings:
     utilities:
       electric:
         meters:
-          - id: 1 
+          1:
             parent: CurrentCostCT
             site_meter: true
 
-          - id: 2 
+          2:
             parent: CurrentCostIAM
             submeter_of: 1
           
-          - id: 3
+          3:
             parent: CurrentCostIAM
             submeter_of: 1
 
-          - id: 4
+          4:
             parent: CurrentCostIAM
             submeter_of: 1
 
