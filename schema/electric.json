@@ -13,11 +13,24 @@
         "appliances": { 
             "type": "object"
         },
-        "nominal_voltage": {
-            "type": "number",
-            "minimum": 0,
-            "exclusiveMinimum": true,
-            "description": "nominal mains voltage"
+        "mains_voltage": {
+            "type": "object",
+            "properties": {
+                "nominal": {
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true,
+                    "description": "nominal mains voltage"
+                },
+                "tolerance_upper_bound": {
+                    "type": "number",
+                    "description": "percentage.  e.g. 10 for +10%."
+                },
+                "tolerance_lower_bound": {
+                    "type": "number",
+                    "description": "percentage.  e.g. 10 for -10%."
+                }
+            }
         }
     }
 }

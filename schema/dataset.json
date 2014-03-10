@@ -30,8 +30,8 @@
         },
         "institution": { "type": "string" },
         "description": { "type": "string" },
-        "nominal_voltage": {
-            "type": "number"
+        "mains_voltage": {
+            "$ref": "electric.json#/properties/mains_voltage"
         },
         "geo_location": {
             "type": "object",
