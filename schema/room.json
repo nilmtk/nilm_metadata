@@ -5,7 +5,7 @@
     "description": "Metadata for Rooms in buildings",
     "type": "object",
     "properties": {
-        "name": { "enum": ["livingroom", "kitchen"] },
+        "name": { "enum": ["lounge", "kitchen", "bedroom", "utility"] },
         "instance": { "$ref": "instance.json" }
     },
     "required": ["name", "instance"],

@@ -8,6 +8,10 @@
     "properties": {
         "dataset": { "type": "string" },
         "name": { "type": "string", "description": "name used in dataset" },
+        "original_name": { 
+            "type": "string", 
+            "desciption": "The original name for this building from the original dataset"
+        },
         "geo_location": {
             "type": "object",
             "properties": {
@@ -17,8 +21,17 @@
                 "longitude": { "type": "number" }
             }
         },
-        "rooms": { "type": "array", "items": { "$ref": "room.json" } },
         "timezone": { "type": "string" },
+        "rooms": { "type": "array", "items": { "$ref": "room.json" } },
+        "n_occupants": { 
+            "type": "integer",
+            "description": "max number of occupants"
+        },
+        "periods_unoccupied": {
+            "type": "array",
+            "items": "timeframe.json",
+            "description": "Periods when this building was empty for more than a day (e.g. holidays)"
+        },
         "utilities": {
             "type": "object",
             "properties": {

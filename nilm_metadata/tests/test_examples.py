@@ -11,8 +11,12 @@ except ImportError as er:
 import json, unittest, sys
 from os.path import walk, join
 from ..file_management import get_schema_directory, get_module_directory
-from ..object_concatenation import concatenate_complete_appliance, validate_complete_appliance
+from ..appliance import concatenate_complete_appliance, validate_complete_appliance
+from ..dataset import concatenate_complete_dataset, validate_complete_dataset
 import yaml
+
+def examples_directory():
+    return join(get_module_directory(), '..', 'examples')
 
 class TestSchema(unittest.TestCase):
 
@@ -41,8 +45,8 @@ class TestSchema(unittest.TestCase):
         print("done and all are OK!")
 
     def test_appliance_group(self):
-        appliances = yaml.load(open(join(get_module_directory(), '..',
-                                         'examples', 'appliance_group.yaml')))
+        appliances = yaml.load(open(join(examples_directory(), 
+                                         'appliance_group.yaml')))
         complete_appliance = concatenate_complete_appliance(appliances['light,1'], 'light')
 #        print(json.dumps(complete_appliance, indent=4))
         validate_complete_appliance(complete_appliance)
@@ -50,6 +54,15 @@ class TestSchema(unittest.TestCase):
         self.assertFalse(complete_appliance.get('description'))
         print('done validation')
         
+
+    def test_dataset(self):
+        dataset = yaml.load(open(join(examples_directory(), 
+                                         'dataset.yaml')))
+        complete_dataset = concatenate_complete_dataset(dataset)
+#        print(json.dumps(complete_dataset, indent=4))
+        self.assertEqual(complete_dataset['buildings'][1]['timezone'], 
+                         'Europe/London')
+        validate_complete_dataset(complete_dataset)
 
     # def test_appliance_group(self):
     #     validate(json.load(open('examples/appliance_group.json')),

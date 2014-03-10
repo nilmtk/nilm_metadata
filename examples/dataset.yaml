@@ -1,17 +1,18 @@
-# For appliance groups (and for components, which are treated like
-# appliance groups), we do not specify a separate
-# 'parent', instead the key for each appliance / component is taken as 
-# the name of the parent.
-
-
-citations:
-  - foo
-  - bar
+name: UKPD
+full_name: UK Power Dataset
+urls: ["http://www.doc.ic.ac.uk/~dk3810/data"]
+citations: 
+nominal_voltage: 230
+timezone: Europe/London
+geo_location:
+  country: UK
+  city: London
 description: >
   This is designed to be used with nilm_metadata.
 institution: Imperial College London
 buildings:
-  - utilities:
+  1:
+    utilities:
       electric:
 
         meters:

@@ -71,6 +71,8 @@ TODO:
 * Write docs
 * Make it work with nilmtk
   * original name should come from original dataset
+* tidy up
+* briefly explore putting all schemas into a single YAML/JSON file???
 
 
 DONE:

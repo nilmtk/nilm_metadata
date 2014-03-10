@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/dataset.json",
+    "title": "Dataset",
+    "description": "Metadata for a dataset",
+    "type": "object",
+    "properties": {
+        "name": { 
+            "type": "string",
+            "description": "Abbreviated name for the dataset, e.g. 'REDD'"
+
+        },
+        "full_name": {
+            "type": "string",
+            "description": "Full name of the dataset, eg. 'Reference Energy Disaggregation Data Set'"
+        },
+        "urls": {
+            "type": "array",
+            "description": "The URL(s) for more information about this dataset",
+            "items": {
+                "type": "string"
+            }
+        },
+        "citations": {
+            "type": "array",
+            "description": "Academic citation(s) for this dataset",
+            "items": {
+                "type": "string"
+            }
+        },
+        "nominal_voltage": {
+            "type": "number"
+        },
+        "geo_location": {
+            "type": "object",
+            "properties": {
+                "country": { "type": "string" }, 
+                "city_or_town": {"type": "string" },
+                "latitude": { "type": "number" },
+                "longitude": { "type": "number" }
+            }
+        },
+        "timezone": { "type": "string" },
+        "buildings": {
+            "type": "object",
+            "additionalProperties": { "$ref": "building.json" }
+        }
+    },
+    "additionalProperties": false
+}
