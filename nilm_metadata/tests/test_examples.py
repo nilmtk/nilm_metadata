@@ -69,7 +69,6 @@ class TestSchema(unittest.TestCase):
         self.assertEqual(complete_dataset['buildings'][1]['timezone'], 
                          'Europe/London')
         validate_complete_dataset(complete_dataset)
-        print(json.dumps(complete_dataset, indent=4))
 
 
 if __name__ == '__main__':
