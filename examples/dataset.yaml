@@ -30,6 +30,12 @@ buildings:
           parent: CurrentCost~Tx
 
         appliances:
+
+        - parent: Worcester~Greenstar CDi Conventional
+          instance: 1
+          room: {name: bathroom, instance: 1}
+          original_name: boiler
+
         - parent: light
           instance: 1
           main_room_light: true

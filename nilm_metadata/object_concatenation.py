@@ -86,6 +86,8 @@ def concatenate_complete_object(object_name, child_object=None,
     for i, next_child in enumerate(ancestors[1:]):
         # Remove properties that the child does not want to inherit
         do_not_inherit = next_child.get('do_not_inherit', [])
+        if '~' in next_child.get('name', ''):
+            do_not_inherit.append('name')
         do_not_inherit.extend(['synonyms', 'description'])
         if do_not_inherit_extension_list:
             do_not_inherit.extend(do_not_inherit_extension_list)

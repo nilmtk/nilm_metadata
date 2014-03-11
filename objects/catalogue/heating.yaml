@@ -1,0 +1,4 @@
+Worcester~Greenstar CDi Conventional:
+  parent: boiler
+  fuel: gas
+  subtype: system

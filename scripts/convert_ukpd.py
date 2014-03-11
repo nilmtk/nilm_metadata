@@ -42,7 +42,7 @@ dataset = {
 appliance_map = {
     1: [
         {
-            'parent': 'Worcester~Greenstar_CDi_Conventional',
+            'parent': 'Worcester~Greenstar CDi Conventional',
             'instance': 1,
             'room': {'name': 'bathroom', 'instance': 1},
             'original_name': 'boiler'

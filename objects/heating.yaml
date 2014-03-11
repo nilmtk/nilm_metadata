@@ -4,22 +4,39 @@ heating appliance:
     traditional: heating
     size: large
 
+#------------- BOILERS ------------------------
+
 boiler:
   parent: heating appliance
+
   categories:
     google_shopping:
       - climate control
       - furnaces and boilers
-    electrical:
-      - resistive
 
   components:
-    water pump:
-      parent: water pump
+    - parent: water pump
 
-  all_allowed_components: [water pump]
+  additional_properties:
+    fuel: &fuel
+      enum: [gas, coal, wood, oil]
+      
+  subtypes:
+    - combi
+    - system
+
+  control:
+    system: [manual, timer]
+
+electric boiler:
+  parent: boiler
+  components:
+    - parent: electric water heating element
+
 
 # ----------------- COMPONENTS ------------------------ #
+
+#-------- PUMPS ---------
 
 pump:
   parent: component
@@ -29,3 +46,14 @@ pump:
 
 water pump:
   parent: pump
+
+#---------- HEATING ELEMENTS -----------
+
+electric heating element:
+  parent: component
+  categories:
+    traditional: heating
+    electrical: resistive
+
+electric water heating element:
+  parent: electric heating element
