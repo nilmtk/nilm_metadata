@@ -14,44 +14,49 @@ geo_location:
   latitude: 51.464462
   longitude: -0.076544
 description: >
-  TODO
+  Recording from 4 domestic homes in or near to London, UK.
+number_of_buildings: 4
 institution: Imperial College London
+
 buildings:
   1:
+    timeframe:
+      start: 2012-11-09
+      end: 2014-03-11
     utilities:
       electric:
         meters:
-          1:
-            parent: JackKelly~SoundCardPowerMeter
-            site_meter: true
-
-          2:
-            parent: EDFEnergy~EcoManagerWholeHouseTx
-            site_meter: true
-          
-          3:
-            parent: EDFEnergy~EcoManagerTxPlug
-            submeter_of: 0
-
-          4:
-            parent: EDFEnergy~EcoManagerTxPlug
-            submeter_of: 0
+        - id: 1
+          parent: CurrentCost~Tx
 
         appliances:
-          lights,1:
-            parent: light
-            main_room_light: true
-            room: 
-              name: kitchen
-              instance: 1
-            components:
-              LED lamp:
-                parent: LED lamp
-                count: 10
-                nominal_consumption:
-                  on_power: 10
-                  standby_power: 1
-                  
-              dimmer:
-                parent: dimmer
-                number_of_dimmer_levels: 5
+        - parent: light
+          instance: 1
+          main_room_light: true
+          room: 
+            name: kitchen
+            instance: 1
+          components:
+          - parent: LED lamp
+            count: 10
+            nominal_consumption:
+              on_power: 10
+              standby_power: 1
+          - parent: dimmer
+            number_of_dimmer_levels: 5
+          
+  2:
+    timeframe:
+      start: 2013-02-17
+      end: 2013-10-10
+
+  3:
+    timeframe:
+      start: 2013-02-27
+      end: 2013-04-08
+
+  4:
+    timeframe:
+      start: 2013-03-09
+      end: 2013-10-01
+    number_of_meters: 

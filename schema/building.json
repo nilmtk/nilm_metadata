@@ -27,6 +27,7 @@
             "type": "integer",
             "description": "max number of occupants"
         },
+        "timeframe": { "$ref": "timeframe.json" },
         "periods_unoccupied": {
             "type": "array",
             "items": { "$ref": "timeframe.json"},

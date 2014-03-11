@@ -7,6 +7,7 @@
     "additionalProperties": false,
     "properties": {
         "name": { "type": "string" },
+        "original_name": { "type": "string" },
         "parent": { "type": "string" },
         "instance": { "$ref": "instance.json" },
         "room": { "$ref": "room.json" },
@@ -36,35 +37,27 @@
             "properties": {
                 "traditional": {
                     "enum": [ "wet", "cold", "consumer electronics", "ICT", 
-                              "cooking", "heating", "lighting" ]
-                },
-                "electrical": {
-                    "enum": [ "general incandescent lamps", "halogen lamps",
-                              "compact fluorescent lamps", 
-                              "linear fluorsecent lamps", "LED" ],
-                    "description": "From Tsagarakid, Collin & Kiprakis 2013"
+                              "cooking", "heating" ]
                 },
                 "size": { "enum": [ "small", "large" ] },
+                "electrical": {
+                    "type": "array",
+                    "items": {
+                        "enum": [ "lighting",
+                                  "incandescent", 
+                                  "fluorescent", "compact", "linear", 
+                                  "LED",
+                                  "resistive", 
+                                  "SMPS", "no PFC", "passive PFC", "active PFC",
+                                  "single-phase induction motor"]
+                    },
+                    "description": "From Tsagarakid, Collin & Kiprakis 2013"
+                },
                 "google_shopping": {
-                    "enum": [ "TODO" ]
-                },
-                "HES": {
-                    "enum": [ "TODO" ]
-                },
-                "TO CONVERT": {
-                    "enum": [
-                        "small", "large",
-                        
-                        "cooking", "washing/drying", "cold", "hot", "wet",
-                        "climate control",
-                        "space heating", "space cooling", 
-                        "water heating", "showers",
-                        "lighting",
-
-                        "ict", "computers", "entertainment", "office",
-                        
-                        "tools", "other"
-                    ]                    
+                    "type": "array",
+                    "items": {
+                        "enum": [ "climate control", "furnaces and boilers" ]
+                    }
                 }
             }
         },
@@ -121,7 +114,8 @@
             "type": "array", 
             "items": { "type": "string", "format": "uri" } 
         },
-        "components": { "type": "object" },
+        "components": { "type": "array", "items": { "type": "object" } },
+        "usual_components": { "type": "array", "items": { "type": "string" } },
         "distributions": {
             "type": "object",
             "description": "Distributions of the data expressed as normalised frequencies over discrete intervals (bins).",

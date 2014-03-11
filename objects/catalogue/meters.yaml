@@ -1,5 +1,5 @@
 EDF:
-  distributor: EDF Energy
+  seller: EDF Energy
   sample_period: 6
   max_sample_period: 120
   brand: EcoManager
@@ -26,6 +26,24 @@ EDFEnergy~EcoManagerWholeHouseTx:
   parent: EDF
   model: EcoManager Whole House Transmitter
   model_url: "https://shop.edfenergy.com/Item.aspx?id=547"
+  measurements:
+    - physical_quantity: power
+      type: apparent
+      cummulative: false
+      minimum: 0
+      maximum: 25000
+
+CurrentCost~Tx:
+  sample_period: 6
+  max_sample_period: 120
+  manufacturer: Current Cost
+  model: Transmitter
+  model_url: "http://www.currentcost.com/product-transmitter.html"
+  wireless: true
+  wireless_base: rfm_edf_ecomanager
+  wireless_base_url: "https://github.com/JackKelly/rfm_edf_ecomanager/"
+  data_logger: rfm_ecomanager_logger
+  data_logger_url: "https://github.com/JackKelly/rfm_ecomanager_logger"
   measurements:
     - physical_quantity: power
       type: apparent

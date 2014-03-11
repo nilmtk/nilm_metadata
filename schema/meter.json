@@ -14,7 +14,7 @@
         "model": { "type": "string" },
         "model_url": { "type": "string" },
         "manufacturer": { "type": "string" },
-        "distributor": { "type": "string" },
+        "seller": { "type": "string" },
         "brand": { "type": "string" },
         "brand_url": { "type": "string" },
         "parent": { "type": "string" },
@@ -27,7 +27,6 @@
             "minimum": 0,
             "description": "Either the ID of the upstream meter, or if this meter is downstream of a site meter but the precise site meter is not known then use 0. "
         },
-
         "sample_period": {
             "description": "The sample period in seconds",
             "type": "number",

@@ -31,6 +31,7 @@
         "contact": { "type": "string" },
         "institution": { "type": "string" },
         "description": { "type": "string" },
+        "number_of_buildings": { "$ref": "instance.json" },
         "mains_voltage": {
             "$ref": "electric.json#/properties/mains_voltage"
         },

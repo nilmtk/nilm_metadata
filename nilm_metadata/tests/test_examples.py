@@ -48,7 +48,7 @@ class TestSchema(unittest.TestCase):
     def test_appliance_group(self):
         appliances = yaml.load(open(join(examples_directory(), 
                                          'appliance_group.yaml')))
-        complete_appliance = concatenate_complete_appliance(appliances['light,1'])
+        complete_appliance = concatenate_complete_appliance(appliances[0])
         validate_complete_appliance(complete_appliance)
         self.assertFalse(complete_appliance.get('synonyms'))
         self.assertFalse(complete_appliance.get('description'))

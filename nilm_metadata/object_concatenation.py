@@ -33,6 +33,8 @@ def get_ancestors(object_name):
     dict is the highest on the inheritance hierarchy; the last dict
     is the object with name == `object_name`.
     """
+    if object_name is None:
+        return []
     object_filenames = map_obj_names_to_filenames()
     name_of_file_containing_object = object_filenames[object_name]
     yaml_file = yaml.load(open(name_of_file_containing_object))

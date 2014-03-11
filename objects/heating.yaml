@@ -1,0 +1,31 @@
+heating appliance:
+  parent: appliance
+  categories:
+    traditional: heating
+    size: large
+
+boiler:
+  parent: heating appliance
+  categories:
+    google_shopping:
+      - climate control
+      - furnaces and boilers
+    electrical:
+      - resistive
+
+  components:
+    water pump:
+      parent: water pump
+
+  all_allowed_components: [water pump]
+
+# ----------------- COMPONENTS ------------------------ #
+
+pump:
+  parent: component
+  categories:
+    electrical: 
+      - single-phase induction motor
+
+water pump:
+  parent: pump
