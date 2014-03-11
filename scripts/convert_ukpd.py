@@ -11,9 +11,6 @@ TIMEZONE = "Europe/London"
 TZ = pytz.timezone(TIMEZONE)
 N_BULDINGS = 4
 
-# TODO: 
-# automatically infer 'meter_ids' from 'original_name'
-
 dataset = {
     "name": "UKPD",
     "full_name": "UK Power Dataset",

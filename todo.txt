@@ -22,11 +22,15 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
-* dataset version (JSON Meta-Schema???)
-
-* Write my UKPD metadata
-  * start and end dates for each channel
+* work on convert_ukpd.py to get UKPD fully converted
+  * automatically infer 'meter_ids' from 'original_name'
   * multiple, sequential kitchen lighting configs
+
+* write docs 
+
+* check out Wiki Energy and email them if NILM Schema might be of use.
+
+* dataset version (JSON Meta-Schema???)
 
 * Test it out on HES column names
 
