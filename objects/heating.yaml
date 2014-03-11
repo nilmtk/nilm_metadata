@@ -6,8 +6,11 @@ heating appliance:
 
 #------------- BOILERS ------------------------
 
-boiler:
+boiler: # all boilers except for electric boilers
+
   parent: heating appliance
+
+  synonyms: [furnace]
 
   categories:
     google_shopping:
@@ -19,14 +22,14 @@ boiler:
 
   additional_properties:
     fuel: &fuel
-      enum: [gas, coal, wood, oil]
+      enum: [natural gas, coal, wood, oil, LPG]
       
   subtypes:
     - combi
-    - system
+    - regular
 
   control:
-    system: [manual, timer]
+    system: [manual, timer, thermostat]
 
 electric boiler:
   parent: boiler

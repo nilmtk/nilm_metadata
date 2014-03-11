@@ -78,7 +78,7 @@
                         "temperature sensor" ] 
                 }
             },
-            "description": "Give a list of all control methods which apply.  For example, a video recorder would be both 'manual' and 'timer'."
+            "description": "Give a list of all control methods which apply to each component or to 'system'.  For example, a video recorder would be both 'manual' and 'timer'."
         },
         "energy_rating": { "type": "string" },
         "nominal_consumption": {             

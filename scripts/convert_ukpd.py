@@ -39,15 +39,19 @@ dataset = {
     "description": "Recording from 4 domestic homes in or near to London, UK.\n"
 }
 
-appliance_map = {
+appliances_for_each_building = {
     1: [
         {
-            'parent': 'Worcester~Greenstar CDi Conventional',
+            'parent': 'Worcester~Greenstar 30CDi Conventional natural gas',
             'instance': 1,
             'room': {'name': 'bathroom', 'instance': 1},
-            'original_name': 'boiler'
+            'original_name': 'boiler',
+            'meter_ids': [2]
         }
-    ]
+    ],
+    2: [],
+    3: [],
+    4: []
 }
 
 def load_labels(data_dir):
@@ -146,8 +150,8 @@ for building_i in range(1,N_BULDINGS+1):
     building['timeframe'] = timeframe(building_start, building_end)
 
     #------------ APPLIANCES --------------------
-    appliances = electric['appliances']
-        
+    electric['appliances'] = appliances_for_each_building[building_i]
     
-
-print(yaml.dump(dataset))
+    
+with open('/home/jack/workspace/schemas/nilm_metadata/examples/dataset.yaml', 'w') as fh:
+    yaml.dump(dataset, fh)

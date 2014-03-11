@@ -18,6 +18,7 @@
         "brand": { "type": "string" },
         "brand_url": { "type": "string" },
         "parent": { "type": "string" },
+        "original_label": { "type": "string" },
         "site_meter": {
             "type": "boolean",
             "description": "True if this meter measure the whole building."
