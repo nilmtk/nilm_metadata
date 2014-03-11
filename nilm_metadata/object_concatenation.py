@@ -15,6 +15,8 @@ def merge_dicts(old, new):
     for key, new_value in new.iteritems():
         if isinstance(new_value, list):
             old.setdefault(key, []).extend(new_value)
+            if not any([isinstance(v, dict) for v in old[key]]):
+                old[key] = list(set(old[key]))
         elif isinstance(new_value, dict):
             merge_dicts(old.setdefault(key, {}), new_value)
         else:
