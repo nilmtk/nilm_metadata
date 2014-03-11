@@ -12,9 +12,7 @@ TZ = pytz.timezone(TIMEZONE)
 N_BULDINGS = 4
 
 # TODO: 
-# both appliances and meters should be a list, not a dict
-# appliance name is defined by parent, not given
-# meters need an 'id'
+# automatically infer 'meter_ids' from 'original_name'
 
 dataset = {
     "name": "UKPD",
@@ -45,26 +43,22 @@ appliances_for_each_building = {
             'parent': 'Worcester~Greenstar 30CDi Conventional natural gas',
             'room': {'name': 'bathroom', 'instance': 1},
             'original_name': 'boiler',
-            'year_of_purchase': 2011,
-            'meter_ids': [2]
+            'year_of_purchase': 2011
         },
         {
             'parent': 'Navitron~Solar Thermal Pumping Station',
             'room': {'name': 'bathroom', 'instance': 1},
             'original_name': 'solar_thermal_pump',
-            'year_of_purchase': 2011,
-            'meter_ids': [3]
+            'year_of_purchase': 2011
         },
         {
             'parent': 'HP~ProBook 6450b',
             'original_name': 'laptop',
-            'meter_ids': [4],
             'year_of_purchase': 2010
         },
         {
             'parent': 'washer dryer',
             'original_name': 'washing_machine',
-            'meter_ids': [5],
             'year_of_purchase': 2007,
             'manufacturer': 'Hotpoint',
             'brand': 'Aquarius',
@@ -73,7 +67,6 @@ appliances_for_each_building = {
         {
             'parent': 'dish washer',
             'original_name': 'dishwasher',
-            'meter_ids': [6],
             'year_of_purchase': 2007,
             'manufacturer': 'Whirlpool / Ikea',
             'model': 'DWH B10'
