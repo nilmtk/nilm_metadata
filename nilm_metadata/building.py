@@ -37,7 +37,8 @@ def validate_complete_building(complete_building):
     schema = json.load(open(schema_filename))
     validate(complete_building, schema)
 
-    # Validate each appliance (because we insert additional properties)
-    for appliance_obj in get_appliances(complete_building).values():
+    # Validate each appliance (because we insert additional properties
+    # so validation cannot be done without some schema pre-processing)
+    for appliance_obj in get_appliances(complete_building):
         validate_complete_appliance(appliance_obj)
 

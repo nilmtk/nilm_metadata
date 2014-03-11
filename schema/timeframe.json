@@ -6,13 +6,9 @@
     "type": "object",
     "properties": {
         "start": {
-            "format": "date-time",
-            "type": "string",
             "description": "time span start date time"
             },
         "end": {
-            "format": "date-time",
-            "type": "string",
             "description": "time span end date time"
             }
     },
