@@ -23,7 +23,10 @@
         },
         "description": { "type": "string" },
         "manufacturer": { "type": "string" },
+        "year_of_purchase": { "type": "integer" },
+        "year_of_manufacture": { "type": "integer" },
         "model": { "type": "string" },
+        "brand": { "type": "string" },
         "subtype": { "type": "string" },
         "synonyms": { "type": "array", "items": { "type": "string" } },
         "count": { "type": "integer", "description": "number of instances of this component.  Only used when this appliance is used as a component of an appliance." },
@@ -51,12 +54,15 @@
                                   "SMPS", "no PFC", "passive PFC", "active PFC",
                                   "single-phase induction motor"]
                     },
-                    "description": "From Tsagarakid, Collin & Kiprakis 2013"
+                    "description": "From Tsagarakid, Collin & Kiprakis 2013 http://arxiv.org/abs/1306.0802"
                 },
                 "google_shopping": {
                     "type": "array",
                     "items": {
-                        "enum": [ "climate control", "furnaces and boilers" ]
+                        "enum": [ "climate control", "furnaces and boilers",
+                                  "renewable energy", "solar energy", "solar panels",
+                                  "computers", "electronics", "laptops",
+                                  "laundry appliances"]
                     }
                 }
             }
@@ -74,8 +80,7 @@
                 "type": "array",
                 "items": {
                     "enum": [ 
-                        "timer", "manual", "motion sensor", "light sensor",
-                        "temperature sensor" ] 
+                        "timer", "manual", "motion", "sunlight", "thermostat" ] 
                 }
             },
             "description": "Give a list of all control methods which apply to each component or to 'system'.  For example, a video recorder would be both 'manual' and 'timer'."
@@ -172,34 +177,6 @@
         }
     },
     "components": {
-        "screen": {
-            "type": "object",
-            "properties": {
-                "diagonal_size": { 
-                    "type": "number",
-                    "description": "diagonal size in inches",
-                    "minimum": 0,
-                    "exclusiveMinimum": true
-                },
-                "max_resolution": { 
-                    "type": "object",
-                    "properties": {
-                        "horizontal": { "type": "integer" },
-                        "vertical": { "type": "integer" }
-                    }
-                },
-                "display_format": { 
-                    "type": "string", 
-                    "description": "e.g. <1080p,PAL,NTSC,1080i> etc." 
-                },
-                "max_refresh_rate": { "type": "number", "description": "Hz" },
-                "display_technology": { 
-                    "enum": [
-                        "crt", "lcd", "plasma", "oled", "projector" ] 
-                },
-                "backlight_technology": { "enum": ["led", "cold cathode"] }
-            }
-        },
         "av_sources": {
             "type": "array",
             "items": { 
@@ -225,11 +202,6 @@
         "array_of_priors": {
             "type": "array",
             "items": { "$ref": "prior.json" }
-        },
-        "fuel": { 
-            "enum": [ 
-                "electricity", "gas", "oil", "coal", "wood", "biomass" 
-            ] 
         }
     }
 }

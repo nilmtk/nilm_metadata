@@ -34,29 +34,32 @@ boiler: # all boilers except for electric boilers
 electric boiler:
   parent: boiler
   components:
-    - parent: electric water heating element
+    - parent: electric water heater
 
+
+#------- SOLAR THERMAL ---------------------------
+
+solar thermal pumping station:
+  parent: heating appliance
+  categories:
+    google_shopping:
+      - renewable energy
+      - solar energy
+      - solar panels
+  components:
+    - parent: water pump
+  control:
+    system: [manual, sunlight, timer]
 
 # ----------------- COMPONENTS ------------------------ #
 
-#-------- PUMPS ---------
+#---------- HEATING ELEMENTS -----------
 
-pump:
+electric air heater:
   parent: component
   categories:
     electrical: 
-      - single-phase induction motor
+      - resistive
 
-water pump:
-  parent: pump
-
-#---------- HEATING ELEMENTS -----------
-
-electric heating element:
-  parent: component
-  categories:
-    traditional: heating
-    electrical: resistive
-
-electric water heating element:
-  parent: electric heating element
+electric water heater:
+  parent: electric air heater

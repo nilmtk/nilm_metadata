@@ -35,3 +35,5 @@ Naming conventions
   (e.g. 'LED')
 * object names of specific makes and models are uppercase with a tilde
   to separate the manufacturer from the model e.g. `Samsung~RSU1R`
+* category names are lowercase with spaces
+* ambersands are replaced with 'and'

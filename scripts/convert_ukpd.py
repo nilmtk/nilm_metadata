@@ -43,10 +43,40 @@ appliances_for_each_building = {
     1: [
         {
             'parent': 'Worcester~Greenstar 30CDi Conventional natural gas',
-            'instance': 1,
             'room': {'name': 'bathroom', 'instance': 1},
             'original_name': 'boiler',
+            'year_of_purchase': 2011,
             'meter_ids': [2]
+        },
+        {
+            'parent': 'Navitron~Solar Thermal Pumping Station',
+            'room': {'name': 'bathroom', 'instance': 1},
+            'original_name': 'solar_thermal_pump',
+            'year_of_purchase': 2011,
+            'meter_ids': [3]
+        },
+        {
+            'parent': 'HP~ProBook 6450b',
+            'original_name': 'laptop',
+            'meter_ids': [4],
+            'year_of_purchase': 2010
+        },
+        {
+            'parent': 'washer dryer',
+            'original_name': 'washing_machine',
+            'meter_ids': [5],
+            'year_of_purchase': 2007,
+            'manufacturer': 'Hotpoint',
+            'brand': 'Aquarius',
+            'model': 'WD420 1200 spin'
+        },
+        {
+            'parent': 'dish washer',
+            'original_name': 'dishwasher',
+            'meter_ids': [6],
+            'year_of_purchase': 2007,
+            'manufacturer': 'Whirlpool / Ikea',
+            'model': 'DWH B10'
         }
     ],
     2: [],

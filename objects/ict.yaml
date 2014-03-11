@@ -1,0 +1,58 @@
+ICT appliance:
+  parent: appliance
+  categories:
+    traditional: ICT
+    size: small
+    electrical: 
+      - SMPS
+    google_shopping:
+      - electronics
+
+#------------- COMPUTERS ------------------------
+
+computer:
+  parent: ICT appliance
+
+  categories:
+    google_shopping:
+      - computers
+
+  additional_properties:
+    cpu: { type: string }
+      
+  control:
+    system: [manual, timer]
+
+
+laptop computer:
+  parent: computer
+  categories:
+    google_shopping:
+      - laptops
+    
+
+# ----------------- COMPONENTS ------------------------ #
+
+screen:
+  parent: component
+  additional_properties:
+    diagonal_size:
+      type: number
+      description: diagonal size in inches
+      minimum: 0
+      exclusiveMinimum: true
+    max_resolution:
+      type: object
+      properties:
+        horizontal: { type: integer }
+        vertical: { type: integer }
+    display_format:
+      type: string 
+      description: e.g. <1080p,PAL,NTSC,1080i> etc. 
+    max_refresh_rate:
+      type: number
+      description: Hz
+    display_technology:
+      enum: [CRT, LCD, plasma, OLED, projector ] 
+    backlight_technology:
+      enum: [LED, cold cathode]

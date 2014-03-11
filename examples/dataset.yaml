@@ -4,11 +4,27 @@ buildings:
     utilities:
       electric:
         appliances:
-        - instance: 1
-          meter_ids: [2]
+        - meter_ids: [2]
           original_name: boiler
           parent: Worcester~Greenstar 30CDi Conventional natural gas
           room: {instance: 1, name: bathroom}
+          year_of_purchase: 2011
+        - meter_ids: [3]
+          original_name: solar_thermal_pump
+          parent: Navitron~Solar Thermal Pumping Station
+          room: {instance: 1, name: bathroom}
+          year_of_purchase: 2011
+        - meter_ids: [4]
+          original_name: laptop
+          parent: HP~ProBook 6450b
+          year_of_purchase: 2010
+        - brand: Aquarius
+          manufacturer: Hotpoint
+          meter_ids: [5]
+          model: WD420 1200 spin
+          original_name: washing_machine
+          parent: washer dryer
+          year_of_purchase: 2007
         meters:
         - dates_active:
           - {end: '2014-03-11T06:15:06+00:00', start: '2012-11-09T22:28:15+00:00'}

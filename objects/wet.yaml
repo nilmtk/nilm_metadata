@@ -1,0 +1,79 @@
+wet appliance:
+  parent: appliance
+  categories:
+    traditional: wet
+    size: large
+    google_shopping:
+      - laundry appliances
+
+#------------- CLOTHES WASHING AND DRYING ------------------------
+
+spin dryer:
+  parent: wet appliance
+  subtypes: [top-loader, front-loader]
+  control:
+    system: [manual, timer]
+  components:
+    - parent: motor
+      description: drum motor
+    - parent: water pump
+
+tumble dryer:
+  parent: spin dryer
+  components: &dryerElement
+    - parent: electric air heater
+      description: clothes drying heating element
+    
+washing machine:
+  parent: spin dryer
+  components:
+    - parent: electric water heater
+
+washer dryer:
+  parent: washing machine
+  components: *dryerElement
+
+#------------ DISH WASHING --------------------------
+
+dish washer:
+  parent: wet appliance
+  components:
+    - parent: electric air heater
+    - parent: electric water heater
+      distributions:
+        on_power:
+          - model:
+              distribution_name: summary stats
+              min: 1800
+              max: 2500
+              source: empirical from publication
+              reference: &Stamminger2008 >
+                P. D. R. Stamminger, Synergy potential of smart appliances, 
+                in smart domestic appliances in sustainable energy systems (Smart-A),
+                University of Bonn, Tech. Rep., 2008.
+            specific_to: { country: Europe }
+
+    - parent: motor
+  distributions:
+    on_duration:
+      - model:
+          distribution_name: summary stats
+          min: 900 # 15 mins
+          mean: 4500 # 75 mins
+          max: 10800 # 3 hours
+        source: empirical from publication
+        reference: *Stamminger2008
+
+# ----------------- COMPONENTS ------------------------ #
+
+motor:
+  parent: component
+  categories:
+    electrical: 
+      - single-phase induction motor
+
+#-------- PUMPS ---------
+
+water pump:
+  parent: motor
+
