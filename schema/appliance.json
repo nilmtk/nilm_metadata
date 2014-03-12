@@ -5,173 +5,170 @@
     "description": "Metadata for an Appliance",
     "type": "object",
     "additionalProperties": false,
-    "properties": {
-        "name": { "type": "string" },
-        "original_name": { "type": "string" },
-        "parent": { "type": "string" },
-        "instance": { "$ref": "instance.json" },
-        "room": { "$ref": "room.json" },
-        "meter_ids": { 
-            "type": "array", 
-            "items": { "$ref": "instance.json" },
-            "unique": true,
-            "description": "An array of the meter ID(s) used to monitor this appliance."
-        },
-        "dates_active": {
-            "type": "array",
-            "items": { "$ref": "timeframe.json" }
-        },
-        "description": { "type": "string" },
-        "manufacturer": { "type": "string" },
-        "year_of_purchase": { "type": "integer" },
-        "year_of_manufacture": { "type": "integer" },
-        "model": { "type": "string" },
-        "brand": { "type": "string" },
-        "subtype": { "type": "string" },
-        "synonyms": { "type": "array", "items": { "type": "string" } },
-        "count": { "type": "integer", "description": "number of instances of this component.  Only used when this appliance is used as a component of an appliance." },
-        "part_number": { "type": "string" },
-        "gtin": { 
-            "type": "integer", 
-            "description": "http://en.wikipedia.org/wiki/Global_Trade_Item_Number" 
-        },
-        "categories": { 
-            "type": "object",
-            "properties": {
-                "traditional": {
-                    "enum": [ "wet", "cold", "consumer electronics", "ICT", 
-                              "cooking", "heating" ]
-                },
-                "size": { "enum": [ "small", "large" ] },
-                "electrical": {
-                    "type": "array",
-                    "items": {
-                        "enum": [ "lighting",
-                                  "incandescent", 
-                                  "fluorescent", "compact", "linear", 
-                                  "LED",
-                                  "resistive", 
-                                  "SMPS", "no PFC", "passive PFC", "active PFC",
-                                  "single-phase induction motor"]
+    "allOf": [
+        { "$ref": "device.json" },        
+        { "$ref": "#/appliance" }
+    ],
+    "appliance": {
+        "properties": {
+            "instance": { "$ref": "instance.json" },
+            "meter_ids": { 
+                "type": "array", 
+                "items": { "$ref": "instance.json" },
+                "unique": true,
+                "description": "An array of the meter ID(s) used to monitor this appliance."
+            },
+            "synonyms": { "type": "array", "items": { "type": "string" } },
+            "count": { "type": "integer", "description": "number of instances of this component.  Only used when this appliance is used as a component of an appliance." },
+            "categories": { 
+                "type": "object",
+                "properties": {
+                    "traditional": {
+                        "enum": [ "wet", "cold", "consumer electronics", "ICT", 
+                                  "cooking", "heating" ]
                     },
-                    "description": "From Tsagarakid, Collin & Kiprakis 2013 http://arxiv.org/abs/1306.0802"
-                },
-                "google_shopping": {
-                    "type": "array",
-                    "items": {
-                        "enum": [ "climate control", "furnaces and boilers",
-                                  "renewable energy", "solar energy", "solar panels",
-                                  "computers", "electronics", "laptops",
-                                  "laundry appliances"]
+                    "size": { "enum": [ "small", "large" ] },
+                    "electrical": {
+                        "type": "array",
+                        "items": {
+                            "enum": [ "lighting",
+                                      "incandescent", 
+                                      "fluorescent", "compact", "linear", 
+                                      "LED",
+                                      "resistive", 
+                                      "SMPS", "no PFC", "passive PFC", "active PFC",
+                                      "single-phase induction motor"]
+                        },
+                        "description": "From Tsagarakid, Collin & Kiprakis 2013 http://arxiv.org/abs/1306.0802"
+                    },
+                    "google_shopping": {
+                        "type": "array",
+                        "items": {
+                            "enum": [ "climate control", "furnaces and boilers",
+                                      "renewable energy", "solar energy", "solar panels",
+                                      "computers", "electronics", "laptops",
+                                      "laundry appliances"]
+                        }
                     }
                 }
-            }
-        },
-        "on_power_threshold": { 
-            "type": "number", 
-            "description": "watts", 
-            "minimum": 0
-        },
-        "minimum_off_duration": { "type": "number", "description": "seconds" },
-        "minimum_on_duration": { "type": "number", "description": "seconds" },
-        "control": { 
-            "type": "object",
-            "additionalProperties": { 
-                "type": "array",
-                "items": {
-                    "enum": [ 
-                        "timer", "manual", "motion", "sunlight", "thermostat" ] 
+            },
+            "on_power_threshold": { 
+                "type": "number", 
+                "description": "watts", 
+                "minimum": 0
+            },
+            "minimum_off_duration": { "type": "number", "description": "seconds" },
+            "minimum_on_duration": { "type": "number", "description": "seconds" },
+            "control": { 
+                "type": "object",
+                "additionalProperties": { 
+                    "type": "array",
+                    "items": {
+                        "enum": [ 
+                            "timer", "manual", "motion", "sunlight", "thermostat" ] 
+                    }
+                },
+                "description": "Give a list of all control methods which apply to each component or to 'system'.  For example, a video recorder would be both 'manual' and 'timer'."
+            },
+            "efficiency_rating": { 
+                "type": "object", 
+                "properties": { 
+                    "certification_name": { 
+                        "type": "string",
+                        "description": "e.g. 'SEDBUK' or 'Energy Star 5.0'"
+                    },
+                    "rating": { "type": "string" }
+                } 
+            },
+            "nominal_consumption": {             
+                "type": "object",
+                "properties": {
+                    "on_power": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "description": "active power in watts when on" 
+                    },
+                    "standby_power": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "description": "active power in watts when in standby" 
+                    },
+                    "energy_per_year": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "description": "kWh per year" 
+                    },
+                    "energy_per_cycle": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "description": "kWh per cycle" 
+                    }
                 }
             },
-            "description": "Give a list of all control methods which apply to each component or to 'system'.  For example, a video recorder would be both 'manual' and 'timer'."
-        },
-        "energy_rating": { "type": "string" },
-        "nominal_consumption": {             
-            "type": "object",
-            "properties": {
-                "on_power": {
-                    "type": "number",
-                    "minimum": 0,
-                    "exclusiveMinimum": true,
-                    "description": "active power in watts when on" 
-                },
-                "standby_power": {
-                    "type": "number",
-                    "minimum": 0,
-                    "exclusiveMinimum": true,
-                    "description": "active power in watts when in standby" 
-                },
-                "energy_per_year": {
-                    "type": "number",
-                    "minimum": 0,
-                    "exclusiveMinimum": true,
-                    "description": "kWh per year" 
-                },
-                "energy_per_cycle": {
-                    "type": "number",
-                    "minimum": 0,
-                    "exclusiveMinimum": true,
-                    "description": "kWh per cycle" 
-                }
-            }
-        },
-        "images": { 
-            "type": "array", 
-            "items": { "type": "string", "format": "uri" } 
-        },
-        "components": { "type": "array", "items": { "type": "object" } },
-        "usual_components": { "type": "array", "items": { "type": "string" } },
-        "distributions": {
-            "type": "object",
-            "description": "Distributions of the data expressed as normalised frequencies over discrete intervals (bins).",
-            "properties": {
-                "on_power": {
-                    "allOf": [
-                        { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "bin_edges in units of watts" }
-                    ]
-                },
-                "on_duration": { 
-                    "allOf": [
-                        { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "bin_edges in units of seconds" }
-                    ]
-                },
-                "off_duration": { 
-                    "allOf": [
-                        { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "bin_edges in units of seconds" }
-                    ]
-                },
-                "usage_hour_per_day": { 
-                    "allOf": [
-                        { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "bin_edges = [0,1,2,...,24]" }
-                    ]
-                },
-                "usage_day_per_week": { 
-                    "allOf": [
-                        { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "categories = ['mon', 'tue', ..., 'sun']" }
-                    ]
-                },
-                "usage_month_per_year": { 
-                    "allOf": [
-                        { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "bin_edges are in units of days (we need bin edges because months are not equal lengths).  The first bin represents January." }
-                    ]
-                },
-                "rooms": { 
-                    "allOf": [
-                        { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "Categorical distribution over the rooms where this appliance is likely to be used. e.g. for a fridge this might be 'kitchen:0.9, garage:0.1'" }
-                    ]
-                },
-                "appliance_correlations": { 
-                    "allOf": [
-                        { "$ref": "#/definitions/array_of_priors" },
-                        { "description": "list of other appliances. Probability of this appliance being on given that the other appliance is on. e.g. 'tv:0.1, amp:0.4, ...' means that there is a 10% probability of this appliance being on if the TV is on.  Each category name can either be just an appliance name (e.g. 'fridge') or <appliance name>,<appliance instance> e.g. 'fridge,1'" }
-                    ]
+            "components": { "type": "array", "items": { "type": "object" } },
+            "usual_components": { 
+                "type": "array", 
+                "items": { 
+                    "type": "string",
+                    "description": "just a list of hints for human consumption. Not used during validation."
+                } 
+            },
+            "distributions": {
+                "type": "object",
+                "description": "Distributions of the data expressed as normalised frequencies over discrete intervals (bins).",
+                "properties": {
+                    "on_power": {
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "bin_edges in units of watts" }
+                        ]
+                    },
+                    "on_duration": { 
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "bin_edges in units of seconds" }
+                        ]
+                    },
+                    "off_duration": { 
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "bin_edges in units of seconds" }
+                        ]
+                    },
+                    "usage_hour_per_day": { 
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "bin_edges = [0,1,2,...,24]" }
+                        ]
+                    },
+                    "usage_day_per_week": { 
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "categories = ['mon', 'tue', ..., 'sun']" }
+                        ]
+                    },
+                    "usage_month_per_year": { 
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "bin_edges are in units of days (we need bin edges because months are not equal lengths).  The first bin represents January." }
+                        ]
+                    },
+                    "rooms": { 
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "Categorical distribution over the rooms where this appliance is likely to be used. e.g. for a fridge this might be 'kitchen:0.9, garage:0.1'" }
+                        ]
+                    },
+                    "appliance_correlations": { 
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "list of other appliances. Probability of this appliance being on given that the other appliance is on. e.g. 'tv:0.1, amp:0.4, ...' means that there is a 10% probability of this appliance being on if the TV is on.  Each category name can either be just an appliance name (e.g. 'fridge') or <appliance name>,<appliance instance> e.g. 'fridge,1'" }
+                        ]
+                    }
                 }
             }
         }

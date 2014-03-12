@@ -7,7 +7,9 @@ Worcester~Greenstar 30CDi Conventional natural gas:
   fuel: natural gas
   subtype: regular
   part_number: 41-311-71
-  energy_rating: A
+  efficiency_rating: 
+    certification_name: SEDBUK
+    rating: A
   nominal_consumption:
     on_power: 70
 

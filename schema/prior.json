@@ -62,10 +62,8 @@
         "software": { 
             "type": "object",
             "description": "the software used to generate the prior from data.",
-            "properties": {
-                "name": { "type": "string" },
-                "version": { "type": "string" }
-            }
+            "properties": { "$ref": "device.json#/properties"  },
+            "additionalProperties": false
         },
         "specific_to": {
             "type": "object",

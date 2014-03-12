@@ -46,7 +46,7 @@ def validate_complete_appliance(complete_appliance):
         additional_properties = {}
     schema_filename = join(get_schema_directory(), 'appliance.json')
     appliance_schema = json.load(open(schema_filename))
-    appliance_schema['properties'].update(additional_properties)
+    appliance_schema['appliance']['properties'].update(additional_properties)
     validate(complete_appliance, appliance_schema)
     
     # now validate each component recursively

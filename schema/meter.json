@@ -5,87 +5,78 @@
     "description": "Metadata for a Meter",
     "type": "object",
     "properties": {
-        "id": {
-            "allOf": [
-                { "$ref": "instance.json" },
-                { "description": "The ID of this meter, unique within the building." }
-            ]
-        },
-        "model": { "type": "string" },
-        "model_url": { "type": "string" },
-        "manufacturer": { "type": "string" },
-        "seller": { "type": "string" },
-        "brand": { "type": "string" },
-        "brand_url": { "type": "string" },
-        "parent": { "type": "string" },
-        "original_label": { "type": "string" },
-        "site_meter": {
-            "type": "boolean",
-            "description": "True if this meter measure the whole building."
-        },
-        "submeter_of": { 
-            "type": "integer",
-            "minimum": 0,
-            "description": "Either the ID of the upstream meter, or if this meter is downstream of a site meter but the precise site meter is not known then use 0. "
-        },
-        "sample_period": {
-            "description": "The sample period in seconds",
-            "type": "number",
-            "minimum": 0,
-            "exclusiveMinimum": true
-        },
-        "max_sample_period": {
-            "description": "The maximum allowed sample period in seconds",
-            "type": "number",
-            "minimum": 0,
-            "exclusiveMinimum": true
-        }, 
-        "measurements": {
-            "type": "array",
-            "items": { "$ref": "measurement.json" },
-            "minItems": 1,
-            "uniqueItems": true
-        },
-        "preprocessing_applied": {
-            "type": "array",
-            "items": {
-                "enum": ["gaps_bookended_with_zeros", 
-                         "implausable_values_removed"]
-            }
-        },
-        "gap_free_segments": {
-            "type": "array",
-            "items": { "$ref": "timeframe.json" },
-            "unique": true
-        },
-        "contiguous_segments": {
-            "type": "array",
-            "items": { "$ref": "timeframe.json" },
-            "unique": true
-        },
-        "energy": {
-            "type": "array",
-            "items": {
-                "allOf": [ 
-                    { "$ref": "timeframe.json" },
-                    { "properties": {
-                        "active": { "type": "number" },
-                        "reactive": { "type": "number" },
-                        "apparent": { "type": "number" } }
+        "allOf": 
+        [
+            { "$ref": "device.json" },
+            {
+                "id": {
+                    "allOf": [
+                        { "$ref": "instance.json" },
+                        { "description": "The ID of this meter, unique within the building." }
+                    ]
+                },
+                "site_meter": {
+                    "type": "boolean",
+                    "description": "True if this meter measure the whole building."
+                },
+                "submeter_of": { 
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Either the ID of the upstream meter, or if this meter is downstream of a site meter but the precise site meter is not known then use 0. "
+                },
+                "sample_period": {
+                    "description": "The sample period in seconds",
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true
+                },
+                "max_sample_period": {
+                    "description": "The maximum allowed sample period in seconds",
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true
+                }, 
+                "measurements": {
+                    "type": "array",
+                    "items": { "$ref": "measurement.json" },
+                    "minItems": 1,
+                    "uniqueItems": true
+                },
+                "preprocessing_applied": {
+                    "type": "array",
+                    "items": {
+                        "enum": ["gaps_bookended_with_zeros", 
+                                 "implausable_values_removed"]
                     }
-                ]
+                },
+                "gap_free_segments": {
+                    "type": "array",
+                    "items": { "$ref": "timeframe.json" },
+                    "unique": true
+                },
+                "contiguous_segments": {
+                    "type": "array",
+                    "items": { "$ref": "timeframe.json" },
+                    "unique": true
+                },
+                "energy": {
+                    "type": "array",
+                    "items": {
+                        "allOf": [ 
+                            { "$ref": "timeframe.json" },
+                            { "properties": {
+                                "active": { "type": "number" },
+                                "reactive": { "type": "number" },
+                                "apparent": { "type": "number" } }
+                            }
+                        ]
+                    }
+                },
+                "wireless": { "type": "boolean" },
+                "wireless_base": { "$ref": "device.json" },
+                "data_logger": { "$ref": "device.json" }
             }
-        },
-        "room_id": { "$ref": "room.json" },
-        "dates_active": {
-            "type": "array",
-            "items": { "$ref": "timeframe.json" }
-        },
-        "wireless": { "type": "boolean" },
-        "wireless_base": { "type": "string" },
-        "wireless_base_url": { "type": "string" },
-        "data_logger": { "type": "string" },
-        "data_logger_url": { "type": "string" }
+        ]
     },
     "additionalProperties": false
 }
