@@ -34,6 +34,31 @@ dataset = {
     "description": "Recording from 4 domestic homes in or near to London, UK.\n"
 }
 
+building_metadata = {
+    1: {
+        "rooms": [
+            {"name": "lounge", "floor": 0},
+            {"name": "hall", "instance": 1,  "floor": 0},
+            {"name": "hall", "instance": 2,  "floor": 1},
+            {"name": "kitchen", "floor": 0},
+            {"name": "utility", "floor": 0},
+            {"name": "dining room", "floor": 0},
+            {"name": "bedroom", "instance": 1, "floor": 1, 
+             "description": "master bedroom"},
+            {"name": "bedroom", "instance": 2, "floor": 1, 
+             "description": "kid's bedroom"},
+            {"name": "study", "instance": 1, "floor": 1, 
+             "description": "occasionally used as a spare bedroom "},
+            {"name": "bathroom", "instance": 1, "floor": 1, 
+             "description": "shower + bath + toilet + sink + cupboards "
+             "+ hot water tank + boiler + solar thermal pumping station"}
+        ]
+    },
+    2: {},
+    3: {},
+    4: {}
+}
+
 appliances_for_each_building = {
     1: [
         {
@@ -205,7 +230,8 @@ def timeframe(start, end):
 
 dataset['buildings'] = {}
 for building_i in range(1,N_BULDINGS+1):
-    building = {'utilities': {'electric': {'meters': [], 'appliances': []}}}
+    building = building_metadata[building_i]
+    building.update({'utilities': {'electric': {'meters': [], 'appliances': []}}})
     dataset['buildings'][building_i] = building
     building_path = join(PATH, 'house_{:d}'.format(building_i))
     electric = building['utilities']['electric']

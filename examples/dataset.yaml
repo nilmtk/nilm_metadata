@@ -1,5 +1,18 @@
 buildings:
   1:
+    rooms:
+    - {floor: 0, name: lounge}
+    - {floor: 0, instance: 1, name: hall}
+    - {floor: 1, instance: 2, name: hall}
+    - {floor: 0, name: kitchen}
+    - {floor: 0, name: utility}
+    - {floor: 0, name: dining room}
+    - {description: master bedroom, floor: 1, instance: 1, name: bedroom}
+    - {description: kid's bedroom, floor: 1, instance: 2, name: bedroom}
+    - {description: 'occasionally used as a spare bedroom ', floor: 1, instance: 1,
+      name: study}
+    - {description: shower + bath + toilet + sink + cupboards + hot water tank + boiler
+        + solar thermal pumping station, floor: 1, instance: 1, name: bathroom}
     timeframe: {end: '2014-03-11T06:16:37+00:00', start: '2012-11-09T22:28:15+00:00'}
     utilities:
       electric:

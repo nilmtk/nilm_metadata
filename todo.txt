@@ -22,17 +22,7 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
-* work on convert_ukpd.py to get UKPD fully converted
-  * automatically infer 'meter_ids' from 'original_name'
-  * multiple, sequential kitchen lighting configs
-
-* write docs 
-
-* check out Wiki Energy and email them if NILM Schema might be of use.
-
 * dataset version (JSON Meta-Schema???)
-
-* Test it out on HES column names
 
 * Dataset schema.
   * where to find a canonical list of country names?
@@ -40,17 +30,54 @@ TODO:
   * and look at UKERC EDC's schemas
   * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
 
+* finish convert_ukpd.py.
+  * email to UKERC EDC
+
+* copy details from schema/appliance_old.json and old/
+
+* test with details in my spreadsheet sketch of ideas.        
+
+* tool to generate graphical model of relationship between objects in
+  /objects and also in a schema
+
+* write docs 
+  * auto doc generation from json schema
+  * how to write your own schema
+  * how to validate it
+  * how to concatenate it (need to think of a better name)
+  * given that we allow a list of priors, and we allow these 
+    to accumulate down the inheritance tree, we
+    label these priors to say if they are specific to this
+    object or to an ancestor, and how distant the ancestor is.
+  * enforce appliance names
+  * categories.  Tranditional, electrical, google shopping (links)
+  * look through "done"
+
+* tidy up
+
+* write paper for IEEE Workshop on Interopability in Scientific
+  Computing (deadline = 23rd Mar)
+* write papers for NILM Workshop
+
+* check out Wiki Energy and email them if NILM Schema might be of use.
+* tweet about it
+
+
+IF TIME:
+-------
+
+* Test it out on HES column names
+
+* have a "generated" folder for a graph showing hierarchy.  
+
+
+
+DONE:
+
+* briefly explore putting all schemas into a single YAML/JSON file???
+
 * continue building out object_concatenation.py to implement all the
   new features in our new system:
-
-  * test with details in my spreadsheet sketch of ideas.
-
-  * given that we allow a list of priors, and we allow these 
-    to accumulate down the inheritance tree, we probably need
-    to label these priors to say if they are specific to this
-    object or to an ancestor, and how distant the ancestor is.
-
-  * enforce appliance names
 
 * try to find an authoritive source for 
   appliance categories.  Google "hot cold ict wet appliance categories"
@@ -75,15 +102,13 @@ TODO:
   * ones used in wikipedia
 * maybe "classes" isn't a good name.  "object_hierarchy"?  "objects"?
   "hierarchy"?  "appliance_hierarchy"?
-* have a "generated" folder for a graph showing hierarchy.  
-* Write docs
-* Make it work with nilmtk
-  * original name should come from original dataset
-* tidy up
-* briefly explore putting all schemas into a single YAML/JSON file???
 
 
-DONE:
+
+* work on convert_ukpd.py to get UKPD fully converted
+  * automatically infer 'meter_ids' from 'original_name'
+  * multiple, sequential kitchen lighting configs
+
 
 * propagate nominal_voltage from dataset to building/electric
 

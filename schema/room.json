@@ -2,12 +2,14 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "__id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/room.json",
     "title": "Room",
-    "description": "Metadata for Rooms in buildings.  If instance is absent then assume 1.",
+    "description": "Metadata for Rooms in buildings.  If instance is absent then assume 1.  Rooms are identified by their name and instance.",
     "type": "object",
     "properties": {
         "name": { "enum": ["lounge", "kitchen", "bedroom", "utility", 
-                           "bathroom", "study"] },
-        "instance": { "$ref": "instance.json" }
+                           "bathroom", "study", "nursery", "hall", "dining room"] },
+        "instance": { "$ref": "instance.json" },
+        "description": { "type": "string" },
+        "floor": { "type": "integer", "description": "ground floor is floor 0." }
     },
     "required": ["name"],
     "additionalProperties": false
