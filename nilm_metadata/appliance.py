@@ -7,9 +7,10 @@ from object_concatenation import concatenate_complete_object, get_ancestors, mer
 from file_management import get_schema_directory
 from schema_preprocessing import combine, local_validate
 
-def concatenate_complete_appliance(appliance_obj):
+def concatenate_complete_appliance(appliance_obj, object_cache):
     parent_name = appliance_obj['parent']
-    complete_appliance = concatenate_complete_object(parent_name, appliance_obj).copy()
+    complete_appliance = concatenate_complete_object(parent_name, object_cache,
+                                                     child_object=appliance_obj).copy()
 
     ########################
     # Check subtype is valid
@@ -28,7 +29,7 @@ def concatenate_complete_appliance(appliance_obj):
     # Instantiate components recursively
     components = complete_appliance.get('components', [])
     for i, component_obj in enumerate(components):
-        component_obj = concatenate_complete_appliance(component_obj)
+        component_obj = concatenate_complete_appliance(component_obj, object_cache)
         components[i] = component_obj
         merge_dicts(complete_appliance['categories'], 
                     component_obj.get('categories', {}))

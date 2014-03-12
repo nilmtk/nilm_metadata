@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/model_parameters.json",
+    "__id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/model_parameters.json",
     "title": "Parameters for Appliance Models",
     "type": "object",
     "properties": {

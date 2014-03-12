@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/prior.json",
+    "__id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/prior.json",
     "title": "Prior",
     "description": "Represent prior knowledge. For continuous variables, specify either the distribution of data (i.e. the data represented in a histogram), or a density estimate (a model fitted to the data), or both.  For categorical variables, specify the categorical distribution.",
     "type": "object",

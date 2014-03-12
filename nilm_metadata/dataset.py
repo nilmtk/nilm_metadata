@@ -8,7 +8,7 @@ from file_management import get_schema_directory
 from building import concatenate_complete_building, validate_complete_building
 from schema_preprocessing import local_validate
 
-def concatenate_complete_dataset(dataset_obj):
+def concatenate_complete_dataset(dataset_obj, object_cache):
     # propagate geo_location and timezone to each building
     tz = dataset_obj.get('timezone')
     geo = dataset_obj.get('geo_location')
@@ -26,7 +26,7 @@ def concatenate_complete_dataset(dataset_obj):
         if voltage and electric and electric.get('mains_voltage') is None:
             electric['mains_voltage'] = voltage
 
-        building = concatenate_complete_building(building)        
+        building = concatenate_complete_building(building, object_cache)        
         buildings[building_id] = building
 
     return complete_dataset

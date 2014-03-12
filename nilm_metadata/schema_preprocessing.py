@@ -29,8 +29,6 @@ def combine(schema):
                 subschema = r
         properties.update(subschema.get("properties", {}))
         subschemas.extend(subschema.pop("allOf", ()))
-        # subschemas.extend(subschema.pop("anyOf", ()))
-        # subschemas.extend(subschema.pop("oneOf", ()))
 
     schema["additionalProperties"] = False
 

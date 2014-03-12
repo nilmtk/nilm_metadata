@@ -35,7 +35,7 @@ def get_schema_directory():
 
 
 def find_all_files_with_suffix(suffix, directory):
-    # Find all YAML files
+    # Find all files with suffix, recursively.
     accumulator = []
     def select_object_files(accumulator, dirname, fnames):
         new_files = [join(dirname, fname) for fname in fnames 
@@ -53,41 +53,12 @@ def find_all_object_files():
     return filenames
 
 
-def map_obj_names_to_filenames():
-    PATH_TO_OBJECTS = get_objects_directory()
-    INDEX_FILENAME = join(PATH_TO_OBJECTS, 'index.yaml')
-    OBJECT_FILENAMES = find_all_object_files()
+def get_object_cache():
+    obj_filenames = find_all_object_files()
+    obj_cache = {}
+    for filename in obj_filenames:
+        with open(filename) as fh:
+            objs = yaml.load(fh)
+        obj_cache.update(objs)
 
-    # check if cache file exists
-    if isfile(INDEX_FILENAME):
-        # check if any of the object files are younger than the index
-        mtime_for_index = getmtime(INDEX_FILENAME)
-        regenerate_index = False
-        for fname in OBJECT_FILENAMES:
-            mtime = getmtime(fname)
-            if mtime >= mtime_for_index:
-                regenerate_index = True
-                break
-    else:
-        regenerate_index = True
-
-    if regenerate_index:
-        index_dict = {}
-        for fname in OBJECT_FILENAMES:
-            objects = yaml.load(open(fname))
-            if not objects:
-                continue
-            index_dict.update({k:fname for k in objects.keys()})
-
-        # Make the filenames relative for caching to disk
-        index_dict_relative = {k:v.replace(PATH_TO_OBJECTS, '')[1:]
-                               for k,v in index_dict.iteritems()}
-        with open(INDEX_FILENAME, 'w') as fh:
-            yaml.dump(index_dict_relative, fh, default_flow_style=False)
-    else:
-        with open(INDEX_FILENAME, 'r') as fh:
-            index_dict_relative = yaml.load(fh)
-        index_dict = {k:join(PATH_TO_OBJECTS,v) 
-                      for k,v in index_dict_relative.iteritems()}
-
-    return index_dict
+    return obj_cache

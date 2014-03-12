@@ -1,8 +1,0 @@
-{
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/appliance_group.json",
-    "title": "Appliance Group",
-    "description": "Metadata for a group of Appliances",
-    "type": "object",
-    "additionalProperties": { "$ref": "appliance.json" }
-}

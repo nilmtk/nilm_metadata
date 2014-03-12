@@ -17,16 +17,17 @@ def get_appliances(building_obj):
 def get_meters(building_obj):
     return get_electric(building_obj).get('meters', [])
 
-def concatenate_complete_building(building_obj):
+def concatenate_complete_building(building_obj, object_cache):
     complete_building = building_obj.copy()
     appliances = get_appliances(complete_building)
     for i, appliance_obj in enumerate(appliances):
-        appliances[i] = concatenate_complete_appliance(appliance_obj)
+        appliances[i] = concatenate_complete_appliance(appliance_obj, object_cache)
 
     meters = get_meters(complete_building)
     for i, meter_obj in enumerate(meters):
         meters[i] = concatenate_complete_object(meter_obj['parent'], 
-                                                meter_obj,
+                                                object_cache,
+                                                child_object=meter_obj,
                                                 do_not_inherit_extension_list=['name'])
 
     return complete_building

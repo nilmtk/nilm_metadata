@@ -1,6 +1,5 @@
 from __future__ import print_function, division
 import json, yaml
-from file_management import map_obj_names_to_filenames
 
 
 def merge_dicts(old, new):
@@ -23,7 +22,7 @@ def merge_dicts(old, new):
             old[key] = new_value
 
 
-def get_ancestors(object_name):
+def get_ancestors(object_name, object_cache):
     """
     Arguments
     ---------
@@ -37,24 +36,16 @@ def get_ancestors(object_name):
     """
     if object_name is None:
         return []
-    object_filenames = map_obj_names_to_filenames()
-    name_of_file_containing_object = object_filenames[object_name]
-    yaml_file = yaml.load(open(name_of_file_containing_object))
 
     # walk the inheritance tree from 
     # bottom upwards (which is the wrong direction
     # for actually doing inheritance)
-    current_object = yaml_file[object_name]
+    current_object = object_cache[object_name]
     current_object['name'] = object_name
     ancestors = [current_object]
     while current_object.get('parent'):
         parent_name = current_object['parent']
-        name_of_file_containing_parent = object_filenames[parent_name]
-        if name_of_file_containing_object != name_of_file_containing_parent:
-            name_of_file_containing_object = name_of_file_containing_parent
-            yaml_file = yaml.load(open(name_of_file_containing_object))
-
-        current_object = yaml_file[parent_name]
+        current_object = object_cache[parent_name]
         current_object['name'] = parent_name
         ancestors.append(current_object)
 
@@ -62,7 +53,7 @@ def get_ancestors(object_name):
     return ancestors
     
 
-def concatenate_complete_object(object_name, child_object=None, 
+def concatenate_complete_object(object_name, object_cache, child_object=None, 
                                 do_not_inherit_extension_list=None):
     """
     Returns
@@ -74,7 +65,7 @@ def concatenate_complete_object(object_name, child_object=None,
         most-derived object (i.e. a child of object_name).  This is 
         useful for appliances.
     """
-    ancestors = get_ancestors(object_name)
+    ancestors = get_ancestors(object_name, object_cache)
     if child_object:
         ancestors.append(child_object)
 
@@ -109,5 +100,3 @@ def concatenate_complete_object(object_name, child_object=None,
         merge_dicts(merged_object, next_child)
 
     return merged_object
-
-
