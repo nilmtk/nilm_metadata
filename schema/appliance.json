@@ -3,13 +3,12 @@
     "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/appliance.json",
     "title": "Appliance",
     "description": "Metadata for an Appliance",
-    "type": "object",
-    "additionalProperties": false,
     "allOf": [
         { "$ref": "device.json" },        
         { "$ref": "#/appliance" }
     ],
     "appliance": {
+        "type": "object",
         "properties": {
             "instance": { "$ref": "instance.json" },
             "meter_ids": { 

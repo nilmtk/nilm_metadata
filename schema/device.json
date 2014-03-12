@@ -4,7 +4,6 @@
     "title": "Device",
     "description": "Metadata for an Device (a generalisation of an appliance and meter)",
     "type": "object",
-    "additionalProperties": false,
     "properties": {
         "name": { "type": "string" },
         "model": { "type": "string" },
