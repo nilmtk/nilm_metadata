@@ -1,10 +1,11 @@
 from __future__ import print_function, division
 import json
-from jsonschema import validate, ValidationError
+from jsonschema import validate, ValidationError, RefResolver, Draft4Validator
 from os.path import join
 
 from object_concatenation import concatenate_complete_object, get_ancestors, merge_dicts
 from file_management import get_schema_directory
+from schema_preprocessing import combine, local_validate
 
 def concatenate_complete_appliance(appliance_obj):
     parent_name = appliance_obj['parent']
@@ -14,19 +15,15 @@ def concatenate_complete_appliance(appliance_obj):
     # Check subtype is valid
     subtype = complete_appliance.get('subtype')
     subtypes = complete_appliance.get('subtypes')
-    if subtype:
-        if subtype not in subtypes:
-            raise ValidationError(subtype + 
-                                  ' is not a valid subtype for appliance ' +
-                                  parent_name)
+    if subtype and subtype not in subtypes:
+        raise ValidationError(subtype + 
+                              ' is not a valid subtype for appliance ' +
+                              parent_name)
 
     ############################################
     # Remove properties not allowed in completed appliance object
     for property_to_remove in ['subtypes', 'all_allowed_components']:
-        try:
-            del complete_appliance[property_to_remove]
-        except KeyError:
-            pass
+        complete_appliance.pop(property_to_remove, None)
 
     # Instantiate components recursively
     components = complete_appliance.get('components', [])
@@ -40,16 +37,19 @@ def concatenate_complete_appliance(appliance_obj):
 
 
 def validate_complete_appliance(complete_appliance):
-    try:
-        additional_properties = complete_appliance.pop('additional_properties')
-    except KeyError:
-        additional_properties = {}
+    # Load appliance schema and combine all 'allOf' keys
     schema_filename = join(get_schema_directory(), 'appliance.json')
     appliance_schema = json.load(open(schema_filename))
-    appliance_schema['appliance']['properties'].update(additional_properties)
-    validate(complete_appliance, appliance_schema)
+    combine(appliance_schema)
+
+    # Update the schema with additional properties from the appliance
+    additional_properties = complete_appliance.pop('additional_properties', {})
+    appliance_schema['properties'].update(additional_properties)
+
+    # Validate
+    local_validate(complete_appliance, appliance_schema)
     
-    # now validate each component recursively
+    # Validate each component recursively
     components = complete_appliance.get('components', [])
     for component_obj in components:
         validate_complete_appliance(component_obj)

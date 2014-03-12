@@ -6,6 +6,7 @@ from os.path import join
 from object_concatenation import concatenate_complete_object, get_ancestors
 from file_management import get_schema_directory
 from building import concatenate_complete_building, validate_complete_building
+from schema_preprocessing import local_validate
 
 def concatenate_complete_dataset(dataset_obj):
     # propagate geo_location and timezone to each building
@@ -34,7 +35,7 @@ def concatenate_complete_dataset(dataset_obj):
 def validate_complete_dataset(complete_dataset):
     schema_filename = join(get_schema_directory(), 'dataset.json')
     schema = json.load(open(schema_filename))
-    validate(complete_dataset, schema)
+    local_validate(complete_dataset, schema)
     
     # Validate each building???
     for building_obj in complete_dataset.get('buildings', {}).values():

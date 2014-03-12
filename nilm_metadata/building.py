@@ -6,7 +6,7 @@ from os.path import join
 from object_concatenation import concatenate_complete_object, get_ancestors
 from file_management import get_schema_directory
 from appliance import concatenate_complete_appliance, validate_complete_appliance
-
+from schema_preprocessing import combine, local_validate
 
 def get_electric(building_obj):
     return building_obj.get('utilities', {}).get('electric', {})    
@@ -35,7 +35,18 @@ def concatenate_complete_building(building_obj):
 def validate_complete_building(complete_building):
     schema_filename = join(get_schema_directory(), 'building.json')
     schema = json.load(open(schema_filename))
-    validate(complete_building, schema)
+    local_validate(complete_building, schema)
+
+    # Validate each meter separately because we need to combine
+    # 'device' and 'meter' together using combine
+    # This won't be necessary if JSON-Schema draft 5 includes
+    # a mechanism to forbid extra properties even when
+    # using 'allOf'
+    meter_schema_filename = join(get_schema_directory(), 'meter.json')
+    meter_schema = json.load(open(meter_schema_filename))
+    combine(meter_schema)
+    for meter_obj in get_meters(complete_building):
+        local_validate(meter_obj, meter_schema)
 
     # Validate each appliance (because we insert additional properties
     # so validation cannot be done without some schema pre-processing)

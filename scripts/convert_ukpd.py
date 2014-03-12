@@ -133,7 +133,9 @@ for building_i in range(1,N_BULDINGS+1):
     building_start = None
     building_end = None
     meters = electric['meters']
-    for chan, label in labels.iteritems():
+    chans = labels.keys().sort() # we want to process meters in order
+    for chan in chans:
+        label = labels[chan]
         fname = join(building_path, 'channel_{:d}.dat'.format(chan))
         start = start_time(fname)
         end = end_time(fname)
@@ -144,7 +146,7 @@ for building_i in range(1,N_BULDINGS+1):
 
         meter = {'id': chan,
                  'dates_active': [ timeframe(start, end) ],
-                 'original_label': label}
+                 'original_name': label}
         if label == 'aggregate':
             meter.update({"site_meter": True,
                           'parent': 'EDFEnergy~EcoManagerWholeHouseTx'})
