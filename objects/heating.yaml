@@ -74,15 +74,5 @@ solar thermal pumping station:
     - parent: water pump
   control: [manual, sunlight, timer]
 
-# ----------------- COMPONENTS ------------------------ #
 
-#---------- HEATING ELEMENTS -----------
 
-electric air heater:
-  parent: component
-  categories:
-    electrical: 
-      - resistive
-
-electric water heater:
-  parent: electric air heater

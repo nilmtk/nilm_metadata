@@ -9,9 +9,12 @@ from schema_preprocessing import combine, local_validate
 
 def concatenate_complete_appliance(appliance_obj, object_cache):
     parent_name = appliance_obj['parent']
-    complete_appliance = concatenate_complete_object(parent_name, object_cache,
-                                                     child_object=appliance_obj).copy()
-
+    try:
+        complete_appliance = concatenate_complete_object(parent_name, object_cache,
+                                                         child_object=appliance_obj).copy()
+    except KeyError as e:
+        raise KeyError(str(e) + ' is not a valid object name,'
+                       ' please check the following object: ' + str(appliance_obj))
     ########################
     # Check subtype is valid
     subtype = complete_appliance.get('subtype')
@@ -29,7 +32,13 @@ def concatenate_complete_appliance(appliance_obj, object_cache):
     # Instantiate components recursively
     components = complete_appliance.get('components', [])
     for i, component_obj in enumerate(components):
-        component_obj = concatenate_complete_appliance(component_obj, object_cache)
+        try:
+            component_obj = concatenate_complete_appliance(component_obj, object_cache)
+        except KeyError as e:
+            msg = ('Error while processing appliance `{}`.'
+                   ' The error was: {}'.format(appliance_obj['parent'], e))
+            raise KeyError(msg)
+
         components[i] = component_obj
         merge_dicts(complete_appliance['categories'], 
                     component_obj.get('categories', {}))

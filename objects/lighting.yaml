@@ -24,7 +24,8 @@ light:
       type: boolean
 
   subtypes:
-    - ceiling
+    - ceiling pendant
+    - ceiling downlight
     - desk
     - wall
     - table
@@ -35,7 +36,7 @@ light:
     - signage
     - outdoor
 
-# ----------------- COMPONENTS ------------------------ #
+# ----------------- LIGHTING COMPONENTS ------------------------ #
 
 lighting component:
   parent: component
@@ -104,3 +105,6 @@ dimmer:
   additional_properties:
     number_of_dimmer_levels:
       type: integer
+
+  subtypes:
+  - TRIAC

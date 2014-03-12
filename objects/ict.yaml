@@ -28,30 +28,8 @@ laptop computer:
   categories:
     google_shopping:
       - laptops
-    
 
-# ----------------- COMPONENTS ------------------------ #
 
-screen:
-  parent: component
-  additional_properties:
-    diagonal_size:
-      type: number
-      description: diagonal size in inches
-      minimum: 0
-      exclusiveMinimum: true
-    max_resolution:
-      type: object
-      properties:
-        horizontal: { type: integer }
-        vertical: { type: integer }
-    display_format:
-      type: string 
-      description: e.g. <1080p,PAL,NTSC,1080i> etc. 
-    max_refresh_rate:
-      type: number
-      description: Hz
-    display_technology:
-      enum: [CRT, LCD, plasma, OLED, projector ] 
-    backlight_technology:
-      enum: [LED, cold cathode]
+HTPC:
+  parent: computer
+  synonyms: [Home Theatre PC]

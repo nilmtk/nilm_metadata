@@ -4,6 +4,8 @@ from file_management import get_schema_directory
 
 
 def get_local_resolver(schema):
+    # based on sblask's answer here:
+    # https://github.com/Julian/jsonschema/issues/98#issuecomment-17531405
     schema.pop('id', None)
     return RefResolver('file://'+get_schema_directory()+'/', schema)
 

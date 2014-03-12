@@ -1,0 +1,17 @@
+CE appliance:
+  parent: appliance
+  categories:
+    traditional: consumer electronics
+    size: small
+    electrical:
+      - SMPS
+    google_shopping:
+      - electronics
+
+#------------- TELEVISION ------------------------
+
+television:
+  parent: CE appliance     
+  control: [manual]
+  usual_components: [screen]
+

@@ -1,0 +1,36 @@
+cold appliance:
+  parent: appliance
+  categories:
+    traditional: cold
+    size: large
+
+fridge:
+  parent: cold appliance
+  components:
+    - parent: light
+      control: [manual]
+    - parent: compressor
+      control: [thermostat]
+  subtypes:
+    - chest
+    - upright
+  additional_properties:
+    fridge_volume:
+      type: number
+      description: litres
+
+freezer:
+  parent: fridge
+  do_not_inherit: [additional_properties]
+  additional_properties: &freezerVolume
+    freezer_volume: 
+      type: number
+      description: litres
+
+fridge freezer:
+  parent: fridge
+  subtypes:
+    - fridge on top
+    - fridge on bottom
+    - side-by-side
+  additional_properties: *freezerVolume

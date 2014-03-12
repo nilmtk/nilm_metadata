@@ -1,2 +1,7 @@
 vacuum_cleaner:
+  parent: appliance
   synonyms: [vaccum cleaner]
+  control: [manual]
+  components:
+    - parent: motor
+

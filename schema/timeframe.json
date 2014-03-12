@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "__id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/timeframe.json",
     "title": "TimeFrame",
-    "description": "Represent an arbitrary time frame",
+    "description": "Represent an arbitrary time frame.  If either start or end is absent then assume it equals the start or the end of the dataset, respectively.",
     "type": "object",
     "properties": {
         "start": {
@@ -12,6 +12,5 @@
             "description": "time span end date time"
             }
     },
-    "required": ["start", "end"],
     "additionalProperties": false
 }

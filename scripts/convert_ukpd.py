@@ -38,20 +38,21 @@ appliances_for_each_building = {
     1: [
         {
             'parent': 'Worcester~Greenstar 30CDi Conventional natural gas',
-            'room': {'name': 'bathroom', 'instance': 1},
+            'room': {'name': 'bathroom'},
             'original_name': 'boiler',
             'year_of_purchase': 2011
         },
         {
             'parent': 'Navitron~Solar Thermal Pumping Station',
-            'room': {'name': 'bathroom', 'instance': 1},
+            'room': {'name': 'bathroom'},
             'original_name': 'solar_thermal_pump',
             'year_of_purchase': 2011
         },
         {
             'parent': 'HP~ProBook 6450b',
             'original_name': 'laptop',
-            'year_of_purchase': 2010
+            'year_of_purchase': 2010,
+            'room': {'name': 'study'}
         },
         {
             'parent': 'washer dryer',
@@ -59,14 +60,97 @@ appliances_for_each_building = {
             'year_of_purchase': 2007,
             'manufacturer': 'Hotpoint',
             'brand': 'Aquarius',
-            'model': 'WD420 1200 spin'
+            'model': 'WD420 1200 spin',
+            'room': {'name': 'utility'}
         },
         {
             'parent': 'dish washer',
             'original_name': 'dishwasher',
             'year_of_purchase': 2007,
             'manufacturer': 'Whirlpool / Ikea',
-            'model': 'DWH B10'
+            'model': 'DWH B10',
+            'room': {'name': 'kitchen'}
+        },
+        {
+            'parent': 'television',
+            'original_name': 'tv',
+            'year_of_manufacture': 2001,
+            'manufacturer': 'Panasonic',
+            'components': [
+                {
+                    'parent': 'screen',
+                    'display_technology': 'CRT',
+                    'display_format': 'PAL',
+                    'diagonal_size': 34
+                }
+            ],
+            'room': {'name': 'lounge'}
+        },
+        {
+            'parent': 'light',
+            'original_name': 'kitchen_lights',
+            'description': '10 50W downlights in the kitchen ceiling',
+            'subtype': 'ceiling downlight',
+            'room': {'name': 'kitchen'},
+            'main_room_light': True,
+            'components': [
+                {
+                    'parent': 'incandescent lamp',
+                    'count': 10,
+                    'nominal_consumption': { 'on_power': 50 }
+                },
+                {
+                    'parent': 'dimmer', 'subtype': 'TRIAC'
+                }
+            ],
+            'nominal_consumption': { 'on_power': 500 },
+            'dates_active': [{'end': '2013-04-25T07:59:00+01:00'}]
+        },
+        {
+            'parent': 'light',
+            'original_name': 'kitchen_lights',
+            'description': '10 LED downlights in the kitchen ceiling',
+            'subtype': 'ceiling downlight',
+            'main_room_light': True,
+            'components': [
+                {
+                    'parent': 'LED lamp',
+                    'count': 10,
+                    'manufacturer': 'Philips',
+                    'model': 'Dimmable MASTER LED 10W MR16 GU5.3 24degrees 2700K 12v',
+                    'nominal_consumption': { 'on_power': 10 }
+                },
+                {
+                    'parent': 'dimmer', 'subtype': 'TRIAC'
+                }
+            ],
+            'nominal_consumption': { 'on_power': 100 },
+            'dates_active': [{'start': '2013-04-25T08:00:00+01:00'}]
+        },
+        {
+            'parent': 'HTPC',
+            'original_name': 'htpc',
+            'year_of_purchase': 2008,
+            'room': {'name': 'lounge'}
+        },
+        {
+            'parent': 'kettle',
+            'original_name': 'kettle',
+            'year_of_purchase': 2007,
+            'room': {'name': 'kitchen'}
+        },
+        {
+            'parent': 'toaster',
+            'original_name': 'toaster',
+            'year_of_purchase': 2009,
+            'room': {'name': 'kitchen'}
+        },
+        {
+            'parent': 'fridge freezer',
+            'subtype': 'fridge on top',
+            'original_name': 'fridge',
+            'year_of_purchase': 2010,
+            'room': {'name': 'kitchen'}
         }
     ],
     2: [],
@@ -133,7 +217,8 @@ for building_i in range(1,N_BULDINGS+1):
     building_start = None
     building_end = None
     meters = electric['meters']
-    chans = labels.keys().sort() # we want to process meters in order
+    chans = labels.keys() # we want to process meters in order
+    chans.sort()
     for chan in chans:
         label = labels[chan]
         fname = join(building_path, 'channel_{:d}.dat'.format(chan))
@@ -172,7 +257,14 @@ for building_i in range(1,N_BULDINGS+1):
     building['timeframe'] = timeframe(building_start, building_end)
 
     #------------ APPLIANCES --------------------
-    electric['appliances'] = appliances_for_each_building[building_i]
+    appliances = appliances_for_each_building[building_i]
+
+    # infer meter IDs from original_name and labels.dat
+    for i in range(len(appliances)):
+        appliance = appliances[i]
+        appliance['meter_ids'] = [chan_for_label(appliance['original_name'], labels)]
+    
+    electric['appliances'] = appliances
     
     
 with open('/home/jack/workspace/schemas/nilm_metadata/examples/dataset.yaml', 'w') as fh:

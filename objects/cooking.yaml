@@ -1,0 +1,16 @@
+cooking appliance:
+  parent: appliance
+  categories:
+    traditional: cooking
+    size: small
+    electrical:
+      - resistive
+
+kettle:
+  parent: cooking appliance
+  control: [manual]
+
+toaster:
+  parent: cooking appliance
+  control: [manual]
+

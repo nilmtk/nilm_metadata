@@ -5,7 +5,7 @@
 
 - parent: light
   instance: 1
-  subtype: ceiling
+  subtype: ceiling downlight
   main_room_light: true
 
   room:

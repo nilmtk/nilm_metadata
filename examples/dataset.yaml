@@ -4,19 +4,96 @@ buildings:
     utilities:
       electric:
         appliances:
-        - original_name: boiler
+        - meter_ids: [2]
+          original_name: boiler
           parent: Worcester~Greenstar 30CDi Conventional natural gas
-          room: {instance: 1, name: bathroom}
+          room: {name: bathroom}
           year_of_purchase: 2011
-        - original_name: solar_thermal_pump
+        - meter_ids: [3]
+          original_name: solar_thermal_pump
           parent: Navitron~Solar Thermal Pumping Station
-          room: {instance: 1, name: bathroom}
+          room: {name: bathroom}
           year_of_purchase: 2011
-        - {original_name: laptop, parent: HP~ProBook 6450b, year_of_purchase: 2010}
-        - {brand: Aquarius, manufacturer: Hotpoint, model: WD420 1200 spin, original_name: washing_machine,
-          parent: washer dryer, year_of_purchase: 2007}
-        - {manufacturer: Whirlpool / Ikea, model: DWH B10, original_name: dishwasher,
-          parent: dish washer, year_of_purchase: 2007}
+        - meter_ids: [4]
+          original_name: laptop
+          parent: HP~ProBook 6450b
+          room: {name: study}
+          year_of_purchase: 2010
+        - brand: Aquarius
+          manufacturer: Hotpoint
+          meter_ids: [5]
+          model: WD420 1200 spin
+          original_name: washing_machine
+          parent: washer dryer
+          room: {name: utility}
+          year_of_purchase: 2007
+        - manufacturer: Whirlpool / Ikea
+          meter_ids: [6]
+          model: DWH B10
+          original_name: dishwasher
+          parent: dish washer
+          room: {name: kitchen}
+          year_of_purchase: 2007
+        - components:
+          - {diagonal_size: 34, display_format: PAL, display_technology: CRT, parent: screen}
+          manufacturer: Panasonic
+          meter_ids: [7]
+          original_name: tv
+          parent: television
+          room: {name: lounge}
+          year_of_manufacture: 2001
+        - components:
+          - count: 10
+            nominal_consumption: {on_power: 50}
+            parent: incandescent lamp
+          - {parent: dimmer, subtype: TRIAC}
+          dates_active:
+          - {end: '2013-04-25T07:59:00+01:00'}
+          description: 10 50W downlights in the kitchen ceiling
+          main_room_light: true
+          meter_ids: [8]
+          nominal_consumption: {on_power: 500}
+          original_name: kitchen_lights
+          parent: light
+          room: {name: kitchen}
+          subtype: ceiling downlight
+        - components:
+          - count: 10
+            manufacturer: Philips
+            model: Dimmable MASTER LED 10W MR16 GU5.3 24degrees 2700K 12v
+            nominal_consumption: {on_power: 10}
+            parent: LED lamp
+          - {parent: dimmer, subtype: TRIAC}
+          dates_active:
+          - {start: '2013-04-25T08:00:00+01:00'}
+          description: 10 LED downlights in the kitchen ceiling
+          main_room_light: true
+          meter_ids: [8]
+          nominal_consumption: {on_power: 100}
+          original_name: kitchen_lights
+          parent: light
+          subtype: ceiling downlight
+        - meter_ids: [9]
+          original_name: htpc
+          parent: HTPC
+          room: {name: lounge}
+          year_of_purchase: 2008
+        - meter_ids: [10]
+          original_name: kettle
+          parent: kettle
+          room: {name: kitchen}
+          year_of_purchase: 2007
+        - meter_ids: [11]
+          original_name: toaster
+          parent: toaster
+          room: {name: kitchen}
+          year_of_purchase: 2009
+        - meter_ids: [12]
+          original_name: fridge
+          parent: fridge freezer
+          room: {name: kitchen}
+          subtype: fridge on top
+          year_of_purchase: 2010
         meters:
         - dates_active:
           - {end: '2014-03-11T06:15:06+00:00', start: '2012-11-09T22:28:15+00:00'}

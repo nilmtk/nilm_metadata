@@ -5,6 +5,7 @@ wet appliance:
     size: large
     google_shopping:
       - laundry appliances
+  control: [manual]
 
 #------------- CLOTHES WASHING AND DRYING ------------------------
 
@@ -62,17 +63,4 @@ dish washer:
           max: 10800 # 3 hours
         source: empirical from publication
         reference: *Stamminger2008
-
-# ----------------- COMPONENTS ------------------------ #
-
-motor:
-  parent: component
-  categories:
-    electrical: 
-      - single-phase induction motor
-
-#-------- PUMPS ---------
-
-water pump:
-  parent: motor
 
