@@ -20,8 +20,7 @@ computer:
   additional_properties:
     cpu: { type: string }
       
-  control:
-    system: [manual, timer]
+  control: [manual, timer]
 
 
 laptop computer:

@@ -98,8 +98,7 @@ boiler: # all boilers except for electric boilers
   # control the boiler.  This is useful, for example,
   # if we want to find all appliances which 
   # must be manually controlled (e.g. toasters)
-  control:
-    system: [manual, timer, thermostat]
+  control: [manual, timer, thermostat]
 
   # We can also declare prior knowledge about boilers.
   # For example, we know that boilers tend to be in
@@ -204,8 +203,7 @@ buildings:
             name: bathroom
             instance: 1
           year_of_purchase: 2011
-          control:
-            system: [manual, thermostat, timer]
+          control: [manual, timer, thermostat]
           efficiency_rating: 
             certification_name: SEDBUK
             rating: A

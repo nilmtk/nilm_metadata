@@ -59,15 +59,12 @@
             "minimum_off_duration": { "type": "number", "description": "seconds" },
             "minimum_on_duration": { "type": "number", "description": "seconds" },
             "control": { 
-                "type": "object",
-                "additionalProperties": { 
-                    "type": "array",
-                    "items": {
-                        "enum": [ 
-                            "timer", "manual", "motion", "sunlight", "thermostat" ] 
-                    }
+                "type": "array",
+                "items": {
+                    "enum": [ 
+                        "timer", "manual", "motion", "sunlight", "thermostat" ] 
                 },
-                "description": "Give a list of all control methods which apply to each component or to 'system'.  For example, a video recorder would be both 'manual' and 'timer'."
+                "description": "Give a list of all control methods which apply.  For example, a video recorder would be both 'manual' and 'timer'."
             },
             "efficiency_rating": { 
                 "type": "object", 

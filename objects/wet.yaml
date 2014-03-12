@@ -11,8 +11,7 @@ wet appliance:
 spin dryer:
   parent: wet appliance
   subtypes: [top-loader, front-loader]
-  control:
-    system: [manual, timer]
+  control: [manual, timer]
   components:
     - parent: motor
       description: drum motor
