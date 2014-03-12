@@ -69,7 +69,7 @@ def concatenate_complete_object(object_name, object_cache, child_object=None,
     if child_object:
         ancestors.append(child_object)
 
-    n_ancestors = len(ancestors)
+    n_ancestors = len(ancestors) - 1
 
     # Now descend from super-object downwards,
     # collecting and updating properties as we go.
@@ -92,10 +92,14 @@ def concatenate_complete_object(object_name, object_cache, child_object=None,
         if '~' in next_child.get('name', ''):
             next_child['name'] = merged_object.get('name')
         
-        # for parameter in merged_object.get('distributions', {}).values():
-        #     for dist in parameter:
-        #         dist['ancestor'] = n_ancestors - i
-        #         print(dist)
+        # Now, for each probability distribution, we tag it with a
+        # 'distance' property, showing how far away it is from
+        # the most derived object.
+        distributions = merged_object.get('distributions', {})
+        for parameter in distributions.keys():
+            list_of_dists = distributions[parameter]
+            for i, _ in enumerate(list_of_dists):
+                list_of_dists[i]['distance'] = n_ancestors - i
 
         merge_dicts(merged_object, next_child)
 

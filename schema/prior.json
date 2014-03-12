@@ -71,6 +71,11 @@
                 "country": { "type": "string" }
             }
         },
+        "distance": {
+            "type": "integer",
+            "desciption": "this is filled in by the `concatenate_complete_object` function and reports the distance (in numbers of generations) between this prior and the most-derived object.  In other words, the larger this number, the less specific to the object this prior is.  If this is not set the the prior applies to the current object."
+        },
+        "description": { "type": "string" },
         "training_data": {
             "type": "array",
             "items": {
