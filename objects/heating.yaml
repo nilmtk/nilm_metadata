@@ -12,14 +12,22 @@ boiler: # all boilers except for electric boilers
 
   synonyms: [furnace]
 
+  # Categories of the child object are appended
+  # to existing categories in the parent.
   categories:
     google_shopping:
       - climate control
       - furnaces and boilers
 
+  # Here we specify that boilers have a component
+  # which is itself an object whose parent
+  # is `water pump`
   components:
     - parent: water pump
 
+  # Boilers have a property which most other appliances
+  # do not have: a fuel source.  We specify additional
+  # properties using the JSON Schema syntax.
   additional_properties:
     fuel: &fuel
       enum: [natural gas, coal, wood, oil, LPG]
@@ -28,8 +36,25 @@ boiler: # all boilers except for electric boilers
     - combi
     - regular
 
+  # We can specify the different mechanism that
+  # control the boiler.  This is useful, for example,
+  # if we want to find all appliances which 
+  # must be manually controlled (e.g. toasters)
   control:
     system: [manual, timer, thermostat]
+
+  # We can also declare prior knowledge about boilers.
+  # For example, we know that boilers tend to be in
+  # bathrooms, utility rooms or kitchens
+  distributions:
+    room:
+    - distribution_of_data:
+        categories: [bathroom, utility, kitchen]
+        values: [0.3, 0.2, 0.2]
+        # If the values do not add to 1 then the assumption
+        # is that the remaining probability mass is distributed equally to
+        # all other rooms.
+      source: subjective # These values are basically guesses!
 
 electric boiler:
   parent: boiler

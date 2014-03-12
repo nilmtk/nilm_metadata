@@ -12,6 +12,12 @@ Worcester~Greenstar 30CDi Conventional natural gas:
     rating: A
   nominal_consumption:
     on_power: 70
+  distributions:
+    on_power:
+    - model:
+        distribution_name: normal
+        mu: 73
+        sigma: 12
 
 #---------- SOLAR THERMAL ---------------
 
