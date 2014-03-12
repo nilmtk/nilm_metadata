@@ -9,6 +9,7 @@
         "model": { "type": "string" },
         "model_url": { "type": "string" },
         "manufacturer": { "type": "string" },
+        "author": { "type": "string" },
         "seller": { "type": "string" },
         "brand": { "type": "string" },
         "brand_url": { "type": "string" },

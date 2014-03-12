@@ -6,10 +6,14 @@ EDF:
   brand_url: "http://www.edfenergy.com/products-services/for-your-home/ecomanager"
   manufacturer: Current Cost / Sailwider
   wireless: true
-  wireless_base: rfm_edf_ecomanager
-  wireless_base_url: "https://github.com/JackKelly/rfm_edf_ecomanager/"
-  data_logger: rfm_ecomanager_logger
-  data_logger_url: "https://github.com/JackKelly/rfm_ecomanager_logger"
+  wireless_base: &rfm_edf_ecomanager
+    model: rfm_edf_ecomanager
+    author: Jack Kelly
+    model_url: "https://github.com/JackKelly/rfm_edf_ecomanager/"
+  data_logger: &rfm_ecomanager_logger
+    model: rfm_ecomanager_logger
+    author: Jack Kelly
+    model_url: "https://github.com/JackKelly/rfm_ecomanager_logger"
 
 EDFEnergy~EcoManagerTxPlug:
   parent: EDF
@@ -40,10 +44,8 @@ CurrentCost~Tx:
   model: Transmitter
   model_url: "http://www.currentcost.com/product-transmitter.html"
   wireless: true
-  wireless_base: rfm_edf_ecomanager
-  wireless_base_url: "https://github.com/JackKelly/rfm_edf_ecomanager/"
-  data_logger: rfm_ecomanager_logger
-  data_logger_url: "https://github.com/JackKelly/rfm_ecomanager_logger"
+  wireless_base: *rfm_edf_ecomanager
+  data_logger:  *rfm_ecomanager_logger
   measurements:
     - physical_quantity: power
       type: apparent
