@@ -36,7 +36,7 @@ boiler: # all boilers except for electric boilers
     - combi
     - regular
 
-  # We can specify the different mechanism that
+  # We can specify the different mechanisms that
   # control the boiler.  This is useful, for example,
   # if we want to find all appliances which 
   # must be manually controlled (e.g. toasters)

@@ -94,7 +94,7 @@ boiler: # all boilers except for electric boilers
     - combi
     - regular
 
-  # We can specify the different mechanism that
+  # We can specify the different mechanisms that
   # control the boiler.  This is useful, for example,
   # if we want to find all appliances which 
   # must be manually controlled (e.g. toasters)
@@ -131,6 +131,12 @@ Worcester~Greenstar 30CDi Conventional natural gas:
     rating: A
   nominal_consumption:
     on_power: 70
+  distributions:
+    on_power:
+    - model:
+        distribution_name: normal
+        mu: 73
+        sigma: 12
 ```
 
 Finally, in the 'minimal' version of the metadata for the UKPD
