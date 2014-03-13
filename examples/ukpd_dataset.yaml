@@ -1,5 +1,6 @@
 buildings:
   1:
+    dataset: UKPD
     rooms:
     - {floor: 0, name: lounge}
     - {floor: 0, instance: 1, name: hall}
@@ -438,6 +439,7 @@ buildings:
           parent: JackKelly~SoundCardPowerMeter
           site_meter: true
   2:
+    dataset: UKPD
     timeframe: {end: '2013-10-10T06:15:58+01:00', start: '2013-02-17T15:39:19+00:00'}
     utilities:
       electric:
@@ -569,6 +571,7 @@ buildings:
           parent: JackKelly~SoundCardPowerMeter
           site_meter: true
   3:
+    dataset: UKPD
     timeframe: {end: '2013-04-08T06:15:05+01:00', start: '2013-02-27T20:35:14+00:00'}
     utilities:
       electric:
@@ -605,6 +608,7 @@ buildings:
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 1
   4:
+    dataset: UKPD
     timeframe: {end: '2013-10-01T06:15:14+01:00', start: '2013-03-09T14:40:07+00:00'}
     utilities:
       electric:
@@ -648,14 +652,13 @@ buildings:
           submeter_of: 1
 citations: ['']
 contact: jack.kelly@imperial.ac.uk
-description: 'Recording from 4 domestic homes in or near to London, UK.
-
-  '
+description: Recording from 4 domestic homes in or near to London, UK.
 full_name: UK Power Dataset
 geo_location: {country: UK, latitude: 51.464462, locality: London, longitude: -0.076544}
 institution: Imperial College London
 mains_voltage: {nominal: 230, tolerance_lower_bound: 10, tolerance_upper_bound: 6}
 name: UKPD
 number_of_buildings: 4
+schema: https://github.com/nilmtk/nilm_metadata/tree/v0.1.0
 timezone: Europe/London
 urls: ['http://www.doc.ic.ac.uk/~dk3810/data']

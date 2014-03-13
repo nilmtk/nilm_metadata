@@ -23,7 +23,6 @@ key:value pairs where subclasses override previous values (just use dict.update)
 TODO:
 
 * Dataset schema.
-  * where to find a canonical list of country names?
   * look at http://schema.datacite.org/
   * and look at UKERC EDC's schemas
   * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
@@ -75,6 +74,8 @@ IF TIME:
 
 
 DONE:
+
+* where to find a canonical list of country names?
 
 * dataset version (JSON Meta-Schema???)
 

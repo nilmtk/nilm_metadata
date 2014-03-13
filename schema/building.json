@@ -17,7 +17,7 @@
             "properties": {
                 "country": { 
                     "type": "string",
-                    "description": "Use the short country name listed at http://en.wikipedia.org/wiki/List_of_countries_by_name; e.g. United Kingdom or United States."
+                    "description": "Please use a standard two-letter country code defined by ISO 3166-1 alpha-2. e.g. 'GB' or 'US'.  http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2"
                 }, 
                 "locality": {
                     "type": "string",
@@ -28,7 +28,10 @@
             },
             "additionalProperties": false
         },
-        "timezone": { "type": "string" },
+        "timezone": { 
+            "type": "string",
+            "description": "Please use the standard TZ name from the IANA (aka Olson) Time Zone Database e.g. America/New_York or Europe/London.  See http://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+        },
         "rooms": { "type": "array", "items": { "$ref": "room.json" } },
         "n_occupants": { 
             "type": "integer",

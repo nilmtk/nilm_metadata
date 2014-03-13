@@ -27,14 +27,15 @@ dataset = {
     },
     "number_of_buildings": N_BULDINGS, 
     "geo_location": {
+        "country": "GB", 
         "locality": "London",
-        "country": "UK", 
         "latitude": 51.464462, 
         "longitude": -0.076544
     }, 
     "timezone": TIMEZONE,
     "institution": "Imperial College London", 
-    "description": "Recording from 4 domestic homes in or near to London, UK.\n"
+    "description": "Recording from 4 domestic homes in or near to London, UK.",
+    "schema": "https://github.com/nilmtk/nilm_metadata/tree/v0.1.0"
 }
 
 building_metadata = {
@@ -235,6 +236,7 @@ dataset['buildings'] = {}
 for building_i in range(1,N_BULDINGS+1):
     building = building_metadata[building_i]
     building.update({'utilities': {'electric': {'meters': [], 'appliances': []}}})
+    building['dataset'] = dataset['name']
     dataset['buildings'][building_i] = building
     building_path = join(RAW_UKPD_DATA_PATH, 'house_{:d}'.format(building_i))
     electric = building['utilities']['electric']

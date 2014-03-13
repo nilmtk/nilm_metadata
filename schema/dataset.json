@@ -32,13 +32,9 @@
         "institution": { "type": "string" },
         "description": { "type": "string" },
         "number_of_buildings": { "$ref": "instance.json" },
-        "mains_voltage": {
-            "$ref": "electric.json#/properties/mains_voltage"
-        },
-        "geo_location": {
-            "$ref": "building.json#/properties/geo_location"
-        },
-        "timezone": { "type": "string" },
+        "mains_voltage": { "$ref": "electric.json#/properties/mains_voltage" },
+        "geo_location": { "$ref": "building.json#/properties/geo_location" },
+        "timezone": { "$ref": "building.json#/properties/timezone" },
         "buildings": {
             "type": "object",
             "additionalProperties": { "$ref": "building.json" },

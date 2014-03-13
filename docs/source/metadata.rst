@@ -37,3 +37,18 @@ Naming conventions
   to separate the manufacturer from the model e.g. `Samsung~RSU1R`
 * category names are lowercase with spaces
 * ambersands are replaced with 'and'
+
+Concatenating dataset metadata with NILM Metadata's objects
+***********************************************************
+
+Propagation of properties from dataset to buildings
+---------------------------------------------------
+
+If the following fields are specified at the dataset level but are not
+specified in a building then the field will be copied from the dataset
+to the building:
+
+* timezone
+* geo_location
+* dataset name
+* mains_voltage
