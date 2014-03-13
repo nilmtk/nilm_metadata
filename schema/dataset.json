@@ -5,15 +5,38 @@
     "description": "Metadata for a dataset",
     "type": "object",
     "properties": {
-        "name": { 
-            "type": "string",
-            "description": "Abbreviated name for the dataset, e.g. 'REDD'"
-
-        },
-        "full_name": {
+        "title": {
             "type": "string",
             "description": "Full name of the dataset, eg. 'Reference Energy Disaggregation Data Set'"
         },
+        "short_title": { 
+            "type": "string",
+            "description": "Abbreviated name for the dataset, e.g. 'REDD'"
+        },
+        "DOI": {
+            "type": "string",
+            "description": "A digital object identifier for the dataset"
+        },
+        "creators": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "description": "<Lastname>, <Firstname>"
+            }
+        },
+        "publication_date": { "type": "string" },
+        "rights_list": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "uri": { "type": "string" },
+                    "name": { "type": "string" }
+                }
+            },
+            "description": "License(s) under which this dataset is released."
+        },
+        "version": { "type": "string" },
         "urls": {
             "type": "array",
             "description": "The URL(s) for more information about this dataset",
@@ -21,9 +44,9 @@
                 "type": "string"
             }
         },
-        "citations": {
+        "bibliography": {
             "type": "array",
-            "description": "Academic citation(s) for this dataset",
+            "description": "Academic references about this dataset",
             "items": {
                 "type": "string"
             }

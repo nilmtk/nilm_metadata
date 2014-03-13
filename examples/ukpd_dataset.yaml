@@ -1,3 +1,4 @@
+bibliography: ['']
 buildings:
   1:
     dataset: UKPD
@@ -650,15 +651,18 @@ buildings:
           original_name: washing_machine_microwave_breadmaker
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 1
-citations: ['']
 contact: jack.kelly@imperial.ac.uk
+creators: ['Kelly, Jack']
 description: Recording from 4 domestic homes in or near to London, UK.
-full_name: UK Power Dataset
-geo_location: {country: UK, latitude: 51.464462, locality: London, longitude: -0.076544}
+geo_location: {country: GB, latitude: 51.464462, locality: London, longitude: -0.076544}
 institution: Imperial College London
 mains_voltage: {nominal: 230, tolerance_lower_bound: 10, tolerance_upper_bound: 6}
-name: UKPD
 number_of_buildings: 4
+publication_date: '2014-03-14'
+rights_list:
+- {name: Creative Commonds Attribution 4.0 International (CC BY 4.0), uri: 'http://creativecommons.org/licenses/by/4.0/'}
 schema: https://github.com/nilmtk/nilm_metadata/tree/v0.1.0
+short_title: UKPD
 timezone: Europe/London
+title: UK Power Dataset
 urls: ['http://www.doc.ic.ac.uk/~dk3810/data']

@@ -23,7 +23,6 @@ key:value pairs where subclasses override previous values (just use dict.update)
 TODO:
 
 * Dataset schema.
-  * look at http://schema.datacite.org/
   * and look at UKERC EDC's schemas
   * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
 
@@ -58,6 +57,9 @@ TODO:
 
 * write paper for IEEE Workshop on Interopability in Scientific
   Computing (deadline = 23rd Mar)
+  * read motivations of the workshop http://www.im.uu.se/events/
+  * cite Project Haystack, JavaScript (inheritance; and the first
+    folks to use prototype inheritance), http://schema.datacite.org/
 * write papers for NILM Workshop
 
 * check out Wiki Energy and email them if NILM Schema might be of use.
@@ -74,6 +76,8 @@ IF TIME:
 
 
 DONE:
+
+* look at http://schema.datacite.org/
 
 * where to find a canonical list of country names?
 

@@ -8,11 +8,11 @@ EDF:
   wireless: true
   wireless_base: &rfm_edf_ecomanager
     model: rfm_edf_ecomanager
-    author: Jack Kelly
+    creators: [Jack Kelly]
     model_url: "https://github.com/JackKelly/rfm_edf_ecomanager/"
   data_logger: &rfm_ecomanager_logger
     model: rfm_ecomanager_logger
-    author: Jack Kelly
+    creators: [Jack Kelly]
     model_url: "https://github.com/JackKelly/rfm_ecomanager_logger"
 
 EDFEnergy~EcoManagerTxPlug:

@@ -15,11 +15,15 @@ TZ = pytz.timezone(TIMEZONE)
 N_BULDINGS = 4
 
 dataset = {
-    "name": "UKPD",
-    "full_name": "UK Power Dataset",
-    "urls": ["http://www.doc.ic.ac.uk/~dk3810/data"], 
-    "contact": "jack.kelly@imperial.ac.uk", 
-    "citations": [""], 
+    "title": "UK Power Dataset",
+    "short_title": "UKPD",
+    "creators": ["Kelly, Jack"],
+    "contact": "jack.kelly@imperial.ac.uk",
+    "institution": "Imperial College London", 
+    "description": "Recording from 4 domestic homes in or near to London, UK.",
+    "publication_date": "2014-03-14",
+    "urls": ["http://www.doc.ic.ac.uk/~dk3810/data"],
+    "bibliography": [""], #TODO
     "mains_voltage": {
         "nominal": 230,
         "tolerance_upper_bound": 6, 
@@ -33,9 +37,11 @@ dataset = {
         "longitude": -0.076544
     }, 
     "timezone": TIMEZONE,
-    "institution": "Imperial College London", 
-    "description": "Recording from 4 domestic homes in or near to London, UK.",
-    "schema": "https://github.com/nilmtk/nilm_metadata/tree/v0.1.0"
+    "schema": "https://github.com/nilmtk/nilm_metadata/tree/v0.1.0",
+    "rights_list": [{
+        "name": "Creative Commonds Attribution 4.0 International (CC BY 4.0)",
+        "uri": "http://creativecommons.org/licenses/by/4.0/"
+    }]
 }
 
 building_metadata = {
@@ -236,7 +242,7 @@ dataset['buildings'] = {}
 for building_i in range(1,N_BULDINGS+1):
     building = building_metadata[building_i]
     building.update({'utilities': {'electric': {'meters': [], 'appliances': []}}})
-    building['dataset'] = dataset['name']
+    building['dataset'] = dataset['short_title']
     dataset['buildings'][building_i] = building
     building_path = join(RAW_UKPD_DATA_PATH, 'house_{:d}'.format(building_i))
     electric = building['utilities']['electric']
