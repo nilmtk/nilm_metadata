@@ -20,9 +20,10 @@ dataset = {
     "subject": "Disaggregated domestic electricity demand",
     "geospatial_coverage": "Southern England",
     "publisher": "UK Energy Research Centre Energy Data Centre (UKERC EDC)",
-    "formats": [{
+    "data_formats_and_locations": [{
         "name": "CSV (NILMTK schema)",
-        "data_location": "http://www.doc.ic.ac.uk/~dk3810/data"
+        "raw_data_location": "http://www.doc.ic.ac.uk/~dk3810/data",
+        "cleaned_data_location": "TODO"
     }],
     "creators": ["Kelly, Jack"],
     "contact": "jack.kelly@imperial.ac.uk",
@@ -46,7 +47,8 @@ dataset = {
         "tolerance_upper_bound": 6, 
         "tolerance_lower_bound": 10
     },
-    "number_of_buildings": N_BULDINGS, 
+    "items": "buildings",
+    "number_of_items": N_BULDINGS, 
     "geo_location": {
         "country": "GB", 
         "locality": "London",
@@ -62,7 +64,8 @@ dataset = {
     "rights_list": [{
         "name": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
         "uri": "http://creativecommons.org/licenses/by/4.0/"
-    }]
+    }],
+    "description_of_subjects": "3 MSc students and 1 PhD student."
 }
 
 building_metadata = {
@@ -259,14 +262,15 @@ def start_time(filename):
 def timeframe(start, end):
     return {'start': start.isoformat(), 'end': end.isoformat()}
 
-dataset['buildings'] = {}
+dataset['buildings'] = []
 dataset_start = None
 dataset_end = None
 for building_i in range(1,N_BULDINGS+1):
     building = building_metadata[building_i]
+    building['id'] = building_i
     building.update({'utilities': {'electric': {'meters': [], 'appliances': []}}})
     building['dataset'] = dataset['short_title']
-    dataset['buildings'][building_i] = building
+    dataset['buildings'].append(building)
     building_path = join(RAW_UKPD_DATA_PATH, 'house_{:d}'.format(building_i))
     electric = building['utilities']['electric']
 

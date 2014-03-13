@@ -7,7 +7,7 @@
     "additionalProperties": false,
     "properties": {
         "dataset": { "type": "string", "description": "dataset short title" },
-        "name": { "type": "string", "description": "name used in dataset" },
+        "id": { "type": "integer", "description": "identifier used in dataset" },
         "original_name": { 
             "type": "string", 
             "desciption": "The original name for this building from the original dataset"

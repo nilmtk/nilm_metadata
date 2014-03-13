@@ -46,7 +46,7 @@
             "type": "string",
             "description": "The entity responsible for making the resource available. Examples of a Publisher include a person, an organization, or a service."
         },
-        "formats": {
+        "data_formats_and_locations": {
             "type": "array",
             "items": {
                 "type": "object",
@@ -55,7 +55,8 @@
                         "type": "string",
                         "description": "e.g. 'CSV (NILMTK schema)'"
                     },
-                    "data_location": { "type": "string" }
+                    "raw_data_location": { "type": "string" },
+                    "cleaned_data_location": { "type": "string" }
                 },
                 "additionalProperties": false
             }
@@ -72,6 +73,10 @@
             },
             "description": "License(s) under which this dataset is released."
         },
+        "description_of_subjects": {
+            "type": "string",
+            "description": "A brief description of how subjects were recruited.  Are they all PhD students, for example?  Were they incentivised to reduce their energy consumption?"
+        },
         "version": { "type": "string" },
         "related_documents": {
             "type": "array",
@@ -83,15 +88,17 @@
         "contact": { "type": "string" },
         "institution": { "type": "string" },
         "description": { "type": "string" },
-        "number_of_buildings": { "$ref": "instance.json" },
         "mains_voltage": { "$ref": "electric.json#/properties/mains_voltage" },
         "geo_location": { "$ref": "building.json#/properties/geo_location" },
         "timezone": { "$ref": "building.json#/properties/timezone" },
-        "buildings": {
-            "type": "object",
-            "additionalProperties": { "$ref": "building.json" },
-            "description": "key is the building instance, starting from 1."
+        "items": { 
+            "enum": ["buildings", "appliances", "meters"],
+            "description": "does the top level of this dataset contain appliances, meters or buildings (it can only contain one of these options).  For example, some datasets like TraceBase only record appliances (not buildings) whilst other datasets like REDD record whole buildings (which, in turn, contain meters and appliances)."
         },
+        "number_of_items": { "$ref": "instance.json" },
+        "buildings": { "type": "array", "items": { "$ref": "building.json" } },
+        "appliances": { "type": "array", "items": { "type": "object" } },
+        "meters": { "type": "array", "items": { "type": "object" } },
         "schema": { 
             "type": "string",
             "description": "The URL of the NILM_metadata version (tag) against which this metadata is validated. e.g. https://github.com/nilmtk/nilm_metadata/tree/v0.1.0"

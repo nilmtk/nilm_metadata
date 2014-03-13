@@ -37,7 +37,7 @@
         "part_number": { "type": "string" },
         "gtin": { 
             "type": "integer", 
-            "description": "http://en.wikipedia.org/wiki/Global_Trade_Item_Number" 
+            "description": "http://en.wikipedia.org/wiki/Global_Trade_Item_Number"
         },
         "version": { "type": "string" }
     }
