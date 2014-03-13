@@ -1,16 +1,45 @@
-cooking appliance:
+small cooking appliance:
   parent: appliance
   categories:
     traditional: cooking
     size: small
     electrical:
       - resistive
+  control: [manual]
 
 kettle:
-  parent: cooking appliance
-  control: [manual]
+  parent: small cooking appliance
 
 toaster:
-  parent: cooking appliance
-  control: [manual]
+  parent: small cooking appliance
 
+microwave:
+  parent: appliance
+  categories:
+    traditional: cooking
+    size: small
+    electrical:
+      - power electronics
+      - passive PFC
+
+food processor:
+  parent: appliance
+  categories:
+    traditional: cooking
+    size: small
+    electrical:
+      - single-phase induction motor
+      - capacitor start-run
+      - constant torque
+
+fuel stove:
+  parent: appliance
+  categories:
+    traditional: cooking
+    size: large
+
+electric stove:
+  parent: fuel stove
+  categories:
+    electrical:
+      - resistive

@@ -34,9 +34,15 @@
                                       "incandescent", 
                                       "fluorescent", "compact", "linear", 
                                       "LED",
-                                      "resistive", 
+
+                                      "resistive",
+
+                                      "power electronics",
                                       "SMPS", "no PFC", "passive PFC", "active PFC",
-                                      "single-phase induction motor"]
+
+                                      "single-phase induction motor",
+                                      "capacitor start-run",
+                                      "constant torque"]
                         },
                         "description": "From Tsagarakid, Collin & Kiprakis 2013 http://arxiv.org/abs/1306.0802"
                     },

@@ -80,7 +80,7 @@
         "version": { "type": "string" },
         "related_documents": {
             "type": "array",
-            "description": "References about this dataset (e.g. references to academic papers or web pages)",
+            "description": "References about this dataset (e.g. references to academic papers or web pages).  Also briefly describe the contents of each reference (e.g. does it contain a description of the metering setup? Or an analysis of the data?",
             "items": {
                 "type": "string"
             }

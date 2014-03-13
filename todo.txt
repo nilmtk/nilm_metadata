@@ -22,10 +22,6 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
-* Dataset schema.
-  * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
-    I got to "2.1.7 Referencing" on p7
-
 * copy details from schema/appliance_old.json and old/
 
 * finish convert_ukpd.py.
@@ -73,6 +69,9 @@ IF TIME:
 
 
 DONE:
+
+* Dataset schema.
+  * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
 
 * look at http://schema.datacite.org/
 
