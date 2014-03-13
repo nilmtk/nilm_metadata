@@ -17,13 +17,30 @@ N_BULDINGS = 4
 dataset = {
     "title": "UK Power Dataset",
     "short_title": "UKPD",
+    "subject": "Disaggregated domestic electricity demand",
+    "geospatial_coverage": "Southern England",
+    "publisher": "UK Energy Research Centre Energy Data Centre (UKERC EDC)",
+    "formats": [{
+        "name": "CSV (NILMTK schema)",
+        "data_location": "http://www.doc.ic.ac.uk/~dk3810/data"
+    }],
     "creators": ["Kelly, Jack"],
     "contact": "jack.kelly@imperial.ac.uk",
     "institution": "Imperial College London", 
-    "description": "Recording from 4 domestic homes in or near to London, UK.",
+    "description": (
+        "Appliance-by-appliance and whole-home power demand for 4 UK homes."
+        " Appliance data was recorded once every 6 seconds.  Whole-home data"
+        " was recorded once every 6 seconds for 2 homes and additionally at"
+        " 16kHz for the other 2 homes.  Detailed metadata is included."
+    ),
     "publication_date": "2014-03-14",
-    "urls": ["http://www.doc.ic.ac.uk/~dk3810/data"],
-    "bibliography": [""], #TODO
+    "related_documents": [(
+        "The following poster describes the metering setup and provides some analyses:"
+        " Jack Kelly and William Knottenbelt." 
+        " Smart Meter Disaggregation: Data Collection & Analysis."
+        " UK Energy Research Council Summer School Ph.D. poster session."
+        " June 2013. PDF: http://www.doc.ic.ac.uk/~dk3810/writing/UKERC_poster2013_v2.pdf"
+    )], 
     "mains_voltage": {
         "nominal": 230,
         "tolerance_upper_bound": 6, 
@@ -39,7 +56,7 @@ dataset = {
     "timezone": TIMEZONE,
     "schema": "https://github.com/nilmtk/nilm_metadata/tree/v0.1.0",
     "rights_list": [{
-        "name": "Creative Commonds Attribution 4.0 International (CC BY 4.0)",
+        "name": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
         "uri": "http://creativecommons.org/licenses/by/4.0/"
     }]
 }
@@ -239,6 +256,8 @@ def timeframe(start, end):
     return {'start': start.isoformat(), 'end': end.isoformat()}
 
 dataset['buildings'] = {}
+dataset_start = None
+dataset_end = None
 for building_i in range(1,N_BULDINGS+1):
     building = building_metadata[building_i]
     building.update({'utilities': {'electric': {'meters': [], 'appliances': []}}})
@@ -291,7 +310,11 @@ for building_i in range(1,N_BULDINGS+1):
             'site_meter': True,
             'id': len(meters)})
 
-    building['timeframe'] = timeframe(building_start, building_end)
+    building['temporal_coverage'] = timeframe(building_start, building_end)
+    if dataset_start is None or building_start < dataset_start:
+        dataset_start = start
+    if dataset_end is None or building_end > dataset_end:
+        dataset_end = end
 
     #------------ APPLIANCES --------------------
     appliances = appliances_for_each_building[building_i]
@@ -303,6 +326,7 @@ for building_i in range(1,N_BULDINGS+1):
     
     electric['appliances'] = appliances
     
+dataset['temporal_coverage'] = timeframe(dataset_start, dataset_end)
     
 with open(OUTPUT_FILENAME, 'w') as fh:
     yaml.dump(dataset, fh)

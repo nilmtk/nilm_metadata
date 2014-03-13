@@ -1,4 +1,3 @@
-bibliography: ['']
 buildings:
   1:
     dataset: UKPD
@@ -15,7 +14,7 @@ buildings:
       name: study}
     - {description: shower + bath + toilet + sink + cupboards + hot water tank + boiler
         + solar thermal pumping station, floor: 1, instance: 1, name: bathroom}
-    timeframe: {end: '2014-02-06T06:24:17+00:00', start: '2012-11-09T22:28:15+00:00'}
+    temporal_coverage: {end: '2014-02-06T06:24:17+00:00', start: '2012-11-09T22:28:15+00:00'}
     utilities:
       electric:
         appliances:
@@ -441,7 +440,7 @@ buildings:
           site_meter: true
   2:
     dataset: UKPD
-    timeframe: {end: '2013-10-10T06:15:58+01:00', start: '2013-02-17T15:39:19+00:00'}
+    temporal_coverage: {end: '2013-10-10T06:15:58+01:00', start: '2013-02-17T15:39:19+00:00'}
     utilities:
       electric:
         appliances: []
@@ -573,7 +572,7 @@ buildings:
           site_meter: true
   3:
     dataset: UKPD
-    timeframe: {end: '2013-04-08T06:15:05+01:00', start: '2013-02-27T20:35:14+00:00'}
+    temporal_coverage: {end: '2013-04-08T06:15:05+01:00', start: '2013-02-27T20:35:14+00:00'}
     utilities:
       electric:
         appliances: []
@@ -610,7 +609,7 @@ buildings:
           submeter_of: 1
   4:
     dataset: UKPD
-    timeframe: {end: '2013-10-01T06:15:14+01:00', start: '2013-03-09T14:40:07+00:00'}
+    temporal_coverage: {end: '2013-10-01T06:15:14+01:00', start: '2013-03-09T14:40:07+00:00'}
     utilities:
       electric:
         appliances: []
@@ -653,16 +652,28 @@ buildings:
           submeter_of: 1
 contact: jack.kelly@imperial.ac.uk
 creators: ['Kelly, Jack']
-description: Recording from 4 domestic homes in or near to London, UK.
+description: Appliance-by-appliance and whole-home power demand for 4 UK homes. Appliance
+  data was recorded once every 6 seconds.  Whole-home data was recorded once every
+  6 seconds for 2 homes and additionally at 16kHz for the other 2 homes.  Detailed
+  metadata is included.
+formats:
+- {data_location: 'http://www.doc.ic.ac.uk/~dk3810/data', name: CSV (NILMTK schema)}
 geo_location: {country: GB, latitude: 51.464462, locality: London, longitude: -0.076544}
+geospatial_coverage: Southern England
 institution: Imperial College London
 mains_voltage: {nominal: 230, tolerance_lower_bound: 10, tolerance_upper_bound: 6}
 number_of_buildings: 4
 publication_date: '2014-03-14'
+publisher: UK Energy Research Centre Energy Data Centre (UKERC EDC)
+related_documents: ['The following poster describes the metering setup and provides
+    some analyses: Jack Kelly and William Knottenbelt. Smart Meter Disaggregation:
+    Data Collection & Analysis. UK Energy Research Council Summer School Ph.D. poster
+    session. June 2013. PDF: http://www.doc.ic.ac.uk/~dk3810/writing/UKERC_poster2013_v2.pdf']
 rights_list:
-- {name: Creative Commonds Attribution 4.0 International (CC BY 4.0), uri: 'http://creativecommons.org/licenses/by/4.0/'}
+- {name: Creative Commons Attribution 4.0 International (CC BY 4.0), uri: 'http://creativecommons.org/licenses/by/4.0/'}
 schema: https://github.com/nilmtk/nilm_metadata/tree/v0.1.0
 short_title: UKPD
+subject: Disaggregated domestic electricity demand
+temporal_coverage: {end: '2014-02-05T08:01:50+00:00', start: '2013-02-17T16:17:36+00:00'}
 timezone: Europe/London
 title: UK Power Dataset
-urls: ['http://www.doc.ic.ac.uk/~dk3810/data']

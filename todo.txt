@@ -23,7 +23,6 @@ key:value pairs where subclasses override previous values (just use dict.update)
 TODO:
 
 * Dataset schema.
-  * and look at UKERC EDC's schemas
   * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
 
 * copy details from schema/appliance_old.json and old/
@@ -58,8 +57,19 @@ TODO:
 * write paper for IEEE Workshop on Interopability in Scientific
   Computing (deadline = 23rd Mar)
   * read motivations of the workshop http://www.im.uu.se/events/
-  * cite Project Haystack, JavaScript (inheritance; and the first
-    folks to use prototype inheritance), http://schema.datacite.org/
+  * cite 
+    - Project Haystack, 
+    - JavaScript (inheritance; and the first folks to use prototype
+      inheritance)
+    - http://schema.datacite.org/
+    - UKERC EDC's schemas http://ukedc.rl.ac.uk/format.html and that
+      it in turn is based on Dublin Core.
+  * why we used YAML and JSON not XML.  (Constructs in YAML/JSON map
+    cleanly to programming language constructs, whilst <a b=c>d</a>
+    doesn't.  YAML is easier to read and allows for references.  But YAML
+    doesn't yet have a solid schema so we went with JSONSchema.  Give
+    examples of YAML and JSON side by side.
+
 * write papers for NILM Workshop
 
 * check out Wiki Energy and email them if NILM Schema might be of use.

@@ -13,15 +13,46 @@
             "type": "string",
             "description": "Abbreviated name for the dataset, e.g. 'REDD'"
         },
-        "DOI": {
+        "identifier": {
             "type": "string",
-            "description": "A digital object identifier for the dataset"
+            "description": "A digital object identifier (DOI) or URI for the dataset"
+        },
+        "subject": {
+            "type": "string",
+            "description": "For example, is this dataset about domestic or commercial buildings?  Does it include disaggregated appliance-by-appliance data or just whole-building data?"
+        },
+        "geospatial_coverage": {
+            "type": "string",
+            "description": "Spatial coverage.  e.g. 'Southern England'"
+        },
+        "temporal_coverage": { 
+            "type": "object",
+            "properties": {"$ref": "timeframe.json#/properties" },
+            "description": "The temperal coverage of the entire dataset."
         },
         "creators": {
             "type": "array",
             "items": {
                 "type": "string",
                 "description": "<Lastname>, <Firstname>"
+            }
+        },
+        "publisher": {
+            "type": "string",
+            "description": "The entity responsible for making the resource available. Examples of a Publisher include a person, an organization, or a service."
+        },
+        "formats": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": { 
+                        "type": "string",
+                        "description": "e.g. 'CSV (NILMTK schema)'"
+                    },
+                    "data_location": { "type": "string" }
+                },
+                "additionalProperties": false
             }
         },
         "publication_date": { "type": "string" },
@@ -37,16 +68,9 @@
             "description": "License(s) under which this dataset is released."
         },
         "version": { "type": "string" },
-        "urls": {
+        "related_documents": {
             "type": "array",
-            "description": "The URL(s) for more information about this dataset",
-            "items": {
-                "type": "string"
-            }
-        },
-        "bibliography": {
-            "type": "array",
-            "description": "Academic references about this dataset",
+            "description": "References about this dataset (e.g. references to academic papers or web pages)",
             "items": {
                 "type": "string"
             }

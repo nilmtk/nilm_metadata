@@ -6,7 +6,7 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "dataset": { "type": "string" },
+        "dataset": { "type": "string", "description": "dataset short title" },
         "name": { "type": "string", "description": "name used in dataset" },
         "original_name": { 
             "type": "string", 
@@ -37,7 +37,7 @@
             "type": "integer",
             "description": "max number of occupants"
         },
-        "timeframe": { "$ref": "timeframe.json" },
+        "temporal_coverage": { "$ref": "timeframe.json" },
         "periods_unoccupied": {
             "type": "array",
             "items": { "$ref": "timeframe.json"},
