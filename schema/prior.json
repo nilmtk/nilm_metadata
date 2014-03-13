@@ -8,6 +8,7 @@
     "properties": {
         "distribution_of_data": {
             "type": "object",
+            "additionalProperties": false,
             "description": "Distribution of the data expressed as normalised frequencies per discrete bin (for continuous variables) or per category (for categorical variables).  'categories' can be used instead of 'bin_edges' for continuous variables where it makes sense; e.g. where each bin represents a day of the week",
             "properties": {
                 "bin_edges": { 
@@ -80,6 +81,7 @@
             "type": "array",
             "items": {
                 "type": "object",
+                "additionalProperties": false,
                 "properties": {
                     "dataset": { "type": "string" },
                     "buildings": { 

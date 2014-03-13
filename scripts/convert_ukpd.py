@@ -1,12 +1,15 @@
 from __future__ import print_function, division
 from datetime import datetime
 from os import popen, listdir
-from os.path import join, isfile
+from os.path import join, isfile, expanduser
 import pytz
 import yaml
 from collections import OrderedDict
 
-PATH = "/data/mine/vadeec/merged"
+RAW_UKPD_DATA_PATH = "/data/mine/vadeec/merged"
+OUTPUT_FILENAME = "~/workspace/schemas/nilm_metadata/examples/ukpd_dataset.yaml"
+OUTPUT_FILENAME = expanduser(OUTPUT_FILENAME)
+
 TIMEZONE = "Europe/London"
 TZ = pytz.timezone(TIMEZONE)
 N_BULDINGS = 4
@@ -24,7 +27,7 @@ dataset = {
     },
     "number_of_buildings": N_BULDINGS, 
     "geo_location": {
-        "city": "London",
+        "locality": "London",
         "country": "UK", 
         "latitude": 51.464462, 
         "longitude": -0.076544
@@ -233,7 +236,7 @@ for building_i in range(1,N_BULDINGS+1):
     building = building_metadata[building_i]
     building.update({'utilities': {'electric': {'meters': [], 'appliances': []}}})
     dataset['buildings'][building_i] = building
-    building_path = join(PATH, 'house_{:d}'.format(building_i))
+    building_path = join(RAW_UKPD_DATA_PATH, 'house_{:d}'.format(building_i))
     electric = building['utilities']['electric']
 
     #--------- METERS -------------------------------
@@ -293,5 +296,7 @@ for building_i in range(1,N_BULDINGS+1):
     electric['appliances'] = appliances
     
     
-with open('/home/jack/workspace/schemas/nilm_metadata/examples/dataset.yaml', 'w') as fh:
+with open(OUTPUT_FILENAME, 'w') as fh:
     yaml.dump(dataset, fh)
+
+print("done")

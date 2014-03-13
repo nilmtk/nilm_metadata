@@ -22,18 +22,18 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
-* dataset version (JSON Meta-Schema???)
-
 * Dataset schema.
   * where to find a canonical list of country names?
   * look at http://schema.datacite.org/
   * and look at UKERC EDC's schemas
   * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
 
-* finish convert_ukpd.py.
-  * email to UKERC EDC
-
 * copy details from schema/appliance_old.json and old/
+
+* finish convert_ukpd.py.
+  * convert info from my README and my various metadata files on
+    on_power_threshold etc
+  * email to UKERC EDC
 
 * test with details in my spreadsheet sketch of ideas.        
 
@@ -55,6 +55,8 @@ TODO:
 
 * tidy up
 
+* tag with v0.1.0 and add a link to my UKPD metadata to https://github.com/nilmtk/nilm_metadata/tree/v0.1.0
+
 * write paper for IEEE Workshop on Interopability in Scientific
   Computing (deadline = 23rd Mar)
 * write papers for NILM Workshop
@@ -73,6 +75,8 @@ IF TIME:
 
 
 DONE:
+
+* dataset version (JSON Meta-Schema???)
 
 * briefly explore putting all schemas into a single YAML/JSON file???
 

@@ -13,7 +13,7 @@ buildings:
       name: study}
     - {description: shower + bath + toilet + sink + cupboards + hot water tank + boiler
         + solar thermal pumping station, floor: 1, instance: 1, name: bathroom}
-    timeframe: {end: '2014-03-11T06:16:37+00:00', start: '2012-11-09T22:28:15+00:00'}
+    timeframe: {end: '2014-02-06T06:24:17+00:00', start: '2012-11-09T22:28:15+00:00'}
     utilities:
       electric:
         appliances:
@@ -109,115 +109,115 @@ buildings:
           year_of_purchase: 2010
         meters:
         - dates_active:
-          - {end: '2014-03-11T06:15:06+00:00', start: '2012-11-09T22:28:15+00:00'}
+          - {end: '2014-02-06T06:15:11+00:00', start: '2012-11-09T22:28:15+00:00'}
           id: 1
           original_name: aggregate
           parent: EDFEnergy~EcoManagerWholeHouseTx
           site_meter: true
         - dates_active:
-          - {end: '2014-03-11T06:15:20+00:00', start: '2012-11-09T22:28:23+00:00'}
+          - {end: '2014-02-06T06:17:23+00:00', start: '2012-11-09T22:28:23+00:00'}
           id: 2
           original_name: boiler
           parent: CurrentCost~Tx
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:39+00:00', start: '2012-11-09T22:28:35+00:00'}
+          - {end: '2014-02-06T06:19:13+00:00', start: '2012-11-09T22:28:35+00:00'}
           id: 3
           original_name: solar_thermal_pump
           parent: CurrentCost~Tx
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-10T21:29:19+00:00', start: '2012-11-16T11:29:01+00:00'}
+          - {end: '2014-02-05T08:01:51+00:00', start: '2012-11-16T11:29:01+00:00'}
           id: 4
           original_name: laptop
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:16:25+00:00', start: '2012-11-09T22:28:18+00:00'}
+          - {end: '2014-02-06T06:23:24+00:00', start: '2012-11-09T22:28:18+00:00'}
           id: 5
           original_name: washing_machine
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:16:24+00:00', start: '2012-11-09T22:28:18+00:00'}
+          - {end: '2014-02-06T06:23:38+00:00', start: '2012-11-09T22:28:18+00:00'}
           id: 6
           original_name: dishwasher
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:16:26+00:00', start: '2012-11-09T22:28:18+00:00'}
+          - {end: '2014-02-06T06:23:54+00:00', start: '2012-11-09T22:28:18+00:00'}
           id: 7
           original_name: tv
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:16:31+00:00', start: '2012-11-12T18:24:46+00:00'}
+          - {end: '2014-02-06T06:24:08+00:00', start: '2012-11-12T18:24:46+00:00'}
           id: 8
           original_name: kitchen_lights
           parent: CurrentCost~Tx
           submeter_of: 25
         - dates_active:
-          - {end: '2014-03-11T06:16:37+00:00', start: '2012-12-14T22:21:32+00:00'}
+          - {end: '2014-02-06T06:24:17+00:00', start: '2012-12-14T22:21:32+00:00'}
           id: 9
           original_name: htpc
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:03+00:00', start: '2012-11-09T22:28:18+00:00'}
+          - {end: '2014-02-06T06:15:27+00:00', start: '2012-11-09T22:28:18+00:00'}
           id: 10
           original_name: kettle
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:03+00:00', start: '2012-12-14T22:21:32+00:00'}
+          - {end: '2014-02-06T06:15:43+00:00', start: '2012-12-14T22:21:32+00:00'}
           id: 11
           original_name: toaster
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:10+00:00', start: '2012-12-14T22:21:32+00:00'}
+          - {end: '2014-02-06T06:15:58+00:00', start: '2012-12-14T22:21:32+00:00'}
           id: 12
           original_name: fridge
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:06+00:00', start: '2012-12-14T22:21:33+00:00'}
+          - {end: '2014-02-06T06:16:14+00:00', start: '2012-12-14T22:21:33+00:00'}
           id: 13
           original_name: microwave
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-10T21:29:14+00:00', start: '2012-12-14T22:21:33+00:00'}
+          - {end: '2014-02-05T08:01:53+00:00', start: '2012-12-14T22:21:33+00:00'}
           id: 14
           original_name: lcd_office
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-10T21:29:14+00:00', start: '2012-12-14T22:21:33+00:00'}
+          - {end: '2014-02-05T08:01:53+00:00', start: '2012-12-14T22:21:33+00:00'}
           id: 15
           original_name: hifi_office
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:12+00:00', start: '2012-12-14T22:21:33+00:00'}
+          - {end: '2014-02-06T06:16:27+00:00', start: '2012-12-14T22:21:33+00:00'}
           id: 16
           original_name: breadmaker
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:12+00:00', start: '2012-12-14T22:21:32+00:00'}
+          - {end: '2014-02-06T06:16:42+00:00', start: '2012-12-14T22:21:32+00:00'}
           id: 17
           original_name: amp_livingroom
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:10+00:00', start: '2012-12-14T22:21:32+00:00'}
+          - {end: '2014-02-06T06:16:56+00:00', start: '2012-12-14T22:21:32+00:00'}
           id: 18
           original_name: adsl_router
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:11+00:00', start: '2013-02-12T16:19:53+00:00'}
+          - {end: '2014-02-06T06:17:11+00:00', start: '2013-02-12T16:19:53+00:00'}
           id: 19
           original_name: livingroom_s_lamp
           parent: EDFEnergy~EcoManagerTxPlug
@@ -229,55 +229,55 @@ buildings:
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-10T21:29:19+00:00', start: '2013-04-11T20:08:53+01:00'}
+          - {end: '2014-02-05T08:01:51+00:00', start: '2013-04-11T20:08:53+01:00'}
           id: 21
           original_name: gigE_&_USBhub
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-08T19:25:25+00:00', start: '2013-02-14T20:57:12+00:00'}
+          - {end: '2014-02-01T20:56:30+00:00', start: '2013-02-14T20:57:12+00:00'}
           id: 22
           original_name: hoover
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:28+00:00', start: '2013-02-12T16:19:54+00:00'}
+          - {end: '2014-02-06T06:17:36+00:00', start: '2013-02-12T16:19:54+00:00'}
           id: 23
           original_name: kitchen_dt_lamp
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:25+00:00', start: '2013-02-12T16:19:53+00:00'}
+          - {end: '2014-02-06T06:17:52+00:00', start: '2013-02-12T16:19:53+00:00'}
           id: 24
           original_name: bedroom_ds_lamp
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:30+00:00', start: '2013-03-12T10:59:44+00:00'}
+          - {end: '2014-02-06T06:18:08+00:00', start: '2013-03-12T10:59:44+00:00'}
           id: 25
           original_name: lighting_circuit
           parent: CurrentCost~Tx
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:26+00:00', start: '2013-03-12T11:53:48+00:00'}
+          - {end: '2014-02-06T06:18:24+00:00', start: '2013-03-12T11:53:48+00:00'}
           id: 26
           original_name: livingroom_s_lamp2
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-02-26T19:12:58+00:00', start: '2013-03-12T11:53:48+00:00'}
+          - {end: '2014-02-06T06:18:31+00:00', start: '2013-03-12T11:53:48+00:00'}
           id: 27
           original_name: iPad_charger
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:29+00:00', start: '2013-03-12T11:53:50+00:00'}
+          - {end: '2014-02-06T06:18:48+00:00', start: '2013-03-12T11:53:50+00:00'}
           id: 28
           original_name: subwoofer_livingroom
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:35+00:00', start: '2013-03-12T11:53:51+00:00'}
+          - {end: '2014-02-06T06:19:00+00:00', start: '2013-03-12T11:53:51+00:00'}
           id: 29
           original_name: livingroom_lamp_tv
           parent: EDFEnergy~EcoManagerTxPlug
@@ -289,61 +289,61 @@ buildings:
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:42+00:00', start: '2013-03-13T20:59:22+00:00'}
+          - {end: '2014-02-06T06:19:32+00:00', start: '2013-03-13T20:59:22+00:00'}
           id: 31
           original_name: kitchen_lamp2
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:44+00:00', start: '2013-03-13T20:59:19+00:00'}
+          - {end: '2014-02-06T06:19:42+00:00', start: '2013-03-13T20:59:19+00:00'}
           id: 32
           original_name: kitchen_phone&stereo
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:49+00:00', start: '2013-03-12T19:53:38+00:00'}
+          - {end: '2014-02-06T06:20:01+00:00', start: '2013-03-12T19:53:38+00:00'}
           id: 33
           original_name: utilityrm_lamp
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:47+00:00', start: '2013-03-12T11:53:49+00:00'}
+          - {end: '2014-02-06T06:20:15+00:00', start: '2013-03-12T11:53:49+00:00'}
           id: 34
           original_name: samsung_charger
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:52+00:00', start: '2013-03-12T11:53:47+00:00'}
+          - {end: '2014-02-06T06:20:24+00:00', start: '2013-03-12T11:53:47+00:00'}
           id: 35
           original_name: bedroom_d_lamp
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:55+00:00', start: '2013-02-09T08:27:00+00:00'}
+          - {end: '2014-02-06T06:20:41+00:00', start: '2013-02-09T08:27:00+00:00'}
           id: 36
           original_name: coffee_machine
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:57+00:00', start: '2013-03-13T20:59:23+00:00'}
+          - {end: '2014-02-06T06:20:58+00:00', start: '2013-03-13T20:59:23+00:00'}
           id: 37
           original_name: kitchen_radio
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:50+00:00', start: '2013-03-13T20:59:24+00:00'}
+          - {end: '2014-02-06T06:21:07+00:00', start: '2013-03-13T20:59:24+00:00'}
           id: 38
           original_name: bedroom_chargers
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-10T08:43:43+00:00', start: '2013-03-15T08:40:32+00:00'}
+          - {end: '2014-02-05T08:27:53+00:00', start: '2013-03-15T08:40:32+00:00'}
           id: 39
           original_name: hair_dryer
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-10T08:43:42+00:00', start: '2013-03-15T08:40:17+00:00'}
+          - {end: '2014-02-05T08:27:45+00:00', start: '2013-03-15T08:40:17+00:00'}
           id: 40
           original_name: straighteners
           parent: EDFEnergy~EcoManagerTxPlug
@@ -355,61 +355,61 @@ buildings:
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:58+00:00', start: '2013-03-14T20:20:02+00:00'}
+          - {end: '2014-02-06T06:21:31+00:00', start: '2013-03-14T20:20:02+00:00'}
           id: 42
           original_name: gas_oven
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:15:58+00:00', start: '2013-03-14T20:20:02+00:00'}
+          - {end: '2014-02-06T06:21:38+00:00', start: '2013-03-14T20:20:02+00:00'}
           id: 43
           original_name: data_logger_pc
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:16:00+00:00', start: '2013-03-15T08:19:05+00:00'}
+          - {end: '2014-02-06T06:22:00+00:00', start: '2013-03-15T08:19:05+00:00'}
           id: 44
           original_name: childs_table_lamp
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:16:07+00:00', start: '2013-03-15T08:15:23+00:00'}
+          - {end: '2014-02-06T06:22:07+00:00', start: '2013-03-15T08:15:23+00:00'}
           id: 45
           original_name: childs_ds_lamp
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:16:11+00:00', start: '2013-03-15T08:16:19+00:00'}
+          - {end: '2014-02-06T06:22:25+00:00', start: '2013-03-15T08:16:19+00:00'}
           id: 46
           original_name: baby_monitor_tx
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:16:16+00:00', start: '2013-04-11T20:08:54+01:00'}
+          - {end: '2014-02-06T06:22:38+00:00', start: '2013-04-11T20:08:54+01:00'}
           id: 47
           original_name: battery_charger
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:16:17+00:00', start: '2013-04-11T20:08:55+01:00'}
+          - {end: '2014-02-06T06:22:51+00:00', start: '2013-04-11T20:08:55+01:00'}
           id: 48
           original_name: office_lamp1
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:16:19+00:00', start: '2013-04-11T20:08:56+01:00'}
+          - {end: '2014-02-06T06:23:12+00:00', start: '2013-04-11T20:08:56+01:00'}
           id: 49
           original_name: office_lamp2
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-10T21:29:15+00:00', start: '2013-04-11T20:08:56+01:00'}
+          - {end: '2014-02-05T08:01:54+00:00', start: '2013-04-11T20:08:56+01:00'}
           id: 50
           original_name: office_lamp3
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-10T21:29:13+00:00', start: '2013-04-11T20:08:54+01:00'}
+          - {end: '2014-02-05T08:01:52+00:00', start: '2013-04-11T20:08:54+01:00'}
           id: 51
           original_name: office_pc
           parent: EDFEnergy~EcoManagerTxPlug
@@ -427,13 +427,13 @@ buildings:
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-10T21:29:18+00:00', start: '2013-10-22T15:40:57+01:00'}
+          - {end: '2014-02-05T08:01:50+00:00', start: '2013-10-22T15:40:57+01:00'}
           id: 54
           original_name: LED_printer
           parent: EDFEnergy~EcoManagerTxPlug
           submeter_of: 0
         - dates_active:
-          - {end: '2014-03-11T06:16:50+00:00', start: '2013-03-17T19:12:43.100000+00:00'}
+          - {end: '2014-02-06T06:24:43.300000+00:00', start: '2013-03-17T19:12:43.100000+00:00'}
           id: 54
           parent: JackKelly~SoundCardPowerMeter
           site_meter: true
@@ -652,7 +652,7 @@ description: 'Recording from 4 domestic homes in or near to London, UK.
 
   '
 full_name: UK Power Dataset
-geo_location: {city: London, country: UK, latitude: 51.464462, longitude: -0.076544}
+geo_location: {country: UK, latitude: 51.464462, locality: London, longitude: -0.076544}
 institution: Imperial College London
 mains_voltage: {nominal: 230, tolerance_lower_bound: 10, tolerance_upper_bound: 6}
 name: UKPD

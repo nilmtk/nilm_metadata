@@ -15,11 +15,18 @@
         "geo_location": {
             "type": "object",
             "properties": {
-                "country": { "type": "string" }, 
-                "city_or_town": {"type": "string" },
+                "country": { 
+                    "type": "string",
+                    "description": "Use the short country name listed at http://en.wikipedia.org/wiki/List_of_countries_by_name; e.g. United Kingdom or United States."
+                }, 
+                "locality": {
+                    "type": "string",
+                    "description": "village, town or city"
+                },
                 "latitude": { "type": "number" },
                 "longitude": { "type": "number" }
-            }
+            },
+            "additionalProperties": false
         },
         "timezone": { "type": "string" },
         "rooms": { "type": "array", "items": { "$ref": "room.json" } },
@@ -35,8 +42,11 @@
         },
         "utilities": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
-                "electric": { "$ref": "electric.json" }
+                "electric": { "$ref": "electric.json" },
+                "water": { "type": "object" },
+                "gas": { "type": "object" }
             }
         }
     }

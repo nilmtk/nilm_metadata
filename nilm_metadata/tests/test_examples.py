@@ -63,7 +63,7 @@ class TestSchema(unittest.TestCase):
     def test_building(self):
         t0 = time()
         dataset = yaml.load(open(join(examples_directory(), 
-                                         'dataset.yaml')))
+                                         'ukpd_dataset.yaml')))
         building = dataset['buildings'][1]
         complete_building = concatenate_complete_building(building, self.object_cache)
         validate_complete_building(complete_building)
@@ -72,7 +72,7 @@ class TestSchema(unittest.TestCase):
     def test_dataset(self):
         t0 = time()
         dataset = yaml.load(open(join(examples_directory(), 
-                                         'dataset.yaml')))
+                                         'ukpd_dataset.yaml')))
         t1 = time()
         complete_dataset = concatenate_complete_dataset(dataset, self.object_cache)
         t2 = time()

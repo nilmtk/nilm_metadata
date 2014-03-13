@@ -41,7 +41,12 @@
         "timezone": { "type": "string" },
         "buildings": {
             "type": "object",
-            "additionalProperties": { "$ref": "building.json" }
+            "additionalProperties": { "$ref": "building.json" },
+            "description": "key is the building instance, starting from 1."
+        },
+        "schema": { 
+            "type": "string",
+            "description": "The URL of the NILM_metadata version (tag) against which this metadata is validated. e.g. https://github.com/nilmtk/nilm_metadata/tree/v0.1.0"
         }
     },
     "additionalProperties": false
