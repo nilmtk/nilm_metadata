@@ -55,6 +55,10 @@ dataset = {
     }, 
     "timezone": TIMEZONE,
     "schema": "https://github.com/nilmtk/nilm_metadata/tree/v0.1.0",
+    "funding": [
+        "Jack Kelly's PhD is funded by an EPSRC DTA", 
+        "Hardware necessary for this project was funded from"
+        " Jack Kelly's Intel EU PhD Fellowship"],
     "rights_list": [{
         "name": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
         "uri": "http://creativecommons.org/licenses/by/4.0/"

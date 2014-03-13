@@ -37,6 +37,11 @@
                 "description": "<Lastname>, <Firstname>"
             }
         },
+        "funding": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "A list of all the sources of funding used to produce this dataset."
+        },
         "publisher": {
             "type": "string",
             "description": "The entity responsible for making the resource available. Examples of a Publisher include a person, an organization, or a service."

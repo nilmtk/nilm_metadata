@@ -24,6 +24,7 @@ TODO:
 
 * Dataset schema.
   * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/
+    I got to "2.1.7 Referencing" on p7
 
 * copy details from schema/appliance_old.json and old/
 
@@ -35,13 +36,13 @@ TODO:
 * test with details in my spreadsheet sketch of ideas.        
 
 * tool to generate graphical model of relationship between objects in
-  /objects and also in a schema
+  /objects and also in a dataset metadata
 
 * write docs 
   * auto doc generation from json schema
   * how to write your own schema
-  * how to validate it
   * how to concatenate it (need to think of a better name)
+  * how to validate it
   * given that we allow a list of priors, and we allow these 
     to accumulate down the inheritance tree, we
     label these priors to say if they are specific to this
@@ -55,21 +56,7 @@ TODO:
 * tag with v0.1.0 and add a link to my UKPD metadata to https://github.com/nilmtk/nilm_metadata/tree/v0.1.0
 
 * write paper for IEEE Workshop on Interopability in Scientific
-  Computing (deadline = 23rd Mar)
-  * read motivations of the workshop http://www.im.uu.se/events/
-  * cite 
-    - Project Haystack, 
-    - JavaScript (inheritance; and the first folks to use prototype
-      inheritance)
-    - http://schema.datacite.org/
-    - UKERC EDC's schemas http://ukedc.rl.ac.uk/format.html and that
-      it in turn is based on Dublin Core.
-  * why we used YAML and JSON not XML.  (Constructs in YAML/JSON map
-    cleanly to programming language constructs, whilst <a b=c>d</a>
-    doesn't.  YAML is easier to read and allows for references.  But YAML
-    doesn't yet have a solid schema so we went with JSONSchema.  Give
-    examples of YAML and JSON side by side.
-
+  Computing (deadline = 23rd Mar) (see google doc for outline of paper)
 * write papers for NILM Workshop
 
 * check out Wiki Energy and email them if NILM Schema might be of use.
