@@ -22,12 +22,6 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
-* finish convert_ukpd.py.
-  * upload minimal and concatenated UKPD metadata to git
-  * email to UKERC EDC
-
-* tool to generate graphical model of relationship between objects in
-  /objects and also in a dataset metadata
 
 * write docs 
   * auto doc generation from json schema
@@ -53,6 +47,8 @@ TODO:
 * check out Wiki Energy and email them if NILM Schema might be of use.
 * tweet about it
 
+* tool to generate graphical model of relationship between objects in
+  /objects and also in a dataset metadata
 
 IF TIME:
 -------
@@ -64,6 +60,11 @@ IF TIME:
 
 
 DONE:
+
+* finish convert_ukpd.py.
+  * upload minimal and concatenated UKPD metadata to git
+  * email to UKERC EDC
+
 
 * test with details in my spreadsheet sketch of ideas.        
 
