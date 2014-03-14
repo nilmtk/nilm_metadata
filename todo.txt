@@ -22,9 +22,8 @@ key:value pairs where subclasses override previous values (just use dict.update)
 
 TODO:
 
-* copy details from schema/appliance_old.json and old/
-
 * finish convert_ukpd.py.
+  * do houses 2-4
   * convert info from my README and my various metadata files on
     on_power_threshold etc
   * email to UKERC EDC
@@ -69,6 +68,8 @@ IF TIME:
 
 
 DONE:
+
+* copy details from schema/appliance_old.json and old/
 
 * Dataset schema.
   * look at http://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/

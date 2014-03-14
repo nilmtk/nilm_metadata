@@ -491,6 +491,13 @@ appliances_for_each_building = {
             'year_of_purchase': 2012
         },
         {
+            'parent': 'external hard disk',
+            'original_name': 'data_logger_pc',
+            'description': 'external disk used every few months to transfer data from data logging PC',
+            'room': {'name': 'hall'},
+            'year_of_purchase': 2012
+        },
+        {
             'parent': 'light',
             'instance': 11,
             'subtype': 'table',
@@ -571,9 +578,153 @@ appliances_for_each_building = {
             'year_of_purchase': 2012
         }
     ],
-    2: [],
-    3: [],
-    4: []
+    2: [
+        {
+            'parent': 'laptop computer',
+            'original_name': 'laptop'
+        },
+        {
+            'parent': 'computer monitor',
+            'original_name': 'monitor'
+        },
+        {
+            'parent': 'active speaker',
+            'original_name': 'speakers'
+        },
+        {
+            'parent': 'computer',
+            'description': 'server',
+            'original_name': 'server'
+        },
+        {
+            'parent': 'broadband router',
+            'original_name': 'router'
+        },
+        {
+            'parent': 'external hard disk',
+            'description': 'server_hdd',
+            'original_name': 'server_hdd'
+        },
+        {
+            'parent': 'kettle',
+            'original_name': 'kettle'
+        },
+        {
+            'parent': 'rice cooker',
+            'original_name': 'rice_cooker'
+        },
+        {
+            'parent': 'running machine',
+            'original_name': 'running_machine'
+        },
+        {
+            'parent': 'laptop computer',
+            'instance': 2,
+            'original_name': 'laptop2'
+        },
+        {
+            'parent': 'washing machine',
+            'original_name': 'washing_machine'
+        },
+        {
+            'parent': 'dish washer',
+            'original_name': 'dish_washer'
+        },
+        {
+            'parent': 'fridge',
+            'original_name': 'fridge'
+        },
+        {
+            'parent': 'microwave',
+            'original_name': 'microwave'
+        },
+        {
+            'parent': 'toaster',
+            'original_name': 'toaster'
+        },
+        {
+            'parent': 'games console',
+            'model': 'Playstation',
+            'original_name': 'playstation'
+        },
+        {
+            'parent': 'modem',
+            'original_name': 'modem'
+        },
+        {
+            'parent': 'cooker',
+            'original_name': 'cooker'
+        }
+    ],
+    3: [
+        {
+            'parent': 'kettle',
+            'original_name': 'kettle'
+        },
+        {
+            'parent': 'electric space heater',
+            'original_name': 'electric_heater'
+        },
+        {
+            'parent': 'laptop computer',
+            'original_name': 'laptop'
+        },
+        {
+            'parent': 'projector',
+            'original_name': 'projector'
+        }
+    ],
+    4: [
+
+        {
+            'parent': 'television',
+            'original_name': 'tv_dvd_digibox_lamp'
+        },
+        {
+            'parent': 'DVD player',
+            'original_name': 'tv_dvd_digibox_lamp'
+        },
+        {
+            'parent': 'set top box',
+            'description': 'digibox',
+            'original_name': 'tv_dvd_digibox_lamp'
+        },
+        {
+            'parent': 'light',
+            'description': 'probably near the television',
+            'original_name': 'tv_dvd_digibox_lamp'
+        },
+        {
+            'parent': 'kettle',
+            'original_name': 'kettle_radio'
+        },
+        {
+            'parent': 'radio',
+            'description': 'probably near the kettle',
+            'original_name': 'kettle_radio'
+        },
+        {
+            'parent': 'boiler',
+            'fuel': 'natural gas',
+            'original_name': 'gas_boiler'
+        },
+        {
+            'parent': 'freezer',
+            'original_name': 'freezer'
+        },
+        {
+            'parent': 'washing machine',
+            'original_name': 'washing_machine_microwave_breadmaker'
+        },
+        {
+            'parent': 'microwave',
+            'original_name': 'washing_machine_microwave_breadmaker'
+        },
+        {
+            'parent': 'breadmaker',
+            'original_name': 'washing_machine_microwave_breadmaker'
+        }
+    ]
 }
 
 def load_labels(data_dir):

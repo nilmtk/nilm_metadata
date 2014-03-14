@@ -36,6 +36,9 @@ fryer:
 coffee maker:
   parent: small resistive cooking appliance
 
+rice cooker:
+  parent: small resistive cooking appliance
+
 food steamer:
   parent: small resistive cooking appliance
 

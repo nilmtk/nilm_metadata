@@ -57,11 +57,18 @@ boiler:
         # all other rooms.
       source: subjective # These values are basically guesses!
 
+#------------ ELECTRIC SPACE HEATERS
+
 electric boiler:
   parent: boiler
   description: a boiler where the heat is provided from electricity.
   components:
     - parent: electric water heater
+
+electric space heater:
+  parent: electric air heater
+  categories:
+    traditional: heating  
 
 #------- WATER HEATERS ----------
 

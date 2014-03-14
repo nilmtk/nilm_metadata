@@ -48,6 +48,9 @@ motorised chair:
 massage bed:
   parent: manual misc appliance
 
+running machine:
+  parent: manual misc appliance
+
 #------------ TOOLS -----------------
 
 soldering iron:

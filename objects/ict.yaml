@@ -102,7 +102,7 @@ tablet computer charger:
 
 #------------- ICT MISC -------------
 
-external hard drive:
+external hard disk:
   parent: ICT appliance
 
 broadband router:
@@ -115,6 +115,9 @@ ethernet switch:
     - 100metabit
 
 ethernet hub:
+  parent: ethernet switch
+
+modem:
   parent: ethernet switch
 
 USB hub:

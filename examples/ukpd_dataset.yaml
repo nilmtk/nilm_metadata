@@ -343,6 +343,13 @@ buildings:
         parent: computer
         room: {name: hall}
         year_of_purchase: 2012
+      - description: external disk used every few months to transfer data from data
+          logging PC
+        meter_ids: [43]
+        original_name: data_logger_pc
+        parent: external hard disk
+        room: {name: hall}
+        year_of_purchase: 2012
       - components:
         - {parent: incandescent lamp}
         instance: 11
@@ -801,7 +808,65 @@ buildings:
   temporal_coverage: {end: '2013-10-10T06:15:58+01:00', start: '2013-02-17T15:39:19+00:00'}
   utilities:
     electric:
-      appliances: []
+      appliances:
+      - meter_ids: [2]
+        original_name: laptop
+        parent: laptop computer
+      - meter_ids: [3]
+        original_name: monitor
+        parent: computer monitor
+      - meter_ids: [4]
+        original_name: speakers
+        parent: active speaker
+      - description: server
+        meter_ids: [5]
+        original_name: server
+        parent: computer
+      - meter_ids: [6]
+        original_name: router
+        parent: broadband router
+      - description: server_hdd
+        meter_ids: [7]
+        original_name: server_hdd
+        parent: external hard disk
+      - meter_ids: [8]
+        original_name: kettle
+        parent: kettle
+      - meter_ids: [9]
+        original_name: rice_cooker
+        parent: rice cooker
+      - meter_ids: [10]
+        original_name: running_machine
+        parent: running machine
+      - instance: 2
+        meter_ids: [11]
+        original_name: laptop2
+        parent: laptop computer
+      - meter_ids: [12]
+        original_name: washing_machine
+        parent: washing machine
+      - meter_ids: [13]
+        original_name: dish_washer
+        parent: dish washer
+      - meter_ids: [14]
+        original_name: fridge
+        parent: fridge
+      - meter_ids: [15]
+        original_name: microwave
+        parent: microwave
+      - meter_ids: [16]
+        original_name: toaster
+        parent: toaster
+      - meter_ids: [17]
+        model: Playstation
+        original_name: playstation
+        parent: games console
+      - meter_ids: [18]
+        original_name: modem
+        parent: modem
+      - meter_ids: [19]
+        original_name: cooker
+        parent: cooker
       meters:
       - data_location: house_2/channel_1.dat
         dates_active:
@@ -954,7 +1019,19 @@ buildings:
   temporal_coverage: {end: '2013-04-08T06:15:05+01:00', start: '2013-02-27T20:35:14+00:00'}
   utilities:
     electric:
-      appliances: []
+      appliances:
+      - meter_ids: [2]
+        original_name: kettle
+        parent: kettle
+      - meter_ids: [3]
+        original_name: electric_heater
+        parent: electric space heater
+      - meter_ids: [4]
+        original_name: laptop
+        parent: laptop computer
+      - meter_ids: [5]
+        original_name: projector
+        parent: projector
       meters:
       - data_location: house_3/channel_1.dat
         dates_active:
@@ -996,7 +1073,44 @@ buildings:
   temporal_coverage: {end: '2013-10-01T06:15:14+01:00', start: '2013-03-09T14:40:07+00:00'}
   utilities:
     electric:
-      appliances: []
+      appliances:
+      - meter_ids: [2]
+        original_name: tv_dvd_digibox_lamp
+        parent: television
+      - meter_ids: [2]
+        original_name: tv_dvd_digibox_lamp
+        parent: DVD player
+      - description: digibox
+        meter_ids: [2]
+        original_name: tv_dvd_digibox_lamp
+        parent: set top box
+      - description: probably near the television
+        meter_ids: [2]
+        original_name: tv_dvd_digibox_lamp
+        parent: light
+      - meter_ids: [3]
+        original_name: kettle_radio
+        parent: kettle
+      - description: probably near the kettle
+        meter_ids: [3]
+        original_name: kettle_radio
+        parent: radio
+      - fuel: natural gas
+        meter_ids: [4]
+        original_name: gas_boiler
+        parent: boiler
+      - meter_ids: [5]
+        original_name: freezer
+        parent: freezer
+      - meter_ids: [6]
+        original_name: washing_machine_microwave_breadmaker
+        parent: washing machine
+      - meter_ids: [6]
+        original_name: washing_machine_microwave_breadmaker
+        parent: microwave
+      - meter_ids: [6]
+        original_name: washing_machine_microwave_breadmaker
+        parent: breadmaker
       meters:
       - data_location: house_4/channel_1.dat
         dates_active:
