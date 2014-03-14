@@ -81,8 +81,8 @@ def validate_complete_appliances(appliances):
         try:
             appliance_id = (appliance_obj['name'], appliance_obj['instance'])
         except KeyError as e:
-            raise KeyError("problem with '" + appliance_obj.get('name') + "': " +
-                           "KeyError:" + str(e))
+            raise KeyError("problem with '{}': "
+                           "KeyError: {}".format(appliance_obj.get('name'), e))
             
         if appliance_id in appliance_ids:
             raise ValidationError("multiple appliances names with the same"
