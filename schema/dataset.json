@@ -5,6 +5,7 @@
     "description": "Metadata for a dataset",
     "type": "object",
     "properties": {
+        "has_been_concatenated": { "type": "boolean" },
         "title": {
             "type": "string",
             "description": "Full name of the dataset, eg. 'Reference Energy Disaggregation Data Set'"

@@ -4,13 +4,16 @@ from jsonschema import validate, ValidationError
 from os.path import join
 
 from object_concatenation import concatenate_complete_object, get_ancestors
-from file_management import get_schema_directory
+from file_management import get_schema_directory, get_object_cache
 from building import concatenate_complete_building, validate_complete_buildings
 from building import validate_complete_appliances, validate_complete_meters
 from schema_preprocessing import local_validate
 
 
-def concatenate_complete_dataset(dataset_obj, object_cache):
+def concatenate_complete_dataset(dataset_obj, object_cache=None):
+    if object_cache is None:
+        object_cache = get_object_cache()
+    
     # propagate geo_location and timezone to each building
     tz = dataset_obj.get('timezone')
     geo = dataset_obj.get('geo_location')
@@ -30,6 +33,8 @@ def concatenate_complete_dataset(dataset_obj, object_cache):
 
         building = concatenate_complete_building(building, object_cache)        
         buildings[i] = building
+
+    complete_dataset['has_been_concatenated'] = True
 
     return complete_dataset
 
