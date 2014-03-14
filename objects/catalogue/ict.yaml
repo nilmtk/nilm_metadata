@@ -8,7 +8,7 @@ HP~ProBook 6450b:
   nominal_consumption:
     on_power: 70
   components:
-    - parent: screen
+    - parent: flat screen
       diagonal_size: 14.0
       display_technology: LCD
       max_resolution:

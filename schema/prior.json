@@ -38,7 +38,7 @@
         },
         "model": {
             "type": "object",
-            "description": "A fitted model to describe the probability density function (for continuous variables) or the probability mass function (for discrete variables).  Use additional properties for the relevant parameters, written as Greek letters spelt out in lowercase English e.g. 'mu' and 'lambda'",
+            "description": "A fitted model to describe the probability density function (for continuous variables) or the probability mass function (for discrete variables).  Use additional properties for the relevant parameters, written as Greek letters spelt out in lowercase English e.g. 'mu' and 'lambda' except for summary stats where we use some combination of 'min', 'max', 'mean', 'mode'.",
             "properties": {
                 "distribution_name": { 
                     "enum": [ "normal", "inverse gaussian", "summary stats" ] },
@@ -69,7 +69,14 @@
         "specific_to": {
             "type": "object",
             "properties": {
-                "country": { "type": "string" }
+                "country": { 
+                    "type": "string",
+                    "description": "standard two-letter country code defined by ISO 3166-1 alpha-2. e.g. 'GB' or 'US'.  http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)."
+                },
+                "continent": { 
+                    "type": "string",
+                    "description": "standard two-letter continent code defined at http://en.wikipedia.org/wiki/List_of_sovereign_states_and_dependent_territories_by_continent_%28data_file%29."
+                }
             }
         },
         "distance": {

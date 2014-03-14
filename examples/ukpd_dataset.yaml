@@ -49,7 +49,7 @@ buildings:
         room: {name: kitchen}
         year_of_purchase: 2007
       - components:
-        - {diagonal_size: 34, display_format: PAL, display_technology: CRT, parent: screen}
+        - {diagonal_size: 34, display_format: PAL, parent: CRT screen}
         manufacturer: Panasonic
         meter_ids: [7]
         original_name: tv

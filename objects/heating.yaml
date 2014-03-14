@@ -6,7 +6,9 @@ heating appliance:
 
 #------------- BOILERS ------------------------
 
-boiler: # all boilers except for electric boilers
+boiler:
+
+  description: all boilers except for electric boilers
 
   parent: heating appliance
 
@@ -29,8 +31,8 @@ boiler: # all boilers except for electric boilers
   # do not have: a fuel source.  We specify additional
   # properties using the JSON Schema syntax.
   additional_properties:
-    fuel: &fuel
-      enum: [natural gas, coal, wood, oil, LPG]
+    fuel:
+      "$ref": "#/definitions/fuel"
       
   subtypes:
     - combi
@@ -57,9 +59,41 @@ boiler: # all boilers except for electric boilers
 
 electric boiler:
   parent: boiler
+  description: a boiler where the heat is provided from electricity.
   components:
     - parent: electric water heater
 
+#------- WATER HEATERS ----------
+
+electric water heating appliance:
+  parent: electric water heater
+  categories:
+    traditional: heating
+
+immersion heater:
+  parent: electric water heating appliance
+
+electric swimming pool heater:
+  parent: electric water heating appliance
+
+electric shower heater:
+  parent: electric water heating appliance
+  distributions:
+    on_power:
+      - model:
+          distribution_name: summary stats
+          min: 4000
+          max: 9000
+        source: empirical from publication
+        reference: &Stamminger2008 >
+          P. D. R. Stamminger, Synergy potential of smart appliances, 
+          in smart domestic appliances in sustainable energy systems (Smart-A),
+          University of Bonn, Tech. Rep., 2008.
+        specific_to: { country: GB }
+
+
+electric hot tub heater:
+  parent: electric water heating appliance
 
 #------- SOLAR THERMAL ---------------------------
 
@@ -74,5 +108,26 @@ solar thermal pumping station:
     - parent: water pump
   control: [manual, sunlight, timer]
 
+#------- SOLAR THERMAL ---------------------------
 
+heat pump:
+  parent: heating appliance
+  control: [manual, timer, thermostat]
+  categories:
+    google_shopping:
+      - climate control
+  additional_properties:
+    heat_source:
+      enum: [ground, air, water]
 
+#-------------- MISC ----------------
+
+electric blanket:
+  parent: appliance
+  control: [manual, timer]
+  distributions:
+    room:
+    - distribution_of_data:
+        categories: [bedroom]
+        values: [0.8]
+      source: subjective

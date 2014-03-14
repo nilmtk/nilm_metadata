@@ -2,6 +2,10 @@ from __future__ import print_function, division
 import json, yaml
 
 
+class ObjectConcatenationError(Exception):
+    pass
+
+
 def merge_dicts(old, new):
     """ Recursively extends lists in old with lists in new,
     and updates dicts.    
@@ -33,6 +37,10 @@ def get_ancestors(object_name, object_cache):
     A list of dicts where each dict is an object. The first
     dict is the highest on the inheritance hierarchy; the last dict
     is the object with name == `object_name`.
+
+    Raises
+    ------
+    ObjectConcatenationError
     """
     if object_name is None:
         return []
@@ -40,12 +48,31 @@ def get_ancestors(object_name, object_cache):
     # walk the inheritance tree from 
     # bottom upwards (which is the wrong direction
     # for actually doing inheritance)
-    current_object = object_cache[object_name]
+    try:
+        current_object = object_cache[object_name]
+    except KeyError as e:
+        msg = "'{}' not found!".format(object_name)
+        raise ObjectConcatenationError(msg)
+
     current_object['name'] = object_name
     ancestors = [current_object]
     while current_object.get('parent'):
-        parent_name = current_object['parent']
-        current_object = object_cache[parent_name]
+
+        try:
+            parent_name = current_object['parent']
+        except KeyError as e:
+            msg = ("Object '{}' claims does not have a '{}' property!"
+                   .format(current_object.get('name'), e))
+            raise ObjectConcatenationError(msg)
+
+        try:
+            current_object = object_cache[parent_name]
+        except KeyError as e:
+            msg = ("Object '{}' claims its parent is '{}' but that"
+                   " object is not recognised!"
+                   .format(current_object.get('name'), e))
+            raise ObjectConcatenationError(msg)
+
         current_object['name'] = parent_name
         ancestors.append(current_object)
 
@@ -77,14 +104,12 @@ def concatenate_complete_object(object_name, object_cache, child_object=None,
     for i, next_child in enumerate(ancestors[1:]):
         # Remove properties that the child does not want to inherit
         do_not_inherit = next_child.get('do_not_inherit', [])
-        do_not_inherit.extend(['synonyms', 'description'])
+        do_not_inherit.extend(['synonyms', 'description', 'do_not_inherit'])
         if do_not_inherit_extension_list:
             do_not_inherit.extend(do_not_inherit_extension_list)
+
         for property_to_not_inherit in do_not_inherit:
-            try:
-                merged_object.pop(property_to_not_inherit)
-            except KeyError:
-                pass
+            merged_object.pop(property_to_not_inherit, None)
 
         # the 'name' is set as the name of the last object in the hierarchy
         # which isn't a catalogue entry (catalogue entries have a '~' 
@@ -99,7 +124,12 @@ def concatenate_complete_object(object_name, object_cache, child_object=None,
         for parameter in distributions.keys():
             list_of_dists = distributions[parameter]
             for i, _ in enumerate(list_of_dists):
-                list_of_dists[i]['distance'] = n_ancestors - i
+                try:
+                    list_of_dists[i]['distance'] = n_ancestors - i
+                except KeyError:
+                    msg = ("'distributions' appears to not be a list in"
+                           " object '{}'".format(merged_object.get('name')))
+                    raise ObjectConcatenationError(msg)
 
         merge_dicts(merged_object, next_child)
 

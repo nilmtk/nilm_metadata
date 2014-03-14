@@ -162,7 +162,13 @@
                     "rooms": { 
                         "allOf": [
                             { "$ref": "#/definitions/array_of_priors" },
-                            { "description": "Categorical distribution over the rooms where this appliance is likely to be used. e.g. for a fridge this might be 'kitchen:0.9, garage:0.1'" }
+                            { "description": "Categorical distribution over the rooms where this appliance is likely to be used. e.g. for a fridge this might be 'kitchen:0.9, garage:0.1'.  Please use the standard room names defined in room.json (category names in distributions are not automatically validated)."}
+                        ]
+                    },
+                    "subtypes": { 
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "Categorical distribution over the subtypes." }
                         ]
                     },
                     "appliance_correlations": { 
@@ -170,30 +176,26 @@
                             { "$ref": "#/definitions/array_of_priors" },
                             { "description": "list of other appliances. Probability of this appliance being on given that the other appliance is on. e.g. 'tv:0.1, amp:0.4, ...' means that there is a 10% probability of this appliance being on if the TV is on.  Each category name can either be just an appliance name (e.g. 'fridge') or <appliance name>,<appliance instance> e.g. 'fridge,1'" }
                         ]
+                    },
+                    "ownership": {
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "Probability of this appliance being owned by a household from anywhere in the world.  Use a categorical distribution with a single category: 'GLOBAL'" }
+                        ]
+                    },
+                    "ownership_per_country": { 
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "Probability of this appliance being owned by a household in each country (i.e. a categorical distribution where categories are standard two-letter country code defined by ISO 3166-1 alpha-2. e.g. 'GB' or 'US'.  http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)." }
+                        ]
+                    },
+                    "ownership_per_continent": { 
+                        "allOf": [
+                            { "$ref": "#/definitions/array_of_priors" },
+                            { "description": "Probability of this appliance being owned by a household in each country (i.e. a categorical distribution where categories are standard two-letter continent code defined at http://en.wikipedia.org/wiki/List_of_sovereign_states_and_dependent_territories_by_continent_%28data_file%29" }
+                        ]
                     }
                 }
-            }
-        }
-    },
-    "components": {
-        "av_sources": {
-            "type": "array",
-            "items": { 
-                "enum": [
-                    "digital tv", "analogue tv",
-                    "videodisc", "cd", "dvr", "dvd", "blu-ray",
-                    "tape",
-                    "analogue radio", "digital radio", 
-                    "satellite", "cable", "broadband", "fibre"
-                ]
-            }
-        },
-        "cooking": {
-            "type": "object",
-            "properties": {
-                "name": { "enum": [ "oven", "hob", "grill" ] },
-                "fuel": { "$ref": "#/definitions/fuel" },
-                "fan": { "type": "boolean" }
             }
         }
     },
@@ -201,6 +203,9 @@
         "array_of_priors": {
             "type": "array",
             "items": { "$ref": "prior.json" }
+        },
+        "fuel": {
+            "enum": ["natural gas", "coal", "wood", "oil", "LPG"]
         }
     }
 }

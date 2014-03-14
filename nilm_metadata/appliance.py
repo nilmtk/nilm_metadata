@@ -1,26 +1,23 @@
 from __future__ import print_function, division
 import json
-from jsonschema import validate, ValidationError, RefResolver, Draft4Validator
+from jsonschema import validate, RefResolver, Draft4Validator
 from os.path import join
 
-from object_concatenation import concatenate_complete_object, get_ancestors, merge_dicts
+from object_concatenation import (concatenate_complete_object, get_ancestors, 
+                                  merge_dicts, ObjectConcatenationError)
 from file_management import get_schema_directory
 from schema_preprocessing import combine, local_validate
 
 def concatenate_complete_appliance(appliance_obj, object_cache):
     parent_name = appliance_obj['parent']
-    try:
-        complete_appliance = concatenate_complete_object(parent_name, object_cache,
-                                                         child_object=appliance_obj).copy()
-    except KeyError as e:
-        raise KeyError(str(e) + ' is not a valid object name,'
-                       ' please check the following object: ' + str(appliance_obj))
+    complete_appliance = concatenate_complete_object(parent_name, object_cache,
+                                                     child_object=appliance_obj).copy()
     ########################
     # Check subtype is valid
     subtype = complete_appliance.get('subtype')
     subtypes = complete_appliance.get('subtypes')
     if subtype and subtype not in subtypes:
-        raise ValidationError(subtype + 
+        raise ObjectConcatenationError(subtype + 
                               ' is not a valid subtype for appliance ' +
                               parent_name)
 
@@ -32,12 +29,7 @@ def concatenate_complete_appliance(appliance_obj, object_cache):
     # Instantiate components recursively
     components = complete_appliance.get('components', [])
     for i, component_obj in enumerate(components):
-        try:
-            component_obj = concatenate_complete_appliance(component_obj, object_cache)
-        except KeyError as e:
-            msg = ('Error while processing appliance `{}`.'
-                   ' The error was: {}'.format(appliance_obj['parent'], e))
-            raise KeyError(msg)
+        component_obj = concatenate_complete_appliance(component_obj, object_cache)
 
         components[i] = component_obj
         merge_dicts(complete_appliance['categories'], 

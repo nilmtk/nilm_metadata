@@ -1,7 +1,72 @@
-vacuum_cleaner:
+#--------- DOMESTIC TOOLS -------------
+
+vacuum cleaner:
   parent: appliance
   synonyms: [vaccum cleaner]
   control: [manual]
   components:
     - parent: motor
 
+sewing machine:
+  parent: appliance
+  components:
+    - parent: motor
+
+#-------------- CLOTHES, HEALTH AND BEUTY -----------------
+
+hair dryer:
+  categories:
+    electrical:
+      - resistive
+  parent: appliance
+
+hair straightener:
+  categories:
+    electrical:
+      - resistive
+  parent: appliance
+
+sun bed:
+  parent: appliance
+
+trouser press:
+  parent: appliance
+
+clothes iron:
+  categories:
+    electrical:
+      - resistive
+  parent: appliance
+
+motorised chair:
+  parent: appliance
+
+massage bed:
+  parent: appliance
+
+#------------ TOOLS -----------------
+
+soldering iron:
+  categories:
+    electrical:
+      - resistive
+  parent: appliance
+
+drill:
+  components:
+    - parent: motor
+
+saw:
+  components:
+    - parent: motor
+
+
+#-------------- CLIMATE CONTROL --------------
+
+dehumidifier:
+  parent: appliance
+
+#------------------ MISC
+
+electric vehicle:
+  parent: appliance

@@ -5,7 +5,7 @@
     "description": "Metadata for Rooms in buildings.  If instance is absent then assume 1.  Rooms are identified by their name and instance.",
     "type": "object",
     "properties": {
-        "name": { "enum": ["lounge", "kitchen", "bedroom", "utility", 
+        "name": { "enum": ["lounge", "kitchen", "bedroom", "utility", "garage", "basement",
                            "bathroom", "study", "nursery", "hall", "dining room"] },
         "instance": { "$ref": "instance.json" },
         "description": { "type": "string" },

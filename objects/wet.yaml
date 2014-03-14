@@ -6,6 +6,12 @@ wet appliance:
     google_shopping:
       - laundry appliances
   control: [manual]
+  distributions:
+    rooms:
+    - distribution_of_data:
+        categories: [kitchen, utility, basement, garage]
+        values: [0.3, 0.3, 0.2, 0.1]
+      source: subjective
 
 #------------- CLOTHES WASHING AND DRYING ------------------------
 
@@ -51,7 +57,7 @@ dish washer:
                 P. D. R. Stamminger, Synergy potential of smart appliances, 
                 in smart domestic appliances in sustainable energy systems (Smart-A),
                 University of Bonn, Tech. Rep., 2008.
-            specific_to: { country: Europe }
+            specific_to: { country: GB }
 
     - parent: motor
   distributions:
@@ -64,3 +70,37 @@ dish washer:
         source: empirical from publication
         reference: *Stamminger2008
 
+#--------------- WATER PUMPS ----------------
+
+shower pump:
+  parent: water pump
+  categories:
+    google_shopping:
+      - plumbing
+      - plumbing fixtures
+      - shower
+  synonyms: [power shower]
+  description: >
+    note that this does not for an electrically heated shower.  For
+    that, please use 'electric shower heater'
+
+acquarium pump:
+  parent: water pump
+
+swimming pool pump:
+  parent: water pump
+
+pond pump:
+  parent: water pump
+
+hot tub pump:
+  parent: water pump
+
+jacuzzi pump:
+  parent: water pump
+
+garden sprinkler:
+  parent: appliance
+
+water filter:
+  parent: appliance

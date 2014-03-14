@@ -137,8 +137,7 @@ appliances_for_each_building = {
             'manufacturer': 'Panasonic',
             'components': [
                 {
-                    'parent': 'screen',
-                    'display_technology': 'CRT',
+                    'parent': 'CRT screen',
                     'display_format': 'PAL',
                     'diagonal_size': 34
                 }
