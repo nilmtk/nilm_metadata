@@ -51,8 +51,15 @@
                         "items": {
                             "enum": [ "climate control", "furnaces and boilers",
                                       "renewable energy", "solar energy", "solar panels",
+
                                       "computers", "electronics", "laptops",
-                                      "laundry appliances"]
+                                      "printers and copiers", "print, copy, scan and fax",
+                                      "printers",
+
+                                      "laundry appliances", 
+
+                                      "kitchen and dining", "kitchen appliances", "breadmakers"
+                                    ]
                         }
                     }
                 }
@@ -68,7 +75,7 @@
                 "type": "array",
                 "items": {
                     "enum": [ 
-                        "timer", "manual", "motion", "sunlight", "thermostat" ] 
+                        "timer", "manual", "motion", "sunlight", "thermostat", "always on" ] 
                 },
                 "description": "Give a list of all control methods which apply.  For example, a video recorder would be both 'manual' and 'timer'."
             },

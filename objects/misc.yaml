@@ -1,14 +1,17 @@
+manual misc appliance:
+  control: [manual]
+
 #--------- DOMESTIC TOOLS -------------
 
 vacuum cleaner:
-  parent: appliance
+  parent: manual misc appliance
   synonyms: [vaccum cleaner]
   control: [manual]
   components:
     - parent: motor
 
 sewing machine:
-  parent: appliance
+  parent: manual misc appliance
   components:
     - parent: motor
 
@@ -18,45 +21,47 @@ hair dryer:
   categories:
     electrical:
       - resistive
-  parent: appliance
+  parent: manual misc appliance
 
-hair straightener:
+hair straighteners:
   categories:
     electrical:
       - resistive
-  parent: appliance
+  parent: manual misc appliance
 
 sun bed:
-  parent: appliance
+  parent: manual misc appliance
 
 trouser press:
-  parent: appliance
+  parent: manual misc appliance
 
 clothes iron:
   categories:
     electrical:
       - resistive
-  parent: appliance
+  parent: manual misc appliance
 
 motorised chair:
-  parent: appliance
+  parent: manual misc appliance
 
 massage bed:
-  parent: appliance
+  parent: manual misc appliance
 
 #------------ TOOLS -----------------
 
 soldering iron:
+  parent: manual misc appliance
   categories:
     electrical:
       - resistive
-  parent: appliance
 
 drill:
+  parent: manual misc appliance
   components:
     - parent: motor
 
 saw:
+  parent: manual misc appliance
   components:
     - parent: motor
 

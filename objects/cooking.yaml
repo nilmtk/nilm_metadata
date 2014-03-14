@@ -5,6 +5,9 @@ small cooking appliance:
   categories:
     traditional: cooking
     size: small
+    google_shopping:
+      - kitchen and dining
+      - kitchen appliances
   control: [manual]
   distributions:
     rooms:
@@ -76,7 +79,10 @@ yoghurt maker:
   parent: small cooking appliance
   control: [timer]
 
-bread maker:
+breadmaker:
+  categories:
+    google_shopping:
+      - breadmakers
   parent: small cooking appliance
   control: [timer]
   components:
@@ -104,6 +110,7 @@ cooker:
 
 stove:
   parent: cooker
+  do_not_inherit: [usual_components]
   description: a non-electric stove or a stove with unknown heating source
   synonyms: [hob]
 

@@ -1,6 +1,6 @@
 CE appliance:
   parent: appliance
-  categories:
+  categories: &CDCategories
     traditional: consumer electronics
     size: small
     google_shopping:
@@ -59,12 +59,17 @@ audio system:
 
 audio amplifier:
   parent: CE appliance
+  usual_components: [DAC, radio]
 
 active speaker:
   parent: audio amplifier
 
 active subwoofer:
   parent: active speaker
+
+DAC:
+  synonyms: [Digital to Analogue Converter]
+  parent: CE appliance
 
 DVD player:
   parent: CE appliance
@@ -77,6 +82,9 @@ blu-ray player:
 
 radio:
   parent: CE appliance
+  subtypes:
+    - analogue
+    - DAB
 
 #------------ CE MISC ---------------
 
@@ -94,6 +102,9 @@ musical instrument:
 
 baby monitor:
   parent: CE appliance
+  subtypes:
+    - baby unit
+    - parent unit
 
 door bell:
   parent: CE appliance
@@ -103,3 +114,10 @@ security alarm:
 
 smoke alarm:
   parent: CE appliance
+
+fan:
+  parent: motor
+  categories: *CDCategories
+  subtypes:
+    - desk
+    - ceiling

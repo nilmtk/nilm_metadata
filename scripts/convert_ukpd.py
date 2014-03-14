@@ -209,6 +209,342 @@ appliances_for_each_building = {
             'original_name': 'fridge',
             'year_of_purchase': 2010,
             'room': {'name': 'kitchen'}
+        },
+        {
+            'parent': 'microwave',
+            'original_name': 'microwave',
+            'room': {'name': 'kitchen'},
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'computer monitor',
+            'original_name': 'lcd_office',
+            'room': {'name': 'study'},
+            'components': [
+                {
+                    'parent': 'flat screen',
+                    'display_technology': 'LCD',
+                    'diagonal_size': 24,
+                    'manufacturer': 'Dell'
+                }
+            ],
+            'year_of_purchase': 2010
+        },
+        {
+            'parent': 'audio system',
+            'original_name': 'hifi_office',
+            'room': {'name': 'study'},
+            'components': [
+                {
+                    'parent': 'audio amplifier',
+                    'year_of_purchase': 2012,
+                    'components': [ {'parent': 'DAC'} ]
+                },
+                {
+                    'parent': 'radio',
+                    'year_of_purchase': 1995
+                },
+                {
+                    'parent': 'CD player',
+                    'year_of_purchase': 1995
+                }
+            ]
+        },
+        {
+            'parent': 'breadmaker',
+            'original_name': 'breadmaker',
+            'room': {'name': 'kitchen'},
+            'year_of_purchase': 2010
+        },
+        {
+            'parent': 'audio amplifier',
+            'original_name': 'amp_livingroom',
+            'room': {'name': 'lounge'},
+            'year_of_purchase': 2004
+        },
+        {
+            'parent': 'broadband router',
+            'original_name': 'adsl_router',
+            'room': {'name': 'hall'},
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'light',
+            'original_name': 'livingroom_s_lamp',
+            'room': {'name': 'lounge'},
+            'subtype': 'floor standing',
+            'year_of_purchase': 2006,
+            'components': [{'parent': 'compact fluorescent lamp'}]
+        },
+        {
+            'parent': 'soldering iron',
+            'original_name': 'soldering_iron',
+            'room': {'name': 'study'},
+            'year_of_purchase': 2011
+        },
+        {
+            'parent': 'ethernet switch',
+            'original_name': 'gigE_&_USBhub',
+            'subtype': '1gigabit',
+            'room': {'name': 'study'},
+            'year_of_purchase': 2008
+        },
+        {
+            'parent': 'USB hub',
+            'original_name': 'gigE_&_USBhub',
+            'room': {'name': 'study'},
+            'year_of_purchase': 2008
+        },
+        {
+            'parent': 'vacuum cleaner',
+            'original_name': 'hoover',
+            'year_of_purchase': 2008
+        },
+        {
+            'parent': 'light',
+            'instance': 2,
+            'subtype': 'table',
+            'original_name': 'kitchen_dt_lamp',
+            'room': {'name': 'kitchen'},
+            'components': [
+                {'parent': 'incandescent lamp'},
+                {'parent': 'dimmer', 'number_of_dimmer_levels': 3 }
+            ],
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'light',
+            'instance': 3,
+            'subtype': 'floor standing',
+            'original_name': 'bedroom_ds_lamp',
+            'room': {'name': 'bedroom', 'instance': 1},
+            'components': [
+                {'parent': 'incandescent lamp'},
+                {'parent': 'dimmer', 'subtype': 'TRIAC'}
+            ],
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'light',
+            'instance': 4,
+            'subtype': 'floor standing',
+            'original_name': 'livingroom_s_lamp2',
+            'room': {'name': 'lounge'},
+            'year_of_purchase': 2006,
+            'components': [{'parent': 'compact fluorescent lamp'}]
+        },
+        {
+            'parent': 'tablet computer charger',
+            'original_name': 'iPad_charger',
+            'room': {'name': 'lounge'},
+            'year_of_purchase': 2012,
+            'manufacturer': 'Apple'
+        },
+        {
+            'parent': 'active subwoofer',
+            'original_name': 'subwoofer_livingroom',
+            'room': {'name': 'lounge'},
+            'year_of_purchase': 2003
+        },
+        {
+            'parent': 'light',
+            'instance': 5,
+            'original_name': 'livingroom_lamp_tv',
+            'room': {'name': 'lounge'},
+            'year_of_purchase': 2006,
+            'components': [{'parent': 'compact fluorescent lamp'}],
+            'subtype': 'mood',
+            'description': 'throws light onto the wall behind the television'
+        },
+        {
+            'parent': 'radio',
+            'subtype': 'DAB',
+            'original_name': 'DAB_radio_livingroom',
+            'room': {'name': 'lounge'},
+            'year_of_purchase': 2012
+        },
+        {
+            'parent': 'light',
+            'instance': 6,
+            'subtype': 'floor standing',
+            'original_name': 'kitchen_lamp2',
+            'components': [{'parent': 'compact fluorescent lamp'}],
+            'room': {'name': 'kitchen'},
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'wireless phone charger',
+            'original_name': 'kitchen_phone&stereo',
+            'room': {'name': 'kitchen'},
+            'year_of_purchase': 2009
+        },
+        {
+            'parent': 'audio system',
+            'original_name': 'kitchen_phone&stereo',
+            'room': {'name': 'kitchen'},
+            'year_of_purchase': 2009
+        },
+        {
+            'parent': 'light',
+            'instance': 7,
+            'original_name': 'utilityrm_lamp',
+            'room': {'name': 'utility'},
+            'components': [{'parent': 'linear fluorescent lamp'}],
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'mobile phone charger',
+            'original_name': 'samsung_charger',
+            'room': {'name': 'bedroom', 'instance': 1},
+            'year_of_purchase': 2012,
+            'manufacturer': 'Samsung'
+        },
+        {
+            'parent': 'light',
+            'instance': 8,
+            'subtype': 'table',
+            'components': [
+                {'parent': 'incandescent lamp'},
+                {'parent': 'dimmer', 'number_of_dimmer_levels': 3 }
+            ],
+            'original_name': 'bedroom_d_lamp',
+            'room': {'name': 'bedroom', 'instance': 1},
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'coffee maker',
+            'original_name': 'coffee_machine',
+            'room': {'name': 'kitchen'},
+            'year_of_purchase': 2010
+        },
+        {
+            'parent': 'radio',
+            'subtype': 'analogue',
+            'original_name': 'kitchen_radio',
+            'room': {'name': 'kitchen'},
+            'year_of_purchase': 2004
+        },
+        {
+            'parent': 'charger',
+            'original_name': 'bedroom_chargers',
+            'room': {'name': 'bedroom', 'instance': 1},
+            'description': 'mobile phone charger and baby monitor RX charger',
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'hair dryer',
+            'original_name': 'hair_dryer',
+            'room': {'name': 'bedroom', 'instance': 1},
+            'year_of_purchase': 2013
+        },
+        {
+            'parent': 'hair straighteners',
+            'original_name': 'straighteners',
+            'room': {'name': 'bedroom', 'instance': 1},
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'clothes iron',
+            'original_name': 'iron',
+            'room': {'name': 'bedroom', 'instance': 1},
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'oven',
+            'original_name': 'gas_oven',
+            'room': {'name': 'kitchen'},
+            'fuel': 'natural gas',
+            'year_of_purchase': 2000
+        },
+        {
+            'parent': 'computer',
+            'original_name': 'data_logger_pc',
+            'do_not_inherit': ['control'],
+            'control': ['always on'],
+            'description': 'data logging PC',
+            'cpu': 'Intel Atom',
+            'room': {'name': 'hall'},
+            'year_of_purchase': 2012
+        },
+        {
+            'parent': 'light',
+            'instance': 9,
+            'subtype': 'table',
+            'components': [{'parent': 'incandescent lamp'}],
+            'year_of_purchase': 2006,
+            'original_name': 'childs_table_lamp',
+            'room': {'name': 'bedroom', 'instance': 2}
+        },
+        {
+            'parent': 'light',
+            'instance': 10,
+            'subtype': 'floor standing',
+            'description': 'reading lamp',
+            'original_name': 'childs_ds_lamp',
+            'components': [{'parent': 'LED lamp'}, {'parent': 'dimmer'}],
+            'room': {'name': 'bedroom', 'instance': 2},
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'baby monitor',
+            'original_name': 'baby_monitor_tx',
+            'subtype': 'baby unit',
+            'room': {'name': 'bedroom', 'instance': 2},
+            'year_of_purchase': 2011
+        },
+        {
+            'parent': 'charger',
+            'original_name': 'battery_charger',
+            'room': {'name': 'study'},
+            'year_of_purchase': 2008
+        },
+        {
+            'parent': 'light',
+            'instance': 11,
+            'components': [{'parent': 'compact fluorescent lamp'}],
+            'original_name': 'office_lamp1',
+            'subtype': 'mood',
+            'room': {'name': 'study'},
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'light',
+            'instance': 12,
+            'components': [{'parent': 'compact fluorescent lamp'}],
+            'original_name': 'office_lamp2',
+            'subtype': 'mood',
+            'room': {'name': 'study'},
+            'year_of_purchase': 2006
+
+        },
+        {
+            'parent': 'light',
+            'instance': 13,
+            'components': [{'parent': 'compact fluorescent lamp'}],
+            'original_name': 'office_lamp3',
+            'subtype': 'table',
+            'room': {'name': 'study'},
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'desktop computer',
+            'original_name': 'office_pc',
+            'room': {'name': 'study'},
+            'year_of_purchase': 2007
+        },
+        {
+            'parent': 'fan',
+            'subtype': 'desk',
+            'original_name': 'office_fan',
+            'room': {'name': 'study'},
+            'year_of_purchase': 2006
+        },
+        {
+            'parent': 'printer',
+            'subtype': 'LED',
+            'original_name': 'LED_printer',
+            'room': {'name': 'study'},
+            'year_of_purchase': 2012
         }
     ],
     2: [],

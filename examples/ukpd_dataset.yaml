@@ -108,6 +108,294 @@ buildings:
         room: {name: kitchen}
         subtype: fridge on top
         year_of_purchase: 2010
+      - meter_ids: [13]
+        original_name: microwave
+        parent: microwave
+        room: {name: kitchen}
+        year_of_purchase: 2006
+      - components:
+        - {diagonal_size: 24, display_technology: LCD, manufacturer: Dell, parent: flat
+            screen}
+        meter_ids: [14]
+        original_name: lcd_office
+        parent: computer monitor
+        room: {name: study}
+        year_of_purchase: 2010
+      - components:
+        - components:
+          - {parent: DAC}
+          parent: audio amplifier
+          year_of_purchase: 2012
+        - {parent: radio, year_of_purchase: 1995}
+        - {parent: CD player, year_of_purchase: 1995}
+        meter_ids: [15]
+        original_name: hifi_office
+        parent: audio system
+        room: {name: study}
+      - meter_ids: [16]
+        original_name: breadmaker
+        parent: breadmaker
+        room: {name: kitchen}
+        year_of_purchase: 2010
+      - meter_ids: [17]
+        original_name: amp_livingroom
+        parent: audio amplifier
+        room: {name: lounge}
+        year_of_purchase: 2004
+      - meter_ids: [18]
+        original_name: adsl_router
+        parent: broadband router
+        room: {name: hall}
+        year_of_purchase: 2006
+      - components:
+        - {parent: compact fluorescent lamp}
+        meter_ids: [19]
+        original_name: livingroom_s_lamp
+        parent: light
+        room: {name: lounge}
+        subtype: floor standing
+        year_of_purchase: 2006
+      - meter_ids: [20]
+        original_name: soldering_iron
+        parent: soldering iron
+        room: {name: study}
+        year_of_purchase: 2011
+      - meter_ids: [21]
+        original_name: gigE_&_USBhub
+        parent: ethernet switch
+        room: {name: study}
+        subtype: 1gigabit
+        year_of_purchase: 2008
+      - meter_ids: [21]
+        original_name: gigE_&_USBhub
+        parent: USB hub
+        room: {name: study}
+        year_of_purchase: 2008
+      - meter_ids: [22]
+        original_name: hoover
+        parent: vacuum cleaner
+        year_of_purchase: 2008
+      - components:
+        - {parent: incandescent lamp}
+        - {number_of_dimmer_levels: 3, parent: dimmer}
+        instance: 2
+        meter_ids: [23]
+        original_name: kitchen_dt_lamp
+        parent: light
+        room: {name: kitchen}
+        subtype: table
+        year_of_purchase: 2006
+      - components:
+        - {parent: incandescent lamp}
+        - {parent: dimmer, subtype: TRIAC}
+        instance: 3
+        meter_ids: [24]
+        original_name: bedroom_ds_lamp
+        parent: light
+        room: {instance: 1, name: bedroom}
+        subtype: floor standing
+        year_of_purchase: 2006
+      - components:
+        - {parent: compact fluorescent lamp}
+        instance: 4
+        meter_ids: [26]
+        original_name: livingroom_s_lamp2
+        parent: light
+        room: {name: lounge}
+        subtype: floor standing
+        year_of_purchase: 2006
+      - manufacturer: Apple
+        meter_ids: [27]
+        original_name: iPad_charger
+        parent: tablet computer charger
+        room: {name: lounge}
+        year_of_purchase: 2012
+      - meter_ids: [28]
+        original_name: subwoofer_livingroom
+        parent: active subwoofer
+        room: {name: lounge}
+        year_of_purchase: 2003
+      - components:
+        - {parent: compact fluorescent lamp}
+        description: throws light onto the wall behind the television
+        instance: 5
+        meter_ids: [29]
+        original_name: livingroom_lamp_tv
+        parent: light
+        room: {name: lounge}
+        subtype: mood
+        year_of_purchase: 2006
+      - meter_ids: [30]
+        original_name: DAB_radio_livingroom
+        parent: radio
+        room: {name: lounge}
+        subtype: DAB
+        year_of_purchase: 2012
+      - components:
+        - {parent: compact fluorescent lamp}
+        instance: 6
+        meter_ids: [31]
+        original_name: kitchen_lamp2
+        parent: light
+        room: {name: kitchen}
+        subtype: floor standing
+        year_of_purchase: 2006
+      - meter_ids: [32]
+        original_name: kitchen_phone&stereo
+        parent: wireless phone charger
+        room: {name: kitchen}
+        year_of_purchase: 2009
+      - meter_ids: [32]
+        original_name: kitchen_phone&stereo
+        parent: audio system
+        room: {name: kitchen}
+        year_of_purchase: 2009
+      - components:
+        - {parent: linear fluorescent lamp}
+        instance: 7
+        meter_ids: [33]
+        original_name: utilityrm_lamp
+        parent: light
+        room: {name: utility}
+        year_of_purchase: 2006
+      - manufacturer: Samsung
+        meter_ids: [34]
+        original_name: samsung_charger
+        parent: mobile phone charger
+        room: {instance: 1, name: bedroom}
+        year_of_purchase: 2012
+      - components:
+        - {parent: incandescent lamp}
+        - {number_of_dimmer_levels: 3, parent: dimmer}
+        instance: 8
+        meter_ids: [35]
+        original_name: bedroom_d_lamp
+        parent: light
+        room: {instance: 1, name: bedroom}
+        subtype: table
+        year_of_purchase: 2006
+      - meter_ids: [36]
+        original_name: coffee_machine
+        parent: coffee maker
+        room: {name: kitchen}
+        year_of_purchase: 2010
+      - meter_ids: [37]
+        original_name: kitchen_radio
+        parent: radio
+        room: {name: kitchen}
+        subtype: analogue
+        year_of_purchase: 2004
+      - description: mobile phone charger and baby monitor RX charger
+        meter_ids: [38]
+        original_name: bedroom_chargers
+        parent: charger
+        room: {instance: 1, name: bedroom}
+        year_of_purchase: 2006
+      - meter_ids: [39]
+        original_name: hair_dryer
+        parent: hair dryer
+        room: {instance: 1, name: bedroom}
+        year_of_purchase: 2013
+      - meter_ids: [40]
+        original_name: straighteners
+        parent: hair straighteners
+        room: {instance: 1, name: bedroom}
+        year_of_purchase: 2006
+      - meter_ids: [41]
+        original_name: iron
+        parent: clothes iron
+        room: {instance: 1, name: bedroom}
+        year_of_purchase: 2006
+      - fuel: natural gas
+        meter_ids: [42]
+        original_name: gas_oven
+        parent: oven
+        room: {name: kitchen}
+        year_of_purchase: 2000
+      - control: [always on]
+        cpu: Intel Atom
+        description: data logging PC
+        do_not_inherit: [control]
+        meter_ids: [43]
+        original_name: data_logger_pc
+        parent: computer
+        room: {name: hall}
+        year_of_purchase: 2012
+      - components:
+        - {parent: incandescent lamp}
+        instance: 9
+        meter_ids: [44]
+        original_name: childs_table_lamp
+        parent: light
+        room: {instance: 2, name: bedroom}
+        subtype: table
+        year_of_purchase: 2006
+      - components:
+        - {parent: LED lamp}
+        - {parent: dimmer}
+        description: reading lamp
+        instance: 10
+        meter_ids: [45]
+        original_name: childs_ds_lamp
+        parent: light
+        room: {instance: 2, name: bedroom}
+        subtype: floor standing
+        year_of_purchase: 2006
+      - meter_ids: [46]
+        original_name: baby_monitor_tx
+        parent: baby monitor
+        room: {instance: 2, name: bedroom}
+        subtype: baby unit
+        year_of_purchase: 2011
+      - meter_ids: [47]
+        original_name: battery_charger
+        parent: charger
+        room: {name: study}
+        year_of_purchase: 2008
+      - components:
+        - {parent: compact fluorescent lamp}
+        instance: 11
+        meter_ids: [48]
+        original_name: office_lamp1
+        parent: light
+        room: {name: study}
+        subtype: mood
+        year_of_purchase: 2006
+      - components:
+        - {parent: compact fluorescent lamp}
+        instance: 12
+        meter_ids: [49]
+        original_name: office_lamp2
+        parent: light
+        room: {name: study}
+        subtype: mood
+        year_of_purchase: 2006
+      - components:
+        - {parent: compact fluorescent lamp}
+        instance: 13
+        meter_ids: [50]
+        original_name: office_lamp3
+        parent: light
+        room: {name: study}
+        subtype: table
+        year_of_purchase: 2006
+      - meter_ids: [51]
+        original_name: office_pc
+        parent: desktop computer
+        room: {name: study}
+        year_of_purchase: 2007
+      - meter_ids: [53]
+        original_name: office_fan
+        parent: fan
+        room: {name: study}
+        subtype: desk
+        year_of_purchase: 2006
+      - meter_ids: [54]
+        original_name: LED_printer
+        parent: printer
+        room: {name: study}
+        subtype: LED
+        year_of_purchase: 2012
       meters:
       - dates_active:
         - {end: '2014-03-11T06:15:06+00:00', start: '2012-11-09T22:28:15+00:00'}

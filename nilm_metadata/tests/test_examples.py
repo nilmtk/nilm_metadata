@@ -83,7 +83,7 @@ class TestSchema(unittest.TestCase):
         print("test_dataset=", time() - t0)
         print("concat_complete_dataset=", t2-t1)
         print("validate_complete_dataset=", t3-t2)
-#        print(yaml.dump(complete_dataset))
+        print(yaml.dump(complete_dataset))
 
 
 if __name__ == '__main__':

@@ -35,6 +35,7 @@ light:
     - night light
     - signage
     - outdoor
+    - mood
 
 # ----------------- LIGHTING COMPONENTS ------------------------ #
 
@@ -105,6 +106,7 @@ dimmer:
   additional_properties:
     number_of_dimmer_levels:
       type: integer
+      description: not including OFF
 
   subtypes:
   - TRIAC

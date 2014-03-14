@@ -31,9 +31,6 @@ laptop computer:
 desktop computer:
   parent: computer
 
-tablet computer:
-  parent: computer
-
 HTPC:
   parent: computer
   synonyms: [Home Theatre PC]
@@ -94,7 +91,13 @@ multi-function device:
 charger:
   parent: ICT appliance
 
-phone charger:
+mobile phone charger:
+  parent: charger
+
+wireless phone charger:
+  parent: charger
+
+tablet computer charger:
   parent: charger
 
 #------------- ICT MISC -------------
@@ -105,8 +108,14 @@ external hard drive:
 broadband router:
   parent: ICT appliance
 
-ethernet hub or switch:
+ethernet switch:
   parent: ICT appliance
+  subtypes:
+    - 1gigabit
+    - 100metabit
+
+ethernet hub:
+  parent: ethernet switch
 
 USB hub:
   parent: ICT appliance
