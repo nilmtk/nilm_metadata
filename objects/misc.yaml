@@ -1,4 +1,5 @@
 manual misc appliance:
+  parent: appliance
   control: [manual]
 
 #--------- DOMESTIC TOOLS -------------

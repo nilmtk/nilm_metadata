@@ -25,7 +25,6 @@ TODO:
 * copy details from schema/appliance_old.json and old/
 
 * finish convert_ukpd.py.
-  * check that we don't have more than one instance per name
   * convert info from my README and my various metadata files on
     on_power_threshold etc
   * email to UKERC EDC

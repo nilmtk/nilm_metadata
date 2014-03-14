@@ -1,5 +1,6 @@
 component:
   parent: null
+  instance: 1
 
 # ----------------- COMPONENTS ------------------------ #
 

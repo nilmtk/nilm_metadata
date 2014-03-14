@@ -68,6 +68,19 @@ def validate_complete_meters(meters):
 def validate_complete_appliances(appliances):
     # Validate each appliance (because we insert additional properties
     # so validation cannot be done without some schema pre-processing)
+    appliance_ids = [] # name and instance
     for appliance_obj in appliances:
         validate_complete_appliance(appliance_obj)
+        try:
+            appliance_id = (appliance_obj['name'], appliance_obj['instance'])
+        except KeyError as e:
+            raise KeyError("problem with '" + appliance_obj.get('name') + "': " +
+                           "KeyError:" + str(e))
+            
+        if appliance_id in appliance_ids:
+            raise ValidationError("multiple appliances names with the same"
+                                  " instance number! For appliance '{}'!"
+                                  .format(appliance_id))
+        else:
+            appliance_ids.append(appliance_id)
 

@@ -146,26 +146,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'original_name': 'kitchen_lights',
-            'description': '10 50W downlights in the kitchen ceiling',
-            'subtype': 'ceiling downlight',
-            'room': {'name': 'kitchen'},
-            'main_room_light': True,
-            'components': [
-                {
-                    'parent': 'incandescent lamp',
-                    'count': 10,
-                    'nominal_consumption': { 'on_power': 50 }
-                },
-                {
-                    'parent': 'dimmer', 'subtype': 'TRIAC'
-                }
-            ],
-            'nominal_consumption': { 'on_power': 500 },
-            'dates_active': [{'end': '2013-04-25T07:59:00+01:00'}]
-        },
-        {
-            'parent': 'light',
+            'instance': 1,
             'original_name': 'kitchen_lights',
             'description': '10 LED downlights in the kitchen ceiling',
             'subtype': 'ceiling downlight',
@@ -183,7 +164,30 @@ appliances_for_each_building = {
                 }
             ],
             'nominal_consumption': { 'on_power': 100 },
-            'dates_active': [{'start': '2013-04-25T08:00:00+01:00'}]
+            'dates_active': [{'start': '2013-04-25T08:00:00+01:00'}],
+            "description": "the new, efficient kitchen ceiling lights.  Prior to 2013-04-25 we used incandescent lamps"
+        },
+        {
+            'parent': 'light',
+            'instance': 2,
+            'original_name': 'kitchen_lights',
+            'description': '10 50W downlights in the kitchen ceiling',
+            'subtype': 'ceiling downlight',
+            'room': {'name': 'kitchen'},
+            'main_room_light': True,
+            'components': [
+                {
+                    'parent': 'incandescent lamp',
+                    'count': 10,
+                    'nominal_consumption': { 'on_power': 50 }
+                },
+                {
+                    'parent': 'dimmer', 'subtype': 'TRIAC'
+                }
+            ],
+            'nominal_consumption': { 'on_power': 500 },
+            'dates_active': [{'end': '2013-04-25T07:59:00+01:00'}],
+            "description": "the old, inefficient kitchen ceiling lights.  After 2013-04-25 we used LED lamps"
         },
         {
             'parent': 'HTPC',
@@ -270,6 +274,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
+            'instance': 3,
             'original_name': 'livingroom_s_lamp',
             'room': {'name': 'lounge'},
             'subtype': 'floor standing',
@@ -302,7 +307,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'instance': 2,
+            'instance': 4,
             'subtype': 'table',
             'original_name': 'kitchen_dt_lamp',
             'room': {'name': 'kitchen'},
@@ -314,7 +319,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'instance': 3,
+            'instance': 5,
             'subtype': 'floor standing',
             'original_name': 'bedroom_ds_lamp',
             'room': {'name': 'bedroom', 'instance': 1},
@@ -326,7 +331,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'instance': 4,
+            'instance': 6,
             'subtype': 'floor standing',
             'original_name': 'livingroom_s_lamp2',
             'room': {'name': 'lounge'},
@@ -348,7 +353,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'instance': 5,
+            'instance': 7,
             'original_name': 'livingroom_lamp_tv',
             'room': {'name': 'lounge'},
             'year_of_purchase': 2006,
@@ -365,7 +370,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'instance': 6,
+            'instance': 8,
             'subtype': 'floor standing',
             'original_name': 'kitchen_lamp2',
             'components': [{'parent': 'compact fluorescent lamp'}],
@@ -380,13 +385,14 @@ appliances_for_each_building = {
         },
         {
             'parent': 'audio system',
+            'instance': 2,
             'original_name': 'kitchen_phone&stereo',
             'room': {'name': 'kitchen'},
             'year_of_purchase': 2009
         },
         {
             'parent': 'light',
-            'instance': 7,
+            'instance': 9,
             'original_name': 'utilityrm_lamp',
             'room': {'name': 'utility'},
             'components': [{'parent': 'linear fluorescent lamp'}],
@@ -401,7 +407,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'instance': 8,
+            'instance': 10,
             'subtype': 'table',
             'components': [
                 {'parent': 'incandescent lamp'},
@@ -419,17 +425,35 @@ appliances_for_each_building = {
         },
         {
             'parent': 'radio',
+            'instance': 2,
             'subtype': 'analogue',
             'original_name': 'kitchen_radio',
             'room': {'name': 'kitchen'},
             'year_of_purchase': 2004
         },
         {
-            'parent': 'charger',
+            'parent': 'mobile phone charger',
+            'instance': 2,
             'original_name': 'bedroom_chargers',
             'room': {'name': 'bedroom', 'instance': 1},
-            'description': 'mobile phone charger and baby monitor RX charger',
-            'year_of_purchase': 2006
+            'year_of_purchase': 2012,
+            'manufacturer': 'Apple'
+        },
+        {
+            'parent': 'baby monitor',
+            'subtype': 'parent unit',
+            'instance': 2,
+            'original_name': 'bedroom_chargers',
+            'room': {'name': 'bedroom', 'instance': 1},
+            'year_of_purchase': 2011
+        },
+        {
+            'parent': 'radio',
+            'instance': 3,
+            'subtype': 'DAB',
+            'original_name': 'bedroom_chargers',
+            'room': {'name': 'bedroom', 'instance': 1},
+            'year_of_purchase': 2012
         },
         {
             'parent': 'hair dryer',
@@ -468,7 +492,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'instance': 9,
+            'instance': 11,
             'subtype': 'table',
             'components': [{'parent': 'incandescent lamp'}],
             'year_of_purchase': 2006,
@@ -477,7 +501,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'instance': 10,
+            'instance': 12,
             'subtype': 'floor standing',
             'description': 'reading lamp',
             'original_name': 'childs_ds_lamp',
@@ -500,7 +524,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'instance': 11,
+            'instance': 13,
             'components': [{'parent': 'compact fluorescent lamp'}],
             'original_name': 'office_lamp1',
             'subtype': 'mood',
@@ -509,7 +533,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'instance': 12,
+            'instance': 14,
             'components': [{'parent': 'compact fluorescent lamp'}],
             'original_name': 'office_lamp2',
             'subtype': 'mood',
@@ -519,7 +543,7 @@ appliances_for_each_building = {
         },
         {
             'parent': 'light',
-            'instance': 13,
+            'instance': 15,
             'components': [{'parent': 'compact fluorescent lamp'}],
             'original_name': 'office_lamp3',
             'subtype': 'table',

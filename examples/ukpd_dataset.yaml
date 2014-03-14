@@ -58,21 +58,6 @@ buildings:
         year_of_manufacture: 2001
       - components:
         - count: 10
-          nominal_consumption: {on_power: 50}
-          parent: incandescent lamp
-        - {parent: dimmer, subtype: TRIAC}
-        dates_active:
-        - {end: '2013-04-25T07:59:00+01:00'}
-        description: 10 50W downlights in the kitchen ceiling
-        main_room_light: true
-        meter_ids: [8]
-        nominal_consumption: {on_power: 500}
-        original_name: kitchen_lights
-        parent: light
-        room: {name: kitchen}
-        subtype: ceiling downlight
-      - components:
-        - count: 10
           manufacturer: Philips
           model: Dimmable MASTER LED 10W MR16 GU5.3 24degrees 2700K 12v
           nominal_consumption: {on_power: 10}
@@ -80,12 +65,31 @@ buildings:
         - {parent: dimmer, subtype: TRIAC}
         dates_active:
         - {start: '2013-04-25T08:00:00+01:00'}
-        description: 10 LED downlights in the kitchen ceiling
+        description: the new, efficient kitchen ceiling lights.  Prior to 2013-04-25
+          we used incandescent lamps
+        instance: 1
         main_room_light: true
         meter_ids: [8]
         nominal_consumption: {on_power: 100}
         original_name: kitchen_lights
         parent: light
+        subtype: ceiling downlight
+      - components:
+        - count: 10
+          nominal_consumption: {on_power: 50}
+          parent: incandescent lamp
+        - {parent: dimmer, subtype: TRIAC}
+        dates_active:
+        - {end: '2013-04-25T07:59:00+01:00'}
+        description: the old, inefficient kitchen ceiling lights.  After 2013-04-25
+          we used LED lamps
+        instance: 2
+        main_room_light: true
+        meter_ids: [8]
+        nominal_consumption: {on_power: 500}
+        original_name: kitchen_lights
+        parent: light
+        room: {name: kitchen}
         subtype: ceiling downlight
       - meter_ids: [9]
         original_name: htpc
@@ -149,6 +153,7 @@ buildings:
         year_of_purchase: 2006
       - components:
         - {parent: compact fluorescent lamp}
+        instance: 3
         meter_ids: [19]
         original_name: livingroom_s_lamp
         parent: light
@@ -178,7 +183,7 @@ buildings:
       - components:
         - {parent: incandescent lamp}
         - {number_of_dimmer_levels: 3, parent: dimmer}
-        instance: 2
+        instance: 4
         meter_ids: [23]
         original_name: kitchen_dt_lamp
         parent: light
@@ -188,7 +193,7 @@ buildings:
       - components:
         - {parent: incandescent lamp}
         - {parent: dimmer, subtype: TRIAC}
-        instance: 3
+        instance: 5
         meter_ids: [24]
         original_name: bedroom_ds_lamp
         parent: light
@@ -197,7 +202,7 @@ buildings:
         year_of_purchase: 2006
       - components:
         - {parent: compact fluorescent lamp}
-        instance: 4
+        instance: 6
         meter_ids: [26]
         original_name: livingroom_s_lamp2
         parent: light
@@ -218,7 +223,7 @@ buildings:
       - components:
         - {parent: compact fluorescent lamp}
         description: throws light onto the wall behind the television
-        instance: 5
+        instance: 7
         meter_ids: [29]
         original_name: livingroom_lamp_tv
         parent: light
@@ -233,7 +238,7 @@ buildings:
         year_of_purchase: 2012
       - components:
         - {parent: compact fluorescent lamp}
-        instance: 6
+        instance: 8
         meter_ids: [31]
         original_name: kitchen_lamp2
         parent: light
@@ -245,14 +250,15 @@ buildings:
         parent: wireless phone charger
         room: {name: kitchen}
         year_of_purchase: 2009
-      - meter_ids: [32]
+      - instance: 2
+        meter_ids: [32]
         original_name: kitchen_phone&stereo
         parent: audio system
         room: {name: kitchen}
         year_of_purchase: 2009
       - components:
         - {parent: linear fluorescent lamp}
-        instance: 7
+        instance: 9
         meter_ids: [33]
         original_name: utilityrm_lamp
         parent: light
@@ -267,7 +273,7 @@ buildings:
       - components:
         - {parent: incandescent lamp}
         - {number_of_dimmer_levels: 3, parent: dimmer}
-        instance: 8
+        instance: 10
         meter_ids: [35]
         original_name: bedroom_d_lamp
         parent: light
@@ -279,18 +285,34 @@ buildings:
         parent: coffee maker
         room: {name: kitchen}
         year_of_purchase: 2010
-      - meter_ids: [37]
+      - instance: 2
+        meter_ids: [37]
         original_name: kitchen_radio
         parent: radio
         room: {name: kitchen}
         subtype: analogue
         year_of_purchase: 2004
-      - description: mobile phone charger and baby monitor RX charger
+      - instance: 2
+        manufacturer: Apple
         meter_ids: [38]
         original_name: bedroom_chargers
-        parent: charger
+        parent: mobile phone charger
         room: {instance: 1, name: bedroom}
-        year_of_purchase: 2006
+        year_of_purchase: 2012
+      - instance: 2
+        meter_ids: [38]
+        original_name: bedroom_chargers
+        parent: baby monitor
+        room: {instance: 1, name: bedroom}
+        subtype: parent unit
+        year_of_purchase: 2011
+      - instance: 3
+        meter_ids: [38]
+        original_name: bedroom_chargers
+        parent: radio
+        room: {instance: 1, name: bedroom}
+        subtype: DAB
+        year_of_purchase: 2012
       - meter_ids: [39]
         original_name: hair_dryer
         parent: hair dryer
@@ -323,7 +345,7 @@ buildings:
         year_of_purchase: 2012
       - components:
         - {parent: incandescent lamp}
-        instance: 9
+        instance: 11
         meter_ids: [44]
         original_name: childs_table_lamp
         parent: light
@@ -334,7 +356,7 @@ buildings:
         - {parent: LED lamp}
         - {parent: dimmer}
         description: reading lamp
-        instance: 10
+        instance: 12
         meter_ids: [45]
         original_name: childs_ds_lamp
         parent: light
@@ -354,7 +376,7 @@ buildings:
         year_of_purchase: 2008
       - components:
         - {parent: compact fluorescent lamp}
-        instance: 11
+        instance: 13
         meter_ids: [48]
         original_name: office_lamp1
         parent: light
@@ -363,7 +385,7 @@ buildings:
         year_of_purchase: 2006
       - components:
         - {parent: compact fluorescent lamp}
-        instance: 12
+        instance: 14
         meter_ids: [49]
         original_name: office_lamp2
         parent: light
@@ -372,7 +394,7 @@ buildings:
         year_of_purchase: 2006
       - components:
         - {parent: compact fluorescent lamp}
-        instance: 13
+        instance: 15
         meter_ids: [50]
         original_name: office_lamp3
         parent: light
