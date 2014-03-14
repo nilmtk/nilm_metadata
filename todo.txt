@@ -23,12 +23,8 @@ key:value pairs where subclasses override previous values (just use dict.update)
 TODO:
 
 * finish convert_ukpd.py.
-  * do houses 2-4
-  * convert info from my README and my various metadata files on
-    on_power_threshold etc
+  * upload minimal and concatenated UKPD metadata to git
   * email to UKERC EDC
-
-* test with details in my spreadsheet sketch of ideas.        
 
 * tool to generate graphical model of relationship between objects in
   /objects and also in a dataset metadata
@@ -68,6 +64,12 @@ IF TIME:
 
 
 DONE:
+
+* test with details in my spreadsheet sketch of ideas.        
+
+* do houses 2-4   
+* convert info from my README and my various metadata files on
+  on_power_threshold etc
 
 * copy details from schema/appliance_old.json and old/
 
