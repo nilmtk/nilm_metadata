@@ -7,22 +7,30 @@ Default properties for appliances and meters are also provided.
 
 NILM Metadata aims to provide:
 
-* a schema for describing:
-  * domestic appliances
-    * a controlled vocabulary for appliance names and categories
-    * a list of time periods when each appliance was active
-    * each appliance can contain any number of components (e.g. a
-      light fitting can contain multiple lamps and a dimmer)
-    * prior knowledge about the distribution of variables such as:
-      * on power
-      * on duration
-      * usage in terms of hour per day
-      * appliance correlations (e.g. that the TV is usually on if the
-        games console is on)
-  * electricity meters (whole-home and individual appliance meters)
-    * a controlled vocabulary for measurements
-    * wiring hierarchy of meters
-  * a mapping of which appliances are connected to which meters
+### A schema for describing:
+
+* domestic appliances
+  * a controlled vocabulary for appliance names and categories
+  * a list of time periods when each appliance was active
+  * each appliance can contain any number of components (e.g. a
+    light fitting can contain multiple lamps and a dimmer)
+  * prior knowledge about the distribution of variables such as:
+    * on power
+    * on duration
+    * usage in terms of hour per day
+    * appliance correlations (e.g. that the TV is usually on if the
+      games console is on)
+* electricity meters (whole-home and individual appliance meters)
+  * a controlled vocabulary for measurements
+  * wiring hierarchy of meters
+* a mapping of which appliances are connected to which meters
+
+### A database of appliance types and specific makes and models
+
+* standard properties and priors for each appliance
+* valid additional properties for each appliance
+
+### Further details
 
 NILM Metadata uses [JSON Schema](http://json-schema.org/) to define
 the syntactic elements of the schema and then uses a simple but
@@ -35,12 +43,15 @@ and adds any properties it needs.  In this way, we can embrace the
 ["don't repeat yourself (DRY)"](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 principal by exploiting the relationship between appliances.
 
-The metadata itself is [YAML](http://en.wikipedia.org/wiki/YAML).
+The metadata itself can be either
+[YAML](http://en.wikipedia.org/wiki/YAML) or JSON.
 
 The aim is that NILM Metadata can be used as a stand-alone project to
 specify the metadata for any NILM dataset; and that metadata can then
 be used with the open-source energy disaggregation and analytics
 framework [NILMTK](http://nilmtk.github.io/).
+
+Please jump in and add to or modify the schema and database of objects!
 
 Example
 =======
@@ -256,15 +267,42 @@ buildings:
 Version numbering and contributing
 ==================================
 
-The current release is version 0.1.  There are definitely plenty of
+The current release is version 0.1.0.  There are definitely plenty of
 improvements that can be made so please submit pull requests for the
 dev version!
 
+Installation
+============
 
-Validating a new JSON file against the schema
-=============================================
+```
+sudo python setup.py install
+```
 
-TODO
+Or, if you want to develop:
+
+```
+sudo python setup.py install
+```
+
+Concatenating and validating a new metadata file against the schema
+===================================================================
+
+Say you have written a new metadata file called `my_metadata.yaml` and
+you want to concatenate (merge) your data with the data in
+NILM_metadata and then validate the resulting metadata.
+
+```
+$ cd scripts
+$ ./process.py my_metadata.yaml -o my_metadata_concatenated.yaml
+
+Loading my_metadata.yaml ... done loading.
+
+Concatenating... done concatenating.
+
+Dumping output to my_metadata_concatenated.yaml ... Done dumping output.
+
+Validating... done validation!  It passed!
+```
 
 
 Related projects
@@ -289,17 +327,3 @@ Testing
 ```
 nosetests --nocapture
 ```
-
-
-Validating without network access
-=================================
-
-To maximise code re-use, individual schema files reference other
-schema files.  Files referred to from
-each schema are loaded from github.
-
-If you need to do validation without network
-access then it should be possible but will require a bit of hacking.
-I think you would first need to remove all the "id" properties from
-every schema file and then use a code snippet like
-[this one](https://github.com/Julian/jsonschema/issues/98#issuecomment-17531405).
