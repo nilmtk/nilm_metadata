@@ -30,6 +30,9 @@ kettle:
 toaster:
   parent: small resistive cooking appliance
 
+toasted sandwich maker:
+  parent: small resistive cooking appliance
+
 fryer:
   parent: small resistive cooking appliance
 
@@ -77,6 +80,9 @@ food processor:
       - single-phase induction motor
       - capacitor start-run
       - constant torque
+
+kitchen aid:
+  parent: food processor
 
 yoghurt maker:
   parent: small cooking appliance

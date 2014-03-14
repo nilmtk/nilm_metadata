@@ -20,6 +20,10 @@
                 "type": "string",
                 "description": "relative path of data"
             },
+            "warning": { 
+                "type": "string", 
+                "description": "any issues to be aware of."
+            },
             "submeter_of": { 
                 "type": "integer",
                 "minimum": 0,

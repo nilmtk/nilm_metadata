@@ -1,6 +1,6 @@
 CE appliance:
   parent: appliance
-  categories: &CDCategories
+  categories: &CECategories
     traditional: consumer electronics
     size: small
     google_shopping:
@@ -117,7 +117,9 @@ smoke alarm:
 
 fan:
   parent: motor
-  categories: *CDCategories
+  categories: *CECategories
   subtypes:
     - desk
     - ceiling
+    - extractor
+    - single-room MVHR # mechanical ventilation with heat recovery

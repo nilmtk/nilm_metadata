@@ -86,7 +86,8 @@ building_metadata = {
             {"name": "bathroom", "instance": 1, "floor": 1, 
              "description": "shower + bath + toilet + sink + cupboards "
              "+ hot water tank + boiler + solar thermal pumping station"}
-        ]
+        ],
+        "description": "Some individual appliance meters are switched off from the socket for significant portions of time.  These include (using original names): laptop, kettle, toaster, lcd_office, hifi_office, livingroom_s_lamp, soldering_iron, gigE_&_USBhub, hoover, iPad_charger, utilityrm_lamp, hair_dryer, straighteners, iron, childs_ds_lamp, office_lamp3, office_pc, gigE_switch"
     },
     2: {},
     3: {},
@@ -99,13 +100,15 @@ appliances_for_each_building = {
             'parent': 'Worcester~Greenstar 30CDi Conventional natural gas',
             'room': {'name': 'bathroom'},
             'original_name': 'boiler',
-            'year_of_purchase': 2011
+            'year_of_purchase': 2011,
+            'description': 'includes all electronics associated with the boiler including the central heating pump, the hot water pump, the bathroom underfloor heating pump, the boiler controller, the boiler itself. Over winter the central heating is on 24 hrs and is controlled by our portable wireless thermostat which is usually set at 18-20 degrees C and is put in the room we want to be the most comfortable. Prior to 3rd May 2013, the hot water was set to come on from 0630-0700 and 1630-1700.  After 3rd May the HW comes on 0650-0700 and 1650-1700.'
         },
         {
             'parent': 'Navitron~Solar Thermal Pumping Station',
             'room': {'name': 'bathroom'},
             'original_name': 'solar_thermal_pump',
-            'year_of_purchase': 2011
+            'year_of_purchase': 2011,
+            'description': 'includes all electronics associated with the evacuated-tube solar hot water system including the water pump and control electronics.'
         },
         {
             'parent': 'HP~ProBook 6450b',
@@ -133,6 +136,7 @@ appliances_for_each_building = {
         {
             'parent': 'television',
             'original_name': 'tv',
+            'on_power_threshold': 10,
             'year_of_manufacture': 2001,
             'manufacturer': 'Panasonic',
             'components': [
@@ -165,7 +169,7 @@ appliances_for_each_building = {
             ],
             'nominal_consumption': { 'on_power': 100 },
             'dates_active': [{'start': '2013-04-25T08:00:00+01:00'}],
-            "description": "the new, efficient kitchen ceiling lights.  Prior to 2013-04-25 we used incandescent lamps"
+            "description": "the new, efficient kitchen ceiling lights.  Prior to 2013-04-25 we used incandescent lamps.  The kitchen receives very little natural light hence the kitchen lights are used a lot."
         },
         {
             'parent': 'light',
@@ -187,16 +191,32 @@ appliances_for_each_building = {
             ],
             'nominal_consumption': { 'on_power': 500 },
             'dates_active': [{'end': '2013-04-25T07:59:00+01:00'}],
-            "description": "the old, inefficient kitchen ceiling lights.  After 2013-04-25 we used LED lamps"
+            "description": "the old, inefficient kitchen ceiling lights.  After 2013-04-25 we used LED lamps. The kitchen receives very little natural light hence the kitchen lights are used a lot.   5th April 2013 1450 BST: replaced 1x50W halogen with 10W 12V Philips dimmable LED. 10th April 2013: replaced 1x50W halogen with 8W 12V MegaMan Dimmable LED. 25th April 2013 0800 BST: all 10 light fittings are now 10W 12V Philips dimmable LEDs."
         },
         {
             'parent': 'HTPC',
             'original_name': 'htpc',
+            'on_power_threshold': 20,
             'year_of_purchase': 2008,
-            'room': {'name': 'lounge'}
+            'room': {'name': 'lounge'},
+            'description': 'home theatre PC. The only AV source for the TV. Also turns itself on to record FreeView programs. Also used for playing music occasionally.'
         },
         {
             'parent': 'kettle',
+            'original_name': 'kettle',
+            'year_of_purchase': 2007,
+            'room': {'name': 'kitchen'},
+            'on_power_threshold': 2000
+        },
+        {
+            'parent': 'food processor',
+            'manufacturer': 'Breville',
+            'original_name': 'kettle',
+            'year_of_purchase': 2007,
+            'room': {'name': 'kitchen'}
+        },
+        {
+            'parent': 'toasted sandwich maker',
             'original_name': 'kettle',
             'year_of_purchase': 2007,
             'room': {'name': 'kitchen'}
@@ -205,12 +225,29 @@ appliances_for_each_building = {
             'parent': 'toaster',
             'original_name': 'toaster',
             'year_of_purchase': 2009,
+            'room': {'name': 'kitchen'},
+            'on_power_threshold': 1000
+        },
+        {
+            'parent': 'kitchen aid',
+            'manufacturer': 'Artisan',
+            'original_name': 'toaster',
+            'year_of_purchase': 2009,
+            'room': {'name': 'kitchen'}
+        },
+        {
+            'parent': 'food processor',
+            'instance': 2,
+            'original_name': 'toaster',
+            'manufacturer': 'Kenwood',
+            'year_of_purchase': 2009,
             'room': {'name': 'kitchen'}
         },
         {
             'parent': 'fridge freezer',
             'subtype': 'fridge on top',
             'original_name': 'fridge',
+            'on_power_threshold': 50,
             'year_of_purchase': 2010,
             'room': {'name': 'kitchen'}
         },
@@ -218,6 +255,7 @@ appliances_for_each_building = {
             'parent': 'microwave',
             'original_name': 'microwave',
             'room': {'name': 'kitchen'},
+            'on_power_threshold': 5,
             'year_of_purchase': 2006
         },
         {
@@ -285,6 +323,9 @@ appliances_for_each_building = {
             'parent': 'soldering iron',
             'original_name': 'soldering_iron',
             'room': {'name': 'study'},
+            'description': 'temperature controlled',
+            'manufacturer': 'Xytronic',
+            'model': '168-3CD',
             'year_of_purchase': 2011
         },
         {
@@ -428,6 +469,7 @@ appliances_for_each_building = {
             'instance': 2,
             'subtype': 'analogue',
             'original_name': 'kitchen_radio',
+            'on_power_threshold': 2,
             'room': {'name': 'kitchen'},
             'year_of_purchase': 2004
         },
@@ -435,6 +477,7 @@ appliances_for_each_building = {
             'parent': 'mobile phone charger',
             'instance': 2,
             'original_name': 'bedroom_chargers',
+            'on_power_threshold': 1,
             'room': {'name': 'bedroom', 'instance': 1},
             'year_of_purchase': 2012,
             'manufacturer': 'Apple'
@@ -444,6 +487,7 @@ appliances_for_each_building = {
             'subtype': 'parent unit',
             'instance': 2,
             'original_name': 'bedroom_chargers',
+            'on_power_threshold': 1,
             'room': {'name': 'bedroom', 'instance': 1},
             'year_of_purchase': 2011
         },
@@ -451,6 +495,7 @@ appliances_for_each_building = {
             'parent': 'radio',
             'instance': 3,
             'subtype': 'DAB',
+            'on_power_threshold': 1,
             'original_name': 'bedroom_chargers',
             'room': {'name': 'bedroom', 'instance': 1},
             'year_of_purchase': 2012
@@ -476,6 +521,7 @@ appliances_for_each_building = {
         {
             'parent': 'oven',
             'original_name': 'gas_oven',
+            'on_power_threshold': 10,
             'room': {'name': 'kitchen'},
             'fuel': 'natural gas',
             'year_of_purchase': 2000
@@ -514,7 +560,8 @@ appliances_for_each_building = {
             'original_name': 'childs_ds_lamp',
             'components': [{'parent': 'LED lamp'}, {'parent': 'dimmer'}],
             'room': {'name': 'bedroom', 'instance': 2},
-            'year_of_purchase': 2006
+            'year_of_purchase': 2012,
+            'description': 'Prior to around 1st April 2013 it was a dimmable CFL.  But that blew so we changed to a 75W incandesent for a little while.  Then on 10th April 2013 we changed it to a Philips MASTER LEDBULB 8W dimmable.  This information has not been modelled in this schema, but it could be.'
         },
         {
             'parent': 'baby monitor',
@@ -576,6 +623,62 @@ appliances_for_each_building = {
             'original_name': 'LED_printer',
             'room': {'name': 'study'},
             'year_of_purchase': 2012
+        },
+        #### -- APPLIANCES NOT SUBMETERED: ---- ###
+        {
+            'parent': 'immersion heater',
+            'description': 'It has never been used and would only ever be used if the boiler broke.',
+            'meter_ids': [0],
+            'room': {'name': 'bathroom'},
+            'year_of_purchase': 2012
+        },
+        {
+            'parent': 'water pump',
+            'description': 'Very efficient under-floor heating water pump.  Uses about 5 watts when running.',
+            'meter_ids': [0],
+            'room': {'name': 'lounge'},
+            'year_of_purchase': 2010
+        },
+        {
+            'parent': 'security alarm',
+            'description': 'Always on.  Appears to use about 10 watts.  Was turned off Sunday 11th August 2013',
+            'meter_ids': [0],
+            'room': {'name': 'hall'},
+            'year_of_purchase': 2008,
+            'dates_active': [{'end': '2013-08-11'}]
+        },
+        {
+            'parent': 'fan',
+            'instance': 2,
+            'subtype': 'single-room MVHR',
+            'description': 'Bathroom extractor fan (MVHR). On for most of the time during winter months (in summer we turn the fan off and open the window). Has 2 modes: trickle and boost.  Boost is triggered using a manual pull-cord when necessary. Only uses about 2 watts in trickle mode and about 10 watts in boost mode.',
+            'meter_ids': [0],
+            'room': {'name': 'bathroom'},
+            'year_of_purchase': 2012          
+        },
+        {
+            'parent': 'drill', 
+            'description': 'Used: Sat 13/04/2013 17:43 BST for one short burst.  And other times, not logged.',
+            'meter_ids': [0],
+            'year_of_purchase': 2009
+        },
+        {
+            'parent': 'laptop computer', 
+            'instance': 2,
+            'manufacturer': 'Dell',
+            'meter_ids': [0],
+            'year_of_purchase': 2012,
+            'description': 'Charged 09:21 BST Sat 4th May 2013 and lots of other times subsequently.'
+        },
+        {
+            'parent': 'light',
+            'count': 9,
+            'original_name': 'lighting_circuit',
+            'instance': 16,
+            'description': 'all the lights on the lighting circuit.  Mostly undimmable CFLs.  One dimmable LED.  One dimmable incandescent.',
+            'categories': {
+                'electrical': ["incandescent", "fluorescent", "compact", "LED"]
+            }
         }
     ],
     2: [
@@ -815,10 +918,12 @@ for building_i in range(1,N_BULDINGS+1):
                           'parent': 'CurrentCost~Tx'})
         elif building_i == 1 and label in ['boiler', 'solar_thermal_pump', 'lighting_circuit']:
             meter.update({"submeter_of": 0 if mains_exists else 1,
-                          'parent': 'CurrentCost~Tx'})            
+                          'parent': 'CurrentCost~Tx'})
         else:
             meter.update({"submeter_of": 0 if mains_exists else 1,
                           'parent': 'EDFEnergy~EcoManagerTxPlug'})
+            if building_i == 1 and label == 'toaster':
+                meter.update({'warning': 'For the five days from Mon 24th June 2013 to Fri 28th June we had someone staying at the house who occassionally swapped the toaster and kettle around (i.e. the toaster was plugged into the kettle sensor and visa-versa!) and also appeared to plug the hoover sensor into the kettle sensor (i.e. both the hoover and kettle sensor would have recorded the same appliance for a few hours).'})
 
         meters.append(meter)
         
@@ -843,7 +948,8 @@ for building_i in range(1,N_BULDINGS+1):
     # infer meter IDs from original_name and labels.dat
     for i in range(len(appliances)):
         appliance = appliances[i]
-        appliance['meter_ids'] = [chan_for_label(appliance['original_name'], labels)]
+        if not appliance.get('meter_ids'):
+            appliance['meter_ids'] = [chan_for_label(appliance['original_name'], labels)]
     
     electric['appliances'] = appliances
     

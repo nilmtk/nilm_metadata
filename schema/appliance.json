@@ -13,7 +13,7 @@
             "instance": { "$ref": "instance.json" },
             "meter_ids": { 
                 "type": "array", 
-                "items": { "$ref": "instance.json" },
+                "items": { "type": "integer", "minimum": 0 },
                 "unique": true,
                 "description": "An array of the meter ID(s) used to monitor this appliance."
             },

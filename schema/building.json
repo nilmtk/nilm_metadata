@@ -12,6 +12,7 @@
             "type": "string", 
             "desciption": "The original name for this building from the original dataset"
         },
+        "description": { "type": "string" },
         "geo_location": {
             "type": "object",
             "properties": {

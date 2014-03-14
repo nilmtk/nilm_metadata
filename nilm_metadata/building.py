@@ -3,7 +3,8 @@ import json
 from jsonschema import validate, ValidationError
 from os.path import join
 
-from object_concatenation import concatenate_complete_object, get_ancestors
+from object_concatenation import (concatenate_complete_object, get_ancestors, 
+                                  ObjectConcatenationError)
 from file_management import get_schema_directory
 from appliance import concatenate_complete_appliance, validate_complete_appliance
 from schema_preprocessing import combine, local_validate
@@ -29,7 +30,13 @@ def concatenate_complete_building(building_obj, object_cache):
 
     meters = get_meters(complete_building)
     for i, meter_obj in enumerate(meters):
-        meters[i] = concatenate_complete_object(meter_obj['parent'], 
+        try:
+            parent_name = meter_obj['parent']
+        except KeyError as e:
+            raise ObjectConcatenationError("Meter id '{}' in 'building {}' has no 'parent'"
+                                           .format(meter_obj.get('meter_id'), 
+                                                   building_obj.get('building_id')))
+        meters[i] = concatenate_complete_object(parent_name, 
                                                 object_cache,
                                                 child_object=meter_obj,
                                                 do_not_inherit_extension_list=['name'])
