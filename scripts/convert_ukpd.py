@@ -602,7 +602,7 @@ dataset_start = None
 dataset_end = None
 for building_i in range(1,N_BULDINGS+1):
     building = building_metadata[building_i]
-    building['id'] = building_i
+    building['building_id'] = building_i
     building.update({'utilities': {'electric': {'meters': [], 'appliances': []}}})
     building['dataset'] = dataset['short_title']
     dataset['buildings'].append(building)
@@ -628,9 +628,10 @@ for building_i in range(1,N_BULDINGS+1):
         if building_end is None or end > building_end:
             building_end = end
 
-        meter = {'id': chan,
+        meter = {'meter_id': chan,
                  'dates_active': [ timeframe(start, end) ],
-                 'original_name': label}
+                 'original_name': label,
+                 'data_location': 'house_{:d}/channel_{:d}.dat'.format(building_i, chan)}
         if label == 'aggregate':
             meter.update({"site_meter": True,
                           'parent': 'EDFEnergy~EcoManagerWholeHouseTx'})
@@ -651,7 +652,9 @@ for building_i in range(1,N_BULDINGS+1):
             'parent': 'JackKelly~SoundCardPowerMeter',
             'dates_active': [timeframe(start_time(mains), end_time(mains))],
             'site_meter': True,
-            'id': len(meters)})
+            'meter_id': len(meters),
+            'data_location': 'house_{:d}/mains.dat'.format(building_i)
+        })
 
     building['temporal_coverage'] = timeframe(building_start, building_end)
     if dataset_start is None or building_start < dataset_start:

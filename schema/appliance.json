@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/appliance.json",
     "title": "Appliance",
-    "description": "Metadata for an Appliance",
+    "description": "Metadata for an Appliance.  Appliances are uniquely identified within a building or set of components by the name and instance.",
     "allOf": [
         { "$ref": "device.json" },        
         { "$ref": "#/appliance" }

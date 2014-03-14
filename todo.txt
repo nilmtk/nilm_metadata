@@ -26,7 +26,6 @@ TODO:
 
 * finish convert_ukpd.py.
   * check that we don't have more than one instance per name
-  * add directory to meter data
   * convert info from my README and my various metadata files on
     on_power_threshold etc
   * email to UKERC EDC

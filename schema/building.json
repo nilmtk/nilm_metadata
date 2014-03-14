@@ -2,12 +2,12 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "__id": "https://raw.github.com/nilmtk/nilm_metadata/master/schema/building.json",
     "title": "Building",
-    "description": "Represent a physical building",
+    "description": "Represent a physical building. Uniquely identified within a dataset by building_id.",
     "type": "object",
     "additionalProperties": false,
     "properties": {
         "dataset": { "type": "string", "description": "dataset short title" },
-        "id": { "type": "integer", "description": "identifier used in dataset" },
+        "building_id": { "type": "integer", "description": "identifier used in dataset" },
         "original_name": { 
             "type": "string", 
             "desciption": "The original name for this building from the original dataset"
