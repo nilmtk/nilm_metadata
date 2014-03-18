@@ -5,10 +5,9 @@
     "description": "Metadata for a dataset",
     "type": "object",
     "properties": {
-        "has_been_concatenated": { "type": "boolean" },
         "title": {
             "type": "string",
-            "description": "Full name of the dataset, eg. 'Reference Energy Disaggregation Data Set'"
+            "description": "Full name of the dataset, eg. 'Reference Energy Disaggregation Data Set'.  DCMI element."
         },
         "short_title": { 
             "type": "string",
@@ -16,27 +15,28 @@
         },
         "identifier": {
             "type": "string",
-            "description": "A digital object identifier (DOI) or URI for the dataset"
+            "description": "A digital object identifier (DOI) or URI for the dataset.  DCMI element."
         },
         "subject": {
             "type": "string",
-            "description": "For example, is this dataset about domestic or commercial buildings?  Does it include disaggregated appliance-by-appliance data or just whole-building data?"
+            "description": "For example, is this dataset about domestic or commercial buildings?  Does it include disaggregated appliance-by-appliance data or just whole-building data? DCMI element.  Human-readable free text."
         },
         "geospatial_coverage": {
             "type": "string",
-            "description": "Spatial coverage.  e.g. 'Southern England'"
+            "description": "Spatial coverage.  e.g. 'Southern England'. Related to the 'coverage' DCMI element."
         },
         "temporal_coverage": { 
             "type": "object",
             "properties": {"$ref": "timeframe.json#/properties" },
-            "description": "The temperal coverage of the entire dataset."
+            "description": "The temperal coverage of the entire dataset. Related to the 'coverage' DCMI element."
         },
         "creators": {
             "type": "array",
             "items": {
                 "type": "string",
                 "description": "<Lastname>, <Firstname>"
-            }
+            },
+            "description": "Names of individuals.  DCMI element."
         },
         "funding": {
             "type": "array",
@@ -45,16 +45,16 @@
         },
         "publisher": {
             "type": "string",
-            "description": "The entity responsible for making the resource available. Examples of a Publisher include a person, an organization, or a service."
+            "description": "The entity responsible for making the resource available. Examples of a Publisher include a person, an organization, or a service. DCMI element."
         },
         "data_formats_and_locations": {
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
-                    "name": { 
+                    "format": { 
                         "type": "string",
-                        "description": "e.g. 'CSV (NILMTK schema)'"
+                        "description": "e.g. 'CSV (NILMTK schema)'. DCMI element."
                     },
                     "raw_data_location": { "type": "string" },
                     "cleaned_data_location": { "type": "string" }
@@ -62,7 +62,7 @@
                 "additionalProperties": false
             }
         },
-        "publication_date": { "type": "string" },
+        "publication_date": { "type": "string", "description": "Related to the 'date' DCMI element." },
         "rights_list": {
             "type": "array",
             "items": {
@@ -72,7 +72,7 @@
                     "name": { "type": "string" }
                 }
             },
-            "description": "License(s) under which this dataset is released."
+            "description": "License(s) under which this dataset is released.  Related to the 'rights' DCMI element."
         },
         "description_of_subjects": {
             "type": "string",
@@ -81,14 +81,15 @@
         "version": { "type": "string" },
         "related_documents": {
             "type": "array",
-            "description": "References about this dataset (e.g. references to academic papers or web pages).  Also briefly describe the contents of each reference (e.g. does it contain a description of the metering setup? Or an analysis of the data?",
+            "description": "References about this dataset (e.g. references to academic papers or web pages).  Also briefly describe the contents of each reference (e.g. does it contain a description of the metering setup? Or an analysis of the data?  Related to the 'relation' DCMI element.",
             "items": {
                 "type": "string"
             }
         },
+        "has_been_concatenated": { "type": "boolean" },
         "contact": { "type": "string" },
         "institution": { "type": "string" },
-        "description": { "type": "string" },
+        "description": { "type": "string", "description": "DCMI element." },
         "mains_voltage": { "$ref": "electric.json#/properties/mains_voltage" },
         "geo_location": { "$ref": "building.json#/properties/geo_location" },
         "timezone": { "$ref": "building.json#/properties/timezone" },

@@ -1277,7 +1277,7 @@ buildings:
 contact: jack.kelly@imperial.ac.uk
 creators: ['Kelly, Jack']
 data_formats_and_locations:
-- {cleaned_data_location: TODO, name: CSV (NILMTK schema), raw_data_location: 'http://www.doc.ic.ac.uk/~dk3810/data'}
+- {cleaned_data_location: TODO, format: CSV (NILMTK schema), raw_data_location: 'http://www.doc.ic.ac.uk/~dk3810/data'}
 description: Appliance-by-appliance and whole-home power demand for 4 UK homes. Appliance
   data was recorded once every 6 seconds.  Whole-home data was recorded once every
   6 seconds for 2 homes and additionally at 16kHz for the other 2 homes.  Detailed
