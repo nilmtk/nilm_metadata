@@ -91,7 +91,7 @@
         "mains_voltage": { "$ref": "electric.json#/properties/mains_voltage" },
         "geo_location": { "$ref": "building.json#/properties/geo_location" },
         "timezone": { "$ref": "building.json#/properties/timezone" },
-        "items": { 
+        "item_type": { 
             "enum": ["buildings", "appliances", "meters"],
             "description": "does the top level of this dataset contain appliances, meters or buildings (it can only contain one of these options).  For example, some datasets like TraceBase only record appliances (not buildings) whilst other datasets like REDD record whole buildings (which, in turn, contain meters and appliances)."
         },
