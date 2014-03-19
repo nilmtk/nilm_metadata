@@ -14,7 +14,7 @@
             },
             "site_meter": {
                 "type": "boolean",
-                "description": "True if this meter measure the whole building."
+                "description": "true if this meter measures the whole building aggregate power demand"
             },
             "data_location": {
                 "type": "string",
