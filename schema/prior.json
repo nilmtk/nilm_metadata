@@ -46,7 +46,7 @@
             },
             "additionalProperties": true
         },
-        "num_datapoints": { "type": "integer" },
+        "n_datapoints": { "type": "integer" },
         "date_prepared": { "type": "string", "format": "date" },
         "source": { 
             "enum": [ 
