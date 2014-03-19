@@ -56,8 +56,9 @@
             ],
             "description": "What is the source of this prior?"
         },
-        "reference": { 
-            "type": "string",
+        "related_documents": { 
+            "type": "array",
+            "items": { "type": "string" },
             "description": "If source=='empirical from publication' then enter the refenerence here."
         },
         "software": { 
