@@ -22,7 +22,7 @@ dataset = {
     "geospatial_coverage": "Southern England",
     "publisher": "UK Energy Research Centre Energy Data Centre (UKERC EDC)",
     "data_formats_and_locations": [{
-        "name": "CSV (NILMTK schema)",
+        "format": "CSV (NILMTK schema)",
         "raw_data_location": "http://www.doc.ic.ac.uk/~dk3810/data",
         "cleaned_data_location": "TODO"
     }],
@@ -48,8 +48,8 @@ dataset = {
         "tolerance_upper_bound": 6, 
         "tolerance_lower_bound": 10
     },
-    "items": "buildings",
-    "number_of_items": N_BULDINGS, 
+    "item_type": "buildings",
+    "number_of_buildings": N_BULDINGS, 
     "geo_location": {
         "country": "GB", 
         "locality": "London",

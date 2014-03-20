@@ -52,7 +52,7 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "name": { 
+                    "format": { 
                         "type": "string",
                         "description": "e.g. 'CSV (NILMTK schema)'"
                     },
@@ -92,13 +92,12 @@
         "geo_location": { "$ref": "building.json#/properties/geo_location" },
         "timezone": { "$ref": "building.json#/properties/timezone" },
         "item_type": { 
-            "enum": ["buildings", "appliances", "meters"],
-            "description": "does the top level of this dataset contain appliances, meters or buildings (it can only contain one of these options).  For example, some datasets like TraceBase only record appliances (not buildings) whilst other datasets like REDD record whole buildings (which, in turn, contain meters and appliances)."
+            "enum": ["buildings", "electric"],
+            "description": "does the top level of this dataset contain `buildings` or an `electric` object with appliances and meters  (it can only contain one of these options).  For example, some datasets like TraceBase only record appliances (not buildings) whilst other datasets like REDD record whole buildings (which, in turn, contain meters and appliances)."
         },
-        "number_of_items": { "$ref": "instance.json" },
+        "number_of_buildings": { "$ref": "instance.json" },
         "buildings": { "type": "array", "items": { "$ref": "building.json" } },
-        "appliances": { "type": "array", "items": { "type": "object" } },
-        "meters": { "type": "array", "items": { "type": "object" } },
+        "electric": { "$ref": "electric.json" },
         "schema": { 
             "type": "string",
             "description": "The URL of the NILM_metadata version (tag) against which this metadata is validated. e.g. https://github.com/nilmtk/nilm_metadata/tree/v0.1.0"

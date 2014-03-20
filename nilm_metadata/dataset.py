@@ -44,11 +44,11 @@ def validate_complete_dataset(complete_dataset):
     schema = json.load(open(schema_filename))
     local_validate(complete_dataset, schema)
     
-    items = complete_dataset['items']
+    item_type = complete_dataset['item_type']
     validation_funcs = {
         'buildings': validate_complete_buildings,
         'appliances': validate_complete_appliances,
         'meters': validate_complete_meters
     }
-    objects = complete_dataset.get(items, [])
-    validation_funcs[items](objects)
+    objects = complete_dataset.get(item_type, [])
+    validation_funcs[item_type](objects)
