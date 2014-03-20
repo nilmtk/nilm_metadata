@@ -16,8 +16,8 @@ TZ = pytz.timezone(TIMEZONE)
 N_BULDINGS = 4
 
 dataset = {
-    "title": "UK Power Dataset",
-    "short_title": "UKPD",
+    "name": "UK Power Dataset",
+    "short_name": "UKPD",
     "subject": "Disaggregated domestic electricity demand",
     "geospatial_coverage": "Southern England",
     "publisher": "UK Energy Research Centre Energy Data Centre (UKERC EDC)",
@@ -883,7 +883,7 @@ for building_i in range(1,N_BULDINGS+1):
     building = building_metadata[building_i]
     building['building_id'] = building_i
     building.update({'utilities': {'electric': {'meters': [], 'appliances': []}}})
-    building['dataset'] = dataset['short_title']
+    building['dataset'] = dataset['short_name']
     dataset['buildings'].append(building)
     building_path = join(RAW_UKPD_DATA_PATH, 'house_{:d}'.format(building_i))
     electric = building['utilities']['electric']

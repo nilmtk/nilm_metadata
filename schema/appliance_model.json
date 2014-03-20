@@ -6,7 +6,7 @@
     "properties": {
         "appliance": { "type": "string", "description": "the parent appliance" },
         "model_type": {
-            "type": { "enum": ["HMM", "FHMM", "combinatorial optimisation"] },
+            "type": { "enum": ["HMM", "FHMM", "combinatorial optimisation"] }
         },
         "training_data": { "$ref": "prior.json#/properties/training_data" },
         "specific_to": { "$ref": "prior.json#/properties/specific_to" },

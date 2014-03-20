@@ -1290,6 +1290,7 @@ geospatial_coverage: Southern England
 institution: Imperial College London
 item_type: buildings
 mains_voltage: {nominal: 230, tolerance_lower_bound: 10, tolerance_upper_bound: 6}
+name: UK Power Dataset
 number_of_buildings: 4
 publication_date: '2014-03-14'
 publisher: UK Energy Research Centre Energy Data Centre (UKERC EDC)
@@ -1300,8 +1301,7 @@ related_documents: ['The following poster describes the metering setup and provi
 rights_list:
 - {name: Creative Commons Attribution 4.0 International (CC BY 4.0), uri: 'http://creativecommons.org/licenses/by/4.0/'}
 schema: https://github.com/nilmtk/nilm_metadata/tree/v0.1.0
-short_title: UKPD
+short_name: UKPD
 subject: Disaggregated domestic electricity demand
 temporal_coverage: {end: '2014-03-12T20:23:17+00:00', start: '2013-02-17T16:17:36+00:00'}
 timezone: Europe/London
-title: UK Power Dataset
