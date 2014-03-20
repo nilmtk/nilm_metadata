@@ -25,7 +25,8 @@
         },
         "dates_active": {
             "type": "array",
-            "items": { "$ref": "timeframe.json" }
+            "items": { "$ref": "timeframe.json" },
+            "description": "Used to specify a change in appliance over time (for example if one appliance is replaced with another)."
         },
         "description": { "type": "string" },
         "room": { "$ref": "room.json" },
