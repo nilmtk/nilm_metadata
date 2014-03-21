@@ -94,7 +94,8 @@ electric shower heater:
           min: 4000
           max: 9000
         source: empirical from publication
-        reference: &Stamminger2008 >
+        related_documents: &Stamminger2008
+        - >
           P. D. R. Stamminger, Synergy potential of smart appliances, 
           in smart domestic appliances in sustainable energy systems (Smart-A),
           University of Bonn, Tech. Rep., 2008.

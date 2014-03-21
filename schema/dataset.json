@@ -5,11 +5,12 @@
     "description": "Metadata for a dataset",
     "type": "object",
     "properties": {
-        "title": {
+        "has_been_concatenated": { "type": "boolean" },
+        "name": {
             "type": "string",
-            "description": "Full name of the dataset, eg. 'Reference Energy Disaggregation Data Set'.  DCMI element."
+            "description": "Full name of the dataset, eg. 'Reference Energy Disaggregation Data Set'.  Equivalent DCMI element is 'title'."
         },
-        "short_title": { 
+        "short_name": { 
             "type": "string",
             "description": "Abbreviated name for the dataset, e.g. 'REDD'"
         },
@@ -78,7 +79,6 @@
             "type": "string",
             "description": "A brief description of how subjects were recruited.  Are they all PhD students, for example?  Were they incentivised to reduce their energy consumption?"
         },
-        "version": { "type": "string" },
         "related_documents": {
             "type": "array",
             "description": "References about this dataset (e.g. references to academic papers or web pages).  Also briefly describe the contents of each reference (e.g. does it contain a description of the metering setup? Or an analysis of the data?  Related to the 'relation' DCMI element.",
@@ -93,14 +93,13 @@
         "mains_voltage": { "$ref": "electric.json#/properties/mains_voltage" },
         "geo_location": { "$ref": "building.json#/properties/geo_location" },
         "timezone": { "$ref": "building.json#/properties/timezone" },
-        "items": { 
-            "enum": ["buildings", "appliances", "meters"],
-            "description": "does the top level of this dataset contain appliances, meters or buildings (it can only contain one of these options).  For example, some datasets like TraceBase only record appliances (not buildings) whilst other datasets like REDD record whole buildings (which, in turn, contain meters and appliances)."
+        "item_type": { 
+            "enum": ["buildings", "electric"],
+            "description": "does the top level of this dataset contain `buildings` or an `electric` object with appliances and meters  (it can only contain one of these options).  For example, some datasets like TraceBase only record appliances (not buildings) whilst other datasets like REDD record whole buildings (which, in turn, contain meters and appliances)."
         },
-        "number_of_items": { "$ref": "instance.json" },
+        "number_of_buildings": { "$ref": "instance.json" },
         "buildings": { "type": "array", "items": { "$ref": "building.json" } },
-        "appliances": { "type": "array", "items": { "type": "object" } },
-        "meters": { "type": "array", "items": { "type": "object" } },
+        "electric": { "$ref": "electric.json" },
         "schema": { 
             "type": "string",
             "description": "The URL of the NILM_metadata version (tag) against which this metadata is validated. e.g. https://github.com/nilmtk/nilm_metadata/tree/v0.1.0"

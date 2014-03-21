@@ -19,12 +19,12 @@ Subtypes versus a new child object
 ----------------------------------
 
 Appliance specification objects can take a 'subtype' property.  Why
-not use inheritance for all subtypes?  The rule of thumb is that is a
+not use inheritance for all subtypes?  The rule of thumb is that if a
 subtype is functionally different to its parent then it should be
-specified as a separate object (for example, a gas hob and an electric
+specified as a separate o child bject (for example, a gas hob and an electric
 hob clearly have radically different electricity usage profiles) but
 if the differences are minor (e.g. a digital radio versus an analogue
-radio) then these should be specified as subtypes of the same object.
+radio) then the appliances should be specified as subtypes of the same object.
 
 Naming conventions
 ------------------

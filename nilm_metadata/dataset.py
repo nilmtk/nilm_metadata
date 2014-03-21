@@ -39,16 +39,20 @@ def concatenate_complete_dataset(dataset_obj, object_cache=None):
     return complete_dataset
 
 
+def validate_complete_electric_object(electric):
+    validate_complete_meters(electric['meters'])
+    validate_complete_appliances(electric['appliances'])
+
+
 def validate_complete_dataset(complete_dataset):
     schema_filename = join(get_schema_directory(), 'dataset.json')
     schema = json.load(open(schema_filename))
     local_validate(complete_dataset, schema)
     
-    items = complete_dataset['items']
+    item_type = complete_dataset['item_type']
     validation_funcs = {
         'buildings': validate_complete_buildings,
-        'appliances': validate_complete_appliances,
-        'meters': validate_complete_meters
+        'electric': validate_complete_electric_object
     }
-    objects = complete_dataset.get(items, [])
-    validation_funcs[items](objects)
+    objects = complete_dataset[item_type]
+    validation_funcs[item_type](objects)

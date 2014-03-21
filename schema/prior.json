@@ -46,7 +46,7 @@
             },
             "additionalProperties": true
         },
-        "num_datapoints": { "type": "integer" },
+        "n_datapoints": { "type": "integer" },
         "date_prepared": { "type": "string", "format": "date" },
         "source": { 
             "enum": [ 
@@ -54,10 +54,11 @@
                 "empirical from data",
                 "empirical from publication" 
             ],
-            "description": "What is the source of this prior?"
+            "description": "What is the source of this prior?   If from publication then use `related_documents` to provide references.  If from data then provide details using the `software` and `training_data` properties."
         },
-        "reference": { 
-            "type": "string",
+        "related_documents": { 
+            "type": "array",
+            "items": { "type": "string" },
             "description": "If source=='empirical from publication' then enter the refenerence here."
         },
         "software": { 

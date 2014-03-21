@@ -4,34 +4,16 @@
     "title": "Parameters for Appliance Models",
     "type": "object",
     "properties": {
-        "appliance": { "$ref": "appliance.json" },
-        "model": {
-            "type": "object",
-            "properties": {
-                "type": { "enum": ["hmm", "fhmm", "combinatorial optimisation"] },
-                "software": {
-                    "type": "object",
-                    "properties": {
-                        "name": { "type": "string" },
-                        "version": { "type": "string" }
-                    }
-                }
-            }
+        "appliance": { "type": "string", "description": "the parent appliance" },
+        "model_type": {
+            "type": { "enum": ["HMM", "FHMM", "combinatorial optimisation"] }
         },
-        "data_used_for_training": { 
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": { 
-                    "dataset": { "type": "string" },
-                    "buildings": { 
-                        "type": "array", 
-                        "items": { "type": "integer" }
-                    },
-                    "timeframe": { "$ref": "timeframe.json" }
-                }
-            }
-        },
+        "training_data": { "$ref": "prior.json#/properties/training_data" },
+        "specific_to": { "$ref": "prior.json#/properties/specific_to" },
+        "software": { "$ref": "device.json" },
+        "related_documents": { "type": "array", "items": { "type": "string" } },
+        "date_prepared": { "type": "string", "format": "date" },
+        "description": { "type": "string" },
         "parameters": {
             "type": "object"
         }
