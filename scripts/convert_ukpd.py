@@ -913,18 +913,27 @@ for building_i in range(1,N_BULDINGS+1):
                  'data_location': 'house_{:d}/channel_{:d}.dat'.format(building_i, chan)}
         if label == 'aggregate':
             meter.update({"site_meter": True,
-                          'parent': 'EDFEnergy~EcoManagerWholeHouseTx'})
-        elif building_i == 1 and label == 'kitchen_lights':
-            meter.update({"submeter_of": chan_for_label('lighting_circuit', labels),
-                          'parent': 'CurrentCost~Tx'})
-        elif building_i == 1 and label in ['boiler', 'solar_thermal_pump', 'lighting_circuit']:
-            meter.update({"submeter_of": 0 if mains_exists else 1,
-                          'parent': 'CurrentCost~Tx'})
+                          'parent': 'EDFEnergy~EcoManagerWholeHouseTx',
+                          'preprocessing_applied': [
+                              {'filter': 'clip',
+                               'maximum': 20000}]})
         else:
             meter.update({"submeter_of": 0 if mains_exists else 1,
-                          'parent': 'EDFEnergy~EcoManagerTxPlug'})
-            if building_i == 1 and label == 'toaster':
-                meter.update({'warning': 'For the five days from Mon 24th June 2013 to Fri 28th June we had someone staying at the house who occassionally swapped the toaster and kettle around (i.e. the toaster was plugged into the kettle sensor and visa-versa!) and also appeared to plug the hoover sensor into the kettle sensor (i.e. both the hoover and kettle sensor would have recorded the same appliance for a few hours).'})
+                          'parent': 'EDFEnergy~EcoManagerTxPlug',
+                          'preprocessing_applied': [
+                              {'filter': 'clip',
+                               'maximum': 4000}]})
+            if building_i == 1:
+                if label in ['boiler', 'solar_thermal_pump', 'lighting_circuit',
+                             'kitchen_lights']:
+                    meter.update({"submeter_of": 0 if mains_exists else 1,
+                                  'parent': 'CurrentCost~Tx'})
+
+                if label == 'kitchen_lights':
+                    meter.update({"submeter_of": chan_for_label('lighting_circuit', labels)})
+
+                if label == 'toaster':
+                    meter.update({'warning': 'For the five days from Mon 24th June 2013 to Fri 28th June we had someone staying at the house who occassionally swapped the toaster and kettle around (i.e. the toaster was plugged into the kettle sensor and visa-versa!) and also appeared to plug the hoover sensor into the kettle sensor (i.e. both the hoover and kettle sensor would have recorded the same appliance for a few hours).'})
 
         meters.append(meter)
         

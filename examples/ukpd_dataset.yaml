@@ -546,6 +546,8 @@ buildings:
         meter_id: 1
         original_name: aggregate
         parent: EDFEnergy~EcoManagerWholeHouseTx
+        preprocessing_applied:
+        - {filter: clip, maximum: 20000}
         site_meter: true
       - data_location: house_1/channel_2.dat
         dates_active:
@@ -553,6 +555,8 @@ buildings:
         meter_id: 2
         original_name: boiler
         parent: CurrentCost~Tx
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_3.dat
         dates_active:
@@ -560,6 +564,8 @@ buildings:
         meter_id: 3
         original_name: solar_thermal_pump
         parent: CurrentCost~Tx
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_4.dat
         dates_active:
@@ -567,6 +573,8 @@ buildings:
         meter_id: 4
         original_name: laptop
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_5.dat
         dates_active:
@@ -574,6 +582,8 @@ buildings:
         meter_id: 5
         original_name: washing_machine
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_6.dat
         dates_active:
@@ -581,6 +591,8 @@ buildings:
         meter_id: 6
         original_name: dishwasher
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_7.dat
         dates_active:
@@ -588,6 +600,8 @@ buildings:
         meter_id: 7
         original_name: tv
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_8.dat
         dates_active:
@@ -595,6 +609,8 @@ buildings:
         meter_id: 8
         original_name: kitchen_lights
         parent: CurrentCost~Tx
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 25
       - data_location: house_1/channel_9.dat
         dates_active:
@@ -602,6 +618,8 @@ buildings:
         meter_id: 9
         original_name: htpc
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_10.dat
         dates_active:
@@ -609,6 +627,8 @@ buildings:
         meter_id: 10
         original_name: kettle
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_11.dat
         dates_active:
@@ -616,6 +636,8 @@ buildings:
         meter_id: 11
         original_name: toaster
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
         warning: For the five days from Mon 24th June 2013 to Fri 28th June we had
           someone staying at the house who occassionally swapped the toaster and kettle
@@ -629,6 +651,8 @@ buildings:
         meter_id: 12
         original_name: fridge
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_13.dat
         dates_active:
@@ -636,6 +660,8 @@ buildings:
         meter_id: 13
         original_name: microwave
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_14.dat
         dates_active:
@@ -643,6 +669,8 @@ buildings:
         meter_id: 14
         original_name: lcd_office
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_15.dat
         dates_active:
@@ -650,6 +678,8 @@ buildings:
         meter_id: 15
         original_name: hifi_office
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_16.dat
         dates_active:
@@ -657,6 +687,8 @@ buildings:
         meter_id: 16
         original_name: breadmaker
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_17.dat
         dates_active:
@@ -664,6 +696,8 @@ buildings:
         meter_id: 17
         original_name: amp_livingroom
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_18.dat
         dates_active:
@@ -671,6 +705,8 @@ buildings:
         meter_id: 18
         original_name: adsl_router
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_19.dat
         dates_active:
@@ -678,6 +714,8 @@ buildings:
         meter_id: 19
         original_name: livingroom_s_lamp
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_20.dat
         dates_active:
@@ -685,6 +723,8 @@ buildings:
         meter_id: 20
         original_name: soldering_iron
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_21.dat
         dates_active:
@@ -692,6 +732,8 @@ buildings:
         meter_id: 21
         original_name: gigE_&_USBhub
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_22.dat
         dates_active:
@@ -699,6 +741,8 @@ buildings:
         meter_id: 22
         original_name: hoover
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_23.dat
         dates_active:
@@ -706,6 +750,8 @@ buildings:
         meter_id: 23
         original_name: kitchen_dt_lamp
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_24.dat
         dates_active:
@@ -713,6 +759,8 @@ buildings:
         meter_id: 24
         original_name: bedroom_ds_lamp
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_25.dat
         dates_active:
@@ -720,6 +768,8 @@ buildings:
         meter_id: 25
         original_name: lighting_circuit
         parent: CurrentCost~Tx
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_26.dat
         dates_active:
@@ -727,6 +777,8 @@ buildings:
         meter_id: 26
         original_name: livingroom_s_lamp2
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_27.dat
         dates_active:
@@ -734,6 +786,8 @@ buildings:
         meter_id: 27
         original_name: iPad_charger
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_28.dat
         dates_active:
@@ -741,6 +795,8 @@ buildings:
         meter_id: 28
         original_name: subwoofer_livingroom
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_29.dat
         dates_active:
@@ -748,6 +804,8 @@ buildings:
         meter_id: 29
         original_name: livingroom_lamp_tv
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_30.dat
         dates_active:
@@ -755,6 +813,8 @@ buildings:
         meter_id: 30
         original_name: DAB_radio_livingroom
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_31.dat
         dates_active:
@@ -762,6 +822,8 @@ buildings:
         meter_id: 31
         original_name: kitchen_lamp2
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_32.dat
         dates_active:
@@ -769,6 +831,8 @@ buildings:
         meter_id: 32
         original_name: kitchen_phone&stereo
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_33.dat
         dates_active:
@@ -776,6 +840,8 @@ buildings:
         meter_id: 33
         original_name: utilityrm_lamp
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_34.dat
         dates_active:
@@ -783,6 +849,8 @@ buildings:
         meter_id: 34
         original_name: samsung_charger
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_35.dat
         dates_active:
@@ -790,6 +858,8 @@ buildings:
         meter_id: 35
         original_name: bedroom_d_lamp
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_36.dat
         dates_active:
@@ -797,6 +867,8 @@ buildings:
         meter_id: 36
         original_name: coffee_machine
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_37.dat
         dates_active:
@@ -804,6 +876,8 @@ buildings:
         meter_id: 37
         original_name: kitchen_radio
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_38.dat
         dates_active:
@@ -811,6 +885,8 @@ buildings:
         meter_id: 38
         original_name: bedroom_chargers
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_39.dat
         dates_active:
@@ -818,6 +894,8 @@ buildings:
         meter_id: 39
         original_name: hair_dryer
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_40.dat
         dates_active:
@@ -825,6 +903,8 @@ buildings:
         meter_id: 40
         original_name: straighteners
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_41.dat
         dates_active:
@@ -832,6 +912,8 @@ buildings:
         meter_id: 41
         original_name: iron
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_42.dat
         dates_active:
@@ -839,6 +921,8 @@ buildings:
         meter_id: 42
         original_name: gas_oven
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_43.dat
         dates_active:
@@ -846,6 +930,8 @@ buildings:
         meter_id: 43
         original_name: data_logger_pc
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_44.dat
         dates_active:
@@ -853,6 +939,8 @@ buildings:
         meter_id: 44
         original_name: childs_table_lamp
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_45.dat
         dates_active:
@@ -860,6 +948,8 @@ buildings:
         meter_id: 45
         original_name: childs_ds_lamp
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_46.dat
         dates_active:
@@ -867,6 +957,8 @@ buildings:
         meter_id: 46
         original_name: baby_monitor_tx
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_47.dat
         dates_active:
@@ -874,6 +966,8 @@ buildings:
         meter_id: 47
         original_name: battery_charger
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_48.dat
         dates_active:
@@ -881,6 +975,8 @@ buildings:
         meter_id: 48
         original_name: office_lamp1
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_49.dat
         dates_active:
@@ -888,6 +984,8 @@ buildings:
         meter_id: 49
         original_name: office_lamp2
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_50.dat
         dates_active:
@@ -895,6 +993,8 @@ buildings:
         meter_id: 50
         original_name: office_lamp3
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_51.dat
         dates_active:
@@ -902,6 +1002,8 @@ buildings:
         meter_id: 51
         original_name: office_pc
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_52.dat
         dates_active:
@@ -909,6 +1011,8 @@ buildings:
         meter_id: 52
         original_name: office_fan
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/channel_53.dat
         dates_active:
@@ -916,6 +1020,8 @@ buildings:
         meter_id: 53
         original_name: LED_printer
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_1/mains.dat
         dates_active:
@@ -994,6 +1100,8 @@ buildings:
         meter_id: 1
         original_name: aggregate
         parent: EDFEnergy~EcoManagerWholeHouseTx
+        preprocessing_applied:
+        - {filter: clip, maximum: 20000}
         site_meter: true
       - data_location: house_2/channel_2.dat
         dates_active:
@@ -1001,6 +1109,8 @@ buildings:
         meter_id: 2
         original_name: laptop
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_3.dat
         dates_active:
@@ -1008,6 +1118,8 @@ buildings:
         meter_id: 3
         original_name: monitor
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_4.dat
         dates_active:
@@ -1015,6 +1127,8 @@ buildings:
         meter_id: 4
         original_name: speakers
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_5.dat
         dates_active:
@@ -1022,6 +1136,8 @@ buildings:
         meter_id: 5
         original_name: server
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_6.dat
         dates_active:
@@ -1029,6 +1145,8 @@ buildings:
         meter_id: 6
         original_name: router
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_7.dat
         dates_active:
@@ -1036,6 +1154,8 @@ buildings:
         meter_id: 7
         original_name: server_hdd
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_8.dat
         dates_active:
@@ -1043,6 +1163,8 @@ buildings:
         meter_id: 8
         original_name: kettle
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_9.dat
         dates_active:
@@ -1050,6 +1172,8 @@ buildings:
         meter_id: 9
         original_name: rice_cooker
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_10.dat
         dates_active:
@@ -1057,6 +1181,8 @@ buildings:
         meter_id: 10
         original_name: running_machine
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_11.dat
         dates_active:
@@ -1064,6 +1190,8 @@ buildings:
         meter_id: 11
         original_name: laptop2
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_12.dat
         dates_active:
@@ -1071,6 +1199,8 @@ buildings:
         meter_id: 12
         original_name: washing_machine
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_13.dat
         dates_active:
@@ -1078,6 +1208,8 @@ buildings:
         meter_id: 13
         original_name: dish_washer
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_14.dat
         dates_active:
@@ -1085,6 +1217,8 @@ buildings:
         meter_id: 14
         original_name: fridge
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_15.dat
         dates_active:
@@ -1092,6 +1226,8 @@ buildings:
         meter_id: 15
         original_name: microwave
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_16.dat
         dates_active:
@@ -1099,6 +1235,8 @@ buildings:
         meter_id: 16
         original_name: toaster
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_17.dat
         dates_active:
@@ -1106,6 +1244,8 @@ buildings:
         meter_id: 17
         original_name: playstation
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_18.dat
         dates_active:
@@ -1113,6 +1253,8 @@ buildings:
         meter_id: 18
         original_name: modem
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/channel_19.dat
         dates_active:
@@ -1120,6 +1262,8 @@ buildings:
         meter_id: 19
         original_name: cooker
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 0
       - data_location: house_2/mains.dat
         dates_active:
@@ -1152,6 +1296,8 @@ buildings:
         meter_id: 1
         original_name: aggregate
         parent: EDFEnergy~EcoManagerWholeHouseTx
+        preprocessing_applied:
+        - {filter: clip, maximum: 20000}
         site_meter: true
       - data_location: house_3/channel_2.dat
         dates_active:
@@ -1159,6 +1305,8 @@ buildings:
         meter_id: 2
         original_name: kettle
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 1
       - data_location: house_3/channel_3.dat
         dates_active:
@@ -1166,6 +1314,8 @@ buildings:
         meter_id: 3
         original_name: electric_heater
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 1
       - data_location: house_3/channel_4.dat
         dates_active:
@@ -1173,6 +1323,8 @@ buildings:
         meter_id: 4
         original_name: laptop
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 1
       - data_location: house_3/channel_5.dat
         dates_active:
@@ -1180,6 +1332,8 @@ buildings:
         meter_id: 5
         original_name: projector
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 1
 - building_id: 4
   dataset: UKPD
@@ -1231,6 +1385,8 @@ buildings:
         meter_id: 1
         original_name: aggregate
         parent: EDFEnergy~EcoManagerWholeHouseTx
+        preprocessing_applied:
+        - {filter: clip, maximum: 20000}
         site_meter: true
       - data_location: house_4/channel_2.dat
         dates_active:
@@ -1238,6 +1394,8 @@ buildings:
         meter_id: 2
         original_name: tv_dvd_digibox_lamp
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 1
       - data_location: house_4/channel_3.dat
         dates_active:
@@ -1245,6 +1403,8 @@ buildings:
         meter_id: 3
         original_name: kettle_radio
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 1
       - data_location: house_4/channel_4.dat
         dates_active:
@@ -1252,6 +1412,8 @@ buildings:
         meter_id: 4
         original_name: gas_boiler
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 1
       - data_location: house_4/channel_5.dat
         dates_active:
@@ -1259,6 +1421,8 @@ buildings:
         meter_id: 5
         original_name: freezer
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 1
       - data_location: house_4/channel_6.dat
         dates_active:
@@ -1266,6 +1430,8 @@ buildings:
         meter_id: 6
         original_name: washing_machine_microwave_breadmaker
         parent: EDFEnergy~EcoManagerTxPlug
+        preprocessing_applied:
+        - {filter: clip, maximum: 4000}
         submeter_of: 1
 contact: jack.kelly@imperial.ac.uk
 creators: ['Kelly, Jack']

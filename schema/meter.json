@@ -50,8 +50,23 @@
             "preprocessing_applied": {
                 "type": "array",
                 "items": {
-                    "enum": ["gaps_bookended_with_zeros", 
-                             "implausable_values_removed"]
+                    "type": "object",
+                    "oneOf": [
+                        {
+                            "properties": {
+                                "filter": { "enum" : "clip" },
+                                "minimum": { "type" : "number" },
+                                "maximum": { "type" : "number" }
+                            },
+                            "additionalProperties": false
+                        },
+                        {
+                            "properties": {
+                                "filter": { "enum" : "gaps bookended with zeros" }
+                            },
+                            "additionalProperties": false
+                        }
+                    ]
                 }
             },
             "gap_free_segments": {
