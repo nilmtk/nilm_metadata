@@ -9,16 +9,6 @@ follow the tree to the top.  Then, starting from the top, we form a set of
 key:value pairs where subclasses override previous values (just use dict.update).
 
 
-* keep nilm_metadata as a separate project
-  * the workflow will be:
-    * publish both 'minimal' and 'full' versions of the metadata
-    * at least to start with, nilmtk will use the 'full' version
-    * and nilm_metadata will be a separate project responsible for:
-      * validating schema
-      * producing 'full' metadata       
-      * producing 'minimal + catalogue' metadata
-    * later, NILMTK can learn to use nilm_metadata directly and to
-      store the object hierarchy in memory, perhaps as a DAG.
 
 TODO:
 
@@ -26,8 +16,10 @@ TODO:
 * write docs 
   * auto doc generation from json schema
   * how to write your own schema
+    * find appliance names
   * how to concatenate it (need to think of a better name)
   * how to validate it
+  * how to add data to database
   * given that we allow a list of priors, and we allow these 
     to accumulate down the inheritance tree, we
     label these priors to say if they are specific to this
@@ -36,26 +28,21 @@ TODO:
   * categories.  Tranditional, electrical, google shopping (links)
   * look through "done"
 
-* tidy up
-
-* tag with v0.1.0 and add a link to my UKPD metadata to https://github.com/nilmtk/nilm_metadata/tree/v0.1.0
-
-* write paper for IEEE Workshop on Interopability in Scientific
-  Computing (deadline = 23rd Mar) (see google doc for outline of paper)
-* write papers for NILM Workshop
-
-* check out Wiki Energy and email them if NILM Schema might be of use.
-* tweet about it
+  * relationship of NILM_metadata to NILMTK:
+    * keep nilm_metadata as a separate project
+    * the workflow will be:
+      * publish both 'minimal' and 'full' versions of the metadata
+      * at least to start with, nilmtk will use the 'full' version
+      * and nilm_metadata will be a separate project responsible for:
+        * concatenating 'full' metadata       
+        * validating
+      * later, NILMTK can learn to use nilm_metadata directly and to
+        store the object hierarchy in memory, perhaps as a DAG.
 
 * tool to generate graphical model of relationship between objects in
   /objects and also in a dataset metadata
 
-IF TIME:
--------
-
-* Test it out on HES column names
-
-* have a "generated" folder for a graph showing hierarchy.  
+* convert other dataset: REDD, HES etc.
 
 
 
