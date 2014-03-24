@@ -35,7 +35,7 @@ dataset = {
         " was recorded once every 6 seconds for 2 homes and additionally at"
         " 16kHz for the other 2 homes.  Detailed metadata is included."
     ),
-    "publication_date": "2014-03-14",
+    "publication_date": "2014-03-24",
     "related_documents": [(
         "The following poster describes the metering setup and provides some analyses:"
         " Jack Kelly and William Knottenbelt." 
