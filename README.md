@@ -30,7 +30,7 @@ NILM Metadata aims to provide:
 * standard properties and priors for each appliance
 * valid additional properties for each appliance
 
-### Further details
+## Further details
 
 NILM Metadata uses [JSON Schema](http://json-schema.org/) to define
 the syntactic elements of the schema and then uses a simple but
@@ -51,7 +51,16 @@ specify the metadata for any NILM dataset; and that metadata can then
 be used with the open-source energy disaggregation and analytics
 framework [NILMTK](http://nilmtk.github.io/).
 
-Please jump in and add to or modify the schema and database of objects!
+Please jump in and add to or modify the schema and database of
+objects!
+
+## Paper describing NILM metadata
+
+The following paper describes NILM metadata in detail:
+
+* Jack Kelly and William Knottenbelt. **Metadata for Energy
+  Disaggregation**. [arXiv:1403.5946 [cs.DB]](http://arxiv.org/abs/1403.5946)
+  March 2014
 
 Example
 =======
