@@ -54,13 +54,15 @@ framework [NILMTK](http://nilmtk.github.io/).
 Please jump in and add to or modify the schema and database of
 objects!
 
-## Paper describing NILM metadata
+## Research paper describing NILM metadata
 
 The following paper describes NILM metadata in detail:
 
 * Jack Kelly and William Knottenbelt. **Metadata for Energy
   Disaggregation**. [arXiv:1403.5946 [cs.DB]](http://arxiv.org/abs/1403.5946)
   March 2014
+
+Please cite this paper if you use NILM metadata.
 
 Example
 =======
