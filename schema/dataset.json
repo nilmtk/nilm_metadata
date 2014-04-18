@@ -5,7 +5,6 @@
     "description": "Metadata for a dataset",
     "type": "object",
     "properties": {
-        "has_been_concatenated": { "type": "boolean" },
         "name": {
             "type": "string",
             "description": "Full name of the dataset, eg. 'Reference Energy Disaggregation Data Set'.  Equivalent DCMI element is 'title'."
