@@ -79,3 +79,7 @@ dehumidifier:
 
 electric vehicle:
   parent: appliance
+
+unspecified:
+  parent: appliance
+  
