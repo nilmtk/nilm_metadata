@@ -71,6 +71,9 @@ dish washer:
         source: empirical from publication
         related_documents: *Stamminger2008
 
+waste disposal unit:
+  parent: wet appliance
+
 #--------------- WATER PUMPS ----------------
 
 shower pump:
