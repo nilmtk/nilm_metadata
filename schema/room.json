@@ -6,7 +6,7 @@
     "type": "object",
     "properties": {
         "name": { "enum": ["lounge", "kitchen", "bedroom", "utility", "garage", "basement",
-                           "bathroom", "study", "nursery", "hall", "dining room"] },
+                           "bathroom", "study", "nursery", "hall", "dining room", "outdoors"] },
         "instance": { "$ref": "instance.json" },
         "description": { "type": "string" },
         "floor": { "type": "integer", "description": "ground floor is floor 0." }
