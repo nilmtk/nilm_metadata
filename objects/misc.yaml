@@ -83,3 +83,7 @@ electric vehicle:
 unspecified:
   parent: appliance
   
+sockets:
+  parent: appliance
+
+  
