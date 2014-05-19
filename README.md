@@ -84,16 +84,18 @@ it is a fair amount of work to maintain, and is a little fragile.
 
 ### Example of dataset metadata
 
+dataset.yaml
 ```
-# dataset.yaml
 name: UK-DALE
 long_name: UK Domestic Appliance-Level Electricity
 mains_voltage:
   nominal: 230
   upper_limit: 253
   lower_limit: 215
+```
 
-# meter_devices.yaml
+meter_devices.yaml
+```
 - model: EnviR
   manufacturer: Current Cost
   measurements:
@@ -101,10 +103,10 @@ mains_voltage:
     ac_type: apparent
     lower_limit: 0
     upper_limit: 30000
+```
 
-
-# building1.yaml
-# Metadata about building 1:
+building1.yaml
+```
 instance: 1
 rooms:
 - {name: kitchen, instance: 1}
@@ -118,9 +120,7 @@ timezone: Europe/London
 timeframe:
   start: 2012-11-09
   end: 2014-03-11
-
-# Metadata about appliances (in building1.yaml):
-elec_meters:
+elec_meters: # Metadata about appliances
 
 # Meter that measures whole-house mains:
 - instance: 1
