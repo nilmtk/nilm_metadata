@@ -8,9 +8,11 @@ measurements, buildings and datasets.
 The aim is that NILM Metadata can be used as a stand-alone project to
 specify the metadata for any NILM dataset; and that metadata can then
 be used with the open-source energy disaggregation and analytics
-framework [NILMTK](http://nilmtk.github.io/).
+framework [NILMTK](http://nilmtk.github.io).
 
 Please jump in and add to or modify the schema and documentation!
+
+The [documentation is available online](http://nilm-metadata.readthedocs.org).
 
 There are two sides to NILM Metadata:
 
