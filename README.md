@@ -72,6 +72,22 @@ The following paper describes NILM metadata in detail:
   Devices and Systems (CDS 2014) in Västerås, Sweden.
   [arXiv:1403.5946](http://arxiv.org/abs/1403.5946)
 
+Bibtex:
+
+```
+@inproceedings{NILM_Metadata,
+title = {{Metadata for Energy Disaggregation}},
+author = {Kelly, Jack and Knottenbelt, William},
+year = {2014},
+month = jul,
+address = {V{\" a}ster{\aa}s, Sweden},
+booktitle = {The 2nd IEEE International Workshop on Consumer Devices and Systems (CDS 2014)},
+archivePrefix = {arXiv},
+arxivId = {1403.5946},
+eprint = {1403.5946}
+}
+```
+
 Please cite this paper if you use NILM metadata.
 
 ## JSON Schema has been depreciated
