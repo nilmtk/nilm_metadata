@@ -123,23 +123,20 @@ timeframe:
   start: 2012-11-09
   end: 2014-03-11
 elec_meters: # Metadata about appliances
-
-# Meter that measures whole-house mains:
 - instance: 1
+  description: Meter that measures whole-house mains
   device_model: EnviR
   site_meter: true
   sensors:
   - data_location: house1/channel_1.dat
-
-# Meter that measures lighting circuit:
 - instance: 2
+  description: Meter that measures lighting circuit
   device_model: EnviR
   submeter_of: 1
   sensors:
   - data_location: house1/channel_2.dat
-
-# Meter that measures kitchen lights:
 - instance: 3
+  description: Meter that measures kitchen lights
   device_model: EnviR
   submeter_of: 2
   sensors:

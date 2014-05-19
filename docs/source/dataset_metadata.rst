@@ -261,6 +261,9 @@ Each appliance dict has:
 :gtin: (int) http://en.wikipedia.org/wiki/Global_Trade_Item_Number
 :version: (string)
 
+Additional properties are specified for some Appliance Types.  Please
+look up objects in `objects/*.yaml` for details.
+
 TimeFrame
 ---------
 
