@@ -1,71 +1,165 @@
 NILM METADATA
 =============
 
-NILM Metadata is a framework for
-modelling appliances, meters, measurements, buildings and datasets.
-Default properties for appliances and meters are also provided.
-
-NILM Metadata aims to provide:
-
-### A schema for describing:
-
-* domestic appliances
-  * a controlled vocabulary for appliance names and categories
-  * a list of time periods when each appliance was active
-  * each appliance can contain any number of components (e.g. a
-    light fitting can contain multiple lamps and a dimmer)
-  * prior knowledge about the distribution of variables such as:
-    * on power
-    * on duration
-    * usage in terms of hour per day
-    * appliance correlations (e.g. that the TV is usually on if the
-      games console is on)
-* electricity meters (whole-home and individual appliance meters)
-  * a controlled vocabulary for measurements
-  * wiring hierarchy of meters
-* a mapping of which appliances are connected to which meters
-
-### A database of appliance types and specific makes and models
-
-* standard properties and priors for each appliance
-* valid additional properties for each appliance
-
-## Further details
-
-NILM Metadata uses [JSON Schema](http://json-schema.org/) to define
-the syntactic elements of the schema and then uses a simple but
-powerful inheritance mechanism to allow 'objects' (e.g. a
-specification of an appliance) to inherit from an existing object.
-For example, `laptop computer` is a specialisation of `computer`
-and the two share several properties (e.g. both are in the `ICT`
-category).  So `laptop computer` inherits from `computer` and modifies
-and adds any properties it needs.  In this way, we can embrace the
-["don't repeat yourself (DRY)"](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
-principal by exploiting the relationship between appliances.
-
-The metadata itself can be either
-[YAML](http://en.wikipedia.org/wiki/YAML) or JSON.
+NILM Metadata (where `NILM' stands for `non-instrusive load
+monitoring') is a metadata framework for describing appliances, meters,
+measurements, buildings and datasets.
 
 The aim is that NILM Metadata can be used as a stand-alone project to
 specify the metadata for any NILM dataset; and that metadata can then
 be used with the open-source energy disaggregation and analytics
 framework [NILMTK](http://nilmtk.github.io/).
 
-Please jump in and add to or modify the schema and database of
-objects!
+Please jump in and add to or modify the schema and documentation!
+
+There are two sides to NILM Metadata:
+
+### 1) A schema for  metadata that is included with disaggregated energy datasets
+
+The schema covers:
+
+* electricity meters (whole-home and individual appliance meters)
+  * wiring hierarchy of meters
+  * a controlled vocabulary for measurement names
+* domestic appliances
+  * a controlled vocabulary for appliance names
+  * each appliance can contain any number of components (e.g. a
+    light fitting can contain multiple lamps and a dimmer)
+  * a list of time periods when each appliance was active
+* a mapping of which appliances are connected to which meters
+* buildings
+* datasets
+
+The metadata itself can be either
+[YAML](http://en.wikipedia.org/wiki/YAML) or JSON.
+
+### 2) Common information about appliances
+
+Common info about appliances is stored in NILM Metadata.  This includes:
+
+* Categories for each appliance type
+* prior knowledge about the distribution of variables such as:
+  * on power
+  * on duration
+  * usage in terms of hour per day
+  * appliance correlations (e.g. that the TV is usually on if the
+    games console is on)
+* valid additional properties for each appliance
+
+The common info about appliances uses a simple but powerful
+inheritance mechanism to allow appliances to inherit from a other
+appliances.  For example, `laptop computer` is a specialisation of
+`computer` and the two share several properties (e.g. both are in the
+`ICT` category).  So `laptop computer` inherits from `computer` and
+modifies and adds any properties it needs.  In this way, we can
+embrace the
+["don't repeat yourself (DRY)"](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+principal by exploiting the relationship between appliances.
 
 ## Research paper describing NILM metadata
 
 The following paper describes NILM metadata in detail:
 
-* Jack Kelly and William Knottenbelt. **Metadata for Energy
-  Disaggregation**. [arXiv:1403.5946 [cs.DB]](http://arxiv.org/abs/1403.5946)
-  March 2014
+* Jack Kelly and William Knottenbelt (2014). **Metadata for Energy
+  Disaggregation**. In The 2nd IEEE International Workshop on Consumer
+  Devices and Systems (CDS 2014) in Västerås, Sweden.
+  [arXiv:1403.5946](http://arxiv.org/abs/1403.5946)
 
 Please cite this paper if you use NILM metadata.
 
-Example
-=======
+## JSON Schema has been depreciated
+
+In order to automate the validation of metadata instances, we did
+write a very comprehensive (and complex) schema using JSON Schema.
+JSON Schema is a lovely language and can capture everything we need
+but, because our metadata is quite comprehensive, we found that using
+JSON Schema was a significant time drain and made it hard to move
+quickly and add new ideas to the metadata.  As such, when we moved
+from v0.1 to v0.2, the JSON Schema has been depreciated.  Please use
+the human-readable documentation instead.  If there is a real desire
+for automated validation then we could resurrect the JSON Schema, but
+it is a fair amount of work to maintain, and is a little fragile.
+
+## Examples
+
+### Example of dataset metadata
+
+```
+# dataset.yaml
+name: UK-DALE
+long_name: UK Domestic Appliance-Level Electricity
+mains_voltage:
+  nominal: 230
+  upper_limit: 253
+  lower_limit: 215
+
+# meter_devices.yaml
+- model: EnviR
+  manufacturer: Current Cost
+  measurements:
+  - physical_quantity: power
+    ac_type: apparent
+    lower_limit: 0
+    upper_limit: 30000
+
+
+# building1.yaml
+# Metadata about building 1:
+instance: 1
+rooms:
+- {name: kitchen, instance: 1}
+- {name: lounge, instance: 1}
+geo_location:
+  locality: London
+  country: GB
+  latitude: 51.464462
+  longitude: -0.076544
+timezone: Europe/London
+timeframe:
+  start: 2012-11-09
+  end: 2014-03-11
+
+# Metadata about appliances (in building1.yaml):
+elec_meters:
+
+# Meter that measures whole-house mains:
+- instance: 1
+  device_model: EnviR
+  site_meter: true
+  sensors:
+  - data_location: house1/channel_1.dat
+
+# Meter that measures lighting circuit:
+- instance: 2
+  device_model: EnviR
+  submeter_of: 1
+  sensors:
+  - data_location: house1/channel_2.dat
+
+# Meter that measures kitchen lights:
+- instance: 3
+  device_model: EnviR
+  submeter_of: 2
+  sensors:
+  - data_location: house1/channel_2.dat
+  preprocessing:
+  - {filter: clip, maximum: 4000}
+  appliances:
+  - type: light
+    components:
+    - type: LED lamp
+      count: 10
+      nominal_consumption: {on_power: 10}
+      manufacturer: Philips
+      year_of_manufacture: 2011
+    - type: dimmer
+    on_power_threshold: 10
+    main_room_light: true
+    dates_active:
+    - {start: 2012, end: 2013}
+```
+
+### Example of common metadata
 
 To demonstrate the inheritance system, let's look at specifying a
 boiler.
@@ -136,14 +230,19 @@ boiler: # all boilers except for electric boilers
       source: subjective # These values are basically guesses!
 ```
 
-Next, we keep a catalogue of specific makes and models of appliances
-in NILM Metadata.  Here's a specific boiler (which inherits from `boiler`):
+
+Finally, in the metadata for the dataset itself, we can do:
+
 
 ```yaml
-Worcester~Greenstar 30CDi Conventional natural gas:
+
+  type: boiler
   manufacturer: Worcester
   model: Greenstar 30CDi Conventional natural gas
-  parent: boiler
+  room:
+    name: bathroom
+    instance: 1
+  year_of_purchase: 2011
   fuel: natural gas
   subtype: regular
   part_number: 41-311-71
@@ -160,125 +259,11 @@ Worcester~Greenstar 30CDi Conventional natural gas:
         sigma: 12
 ```
 
-Finally, in the 'minimal' version of the metadata for the UKPD
-dataset, we just need to specify the following:
-
-```
-parent: Worcester~Greenstar 30CDi Conventional natural gas
-room:
-  name: bathroom
-  instance: 1
-year_of_purchase: 2011
-```
-
-This is combined with information from its ancestors and the result is
-shown below).
-
-Below is a snippet of the metadata for the UKPD dataset.  The snippet
-first describes the dataset itself, then describes the first building
-and describes the boiler and one meter in the building.
-
-```yaml
-name: UKPD
-full_name: UK Power Dataset
-institution: Imperial College London
-contact: jack.kelly@imperial.ac.uk
-description: Recording from 4 domestic homes in or near to London, UK.
-number_of_buildings: 4
-timezone: Europe/London
-urls: ['http://www.doc.ic.ac.uk/~dk3810/data']
-buildings:
-  1:
-    geo_location:
-      city: London
-      country: UK
-      latitude: 51.464462
-      longitude: -0.076544
-      
-    timezone: Europe/London
-    
-    timeframe:
-      start: 2012-11-09
-      end: 2014-03-11
-      
-    utilities:
-    
-      electric:
-      
-        mains_voltage:
-          nominal: 230
-          tolerance_lower_bound: 10
-          tolerance_upper_bound: 6
-
-        appliances:
-        - name: boiler
-          instance: 1
-          model: Greenstar 30CDi Conventional natural gas
-          manufacturer: Worcester
-          fuel: natural gas
-          subtype: regular
-          meter_ids: [2]
-          nominal_consumption: 
-            on_power: 70   # watts
-          part_number: 41-311-71
-          room:
-            name: bathroom
-            instance: 1
-          year_of_purchase: 2011
-          control: [manual, timer, thermostat]
-          efficiency_rating: 
-            certification_name: SEDBUK
-            rating: A
-          categories:
-            size: large
-            traditional: heating
-            google_shopping:
-            - climate control
-            - furnaces and boilers
-            electrical:
-            - single-phase induction motor
-          components:
-          - name: water pump
-            parent: water pump
-            categories:
-              electrical: [single-phase induction motor]
-          distributions:
-            room:
-            - distribution_of_data:
-                categories: [bathroom, kitchen, utility]
-                values: [0.3, 0.2]
-              source: subjective
-            on_power:
-            - model:
-                distribution_name: normal
-                mu: 73   # watts
-                sigma: 12
-
-        meters:
-        - model: EcoManager Whole House Transmitter
-          manufacturer: Current Cost / Sailwider        
-          id: 1
-          sample_period: 6          
-          max_sample_period: 120
-          measurements:
-          - physical_quantity: power
-            type: apparent           
-            cummulative: false
-            minimum: 0
-            maximum: 25000            
-          dates_active:
-          - start: 2012-11-09        
-            end: 2014-03-11
-          model_url: https://shop.edfenergy.com/Item.aspx?id=547
-          site_meter: true
-          wireless: true
-```
-
 
 Version numbering and contributing
 ==================================
 
-The current release is version 0.1.0.  There are definitely plenty of
+The current release is version 0.2.0.  There are definitely plenty of
 improvements that can be made so please submit pull requests for the
 dev version!
 
@@ -293,26 +278,6 @@ Or, if you want to develop:
 
 ```
 sudo python setup.py install
-```
-
-Concatenating and validating a new metadata file against the schema
-===================================================================
-
-Say you have written a new metadata file called `my_metadata.yaml` and
-you want to concatenate (merge) your data with the data in
-NILM_metadata and then validate the resulting metadata.
-
-```
-$ cd scripts
-$ ./process.py my_metadata.yaml -o my_metadata_concatenated.yaml
-
-Loading my_metadata.yaml ... done loading.
-
-Concatenating... done concatenating.
-
-Dumping output to my_metadata_concatenated.yaml ... Done dumping output.
-
-Validating... done validation!  It passed!
 ```
 
 
@@ -331,10 +296,3 @@ Related projects
   is borrowed directly from Haystack).
 * [WikiEnergy](http://wiki-energy.org/) "*A Universe of Energy Data,
   Available Around the World*".
-
-Testing
-=======
-
-```
-nosetests --nocapture
-```

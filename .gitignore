@@ -3,3 +3,4 @@ index.yaml
 *.pyc
 nilm_metadata.egg-info/
 NILM_metadata.egg-info/
+docs/build
