@@ -107,9 +107,9 @@ One big dict.  Keys are device model names (e.g. 'EnviR').  The
                    between consecutive samples.  We assume the
                    meter is switched off during any gap longer
                    than ``max_sample_period``.
-:measurements: in HDF5, this is a (list of ``nilmtk.Measurement``
-              objects) e.g. ``[Power('apparent')]``.  In YAML, this
-              is a list of dicts:
+:measurements: (list of dicts) The order is the order of the columns
+               in the data table: 
+
    :physical_quantity: (string) (required) One of {'power', 'energy',
                        'voltage'}
    :ac_type: (string) (required) Alternative Current (AC) Type. One
@@ -168,6 +168,8 @@ section on `Building metadata`_ above.
 :instance: (int starting from 1) (required) the meter instance within the building.
 :submeter_of: (int) (required) the meter instance of the upstream meter.  Or 0
               to mean 'one of the site_meters'.
+:submeter_of_is_uncertain: (boolean) Set to true if the value for
+                           `submeter_of` is uncertain.
 :upstream_meter_in_building: (int) Only use if the upstream meter is
                              in a different building.  If left blank
                              then we assume the upstream meter is in
@@ -179,8 +181,6 @@ section on `Building metadata`_ above.
    :filter: (string) one of {'clip', ... TODO}  If ``filter==clip``
             then use these additional attributes: ``lower_limit, upper_limit``.
 
-:dominant_appliance: (<appliance_type), <instance>) which is responsible for 
-          most of the power demand on this channel.
 :room: (dict) with ``name`` [and ``instance``].
 :floor: (int)
 :category: (string) e.g. ``lighting`` or ``sockets``.  Use this if this meter
@@ -197,7 +197,9 @@ section on `Building metadata`_ above.
                     situations are handled by specifying the location
                     of data for one or more sensors.
    :data_location: (string) Path relative to root directory of
-                   dataset. e.g. 'house1/channel_2.dat'
+                   dataset. e.g. 'house1/channel_2.dat'. Reference
+                   tables and columns within a Hierarchical
+                   file e.g. 'data.h5?table=/building1/meter2'
 
 
 We can also store the results from stats functions:
@@ -225,6 +227,8 @@ Each appliance dict has:
 :on_power_threshold: (number) watts
 :minimum_off_duration: (number in YAML; timedelta in HDF5)
 :minimum_on_duration: (number in YAML; timedelta in HDF5)
+:dominant_appliance: (boolean) Is this appliance responsible for 
+          most of the power demand on this meter?
 :room: (dict) with ``name`` [and ``instance``]
 :count: (int) number of appliance instances.  If absent then assumed
         to be 1.
