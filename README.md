@@ -84,7 +84,9 @@ it is a fair amount of work to maintain, and is a little fragile.
 
 ### Example of dataset metadata
 
-dataset.yaml
+These files would all be in a `metadata` directory:
+
+#### `dataset.yaml`
 ```
 name: UK-DALE
 long_name: UK Domestic Appliance-Level Electricity
@@ -94,7 +96,7 @@ mains_voltage:
   lower_limit: 215
 ```
 
-meter_devices.yaml
+#### `meter_devices.yaml`
 ```
 - model: EnviR
   manufacturer: Current Cost
@@ -105,7 +107,7 @@ meter_devices.yaml
     upper_limit: 30000
 ```
 
-building1.yaml
+#### `building1.yaml`
 ```
 instance: 1
 rooms:
