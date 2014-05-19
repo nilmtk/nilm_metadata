@@ -12,7 +12,12 @@ framework [NILMTK](http://nilmtk.github.io).
 
 Please jump in and add to or modify the schema and documentation!
 
-The [documentation is available online](http://nilm-metadata.readthedocs.org).
+The
+[documentation is available online](http://nilm-metadata.readthedocs.org). The
+vast majority of users will probably want to jump straight to the
+"[Dataset metadata](http://nilm-metadata.readthedocs.org/en/latest/dataset_metadata.html)"
+page to learn how to create metadata to describe a dataset.  Also take
+a look at the brief example below.
 
 There are two sides to NILM Metadata:
 
