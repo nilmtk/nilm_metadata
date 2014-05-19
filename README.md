@@ -1,7 +1,7 @@
 NILM METADATA
 =============
 
-NILM Metadata (where `NILM' stands for `non-instrusive load
+NILM Metadata (where 'NILM' stands for 'non-instrusive load
 monitoring') is a metadata framework for describing appliances, meters,
 measurements, buildings and datasets.
 
