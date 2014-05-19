@@ -89,6 +89,10 @@ it is a fair amount of work to maintain, and is a little fragile.
 
 ## Examples
 
+Please note that the examples in the `examples` folder have not yet
+been converted from v0.1 to v0.2 (which is considerably simpler and
+easier to navigate!)
+
 ### Example of dataset metadata
 
 These files would all be in a `metadata` directory:
