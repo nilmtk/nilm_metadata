@@ -167,11 +167,10 @@ overridden by ``Building``:
 ElecMeter
 ---------
 
-This lives in the ``elec_meters`` attribute of each building (see the
+ElecMeters are the values of the ``elec_meters`` dict of each building (see the
 section on `Building`_ metadata above).
 
 :device_model: (string) (required) ``model`` which keys into ``meter_devices``
-:instance: (int starting from 1) (required) the meter instance within the building.
 :submeter_of: (int) (required) the meter instance of the upstream meter.  Or 0
               to mean 'one of the site_meters'.
 :submeter_of_is_uncertain: (boolean) Set to true if the value for
