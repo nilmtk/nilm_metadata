@@ -97,8 +97,8 @@ make and model of meter).
 * Location in HDF5: ``store.root._v_attrs.metadata`` in ``meter_devices``
 
 One big dict.  Keys are device model names (e.g. 'EnviR').  The
-  purpose is to record information about specific models of meter.
-  Values are also dicts with keys:
+purpose is to record information about specific models of meter.
+Values are also dicts with keys:
 
 :model: (string) (required) The model name for this meter device.
 :model_url: (string) The URL with more information about this meter model.
@@ -111,8 +111,8 @@ One big dict.  Keys are device model names (e.g. 'EnviR').  The
                    between consecutive samples.  We assume the
                    meter is switched off during any gap longer
                    than ``max_sample_period``.
-:measurements: (list of dicts) The order is the order of the columns
-               in the data table: 
+:measurements: (list of dicts) The order is the order of the columns 
+  in the data table:
 
    :physical_quantity: (string) (required) One of {'power', 'energy',
                        'voltage'}
@@ -187,7 +187,9 @@ section on `Building`_ metadata above).
             then use these additional attributes: ``lower_limit, upper_limit``.
 
 :room: (dict) with ``name`` [and ``instance``].
+
 :floor: (int)
+
 :category: (string) e.g. ``lighting`` or ``sockets``.  Use this if this meter
            feeds a group of appliances and if we do not know the
            identity of each individual appliance.  For example, perhaps
@@ -195,19 +197,21 @@ section on `Building`_ metadata above).
            in which case we use ``'category': 'lighting'``.
            Must use NILM Metadata controlled vocabulary as for
            appliance categories.
-:appliances: (list of dicts) See section below on `Appliance metadata`_.
-:sensors: (list of dicts) Some homes have a split-phase mains
-           supply. Some homes have 3-phase mains.  Some
-           appliances take two or three supplies.  All these
-           situations are handled by specifying the location
-           of data for one or more sensors.  Each dict includes:
-   :data_location: (string) Path relative to root directory of
-                   dataset. e.g. 'house1/channel_2.dat'. Reference
-                   tables and columns within a Hierarchical
-                   file e.g. 'data.h5?table=/building1/sensor1a' or, if
-                   this metadata is stored in the same HDF file as the
-                   sensor data itself then just use the key e.g. '/building1/sensor1a'.
 
+:appliances: (list of dicts) See section below on `Appliance metadata`_.
+
+:sensors: (list of dicts) Some homes have a split-phase mains
+  supply. Some homes have 3-phase mains.  Some
+  appliances take two or three supplies.  All these
+  situations are handled by specifying the location
+  of data for one or more sensors.  Each dict includes:
+
+  :data_location: (string) Path relative to root directory of
+     dataset. e.g. ``house1/channel_2.dat``. Reference
+     tables and columns within a Hierarchical
+     file e.g. 'data.h5?table=/building1/sensor1a' or, if
+     this metadata is stored in the same HDF file as the
+     sensor data itself then just use the key e.g. '/building1/sensor1a'.
 
 We can also store the results from stats functions:
 
