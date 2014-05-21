@@ -111,8 +111,9 @@ Values are also dicts with keys:
                    between consecutive samples.  We assume the
                    meter is switched off during any gap longer
                    than ``max_sample_period``.
-:measurements: (list of dicts) The order is the order of the columns 
-  in the data table:
+:measurements: (list) The order is the order of the columns in the
+  sensors data table.  The values are different for YAML versus HDF5 storage.
+  For HDF5 we use ``nilmtk.measurement`` classes.  In YAML we use:
 
    :physical_quantity: (string) (required) One of {'power', 'energy',
                        'voltage'}
@@ -120,6 +121,10 @@ Values are also dicts with keys:
              of {'reactive', 'active', 'apparent'}
    :upper_limit: (number)
    :lower_limit: (number)
+:measurement_limits: (dict) (only used in HDF5)
+
+   :lower_limit:
+   :upper_limit:
 :description: (string)
 :wireless: (boolean)
 :wireless_base: (string) Description of the base station used
