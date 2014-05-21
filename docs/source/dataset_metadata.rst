@@ -136,7 +136,9 @@ Building
 :dataset: (string) (required) Dataset ``name``
 :original_name: (string) Original name of building from old (pre-NILM
                 Metadata) metadata.
-:elec_meters: (list of dicts) (required) See section below on `Meter metadata`_.
+:elec_meters: (dict of dicts) (required) Each key is an integer
+              (>= 1) representing the meter instance in this building.
+              Each value is an ``ElecMeter``. See section below on `ElecMeter`_.
 :description: (string)
 :rooms: (list of dicts):
 

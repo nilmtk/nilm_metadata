@@ -151,39 +151,39 @@ timeframe:
   start: 2012-11-09
   end: 2014-03-11
 elec_meters: # Metadata about appliances
-- instance: 1
-  description: Meter that measures whole-house mains
-  device_model: EnviR
-  site_meter: true
-  sensors:
-  - data_location: house1/channel_1.dat
-- instance: 2
-  description: Meter that measures lighting circuit
-  device_model: EnviR
-  submeter_of: 1
-  sensors:
-  - data_location: house1/channel_2.dat
-- instance: 3
-  description: Meter that measures kitchen lights
-  device_model: EnviR
-  submeter_of: 2
-  sensors:
-  - data_location: house1/channel_2.dat
-  preprocessing:
-  - {filter: clip, maximum: 4000}
-  appliances:
-  - type: light
-    components:
-    - type: LED lamp
-      count: 10
-      nominal_consumption: {on_power: 10}
-      manufacturer: Philips
-      year_of_manufacture: 2011
-    - type: dimmer
-    on_power_threshold: 10
-    main_room_light: true
-    dates_active:
-    - {start: 2012, end: 2013}
+  1:
+    description: Meter that measures whole-house mains
+    device_model: EnviR
+    site_meter: true
+    sensors:
+    - data_location: house1/channel_1.dat
+  2:
+    description: Meter that measures lighting circuit
+    device_model: EnviR
+    submeter_of: 1
+    sensors:
+    - data_location: house1/channel_2.dat
+  3:
+    description: Meter that measures kitchen lights
+    device_model: EnviR
+    submeter_of: 2
+    sensors:
+    - data_location: house1/channel_2.dat
+    preprocessing:
+    - {filter: clip, maximum: 4000}
+    appliances:
+    - type: light
+      components:
+      - type: LED lamp
+        count: 10
+        nominal_consumption: {on_power: 10}
+        manufacturer: Philips
+        year_of_manufacture: 2011
+      - type: dimmer
+      on_power_threshold: 10
+      main_room_light: true
+      dates_active:
+      - {start: 2012, end: 2013}
 ```
 
 ### Example of common metadata
