@@ -186,10 +186,6 @@ section on `Building`_ metadata above).
                              the same building as this meter.
 :site_meter: (boolean): True if this is a site meter (i.e. furthest
              upstream meter)
-:preprocessing: (list of dicts):
-
-   :filter: (string) one of {'clip', ... TODO}  If ``filter==clip``
-            then use these additional attributes: ``lower_limit, upper_limit``.
 
 :room: (dict) with ``name`` [and ``instance``].
 
@@ -214,19 +210,27 @@ section on `Building`_ metadata above).
   :data_location: (string) Path relative to root directory of
      dataset. e.g. ``house1/channel_2.dat``. Reference
      tables and columns within a Hierarchical
-     file e.g. 'data.h5?table=/building1/sensor1a' or, if
+     file e.g. ``data.h5?table=/building1/elec/sensor1a`` or, if
      this metadata is stored in the same HDF file as the
-     sensor data itself then just use the key e.g. '/building1/sensor1a'.
+     sensor data itself then just use the key e.g. ``/building1/elec/sensor1a``.
 
-We can also store the results from stats functions:
+:preprocessing_applied: (dict): Each key is optional and is only
+   present if that preprocessing function has been run.
 
-:good_sections: (list of `TimeFrame`_ objects)
-:contiguous_sections: (list of `TimeFrame`_ objects)
-:energy: (dict) kWh
+   :clip: (dict)
 
-   :active: (number)
-   :reactive: (number)
-   :apparent: (number)
+      :lower_limit:
+      :upper_limit:
+
+:statistics: (dict):
+
+   :good_sections: (list of `TimeFrame`_ objects)
+   :contiguous_sections: (list of `TimeFrame`_ objects)
+   :energy: (dict) kWh
+
+      :active: (number)
+      :reactive: (number)
+      :apparent: (number)
 
 
 
