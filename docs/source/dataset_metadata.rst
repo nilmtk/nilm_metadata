@@ -10,8 +10,8 @@ Each section of this doc starts by describing where the relevant
 metadata is stored in both file formats.
 
 
-Dataset metadata
-----------------
+Dataset
+-------
 
 * Location in YAML: ``dataset.yaml``
 * Location in HDF5: ``store.root._v_attrs.metadata``
@@ -84,10 +84,14 @@ Dublin Core Metadata Initiative or DCMI):
          validated. e.g. https://github.com/nilmtk/nilm_metadata/tree/v0.2.0
 
 
-Meter devices
--------------
+MeterDevice
+-----------
 
-Metadata describing each model of electricity meter used in the dataset.
+Metadata describing each model of electricity meter used in the
+dataset.  (Please note that `ElecMeter`_ is used for representing
+individual *instances* of meters in a building whilst MeterDevice is
+used to represent information common to all instances of a specific
+make and model of meter).
 
 * Location in YAML: ``meter_devices.yaml``
 * Location in HDF5: ``store.root._v_attrs.metadata`` in ``meter_devices``
@@ -122,8 +126,8 @@ One big dict.  Keys are device model names (e.g. 'EnviR').  The
 :data_logger: (string) Description of the data logger used
 
 
-Building metadata
------------------
+Building
+--------
 
 * Location in YAML: ``building<I>.yaml``
 * Location in HDF5: ``store.root.building<I>._v_attrs.metadata``
@@ -150,7 +154,7 @@ Building metadata
                      (e.g. holidays)
 
 
-Building metadata which is inherited from ``Dataset`` but can be
+Building metadata which is inherited from `Dataset`_ but can be
 overridden by ``Building``:
 
 * geo_location
@@ -158,11 +162,11 @@ overridden by ``Building``:
 * timeframe
 
 
-Meter metadata
---------------
+ElecMeter
+---------
 
 This lives in the ``elec_meters`` attribute of each building (see the
-section on `Building metadata`_ above.
+section on `Building`_ metadata above).
 
 :device_model: (string) (required) ``model`` which keys into ``meter_devices``
 :instance: (int starting from 1) (required) the meter instance within the building.
@@ -192,14 +196,16 @@ section on `Building metadata`_ above.
            appliance categories.
 :appliances: (list of dicts) See section below on `Appliance metadata`_.
 :sensors: (list of dicts) Some homes have a split-phase mains
-                    supply. Some homes have 3-phase mains.  Some
-                    appliances take two or three supplies.  All these
-                    situations are handled by specifying the location
-                    of data for one or more sensors.
+           supply. Some homes have 3-phase mains.  Some
+           appliances take two or three supplies.  All these
+           situations are handled by specifying the location
+           of data for one or more sensors.  Each dict includes:
    :data_location: (string) Path relative to root directory of
                    dataset. e.g. 'house1/channel_2.dat'. Reference
                    tables and columns within a Hierarchical
-                   file e.g. 'data.h5?table=/building1/meter2'
+                   file e.g. 'data.h5?table=/building1/sensor1a' or, if
+                   this metadata is stored in the same HDF file as the
+                   sensor data itself then just use the key e.g. '/building1/sensor1a'.
 
 
 We can also store the results from stats functions:
