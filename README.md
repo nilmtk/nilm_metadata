@@ -125,7 +125,8 @@ mains_voltage:
 
 #### `meter_devices.yaml`
 ```
-- model: EnviR
+EnviR:
+  model: EnviR
   manufacturer: Current Cost
   measurements:
   - physical_quantity: power
