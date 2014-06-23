@@ -143,7 +143,9 @@ Building
                 Metadata) metadata.
 :elec_meters: (dict of dicts) (required) Each key is an integer
               (>= 1) representing the meter instance in this building.
-              Each value is an ``ElecMeter``. See section below on `ElecMeter`_.
+              Each value is an ``ElecMeter``. See section below on
+              `ElecMeter`_.
+:appliances: (list of dicts) (required) See section below on `Appliance`_.
 :description: (string)
 :rooms: (list of dicts):
 
@@ -185,7 +187,7 @@ section on `Building`_ metadata above).
                              then we assume the upstream meter is in
                              the same building as this meter.
 :site_meter: (boolean): True if this is a site meter (i.e. furthest
-             upstream meter)
+             upstream meter) otherwise not required.
 
 :room: (dict) with ``name`` [and ``instance``].
 
@@ -199,20 +201,12 @@ section on `Building`_ metadata above).
            Must use NILM Metadata controlled vocabulary as for
            appliance categories.
 
-:appliances: (list of dicts) See section below on `Appliance metadata`_.
-
-:sensors: (list of dicts) Some homes have a split-phase mains
-  supply. Some homes have 3-phase mains.  Some
-  appliances take two or three supplies.  All these
-  situations are handled by specifying the location
-  of data for one or more sensors.  Each dict includes:
-
-  :data_location: (string) Path relative to root directory of
+:data_location: (string) Path relative to root directory of
      dataset. e.g. ``house1/channel_2.dat``. Reference
      tables and columns within a Hierarchical
-     file e.g. ``data.h5?table=/building1/elec/sensor1a`` or, if
+     file e.g. ``data.h5?table=/building1/elec/meter1`` or, if
      this metadata is stored in the same HDF file as the
-     sensor data itself then just use the key e.g. ``/building1/elec/sensor1a``.
+     sensor data itself then just use the key e.g. ``/building1/elec/meter1``.
 
 :preprocessing_applied: (dict): Each key is optional and is only
    present if that preprocessing function has been run.
@@ -234,8 +228,8 @@ section on `Building`_ metadata above).
 
 
 
-Appliance metadata
-------------------
+Appliance
+---------
 
 Each appliance dict has:
 
@@ -244,6 +238,8 @@ Each appliance dict has:
        appliance names are the keys in these files.
 :instance: (int starting from 1) (required) instance of this appliance within
            the building.
+:meter: (int starting from 1) (required) meter instance directly
+        upstream of this appliance.
 :on_power_threshold: (number) watts
 :minimum_off_duration: (number in YAML; timedelta in HDF5)
 :minimum_on_duration: (number in YAML; timedelta in HDF5)
