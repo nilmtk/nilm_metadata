@@ -323,3 +323,5 @@ Related projects
   is borrowed directly from Haystack).
 * [WikiEnergy](http://wiki-energy.org/) "*A Universe of Energy Data,
   Available Around the World*".
+* [sMAP metadata tags](http://www.eecs.berkeley.edu/~stevedh/smap2/tags.html)
+  - sMAP is Berkley's "Simple Measurement and Actuation Profile".
