@@ -17,5 +17,5 @@ are stored within the NILM Metadata project. Some ApplianceTypes contain
 Appliances, hence the box representing the Appliance class slightly protrudes
 into the ‘common metadata’ area on the right.
 
-.. image:: circuit.png
+.. image:: circuit_no_metadata.png
 
