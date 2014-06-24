@@ -19,3 +19,36 @@ into the ‘common metadata’ area on the right.
 
 .. image:: circuit_no_metadata.png
 
+::
+
+  # building1.yaml
+  instance: 1
+  elec_meters:
+    1:
+      site_meter: true,
+      device_model: Whole-House Meter Model FOO
+    2:
+      site_meter: true,
+      device_model: Whole-House Meter Model FOO
+    3:
+      submeter_of: 1
+      device_model: Individual Appliance Monitor Model BAR
+    4:
+      submeter_of: 1
+      device_model: Individual Appliance Monitor Model BAR
+    5:
+      submeter_of: 2
+      device_model: Individual Appliance Monitor Model BAR
+    6:
+      submeter_of: 2
+      device_model: Circuit Monitor Model BAZ
+    7:
+      submeter_of: 6
+      device_model: Circuit Monitor Model BAZ
+
+  appliances:
+  - {type: kettle, instance: 1, room: kitchen, meters: [3]}
+  - {type: washing machine, instance: 1, meters: [4,5]}
+  - {type: light, instance: 1, room: kitchen, meters: [7]}
+  - {type: light, instance: 2, multiple: true, meters: [6]}
+
