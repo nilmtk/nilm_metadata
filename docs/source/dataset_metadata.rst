@@ -23,12 +23,6 @@ Dublin Core Metadata Initiative or DCMI):
        'UK-DALE'.  Equivalent DCMI element is 'title'.
 :long_name: (string) Full name of the dataset, eg. 'Reference Energy
             Disaggregation Data Set'.
-:mains_voltage: (dict):
-
-   :nominal: (number) (required) volts
-   :upper_limit: (number) volts
-   :lower_limit: (number) volts
-
 :identifier: (string): A digital object identifier (DOI) or URI for
              the dataset.  DCMI element.
 :subject: (string): For example, is this dataset about domestic or
@@ -37,8 +31,9 @@ Dublin Core Metadata Initiative or DCMI):
           DCMI element.  Human-readable free text.
 :geospatial_coverage: (string): Spatial coverage.  e.g. 'Southern
                       England'. Related to the 'coverage' DCMI
-                      element.
-:temporal_coverage: (`TimeFrame`_, see below)
+                      element.  Human-readable free text.
+:temporal_coverage: (`TimeFrame`_, see below) Start and end dates for
+                    the entire dataset.
 :creators: (list of strings) in the format '<Lastname>,
            <Firstname>'. DCMI element.
 :funding: (list of strings) A list of all the sources of funding used
@@ -59,8 +54,8 @@ Dublin Core Metadata Initiative or DCMI):
            (aka Olson) Time Zone Database
            <http://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`_ 
            e.g. 'America/New_York' or 'Europe/London'.
-:timeframe: (`TimeFrame`_, see below)
-:publication_date: (string) Related to the 'date' DCMI element.
+:publication_date: (string) Related to the 'date' DCMI element.  ISO
+                   8601 format.  e.g. '2014-06-23'
 :rights_list: (list of dicts) License(s) under which this dataset is released.  Related to the 'rights' DCMI element.  Each element has these attributes:
 
    :uri: (string) License URI
@@ -73,11 +68,12 @@ Dublin Core Metadata Initiative or DCMI):
                     (e.g. references to academic papers or web pages).
                     Also briefly describe the contents of each
                     reference (e.g. does it contain a description of
-                    the metering setup? Or an analysis of the data?
+                    the metering setup? Or an analysis of the data?)
                     Related to the 'relation' DCMI element.
 :contact: (string) Email address
 :institution: (string)
-:description: (string) DCMI element
+:description: (string) DCMI element.  Human-readable, brief
+              description.  e.g. describe sample rate, geo location etc.
 :number_of_buildings: (int)
 :schema: (string) The URL of the NILM_metadata version (tag) against
          which this metadata is
@@ -98,13 +94,13 @@ make and model of meter).
 
 One big dict.  Keys are device model names (e.g. 'EnviR').  The
 purpose is to record information about specific models of meter.
-Values are also dicts with keys:
+Values are dicts with these keys:
 
 :model: (string) (required) The model name for this meter device.
 :model_url: (string) The URL with more information about this meter model.
 :manufacturer: (string)
 :manufacturer_url: (string)
-:sample_period: (number) (required) The meter's sample period
+:sample_period: (number) (required) The meter's nominal sample period
                (i.e. the length of time between consecutive
                samples) in seconds.
 :max_sample_period: (number) The maximum permissible length of time
@@ -112,7 +108,7 @@ Values are also dicts with keys:
                    meter is switched off during any gap longer
                    than ``max_sample_period``.
 :measurements: (list) The order is the order of the columns in the
-  sensors data table.  The values are different for YAML versus HDF5 storage.
+  data table.  The values are different for YAML versus HDF5 storage.
   For HDF5 we use ``nilmtk.measurement`` classes.  In YAML we use:
 
    :physical_quantity: (string) (required) One of {'power', 'energy',
@@ -138,7 +134,6 @@ Building
 * Location in HDF5: ``store.root.building<I>._v_attrs.metadata``
 
 :instance: (int) (required) The building instance in this dataset, starting from 1
-:dataset: (string) (required) Dataset ``name``
 :original_name: (string) Original name of building from old (pre-NILM
                 Metadata) metadata.
 :elec_meters: (dict of dicts) (required) Each key is an integer
@@ -238,8 +233,10 @@ Each appliance dict has:
        appliance names are the keys in these files.
 :instance: (int starting from 1) (required) instance of this appliance within
            the building.
-:meter: (int starting from 1) (required) meter instance directly
-        upstream of this appliance.
+:meters: (list of ints) (required) meter instance(s) directly
+        upstream of this appliance.  This is a list to handle the case
+        where some appliances draw power from both 120 volt legs in a
+        north American house.  Or 3-phase appliances.
 :on_power_threshold: (number) watts
 :minimum_off_duration: (number in YAML; timedelta in HDF5)
 :minimum_on_duration: (number in YAML; timedelta in HDF5)
@@ -267,15 +264,15 @@ Each appliance dict has:
    :energy_per_year: (number) kWh per year
    :energy_per_cycle: (number) kWh per cycle
 
-:components: (list of dicts): Each dict is an Appliance dict.
+:components: (list of dicts): Components within this appliance. Each dict is an Appliance dict.
 :model: (string)
 :manufacturer: (string)
 :original_name: (string)
 :dates_active: (list of `TimeFrame`_ objects, see below) Can be used to specify
                a change in appliance over time (for example if one
                appliance is replaced with another).
-:year_of_purchase: (int)
-:year_of_manufacture: (int)
+:year_of_purchase: (int) Four-digit year.
+:year_of_manufacture: (int) Four-digit year.
 :subtype: (string)
 :part_number: (string)
 :gtin: (int) http://en.wikipedia.org/wiki/Global_Trade_Item_Number

@@ -64,7 +64,6 @@ to the building:
 * timezone
 * geo_location
 * dataset name
-* mains_voltage
 
 ApplianceType
 -------------
@@ -74,10 +73,8 @@ of:
 
 :distributions: (dict)
    :on_power: (array of priors, see below) bin_edges in units of watts
-   :on_duration: (array of priors, see below) bin_edges in units of
-                 seconds
-   :off_duration: (array of priors, see below) bin_edges in units of
-                  seconds
+   :on_duration: (array of priors, see below) bin_edges in units of seconds
+   :off_duration: (array of priors, see below) bin_edges in units of seconds
    :usage_hour_per_day: (array of priors, see below) bin_edges =
                         [0,1,2,...,24]
    :usage_day_per_week: (array of priors, see below) categories =
@@ -120,6 +117,25 @@ of:
                              are standard two-letter continent code
                              defined at
                              http://en.wikipedia.org/wiki/List_of_sovereign_states_and_dependent_territories_by_continent_%28data_file%29
+
+Country
+-------
+
+One large dict specifying country-specific information.
+
+Each key is a 'country' (string). Please use a
+standard two-letter country code defined by `ISO 3166-1 alpha-2
+<http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_. e.g. 'GB' or
+'US'.
+
+Each value is a dict with the following attributes:
+
+:mains_voltage: (dict):
+
+   :nominal: (number) (required) volts
+   :upper_limit: (number) volts
+   :lower_limit: (number) volts
+
 
 Priors
 ------
