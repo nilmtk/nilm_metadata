@@ -5,7 +5,7 @@ NILM Metadata (where 'NILM' stands for 'non-instrusive load
 monitoring') is a metadata framework for describing appliances, meters,
 measurements, buildings and datasets.
 
-The aim is that NILM Metadata can be used as a stand-alone project to
+The aim is that NILM Metadata can be used to 
 specify the metadata for any NILM dataset; and that metadata can then
 be used with the open-source energy disaggregation and analytics
 framework [NILMTK](http://nilmtk.github.io).
@@ -14,14 +14,15 @@ Please jump in and add to or modify the schema and documentation!
 
 The
 [documentation is available online](http://nilm-metadata.readthedocs.org). The
-vast majority of users will probably want to jump straight to the
-"[Dataset metadata](http://nilm-metadata.readthedocs.org/en/latest/dataset_metadata.html)"
-page to learn how to create metadata to describe a dataset.  Also take
-a look at the brief example below.
+vast majority of users will probably want to jump straight to the user
+manual to find out how to use NILM Metadata for their own dataset and
+to see and worked example.  Or, if you are already familiar with NILM
+Metadata then perhaps you wnat direct access to the full description of the 
+"[Dataset metadata](http://nilm-metadata.readthedocs.org/en/latest/dataset_metadata.html)".
 
 There are two sides to NILM Metadata:
 
-### 1) A schema for  metadata that is included with disaggregated energy datasets
+### 1) A schema for metadata that is included with disaggregated energy datasets
 
 The schema covers:
 
@@ -88,20 +89,23 @@ eprint = {1403.5946}
 }
 ```
 
-Please cite this paper if you use NILM metadata.
+Please cite this paper if you use NILM metadata.  But please also be
+aware that the online documentation is more up-to-date than the paper.
 
 ## JSON Schema has been depreciated
 
 In order to automate the validation of metadata instances, we did
-write a very comprehensive (and complex) schema using JSON Schema.
-JSON Schema is a lovely language and can capture everything we need
-but, because our metadata is quite comprehensive, we found that using
-JSON Schema was a significant time drain and made it hard to move
-quickly and add new ideas to the metadata.  As such, when we moved
-from v0.1 to v0.2, the JSON Schema has been depreciated.  Please use
-the human-readable documentation instead.  If there is a real desire
-for automated validation then we could resurrect the JSON Schema, but
-it is a fair amount of work to maintain, and is a little fragile.
+write a very comprehensive (and complex) schema using
+[JSON Schema](http://json-schema.org/).  JSON Schema is a lovely
+language and can capture everything we need but, because our metadata
+is quite comprehensive, we found that using JSON Schema was a
+significant time drain and made it hard to move quickly and add new
+ideas to the metadata.  As such, when we moved from v0.1 to v0.2, the
+JSON Schema has been dropped.  Please use the
+[human-readable documentation](http://nilm-metadata.readthedocs.org)
+instead.  If there is a real desire for automated validation then we
+could resurrect the JSON Schema, but it is a fair amount of work to
+maintain, and is a little fragile.
 
 ## Examples
 
