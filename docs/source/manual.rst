@@ -82,20 +82,25 @@ Each value of the ``elec_meters`` dict is a dictionary recording
 information about that specific meter. ``site_meter`` is set to
 ``true`` if this meter measures the whole-building aggregate power
 demand. ``submeter_of`` records the meter instance of the upstream
-meter.
+meter.  In this way, we can specify wiring hierarchies of arbitrary
+complexity.
 
 ``appliances`` is a list of dictionaries.  Each dictionary describes a
 single appliance.  The appliance ``type`` (e.g. 'kettle' or 'washing
 machine') is taken from a controlled vocabulary defined in NILM
 Metadata.  For each appliance, we must also specify an ``instance``
-(an integer which allows us to uniquely identify each instance of a
-particular appliance ``type``).  We must also specify a list of
-``meters``.  Each element in this list is an integer which corresponds
-to a meter ``instance``.  In this way, we can specify which meter is
-directly upstream of this appliance.  The vast majority of domestic
-appliances will only specify a single meter.  We use two meters for
-north-American appliances which draw power from both mains
-legs.  We use three meters for three-phase appliances.
+(an integer which, within each building, allows us to distinguish
+between multiple instances of a particular appliance ``type``).  We
+must also specify a list of ``meters``.  Each element in this list is
+an integer which corresponds to a meter ``instance``.  In this way, we
+can specify which meter is directly upstream of this appliance.  The
+vast majority of domestic appliances will only specify a single meter.
+We use two meters for north-American appliances which draw power from
+both mains legs.  We use three meters for three-phase appliances.
+
+See the documentation of the :doc:`dataset_metadata` for a full
+listing of all elements which can be described, or continue below for
+a more detailed example.
 
 
 Detailed example of converting REDD to NILM Metadata
