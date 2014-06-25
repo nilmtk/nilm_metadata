@@ -170,6 +170,9 @@ First, let us specify the name of the dataset and the creators::
     http://redd.csail.mit.edu/kolter-kddsust11.pdf
   schema: https://github.com/nilmtk/nilm_metadata/tree/v0.2.0
 
+The nominal mains voltage can be inferred from the
+``geo_location:country`` value.
+
 Meter Devices
 ^^^^^^^^^^^^^
 
@@ -229,3 +232,49 @@ Each value is a dictionary describing the meter::
     wireless: false
 
 
+Buildings, electricity meters and appliances
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Finally, we need to specify metadata for each building in the
+dataset.  Information about each electricity meter and each appliance
+is specified along with the building.  Metadata for each building goes
+into :file:`building{<i>}.yaml` where *i* is an integer starting
+from 1.  e.g. :file:`building1.yaml`
+
+We will describe ``house_1`` from REDD.  First, we describe the basic
+information about ``house_1`` using the :ref:`building-schema` schema::
+
+  instance: 1
+  original_name: house_1
+
+We do now know the specific geographical location of ``house_1`` in REDD.  As
+such, we can assume that ``house_1`` will just 'inherit' 
+``geo_location`` and ``timezone`` from the ``dataset`` metadata.  If we did
+know the geographical location of ``house_1`` then we could specify it
+in ``building1.yaml``.
+
+Next, we specify every electricity meter and the wiring between the
+meters using the :ref:`elec-meter-schema` schema.  We won't show every meter::
+
+  elec_meters:
+    1:
+      site_meter: true
+      device_model: REDD_whole_house  # keys into meter_devices dictionary
+      data_location: house_1/channel_1.dat
+    2:
+      site_meter: true
+      device_model: REDD_whole_house
+      data_location: house_1/channel_2.dat
+    3:
+      submeter_of: 0 # '0' means 'one of the site_meters'. We don't know
+                     # which site meter feeds which appliance in REDD.
+      device_model: eMonitor
+      data_location: house_1/channel_3.dat
+    4:
+      submeter_of: 0
+      device_model: eMonitor
+      data_location: house_4/channel_4.dat
+
+We could also specify attributes such as ``room, floor,
+preprocessing_applied, statistics, upstream_meter_in_building`` but
+none of these are relevant for REDD.

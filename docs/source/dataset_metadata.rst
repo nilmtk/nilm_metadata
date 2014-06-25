@@ -135,6 +135,7 @@ Values are dicts with these keys:
 :wireless_base: (string) Description of the base station used
 :data_logger: (string) Description of the data logger used
 
+.. _building-schema:
 
 Building
 --------
@@ -174,6 +175,7 @@ overridden by ``Building``:
 * timezone
 * timeframe
 
+.. _elec-meter-schema:
 
 ElecMeter
 ---------
