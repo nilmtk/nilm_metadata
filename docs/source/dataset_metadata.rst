@@ -50,7 +50,7 @@ Dublin Core Metadata Initiative or DCMI):
 :geospatial_coverage: (string): Spatial coverage.  e.g. 'Southern
                       England'. Related to the 'coverage' DCMI
                       element.  Human-readable free text.
-:temporal_coverage: (`TimeFrame`_, see below) Start and end dates for
+:temporal_coverage: (`Interval`_, see below) Start and end dates for
                     the entire dataset.
 :funding: (list of strings) A list of all the sources of funding used
           to produce this dataset.
@@ -162,8 +162,8 @@ Building
    :description: (string)
    :floor: (int) Ground floor is floor 0.
 :n_occupants: (int) Mode number of occupants.
-:temporal_coverage: (`TimeFrame`_, see below)
-:periods_unoccupied: (list of `TimeFrame` objects, see below) Periods when this
+:temporal_coverage: (`Interval`_, see below)
+:periods_unoccupied: (list of `Interval` objects, see below) Periods when this
                      building was empty for more than a day
                      (e.g. holidays)
 
@@ -172,7 +172,7 @@ overridden by ``Building``:
 
 * geo_location
 * timezone
-* timeframe
+* temporal_coverage
 
 .. _elec-meter-schema:
 
@@ -219,8 +219,8 @@ section on `Building`_ metadata above).
 
 :statistics: (dict):
 
-   :good_sections: (list of `TimeFrame`_ objects)
-   :contiguous_sections: (list of `TimeFrame`_ objects)
+   :good_sections: (list of `Interval`_ objects)
+   :contiguous_sections: (list of `Interval`_ objects)
    :energy: (dict) kWh
 
       :active: (number)
@@ -277,7 +277,7 @@ Each appliance dict has:
 :model: (string)
 :manufacturer: (string)
 :original_name: (string)
-:dates_active: (list of `TimeFrame`_ objects, see below) Can be used to specify
+:dates_active: (list of `Interval`_ objects, see below) Can be used to specify
                a change in appliance over time (for example if one
                appliance is replaced with another).
 :year_of_purchase: (int) Four-digit year.
@@ -290,7 +290,7 @@ Each appliance dict has:
 Additional properties are specified for some Appliance Types.  Please
 look up objects in `objects/*.yaml` for details.
 
-TimeFrame
+Interval
 ---------
 
 Represent an arbitrary time frame.  If either start or end is absent
