@@ -167,7 +167,6 @@ Building
                      building was empty for more than a day
                      (e.g. holidays)
 
-
 Building metadata which is inherited from `Dataset`_ but can be
 overridden by ``Building``:
 
@@ -246,10 +245,7 @@ Each appliance dict has:
 :minimum_on_duration: (number in YAML; timedelta in HDF5)
 :dominant_appliance: (boolean) Is this appliance responsible for 
           most of the power demand on this meter?
-:room: (string) ``<room name>[,<instance>]``.  e.g. 'kitchen' or
-       'bedroom,2'.  If no ``instance`` is specified (e.g. 'room:
-       kitchen' then it is assumed to be 'kitchen,1'
-       (i.e. kitchen instance 1).
+:room: see `ElecMeter`_:room
 :multiple: (boolean) True if there are more than one 
            of these appliances represented by this single
            ``appliance`` object.
