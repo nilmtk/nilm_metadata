@@ -196,7 +196,10 @@ section on `Building`_ metadata above).
 :room: (string) ``<room name>[,<instance>]``.  e.g. 'kitchen' or
        'bedroom,2'.  If no ``instance`` is specified (e.g. 'room:
        kitchen' then it is assumed to be 'kitchen,1'
-       (i.e. kitchen instance 1).
+       (i.e. kitchen instance 1).  If the building metadata specifies set of
+       ``rooms`` then the room specified here will key into the
+       building's ``rooms`` (but not all datasets enumerate every room
+       for each building).
 :floor: (int) Not necessary if ``room`` is specified. Ground floor is 0. 
 
 :data_location: (string) Path relative to root directory of
