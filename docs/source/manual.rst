@@ -194,7 +194,7 @@ Each value is a dictionary describing the meter::
       Measures circuit-level power demand.  Comes with 24 CTs.
       This FAQ page suggests the eMonitor measures real (active)
       power: http://www.energycircle.com/node/14103  although the REDD 
-      README says all channels record apparent power.
+      readme.txt says all channels record apparent power.
     sample_period: 3   # the interval between samples. In seconds.
     max_sample_period: 50   # Max allowable interval between samples. Seconds.
     measurements:
@@ -226,7 +226,7 @@ Each value is a dictionary describing the meter::
     max_sample_period: 30
     measurements:
     - physical_quantity: power
-      ac_type: active
+      ac_type: apparent
       upper_limit: 50000
       lower_limit: 0
     wireless: false
@@ -246,6 +246,8 @@ information about ``house_1`` using the :ref:`building-schema` schema::
 
   instance: 1
   original_name: house_1
+  elec_meters: # see below
+  appliances: # see below
 
 We do now know the specific geographical location of ``house_1`` in REDD.  As
 such, we can assume that ``house_1`` will just 'inherit' 
@@ -254,7 +256,10 @@ know the geographical location of ``house_1`` then we could specify it
 in ``building1.yaml``.
 
 Next, we specify every electricity meter and the wiring between the
-meters using the :ref:`elec-meter-schema` schema.  We won't show every meter::
+meters using the :ref:`elec-meter-schema` schema.  ``elec_meters`` is
+a dictionary.  Each key is a meter instance.  Each value is a
+dictionary describing that meter.  To keep this short, we won't show
+every meter::
 
   elec_meters:
     1:
@@ -278,3 +283,122 @@ meters using the :ref:`elec-meter-schema` schema.  We won't show every meter::
 We could also specify attributes such as ``room, floor,
 preprocessing_applied, statistics, upstream_meter_in_building`` but
 none of these are relevant for REDD.
+
+Now we can specify which appliances connect to which meters. 
+
+For reference, here is the original :file:`labels.dat` for
+:file:`house_1` in REDD::
+
+  1 mains
+  2 mains
+  3 oven
+  4 oven
+  5 refrigerator
+  6 dishwaser
+  7 kitchen_outlets
+  8 kitchen_outlets
+  9 lighting
+  10 washer_dryer
+  11 microwave
+  12 bathroom_gfi
+  13 electric_heat
+  14 stove
+  15 kitchen_outlets
+  16 kitchen_outlets
+  17 lighting
+  18 lighting
+  19 washer_dryer
+  20 washer_dryer
+
+We use the :ref:`appliance-schema` schema to specify appliances.  In
+REDD, all the meters measure *circuits* using CT clamps in the homes'
+fuse box.  Some circuits power individual appliances.  Other circuits
+power groups of appliances.
+
+``appliances`` is a list of dictionaries.
+
+Let us start by demonstrating how we describe circuits which power
+individual appliances::
+
+  appliances:
+
+  - type: fridge
+    instance: 1
+    meters: [5]
+    original_name: refrigerator
+
+  - type: electric oven
+    instance: 1
+    meters: [3, 4]   # draws power from both 120 volt legs
+    original_name: oven
+
+Recall from the `Simple example`_ that the value of ``type`` is
+taken from the NILM Metadata controlled vocabulary of appliance
+types.  ``original_name`` is the name used in REDD, prior to
+conversion to the NILM Metadata controlled vocabulary.
+
+Now we specify loads which aren't single appliances but, instead, are
+categories of appliances::
+
+  appliances:
+
+  - original_name: kitchen_outlets
+    room: kitchen
+    type: sockets   # sockets is treated as an appliance
+    instance: 1
+    multiple: true   # likely to be more than 1 socket
+    meters: [7]
+
+  - original_name: kitchen_outlets
+    room: kitchen
+    type: sockets
+    instance: 2   # 2nd instance of 'sockets' in this building
+    multiple: true   # likely to be more than 1 socket
+    meters: [8]
+
+  - original_name: lighting
+    type: light
+    instance: 1
+    multiple: true   # likely to be more than 1 light
+    meters: [9]
+
+  - original_name: lighting
+    type: light
+    instance: 2   # 2nd instance of 'light' in this building
+    multiple: true
+    meters: [17]
+
+  - original_name: lighting
+    type: light
+    instance: 3   # 3rd instance of 'light' in this building
+    multiple: true
+    meters: [18]
+ 
+  - original_name: bathroom_gfi   # ground fault interrupter
+    room: bathroom
+    type: misc
+    instance: 1
+    multiple: true
+    meters: [12]
+
+Note that if we have multiple distinct instances of the same type of
+appliance then we must use separate appliance objects for each
+instance and must *not* bunch these together as a single appliance
+object with multiple ``meters``.  We only specify multiple
+``meters`` per ``appliance`` if there is a single appliance which
+draws power from more than one phase or mains leg.
+
+In REDD, houses 3, 5 and 6 also have an ``electronics`` channel.  How would we
+handle this in NILM Metadata?  This is a meter which doesn't record a
+single appliance but records a *category* of appliances.  Luckily,
+because NILM Metadata uses an inheritance structure for the common
+metadata, we already have a ``CE appliance`` (CE = consumer
+electronics).  The ``CE appliance`` object was first built to
+act as an abstract superclass for all consumer electronics
+objects, but it comes in handy for REDD::
+
+  - original_name: electronics
+    type: CE appliance
+    instance: 1
+    multiple: true
+    meters: [6]

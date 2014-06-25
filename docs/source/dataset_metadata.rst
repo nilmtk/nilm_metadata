@@ -232,7 +232,7 @@ section on `Building`_ metadata above).
       :reactive: (number)
       :apparent: (number)
 
-
+.. _appliance-schema:
 
 Appliance
 ---------
@@ -254,11 +254,14 @@ Each appliance dict has:
 :dominant_appliance: (boolean) Is this appliance responsible for 
           most of the power demand on this meter?
 :room: (dict) with ``name`` [and ``instance``]
-:count: (int) number of appliance instances.  If absent then assumed
-        to be 1.
-:multiple: (boolean) True if there are more than one but an unknown
-           number of these appliances.  If there are more than one
-           appliance and the exact number is known then use ``count``.
+:multiple: (boolean) True if there are more than one 
+           of these appliances represented by this single
+           ``appliance`` object.
+           If there is exactly one appliance then do not specify
+           ``multiple``.
+:count: (int) If there are more than one of these appliances
+        represented by this ``appliance`` object and if the exact
+        number of appliances is known then specify that number here.
 :control: (list of strings) Give a list of all control methods which
           apply.  For example, a video recorder would be both 'manual'
           and 'timer'.  The vocabulary is: {'timer', 'manual',
