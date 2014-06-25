@@ -187,8 +187,9 @@ section on `Building`_ metadata above).
               to mean 'one of the site_meters'.
 :submeter_of_is_uncertain: (boolean) Set to true if the value for
                            `submeter_of` is uncertain.
-:upstream_meter_in_building: (int) Only use if the upstream meter is
-                             in a different building.  If left blank
+:upstream_meter_in_building: (int) If the upstream meter is
+                             in a different building then specify that
+                             building instance here.  If left blank
                              then we assume the upstream meter is in
                              the same building as this meter.
 :site_meter: (boolean): True if this is a site meter (i.e. furthest
@@ -235,8 +236,9 @@ Appliance
 Each appliance dict has:
 
 :type: (string) (required) appliance type. Use NILM Metadata controlled
-       vocabulary.  See ``nilm_metadata/objects/*.yaml``.  Legal
-       appliance names are the keys in these files.
+       vocabulary.  See ``nilm_metadata/appliances/*.yaml``.  Each
+       ``*.yaml`` file in ``nilm_metadata/appliances`` is a large
+       dictionary.  Legal appliance names are the keys in these dictionaries.
 :instance: (int starting from 1) (required) instance of this appliance within
            the building.
 :meters: (list of ints) (required) meter instance(s) directly

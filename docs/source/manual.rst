@@ -80,16 +80,19 @@ would go into the file :file:`building1.yaml`.
 meter instance (a unique integer identifier within the building).  We
 start numbering from 1 because that is common in existing datasets.
 Each value of the ``elec_meters`` dict is a dictionary recording
-information about that specific meter. ``site_meter`` is set to
-``true`` if this meter measures the whole-building aggregate power
-demand. ``submeter_of`` records the meter instance of the upstream
-meter.  In this way, we can specify wiring hierarchies of arbitrary
-complexity.
+information about that specific meter (see the documentation on the
+:ref:`elec-meter-schema` schema for full information). ``site_meter``
+is set to ``true`` if this meter measures the whole-building aggregate
+power demand. ``submeter_of`` records the meter instance of the
+upstream meter.  In this way, we can specify wiring hierarchies of
+arbitrary complexity.
 
 ``appliances`` is a list of dictionaries.  Each dictionary describes a
 single appliance.  The appliance ``type`` (e.g. 'kettle' or 'washing
 machine') is taken from a controlled vocabulary defined in NILM
-Metadata.  For each appliance, we must also specify an ``instance``
+Metadata.  See the :ref:`appliance-schema` schema for more information.
+
+For each appliance, we must also specify an ``instance``
 (an integer which, within each building, allows us to distinguish
 between multiple instances of a particular appliance ``type``).  We
 must also specify a list of ``meters``.  Each element in this list is
