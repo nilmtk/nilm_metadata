@@ -194,18 +194,11 @@ section on `Building`_ metadata above).
                              the same building as this meter.
 :site_meter: (boolean): True if this is a site meter (i.e. furthest
              upstream meter) otherwise not required.
-
-:room: (dict) with ``name`` [and ``instance``].
-
-:floor: (int)
-
-:category: (string) e.g. ``lighting`` or ``sockets``.  Use this if this meter
-           feeds a group of appliances and if we do not know the
-           identity of each individual appliance.  For example, perhaps
-           this is a meter which measures the lighting circuit,
-           in which case we use ``'category': 'lighting'``.
-           Must use NILM Metadata controlled vocabulary as for
-           appliance categories.
+:room: (string) ``<room name>[,<instance>]``.  e.g. 'kitchen' or
+       'bedroom,2'.  If no ``instance`` is specified (e.g. 'room:
+       kitchen' then it is assumed to be 'kitchen,1'
+       (i.e. kitchen instance 1).
+:floor: (int) Not necessary if ``room`` is specified. Ground floor is 0. 
 
 :data_location: (string) Path relative to root directory of
      dataset. e.g. ``house1/channel_2.dat``. Reference
@@ -253,7 +246,10 @@ Each appliance dict has:
 :minimum_on_duration: (number in YAML; timedelta in HDF5)
 :dominant_appliance: (boolean) Is this appliance responsible for 
           most of the power demand on this meter?
-:room: (dict) with ``name`` [and ``instance``]
+:room: (string) ``<room name>[,<instance>]``.  e.g. 'kitchen' or
+       'bedroom,2'.  If no ``instance`` is specified (e.g. 'room:
+       kitchen' then it is assumed to be 'kitchen,1'
+       (i.e. kitchen instance 1).
 :multiple: (boolean) True if there are more than one 
            of these appliances represented by this single
            ``appliance`` object.
