@@ -194,6 +194,9 @@ section on `Building`_ metadata above).
                              the same building as this meter.
 :site_meter: (boolean): True if this is a site meter (i.e. furthest
              upstream meter) otherwise not required.
+
+.. _ElecMeter-room:
+
 :room: (string) ``<room name>[,<instance>]``.  e.g. 'kitchen' or
        'bedroom,2'.  If no ``instance`` is specified (e.g. 'room:
        kitchen' then it is assumed to be 'kitchen,1'
@@ -235,10 +238,11 @@ Appliance
 
 Each appliance dict has:
 
-:type: (string) (required) appliance type. Use NILM Metadata controlled
-       vocabulary.  See ``nilm_metadata/appliances/*.yaml``.  Each
-       ``*.yaml`` file in ``nilm_metadata/appliances`` is a large
-       dictionary.  Legal appliance names are the keys in these dictionaries.
+:type: (string) (required) appliance type (e.g. 'kettle'). Use NILM
+       Metadata controlled vocabulary.  See
+       `nilm_metadata/appliances/*.yaml <https://github.com/nilmtk/nilm_metadata/tree/master/appliances>`_.  Each ``*.yaml`` file in
+       ``nilm_metadata/appliances`` is a large dictionary.  Each key
+       in these dictionaries is a legal appliance ``type``.
 :instance: (int starting from 1) (required) instance of this appliance within
            the building.
 :meters: (list of ints) (required) meter instance(s) directly
@@ -246,11 +250,11 @@ Each appliance dict has:
         where some appliances draw power from both 120 volt legs in a
         north American house.  Or 3-phase appliances.
 :on_power_threshold: (number) watts
-:minimum_off_duration: (number in YAML; timedelta in HDF5)
-:minimum_on_duration: (number in YAML; timedelta in HDF5)
+:minimum_off_duration: (number (seconds) in YAML; timedelta in HDF5)
+:minimum_on_duration: (number (seconds) in YAML; timedelta in HDF5)
 :dominant_appliance: (boolean) Is this appliance responsible for 
           most of the power demand on this meter?
-:room: see `ElecMeter`_:room
+:room: see `ElecMeter-room`_
 :multiple: (boolean) True if there are more than one 
            of these appliances represented by this single
            ``appliance`` object.

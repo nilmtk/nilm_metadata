@@ -247,10 +247,10 @@ from 1.  e.g. :file:`building1.yaml`
 We will describe ``house_1`` from REDD.  First, we describe the basic
 information about ``house_1`` using the :ref:`building-schema` schema::
 
-  instance: 1
-  original_name: house_1
-  elec_meters: # see below
-  appliances: # see below
+  instance: 1   # this is the first building in the dataset
+  original_name: house_1   # original name from REDD dataset
+  elec_meters:   # see below
+  appliances:   # see below
 
 We do now know the specific geographical location of ``house_1`` in REDD.  As
 such, we can assume that ``house_1`` will just 'inherit' 
@@ -315,8 +315,8 @@ For reference, here is the original :file:`labels.dat` for
 
 We use the :ref:`appliance-schema` schema to specify appliances.  In
 REDD, all the meters measure *circuits* using CT clamps in the homes'
-fuse box.  Some circuits power individual appliances.  Other circuits
-power groups of appliances.
+fuse box.  Some circuits deliver power to *individual* appliances.
+Other circuits deliver power to *groups* of appliances.
 
 ``appliances`` is a list of dictionaries.
 
@@ -335,8 +335,8 @@ individual appliances::
     meters: [3, 4]   # draws power from both 120 volt legs
     original_name: oven
 
-Recall from the `Simple example`_ that the value of ``type`` is
-taken from the NILM Metadata controlled vocabulary of appliance
+Recall from the `Simple example`_ that the value of appliance ``type``
+is taken from the NILM Metadata controlled vocabulary of appliance
 types.  ``original_name`` is the name used in REDD, prior to
 conversion to the NILM Metadata controlled vocabulary.
 
