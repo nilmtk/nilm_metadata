@@ -27,7 +27,7 @@ left are intended to be shipped with each dataset whilst objects of
 the classes on the right are common to all datasets and are stored
 within the NILM Metadata project. Some ``ApplianceTypes`` contain
 ``Appliances``, hence the box representing the ``Appliance`` class
-slightly protrudes into the ‘common metadata’ area on the right.
+slightly protrudes into the 'common metadata' area on the right.
 
 Below we will use examples to illustrate how to build a metadata
 schema for a dataset.
@@ -48,9 +48,10 @@ draw power from a single split.
 
 The text below shows a minimalistic description (using the NILM
 Metadata schema) of the wiring diagram above.  The YAML below
-would go into the file ``building1.yaml``.
+would go into the file :file:`building1.yaml`.
 
 .. highlight:: yaml
+
 ::
 
   instance: 1 # this is the first building in the dataset
@@ -103,5 +104,128 @@ listing of all elements which can be described, or continue below for
 a more detailed example.
 
 
-Detailed example of converting REDD to NILM Metadata
-----------------------------------------------------
+Detailed example: converting REDD to NILM Metadata
+--------------------------------------------------
+
+The `Reference Energy Disaggregation Data set (REDD)
+<http://redd.csail.mit.edu>`_ (`Kolter & Johnson 2011
+<http://redd.csail.mit.edu/kolter-kddsust11.pdf>`_) was the first
+public dataset to be released for the energy disaggregation community.
+It consists of six homes.  Each home has its whole-home aggregate
+power demand measured and also has its circuits measured.  REDD
+provides both low frequency (3 second sample period) and high
+frequency data.  We will only specify the low frequency data in this
+example.
+
+NILM Metadata can be specified as either YAML or as metadata within an
+HDF5 binary file.  YAML is probably best for distribution with a
+dataset.  HDF5 is used by `NILMTK <http://nilmtk.github.io>`_ to store
+both the data itself and the metadata.  The data structures are very
+similar no matter if the metadata is represented on disk as YAML or
+HDF5.  The main difference is where the metadata is stored.  In this
+example, we will only consider YAML.  The YAML files are stored in a
+:file:`metadata` directory included with the dataset.  For details of
+where this information is stored within HDF5, please see the relevant
+sections of the :doc:`dataset_metadata` page.
+
+First we will specify the details of the dataset, then details about
+each building.
+
+Dataset
+^^^^^^^
+
+We will use the :ref:`Dataset schema <dataset-schema>` to describe the name of
+the dataset, authors, geographical location etc.  If you want to
+create a minimal metadata description of a dataset then you don't need
+to specify anything for the ``Dataset``.
+
+This information would be stored in :file:`dataset.yaml`.
+
+First, let us specify the name of the dataset and the creators::
+
+  name: REDD
+  long_name: The Reference Energy Disaggregation Data set
+  creators:
+  - Kolter, Zico
+  - Johnson, Matthew
+  publication_date: 2011
+  institution: Massachusetts Institute of Technology (MIT)
+  contact: zkolter@cs.cmu.edu   # Zico moved from MIT to CMU
+  description: Several weeks of power data for 6 different homes.
+  subject: Disaggregated power demand from domestic buildings.
+  number_of_buildings: 6
+  timezone: US/Eastern   # MIT is on the east coast
+  geo_location:
+    locality: Massachusetts   # village, town, city or state
+    country: US   # standard two-letter country code defined by ISO 3166-1 alpha-2
+    latitude: 42.360091 # MIT's coorindates
+    longitude: -71.09416
+  related_documents:
+  - http://redd.csail.mit.edu
+  - >
+    J. Zico Kolter and Matthew J. Johnson. 
+    REDD: A public data set for energy disaggregation research. 
+    In proceedings of the SustKDD workshop on 
+    Data Mining Applications in Sustainability, 2011.
+    http://redd.csail.mit.edu/kolter-kddsust11.pdf
+  schema: https://github.com/nilmtk/nilm_metadata/tree/v0.2.0
+
+Meter Devices
+^^^^^^^^^^^^^
+
+Next, we describe the common characteristics of each type of meter
+used to record the data.  See the documentation section on
+:ref:`meter-device-schema` for full details. You can think of this as
+the 'specification sheet' supplied with each model of meter used to
+record the dataset.  This information would be stored in
+:file:`meter_devices.yaml`.
+
+This data structure is one big dictionary.  Each key is a model name.
+Each value is a dictionary describing the meter::
+
+  eMonitor:
+    model: eMonitor
+    manufacturer: Powerhouse Dynamics
+    manufacturer_url: http://powerhousedynamics.com
+    description: >
+      Measures circuit-level power demand.  Comes with 24 CTs.
+      This FAQ page suggests the eMonitor measures real (active)
+      power: http://www.energycircle.com/node/14103  although the REDD 
+      README says all channels record apparent power.
+    sample_period: 3   # the interval between samples. In seconds.
+    max_sample_period: 50   # Max allowable interval between samples. Seconds.
+    measurements:
+    - physical_quantity: power   # power, voltage, energy, current?
+      ac_type: active   # active (real power), reactive or apparent?
+      upper_limit: 5000
+      lower_limit: 0
+    wireless: false 
+
+  REDD_whole_house:
+    description: >
+      REDD's DIY power meter used to measure whole-home AC waveforms
+      at high frequency.  To quote from their paper: "CTs from TED
+      (http://www.theenergydetective.com) to measure current in the
+      power mains, a Pico TA041 oscilloscope probe
+      (http://www.picotechnologies.com) to measure voltage for one of
+      the two phases in the home, and a National Instruments NI-9239
+      analog to digital converter to transform both these analog
+      signals to digital readings. This A/D converter has 24 bit
+      resolution with noise of approximately 70 µV, which determines
+      the noise level of our current and voltage readings: the TED CTs
+      are rated for 200 amp circuits and a maximum of 3 volts, so we
+      are able to differentiate between currents of approximately
+      ((200))(70 × 10−6)/(3) = 4.66mA, corresponding to power changes
+      of about 0.5 watts. Similarly, since we use a 1:100 voltage
+      stepdown in the oscilloscope probe, we can detect voltage
+      differences of about 7mV."
+    sample_period: 1
+    max_sample_period: 30
+    measurements:
+    - physical_quantity: power
+      ac_type: active
+      upper_limit: 50000
+      lower_limit: 0
+    wireless: false
+
+

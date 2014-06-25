@@ -72,11 +72,11 @@ Has many of the attributes that ``Appliance`` has, with the addition
 of:
 
 :distributions: (dict)
+
    :on_power: (array of priors, see below) bin_edges in units of watts
    :on_duration: (array of priors, see below) bin_edges in units of seconds
    :off_duration: (array of priors, see below) bin_edges in units of seconds
-   :usage_hour_per_day: (array of priors, see below) bin_edges =
-                        [0,1,2,...,24]
+   :usage_hour_per_day: (array of priors, see below) bin_edges = [0,1,2,...,24]
    :usage_day_per_week: (array of priors, see below) categories =
                         ['mon', 'tue', ..., 'sun']
    :usage_month_per_year: (array of priors, see below) bin_edges are

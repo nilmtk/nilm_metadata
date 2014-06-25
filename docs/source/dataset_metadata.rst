@@ -9,9 +9,14 @@ YAML metadata files should be in a ``metadata`` folder.
 Each section of this doc starts by describing where the relevant
 metadata is stored in both file formats.
 
+.. _dataset-schema:
 
 Dataset
 -------
+
+This object describes aspects about the entire dataset.  For example,
+the name of the dataset, the authors, the geographical location of the
+entire dataset etc.
 
 * Location in YAML: ``dataset.yaml``
 * Location in HDF5: ``store.root._v_attrs.metadata``
@@ -23,6 +28,19 @@ Dublin Core Metadata Initiative or DCMI):
        'UK-DALE'.  Equivalent DCMI element is 'title'.
 :long_name: (string) Full name of the dataset, eg. 'Reference Energy
             Disaggregation Data Set'.
+:creators: (list of strings) in the format '<Lastname>,
+           <Firstname>'. DCMI element.
+:timezone: (string) Please use the standard TZ name from the `IANA
+           (aka Olson) Time Zone Database
+           <http://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`_ 
+           e.g. 'America/New_York' or 'Europe/London'.
+:publication_date: (string) Related to the 'date' DCMI element.  ISO
+                   8601 format.  e.g. '2014-06-23'
+:contact: (string) Email address
+:institution: (string)
+:description: (string) DCMI element.  Human-readable, brief
+              description.  e.g. describe sample rate, geo location etc.
+:number_of_buildings: (int)
 :identifier: (string): A digital object identifier (DOI) or URI for
              the dataset.  DCMI element.
 :subject: (string): For example, is this dataset about domestic or
@@ -34,8 +52,6 @@ Dublin Core Metadata Initiative or DCMI):
                       element.  Human-readable free text.
 :temporal_coverage: (`TimeFrame`_, see below) Start and end dates for
                     the entire dataset.
-:creators: (list of strings) in the format '<Lastname>,
-           <Firstname>'. DCMI element.
 :funding: (list of strings) A list of all the sources of funding used
           to produce this dataset.
 :publisher: (string) The entity responsible for making the resource
@@ -43,23 +59,20 @@ Dublin Core Metadata Initiative or DCMI):
             organization, or a service. DCMI element.
 :geo_location: (dict)
 
-   :locality: (string) village, town or city
+   :locality: (string) village, town, city or state
    :country: (string) Please use a standard two-letter country code
              defined by `ISO 3166-1 alpha-2
              <http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_. e.g. 'GB' or 'US'.
    :latitude: (number)
    :longitude: (number)
 
-:timezone: (string) Please use the standard TZ name from the `IANA
-           (aka Olson) Time Zone Database
-           <http://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`_ 
-           e.g. 'America/New_York' or 'Europe/London'.
-:publication_date: (string) Related to the 'date' DCMI element.  ISO
-                   8601 format.  e.g. '2014-06-23'
-:rights_list: (list of dicts) License(s) under which this dataset is released.  Related to the 'rights' DCMI element.  Each element has these attributes:
+:rights_list: (list of dicts) License(s) under which this dataset is
+              released.  Related to the 'rights' DCMI element.  
+              Each element has these attributes:
 
    :uri: (string) License URI
    :name: (string) License name
+
 :description_of_subjects: (string) A brief description of how subjects
                           were recruited.  Are they all PhD students,
                           for example?  Were they incentivised to
@@ -70,22 +83,18 @@ Dublin Core Metadata Initiative or DCMI):
                     reference (e.g. does it contain a description of
                     the metering setup? Or an analysis of the data?)
                     Related to the 'relation' DCMI element.
-:contact: (string) Email address
-:institution: (string)
-:description: (string) DCMI element.  Human-readable, brief
-              description.  e.g. describe sample rate, geo location etc.
-:number_of_buildings: (int)
 :schema: (string) The URL of the NILM_metadata version (tag) against
          which this metadata is
          validated. e.g. https://github.com/nilmtk/nilm_metadata/tree/v0.2.0
 
+.. _meter-device-schema:
 
 MeterDevice
 -----------
 
 Metadata describing each model of electricity meter used in the
 dataset.  (Please note that `ElecMeter`_ is used for representing
-individual *instances* of meters in a building whilst MeterDevice is
+individual *instances* of meters in a building whilst ``MeterDevice`` is
 used to represent information common to all instances of a specific
 make and model of meter).
 
@@ -112,7 +121,7 @@ Values are dicts with these keys:
   For HDF5 we use ``nilmtk.measurement`` classes.  In YAML we use:
 
    :physical_quantity: (string) (required) One of {'power', 'energy',
-                       'voltage'}
+                       'voltage', 'current'}
    :ac_type: (string) (required) Alternative Current (AC) Type. One
              of {'reactive', 'active', 'apparent'}
    :upper_limit: (number)
