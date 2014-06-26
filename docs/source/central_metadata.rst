@@ -236,7 +236,8 @@ of:
 Country
 -------
 
-One large dict specifying country-specific information.
+One large dict specifying country-specific information.  Specified in 
+:file:`nilm_metadata/central_metadata/country.yaml`
 
 Each key is a 'country' (string). Please use a
 standard two-letter country code defined by `ISO 3166-1 alpha-2
@@ -250,6 +251,8 @@ Each value is a dict with the following attributes:
    :nominal: (number) (required) volts
    :upper_limit: (number) volts
    :lower_limit: (number) volts
+   :related_documents: (list of strings)
+
 
 .. _prior-schema:
 
@@ -304,7 +307,7 @@ categorical variables, specify the categorical distribution.
 :related_documents: (list of strings) If 'source==empirical from
                     publication' then enter the reference(s) here.
 :software: (string) the software used to generate the prior from data.
-:specific_to": (dict):
+:specific_to: (dict):
 
   :country: (string) standard two-letter country code defined by 
             `ISO 3166-1 alpha-2
