@@ -251,6 +251,7 @@ Each value is a dict with the following attributes:
    :upper_limit: (number) volts
    :lower_limit: (number) volts
 
+.. _prior-schema:
 
 Priors
 ------
@@ -331,3 +332,25 @@ categorical variables, specify the categorical distribution.
             `ISO 3166-1 alpha-2
             <http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_
             e.g. 'GB' or 'US'.
+
+ApplianceModel
+--------------
+
+This is not especially well defined yet. Just an initial sketch.  The
+basic idea is that we would be able to specify models for each
+appliance type.
+
+:appliance_type: (string) Reference to the specific `ApplianceType`_
+                 that we are modelling.
+:model_type: (enum) one of {'HMM', 'FHMM', 'gubernatorial
+             optimisation'}
+:parameters: (dict) Parameters specific to each model type.
+
+ApplianceModel re-uses several properties from :ref:`prior-schema` :
+
+* training_data
+* specific_to
+* software
+* related_documents
+* date_prepared
+* description
