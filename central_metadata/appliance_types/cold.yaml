@@ -13,9 +13,9 @@ cold appliance:
 fridge:
   parent: cold appliance
   components:
-    - parent: light
+    - type: light
       control: [manual]
-    - parent: compressor
+    - type: compressor
       control: [thermostat]
   subtypes:
     - chest

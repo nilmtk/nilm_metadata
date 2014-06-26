@@ -20,20 +20,20 @@ spin dryer:
   subtypes: [top-loader, front-loader]
   control: [manual, timer]
   components:
-    - parent: motor
+    - type: motor
       description: drum motor
-    - parent: water pump
+    - type: water pump
 
 tumble dryer:
   parent: spin dryer
   components: &dryerElement
-    - parent: electric air heater
+    - type: electric air heater
       description: clothes drying heating element
     
 washing machine:
   parent: spin dryer
   components:
-    - parent: electric water heater
+    - type: electric water heater
 
 washer dryer:
   parent: washing machine
@@ -44,8 +44,8 @@ washer dryer:
 dish washer:
   parent: wet appliance
   components:
-    - parent: electric air heater
-    - parent: electric water heater
+    - type: electric air heater
+    - type: electric water heater
       distributions:
         on_power:
           - model:
@@ -60,7 +60,7 @@ dish washer:
                 University of Bonn, Tech. Rep., 2008.
             specific_to: { country: GB }
 
-    - parent: motor
+    - type: motor
   distributions:
     on_duration:
       - model:

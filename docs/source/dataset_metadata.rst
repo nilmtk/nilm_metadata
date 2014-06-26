@@ -294,7 +294,11 @@ Each appliance dict has:
 :version: (string)
 
 Additional properties are specified for some Appliance Types.  Please
-look up objects in `objects/*.yaml` for details.
+look up objects in
+:file:`nilm_metadata/central_metadata/appliances/*.yaml` for details.
+
+When an Appliance object is used as a component for an ApplianceType,
+then the Appliance object may have :ref:`distributions-schema` specified.
 
 .. _interval-schema:
 

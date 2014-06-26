@@ -1,3 +1,3 @@
-appliance:
+appliance:   # the super class of all appliances
   parent: null
   instance: 1

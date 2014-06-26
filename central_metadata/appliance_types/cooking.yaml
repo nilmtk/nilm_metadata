@@ -95,8 +95,8 @@ breadmaker:
   parent: small cooking appliance
   control: [timer]
   components:
-    - parent: electric heating element
-    - parent: motor
+    - type: electric heating element
+    - type: motor
 
 #------------------ STOVE, COOKER, OVEN, GRILL ---------------#
 
@@ -110,7 +110,7 @@ cooker:
   usual_components: [stove, oven, grill]
   additional_properties:
     fuel: 
-      "$ref": "#/definitions/fuel"
+      enum: [natural gas, coal, wood, oil, LPG]
       description: >
         if all components use the same fuel then specify the fuel once
         for the cooker.  Otherwise, if components use different fuels,

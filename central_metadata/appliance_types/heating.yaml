@@ -27,14 +27,14 @@ boiler:
   # which is itself an object whose parent
   # is `water pump`
   components:
-    - parent: water pump
+    - type: water pump
 
   # Boilers have a property which most other appliances
   # do not have: a fuel source.  We specify additional
   # properties using the JSON Schema syntax.
   additional_properties:
     fuel:
-      "$ref": "#/definitions/fuel"
+      enum: [natural gas, coal, wood, oil, LPG]
       
   subtypes:
     - combi
@@ -65,7 +65,7 @@ electric boiler:
   parent: boiler
   description: a boiler where the heat is provided from electricity.
   components:
-    - parent: electric water heater
+    - type: electric water heater
 
 electric space heater:
   parent: electric air heater
@@ -115,7 +115,7 @@ solar thermal pumping station:
       - solar energy
       - solar panels
   components:
-    - parent: water pump
+    - type: water pump
   control: [manual, sunlight, timer]
   on_power_threshold: 30
 

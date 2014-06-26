@@ -9,12 +9,12 @@ vacuum cleaner:
   synonyms: [vaccum cleaner]
   control: [manual]
   components:
-    - parent: motor
+    - type: motor
 
 sewing machine:
   parent: manual misc appliance
   components:
-    - parent: motor
+    - type: motor
 
 #-------------- CLOTHES, HEALTH AND BEUTY -----------------
 
@@ -62,12 +62,12 @@ soldering iron:
 drill:
   parent: manual misc appliance
   components:
-    - parent: motor
+    - type: motor
 
 saw:
   parent: manual misc appliance
   components:
-    - parent: motor
+    - type: motor
 
 
 #-------------- CLIMATE CONTROL --------------
