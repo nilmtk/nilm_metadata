@@ -107,8 +107,8 @@ listing of all elements which can be described, or continue below for
 a more detailed example.
 
 
-Detailed example: converting REDD to NILM Metadata
---------------------------------------------------
+Representing REDD using NILM Metadata
+-------------------------------------
 
 The `Reference Energy Disaggregation Data set (REDD)
 <http://redd.csail.mit.edu>`_ (`Kolter & Johnson 2011
@@ -405,3 +405,34 @@ objects, but it comes in handy for REDD::
     instance: 1
     multiple: true
     meters: [6]
+
+Summary
+-------
+
+We have seen how to represent the REDD dataset using NILM Metadata.
+The example above shows the majority of the *structure* of the NILM
+Metadata schema for datasets.  There are many more attributes that can
+be attached to this basic structure.  Please see the
+:doc:`dataset_metadata` documentation for full details of all the
+attributes and values that can be used.
+
+Common Metadata
+^^^^^^^^^^^^^^^
+
+A second part to the NILM Metadata project is the 'common metadata'.
+This 'common metadata' is stored in the NILM Metadata project itself
+and consists of information such as the mapping of appliance type to
+appliance category; and the mapping of country code to nominal voltage
+values.  Please see the documentation page on :doc:`common_metadata`
+for more information.
+
+Improving NILM Metadata
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The NILM Metadata schema will, of course, never be complete enough to
+cover every conceivable dataset!  You are warmly invited to suggest
+changes and extensions.  You can do this either using the 
+`github issue queue
+<https://github.com/nilmtk/nilm_metadata/issues>`_,
+or by `forking the project, modifying it and issuing a pull request 
+<https://help.github.com/articles/fork-a-repo>`_.
