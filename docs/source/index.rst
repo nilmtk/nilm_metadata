@@ -13,7 +13,7 @@ Contents:
 
    manual
    dataset_metadata
-   common_metadata
+   central_metadata
 
 
 Indices and tables

@@ -1,3 +1,5 @@
+.. highlight:: yaml
+
 ********************
 NILM Metadata Manual
 ********************
@@ -25,9 +27,10 @@ one class *refer* to objects in another class. For example, each
 ``ApplianceType``. Instances of the classes in the shaded area on the
 left are intended to be shipped with each dataset whilst objects of
 the classes on the right are common to all datasets and are stored
-within the NILM Metadata project. Some ``ApplianceTypes`` contain
-``Appliances``, hence the box representing the ``Appliance`` class
-slightly protrudes into the 'common metadata' area on the right.
+within the NILM Metadata project as the 'central metadata'. Some
+``ApplianceTypes`` contain ``Appliances``, hence the box representing
+the ``Appliance`` class slightly protrudes into the 'central metadata'
+area on the right.
 
 Below we will use examples to illustrate how to build a metadata
 schema for a dataset.
@@ -48,11 +51,7 @@ draw power from a single split.
 
 The text below shows a minimalistic description (using the NILM
 Metadata schema) of the wiring diagram above.  The YAML below
-would go into the file :file:`building1.yaml`.
-
-.. highlight:: yaml
-
-::
+would go into the file :file:`building1.yaml`::
 
   instance: 1 # this is the first building in the dataset
   elec_meters: # a dictionary where each key is a meter instance
@@ -394,7 +393,7 @@ draws power from more than one phase or mains leg.
 In REDD, houses 3, 5 and 6 also have an ``electronics`` channel.  How would we
 handle this in NILM Metadata?  This is a meter which doesn't record a
 single appliance but records a *category* of appliances.  Luckily,
-because NILM Metadata uses an inheritance structure for the common
+because NILM Metadata uses an inheritance structure for the central
 metadata, we already have a ``CE appliance`` (CE = consumer
 electronics).  The ``CE appliance`` object was first built to
 act as an abstract superclass for all consumer electronics
@@ -416,14 +415,14 @@ be attached to this basic structure.  Please see the
 :doc:`dataset_metadata` documentation for full details of all the
 attributes and values that can be used.
 
-Common Metadata
-^^^^^^^^^^^^^^^
+Central Metadata
+^^^^^^^^^^^^^^^^
 
-A second part to the NILM Metadata project is the 'common metadata'.
-This 'common metadata' is stored in the NILM Metadata project itself
+A second part to the NILM Metadata project is the 'central metadata'.
+This 'central metadata' is stored in the NILM Metadata project itself
 and consists of information such as the mapping of appliance type to
 appliance category; and the mapping of country code to nominal voltage
-values.  Please see the documentation page on :doc:`common_metadata`
+values.  Please see the documentation page on :doc:`central_metadata`
 for more information.
 
 Improving NILM Metadata

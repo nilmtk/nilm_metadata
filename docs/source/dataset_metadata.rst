@@ -240,8 +240,8 @@ Each appliance dict has:
 
 :type: (string) (required) appliance type (e.g. 'kettle'). Use NILM
        Metadata controlled vocabulary.  See
-       `nilm_metadata/appliances/*.yaml <https://github.com/nilmtk/nilm_metadata/tree/master/appliances>`_.  Each ``*.yaml`` file in
-       ``nilm_metadata/appliances`` is a large dictionary.  Each key
+       `nilm_metadata/central_metadata/appliance_types/*.yaml <https://github.com/nilmtk/nilm_metadata/tree/master/central_metadata/appliance_types>`_.  Each ``*.yaml`` file in
+       ``nilm_metadata/central_metadata/appliance_types`` is a large dictionary.  Each key
        in these dictionaries is a legal appliance ``type``.
 :instance: (int starting from 1) (required) instance of this appliance within
            the building.

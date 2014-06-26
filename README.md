@@ -5,43 +5,47 @@ NILM Metadata (where 'NILM' stands for 'non-instrusive load
 monitoring') is a metadata framework for describing appliances, meters,
 measurements, buildings and datasets.
 
-The aim is that NILM Metadata can be used to 
-specify the metadata for any NILM dataset; and that metadata can then
-be used with the open-source energy disaggregation and analytics
-framework [NILMTK](http://nilmtk.github.io).
-
 Please jump in and add to or modify the schema and documentation!
 
+### Documentation
+
 The
-[documentation is available online](http://nilm-metadata.readthedocs.org). The
-vast majority of users will probably want to jump straight to the user
-manual to find out how to use NILM Metadata for their own dataset and
-to see and worked example.  Or, if you are already familiar with NILM
-Metadata then perhaps you wnat direct access to the full description of the 
+[documentation is available online](http://nilm-metadata.readthedocs.org).
+
+If you're new to NILM Metadata then please read this README and then
+dive into the [user manual](http://nilm-metadata.readthedocs.org/en/latest/manual.html)
+to find out how 
+to see a worked example.
+
+Or, if you are already familiar with NILM Metadata then perhaps you
+want direct access to the full description of the
 "[Dataset metadata](http://nilm-metadata.readthedocs.org/en/latest/dataset_metadata.html)".
 
-There are two sides to NILM Metadata:
+## There are two sides to NILM Metadata:
 
-### 1) A schema for metadata that is included with disaggregated energy datasets
+### 1) A schema describing energy datasets
 
-The schema covers:
+Modelled objects include:
 
 * electricity meters (whole-home and individual appliance meters)
   * wiring hierarchy of meters
   * a controlled vocabulary for measurement names
+  * description of pre-processing applied
+  * storage of pre-processed statistics
 * domestic appliances
   * a controlled vocabulary for appliance names
   * each appliance can contain any number of components (e.g. a
     light fitting can contain multiple lamps and a dimmer)
   * a list of time periods when each appliance was active
+  * manufacturer, model, nominal power consumption etc.
 * a mapping of which appliances are connected to which meters
 * buildings
-* datasets
+* datasets 
 
 The metadata itself can be either
 [YAML](http://en.wikipedia.org/wiki/YAML) or JSON.
 
-### 2) Common information about appliances
+### 2) Central metadata
 
 Common info about appliances is stored in NILM Metadata.  This includes:
 
@@ -53,6 +57,7 @@ Common info about appliances is stored in NILM Metadata.  This includes:
   * appliance correlations (e.g. that the TV is usually on if the
     games console is on)
 * valid additional properties for each appliance
+* mapping from country codes to nominal mains voltage ranges
 
 The common info about appliances uses a simple but powerful
 inheritance mechanism to allow appliances to inherit from a other
@@ -89,216 +94,34 @@ eprint = {1403.5946}
 }
 ```
 
-Please cite this paper if you use NILM metadata.  But please also be
-aware that the online documentation is more up-to-date than the paper.
+Please cite this paper if you use NILM metadata in academic research.
+But please also be aware that the online documentation is more
+up-to-date than the paper.
+
 
 ## JSON Schema has been depreciated
 
-In order to automate the validation of metadata instances, we did
-write a very comprehensive (and complex) schema using
-[JSON Schema](http://json-schema.org/).  JSON Schema is a lovely
-language and can capture everything we need but, because our metadata
-is quite comprehensive, we found that using JSON Schema was a
-significant time drain and made it hard to move quickly and add new
-ideas to the metadata.  As such, when we moved from v0.1 to v0.2, the
-JSON Schema has been dropped.  Please use the
+In
+[version 0.1 of the schema](https://github.com/nilmtk/nilm_metadata/tree/v0.1.0),
+we wrote a very comprehensive (and complex) schema using
+[JSON Schema](http://json-schema.org/) in order to automate the
+validation of metadata instances.  JSON Schema is a lovely language
+and can capture everything we need but, because our metadata is quite
+comprehensive, we found that using JSON Schema was a significant time
+drain and made it hard to move quickly and add new ideas to the
+metadata.  As such, when we moved from v0.1 to v0.2, the JSON Schema
+has been dropped.  Please use the
 [human-readable documentation](http://nilm-metadata.readthedocs.org)
 instead.  If there is a real desire for automated validation then we
 could resurrect the JSON Schema, but it is a fair amount of work to
-maintain, and is a little fragile.
+maintain.
 
-## Examples
-
-Please note that the examples in the `examples` folder have not yet
-been converted from v0.1 to v0.2 (which is considerably simpler and
-easier to navigate!)
-
-### Example of dataset metadata
-
-These files would all be in a `metadata` directory:
-
-#### `dataset.yaml`
-```
-name: UK-DALE
-long_name: UK Domestic Appliance-Level Electricity
-mains_voltage:
-  nominal: 230
-  upper_limit: 253
-  lower_limit: 215
-```
-
-#### `meter_devices.yaml`
-```
-EnviR:
-  model: EnviR
-  manufacturer: Current Cost
-  measurements:
-  - physical_quantity: power
-    ac_type: apparent
-    lower_limit: 0
-    upper_limit: 30000
-```
-
-#### `building1.yaml`
-```
-instance: 1
-rooms:
-- {name: kitchen, instance: 1}
-- {name: lounge, instance: 1}
-geo_location:
-  locality: London
-  country: GB
-  latitude: 51.464462
-  longitude: -0.076544
-timezone: Europe/London
-timeframe:
-  start: 2012-11-09
-  end: 2014-03-11
-elec_meters: # Metadata about appliances
-  1:
-    description: Meter that measures whole-house mains
-    device_model: EnviR
-    site_meter: true
-    data_location: house1/channel_1.dat
-  2:
-    description: Meter that measures lighting circuit
-    device_model: EnviR
-    submeter_of: 1
-    data_location: house1/channel_2.dat
-  3:
-    description: Meter that measures kitchen lights
-    device_model: EnviR
-    submeter_of: 2
-    data_location: house1/channel_2.dat
-    preprocessing:
-    - {filter: clip, maximum: 4000}
-appliances:
-- type: light
-  instance: 1
-  meter: 3
-  components:
-  - type: LED lamp
-    count: 10
-    nominal_consumption: {on_power: 10}
-    manufacturer: Philips
-    year_of_manufacture: 2011
-  - type: dimmer
-  on_power_threshold: 10
-  main_room_light: true
-  dates_active:
-  - {start: 2012, end: 2013}
-```
-
-### Example of common metadata
-
-To demonstrate the inheritance system, let's look at specifying a
-boiler.
-
-First, NILM Metadata specifies a `heating appliance` object, which is
-can be considered the "base class":
-
-```yaml
-heating appliance:
-  parent: appliance
-  categories:
-    traditional: heating
-    size: large
-```
-
-Next, we specify a `boiler` object, which inherits from `heating appliance`:
-
-```yaml
-#------------- BOILERS ------------------------
-
-boiler: # all boilers except for electric boilers
-
-  parent: heating appliance
-
-  synonyms: [furnace]
-
-  # Categories of the child object are appended
-  # to existing categories in the parent.
-  categories:
-    google_shopping:
-      - climate control
-      - furnaces and boilers
-
-  # Here we specify that boilers have a component
-  # which is itself an object whose parent
-  # is `water pump`.
-  components:
-    - parent: water pump
-
-  # Boilers have a property which most other appliances
-  # do not have: a fuel source.  We specify additional
-  # properties using the JSON Schema syntax.
-  additional_properties:
-    fuel:
-      enum: [natural gas, coal, wood, oil, LPG]
-      
-  subtypes:
-    - combi
-    - regular
-
-  # We can specify the different mechanisms that
-  # control the boiler.  This is useful, for example,
-  # if we want to find all appliances which 
-  # must be manually controlled (e.g. toasters)
-  control: [manual, timer, thermostat]
-
-  # We can also declare prior knowledge about boilers.
-  # For example, we know that boilers tend to be in
-  # bathrooms, utility rooms or kitchens
-  distributions:
-    room:
-      distribution_of_data:
-        categories: [bathroom, utility, kitchen]
-        values: [0.3, 0.2, 0.2]
-        # If the values do not add to 1 then the assumption
-        # is that the remaining probability mass is distributed equally to
-        # all other rooms.
-      source: subjective # These values are basically guesses!
-```
-
-
-Finally, in the metadata for the dataset itself, we can do:
-
-
-```yaml
-
-  type: boiler
-  manufacturer: Worcester
-  model: Greenstar 30CDi Conventional natural gas
-  room:
-    name: bathroom
-    instance: 1
-  year_of_purchase: 2011
-  fuel: natural gas
-  subtype: regular
-  part_number: 41-311-71
-  efficiency_rating: 
-    certification_name: SEDBUK
-    rating: A
-  nominal_consumption:
-    on_power: 70
-  distributions:
-    on_power:
-    - model:
-        distribution_name: normal
-        mu: 73
-        sigma: 12
-```
-
-
-Version numbering and contributing
-==================================
-
-The current release is version 0.2.0.  There are definitely plenty of
-improvements that can be made so please submit pull requests for the
-dev version!
 
 Installation
 ============
+
+If you want to use the Python package in order to concatenate the
+common appliance metadata into a single dictionary then please run:
 
 ```
 sudo python setup.py install
@@ -309,7 +132,6 @@ Or, if you want to develop:
 ```
 sudo python setup.py install
 ```
-
 
 Related projects
 ================
