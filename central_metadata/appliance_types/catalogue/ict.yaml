@@ -1,0 +1,17 @@
+#----------- COMPUTERS -------------------
+
+HP~ProBook 6450b:
+  manufacturer: HP
+  model: 6450b
+  parent: laptop computer
+  cpu: Intel(R) Core(TM) i5 CPU M450 2.40GHz
+  nominal_consumption:
+    on_power: 70
+  components:
+    - parent: flat screen
+      diagonal_size: 14.0
+      display_technology: LCD
+      max_resolution:
+        horizontal: 1600
+        vertical: 900
+

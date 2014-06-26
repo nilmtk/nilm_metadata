@@ -255,4 +255,79 @@ Each value is a dict with the following attributes:
 Priors
 ------
 
-TODO.  For now, please see /schema/prior.json
+Represent prior knowledge. For continuous variables, specify either
+the distribution of data (i.e. the data represented in a histogram),
+or a density estimate (a model fitted to the data), or both.  For
+categorical variables, specify the categorical distribution.
+
+:distribution_of_data: (dict) Distribution of the data expressed as
+                       normalised frequencies per discrete bin (for
+                       continuous variables) or per category (for
+                       categorical variables).  'categories' can be
+                       used instead of 'bin_edges' for continuous
+                       variables where it makes sense; e.g. where each
+                       bin represents a day of the week
+
+  :bin_edges: (list of numbers of list of strings) (required) \|bin_edges\| ==
+              \|values\| + 1        
+  :categories: (list of strings) (required) \|bin_edges\| == \|values\|
+  :values: (list of numbers) (required) The normalised frequencies.
+           For continuous variables, in integral over the range must
+           be 1.  For categorical variables, the sum of frequences can
+           be <= 1.  If < 1 then the system will assume that the
+           remaining mass is distributed equaly across all other
+           categories.  For example, for the probability of a fridge
+           being in a specific room, it is sufficient to just state
+           that the probability is 0.9 for a fridge to be in the
+           kitchen.
+
+:model: (dict) A fitted model to describe the probability density
+        function (for continuous variables) or the probability mass
+        function (for discrete variables).  Use additional properties
+        for the relevant parameters, written as Greek letters spelt
+        out in lowercase English e.g. 'mu' and 'lambda' except for
+        summary stats where we use some combination of 'min', 'max',
+        'mean', 'mode'.
+
+  :distribution_name: (enum) one of {'normal', 'inverse gaussian',
+                      'summary stats'}
+  :sum_of_squared_error: (number)
+
+:n_datapoints: (int)
+:date_prepared: (string) ISO 8601 date format
+:source: (enum) one of {'subjective', 'empirical from data',
+         'empirical from publication'}. What is the source of this
+         prior?  If from publication then use ``related_documents`` to
+         provide references.  If from data then provide details using
+         the ``software`` and ``training_data`` properties.
+:related_documents: (list of strings) If 'source==empirical from
+                    publication' then enter the reference(s) here.
+:software: (string) the software used to generate the prior from data.
+:specific_to": (dict):
+
+  :country: (string) standard two-letter country code defined by 
+            `ISO 3166-1 alpha-2
+            <http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_
+            e.g. 'GB' or 'US'.
+  :continent: (string) standard 
+              `two-letter continent code defined on WikiPedia
+              <http://en.wikipedia.org/wiki/List_of_sovereign_states_and_dependent_territories_by_continent_%28data_file%29>`_
+:distance: (int) this is filled in by the
+           ``concatenate_complete_object`` function and reports the
+           distance (in numbers of generations) between this prior and
+           the most-derived object.  In other words, the larger this
+           number, the less specific to the object this prior is.  If
+           this is not set the the prior applies to the current
+           object.
+:description: (string)
+:training_data: (array of dicts).  Each element is a dict with these properties:
+
+  :dataset: (string) Short name of dataset
+  :buildings: (list of dicts):
+
+    :building_id: (int)
+    :dates: (list of :ref:`interval-schema` objects)
+    :country: (string) standard two-letter country code defined by 
+            `ISO 3166-1 alpha-2
+            <http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_
+            e.g. 'GB' or 'US'.

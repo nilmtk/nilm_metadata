@@ -296,6 +296,8 @@ Each appliance dict has:
 Additional properties are specified for some Appliance Types.  Please
 look up objects in `objects/*.yaml` for details.
 
+.. _interval-schema:
+
 Interval
 ---------
 
