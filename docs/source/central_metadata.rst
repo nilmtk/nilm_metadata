@@ -7,27 +7,9 @@ Central appliance metadata
 Manual
 ======
 
-Common info about appliances is stored in NILM Metadata.  This includes:
-
-* Categories for each appliance type
-* prior knowledge about the distribution of variables such as:
-
-  * on power
-  * on duration
-  * usage in terms of hour per day
-  * appliance correlations (e.g. that the TV is usually on if the games console is on)
-* valid additional properties for each appliance
-* mapping from country codes to nominal mains voltage ranges
-
-The central info about appliances uses a simple but powerful
-inheritance mechanism to allow appliances to inherit from a other
-appliances.  For example, 'laptop computer' is a specialisation of
-'computer' and the two share several properties (e.g. both are in the
-'ICT' category).  So 'laptop computer' inherits from 'computer' and
-modifies and adds any properties it needs.  In this way, we can
-embrace the
-`don't repeat yourself (DRY) <http://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_
-principal by exploiting the relationship between appliances.
+Please see the `NILM Metadata README
+<https://github.com/nilmtk/nilm_metadata/blob/master/README.md>`_
+section on 'Central metadata' for a quick introduction.
 
 
 Inheritance
@@ -41,7 +23,9 @@ Components
 ----------
 
 * recursive
-* categories of appliance is updated with categories from each component
+* categories of container appliance is updated with categories from
+  each component (unless ``do_not_merge_categories: true`` is set in
+  the component)
 
 Subtypes versus a new child object
 ----------------------------------
