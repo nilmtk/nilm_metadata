@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
-
-from jsonschema import validate
-import json, unittest, sys
+import unittest
 from ..object_concatenation import _merge_dicts, _concatenate_complete_object
 
 class TestObjectConcatenation(unittest.TestCase):
@@ -64,11 +62,15 @@ class TestObjectConcatenation(unittest.TestCase):
         }
         obj = _concatenate_complete_object('c', objects)
         on_power = obj['distributions']['on_power']
-        self.assertEqual(on_power[0], {'distance':2, 'description': 'a'})
-        self.assertEqual(on_power[1], {'distance':1, 'description': 'b'})
-        self.assertEqual(on_power[2], {'description': 'c'})
+        self.assertEqual(on_power[0], {'distance':2, 'description': 'a',
+                                       'from_appliance_type': 'a'})
+        self.assertEqual(on_power[1], {'distance':1, 'description': 'b',
+                                       'from_appliance_type': 'b'})
+        self.assertEqual(on_power[2], {'distance':0, 'description': 'c',
+                                       'from_appliance_type': 'c'})
         on_duration = obj['distributions']['on_duration']
-        self.assertEqual(on_duration[0], {'distance':2, 'description': 'a'})
+        self.assertEqual(on_duration[0], {'distance':2, 'description': 'a',
+                                          'from_appliance_type': 'a'})
 
 if __name__ == '__main__':
     unittest.main()

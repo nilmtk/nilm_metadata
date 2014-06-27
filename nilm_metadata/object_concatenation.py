@@ -35,21 +35,29 @@ def _concatenate_complete_appliance_type(appliance_type_name,
 
     concatenated_app_type = _concatenate_complete_object(appliance_type_name,
                                                         appliance_types_from_disk)
+    categories = concatenated_app_type.setdefault('categories', {})
 
     # Instantiate components recursively
     components = concatenated_app_type.get('components', [])
-    for i, component_obj in enumerate(components):
-        component_type_name = component_obj['type']
-        component_obj = _concatenate_complete_appliance_type(component_type_name,
-                                                            appliance_types_from_disk)
+    for i, component_appliance_obj in enumerate(components):
+        component_type_name = component_appliance_obj['type']
+        component_type_obj = _concatenate_complete_appliance_type(component_type_name,
+                                                                  appliance_types_from_disk)
+        _merge_dicts(component_appliance_obj, component_type_obj)
+        components[i] = component_appliance_obj
 
         # Now merge component categories into owner appliance type object
-        components[i] = component_obj
-        categories = concatenated_app_type.get('categories')
-        if categories:
-            _merge_dicts(categories, component_obj.get('categories', {}))
+        if not component_appliance_obj.get('do_not_merge_categories'):
+            _merge_dicts(categories, component_appliance_obj.get('categories', {}))
 
     return concatenated_app_type
+
+
+def _init_distributions(appliance_type):
+    for list_of_dists in appliance_type.get('distributions', {}).values():
+        for dist in list_of_dists:
+            dist.update({'from_appliance_type': appliance_type['type'],
+                         'distance': 0})
 
 
 def _concatenate_complete_object(object_name, object_cache):
@@ -68,7 +76,7 @@ def _concatenate_complete_object(object_name, object_cache):
     # Now descend from super-object downwards,
     # collecting and updating properties as we go.
     merged_object = deepcopy(ancestors[0])
-
+    _init_distributions(merged_object)
     merged_object['n_ancestors'] = len(ancestors) - 1
 
     for i, next_child in enumerate(ancestors[1:]):
@@ -86,10 +94,7 @@ def _concatenate_complete_object(object_name, object_cache):
             for dist in list_of_dists:
                 dist['distance'] += 1
 
-        for list_of_dists in next_child.get('distributions', {}).values():
-            for dist in list_of_dists:
-                dist.update({'from_appliance_type': next_child['type'],
-                             'distance': 0})
+        _init_distributions(next_child)
 
         _merge_dicts(merged_object, next_child)
 

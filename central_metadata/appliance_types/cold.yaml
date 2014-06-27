@@ -15,6 +15,7 @@ fridge:
   components:
     - type: light
       control: [manual]
+      do_not_merge_categories: true
     - type: compressor
       control: [thermostat]
   subtypes:

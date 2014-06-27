@@ -1,1 +1,1 @@
-from nilm_metadata import *
+from object_concatenation import get_appliance_types

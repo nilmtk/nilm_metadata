@@ -69,6 +69,17 @@ embrace the
 ["don't repeat yourself (DRY)"](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 principal by exploiting the relationship between appliances.
 
+NILM Metadata comes with a Python module which collects all 
+ApplianceTypes in `central_metadata/appliance_types/*.yaml`,
+performs inheritance and instantiates components and
+returns a dictionary where each key is an ApplianceType name and each
+value is an ApplianceType dict.  Here's how to use it:
+
+```python
+from nilm_metadata import get_appliance_types
+appliance_types = get_appliance_types()
+```
+
 ## Research paper describing NILM metadata
 
 The following paper describes NILM metadata in detail:
