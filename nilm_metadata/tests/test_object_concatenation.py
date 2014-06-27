@@ -3,34 +3,34 @@ from __future__ import print_function
 
 from jsonschema import validate
 import json, unittest, sys
-from ..object_concatenation import merge_dicts, concatenate_complete_object
+from ..object_concatenation import _merge_dicts, _concatenate_complete_object
 
 class TestObjectConcatenation(unittest.TestCase):
 
     def test_merge_dicts(self):
         d1 = {}
         d2 = {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20} }
-        merge_dicts(d1,d2)
+        _merge_dicts(d1,d2)
         self.assertEqual(d1, d2)
 
         d1 = {'a':-1, 'b':-3, 'c': {}}
         d2 = {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20} }
-        merge_dicts(d1,d2)
+        _merge_dicts(d1,d2)
         self.assertEqual(d1, d2)
 
         d1 = {'a':-1, 'b':-3, 'c': {}, 'list': [1,2,3]}
         d2 = {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20}, 'list': [4,5,6] }
-        merge_dicts(d1,d2)
+        _merge_dicts(d1,d2)
         self.assertEqual(d1, {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20}, 'list': [1,2,3,4,5,6] })
 
         d1 = {'a':-1, 'b':-3}
         d2 = {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20} }
-        merge_dicts(d1,d2)
+        _merge_dicts(d1,d2)
         self.assertEqual(d1, d2)
 
         d1 = {'a':-1, 'b':-3, 'c': {'ca':-10, 'cc': 30} }
         d2 = {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20} }
-        merge_dicts(d1,d2)
+        _merge_dicts(d1,d2)
         self.assertEqual(d1, {'a':1, 'b':2, 'c': {'ca':10, 'cb': 20, 'cc': 30} })
 
     def test_distance(self):
@@ -62,7 +62,7 @@ class TestObjectConcatenation(unittest.TestCase):
                 }
             }
         }
-        obj = concatenate_complete_object('c', objects)
+        obj = _concatenate_complete_object('c', objects)
         on_power = obj['distributions']['on_power']
         self.assertEqual(on_power[0], {'distance':2, 'description': 'a'})
         self.assertEqual(on_power[1], {'distance':1, 'description': 'b'})

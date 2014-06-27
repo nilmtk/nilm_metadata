@@ -211,6 +211,7 @@ of:
 :synonyms: (list of strings)
 :usual_components: (list of strings) Just a list of hints for human
                    readers.
+:n_ancestors: (int) Filled in by ``_concatenate_complete_object``.
 
 .. _distributions-schema:
 
@@ -351,6 +352,11 @@ categorical variables, specify the categorical distribution.
            number, the less specific to the object this prior is.  If
            this is not set the the prior applies to the current
            object.
+:from_appliance_type: (string) this is filled in by the
+                      ``concatenate_complete_object`` function and
+                      reports the appliance type name from the
+                      ancestor hierarchy from which this distribution
+                      came from.
 :description: (string)
 :training_data: (array of dicts).  Each element is a dict with these properties:
 

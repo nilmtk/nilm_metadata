@@ -1,87 +1,58 @@
 from __future__ import print_function, division
 import json, yaml
+from copy import deepcopy
+from file_management import get_appliance_types_from_disk
+
+
+def get_appliance_types():
+    """
+    Returns
+    -------
+    dict of all appliance types.  Fully concatenated and with components 
+    recursively resolved.
+    """
+    appliance_types_from_disk = get_appliance_types_from_disk()
+    appliance_types = _concatenate_all_appliance_types(appliance_types_from_disk)
+    return appliance_types
 
 
 class ObjectConcatenationError(Exception):
     pass
 
 
-def merge_dicts(old, new):
-    """ Recursively extends lists in old with lists in new,
-    and updates dicts.    
+def _concatenate_all_appliance_types(appliance_types_from_disk):
+    concatenated = {}
+    for appliance_type_name in appliance_types_from_disk:
+        concatenated_appliance_type = _concatenate_complete_appliance_type(
+            appliance_type_name, appliance_types_from_disk)
+        concatenated[appliance_type_name] = concatenated_appliance_type
 
-    Arguments
-    ---------
-    old, new : dict
-        Updates `old` in place.
-    """
-    for key, new_value in new.iteritems():
-        if isinstance(new_value, list):
-            old.setdefault(key, []).extend(new_value)
-            if not any([isinstance(v, dict) for v in old[key]]):
-                old[key] = list(set(old[key]))
-        elif isinstance(new_value, dict):
-            merge_dicts(old.setdefault(key, {}), new_value)
-        else:
-            old[key] = new_value
+    return concatenated
 
 
-def get_ancestors(object_name, object_cache):
-    """
-    Arguments
-    ---------
-    object_name: string
-    
-    Returns
-    -------
-    A list of dicts where each dict is an object. The first
-    dict is the highest on the inheritance hierarchy; the last dict
-    is the object with name == `object_name`.
+def _concatenate_complete_appliance_type(appliance_type_name, 
+                                        appliance_types_from_disk):
 
-    Raises
-    ------
-    ObjectConcatenationError
-    """
-    if object_name is None:
-        return []
+    concatenated_app_type = _concatenate_complete_object(appliance_type_name,
+                                                        appliance_types_from_disk)
 
-    # walk the inheritance tree from 
-    # bottom upwards (which is the wrong direction
-    # for actually doing inheritance)
-    try:
-        current_object = object_cache[object_name]
-    except KeyError as e:
-        msg = "'{}' not found!".format(object_name)
-        raise ObjectConcatenationError(msg)
+    # Instantiate components recursively
+    components = concatenated_app_type.get('components', [])
+    for i, component_obj in enumerate(components):
+        component_type_name = component_obj['type']
+        component_obj = _concatenate_complete_appliance_type(component_type_name,
+                                                            appliance_types_from_disk)
 
-    current_object['name'] = object_name
-    ancestors = [current_object]
-    while current_object.get('parent'):
+        # Now merge component categories into owner appliance type object
+        components[i] = component_obj
+        categories = concatenated_app_type.get('categories')
+        if categories:
+            _merge_dicts(categories, component_obj.get('categories', {}))
 
-        try:
-            parent_name = current_object['parent']
-        except KeyError as e:
-            msg = ("Object '{}' claims does not have a '{}' property!"
-                   .format(current_object.get('name'), e))
-            raise ObjectConcatenationError(msg)
+    return concatenated_app_type
 
-        try:
-            current_object = object_cache[parent_name]
-        except KeyError as e:
-            msg = ("Object '{}' claims its parent is '{}' but that"
-                   " object is not recognised!"
-                   .format(current_object.get('name'), e))
-            raise ObjectConcatenationError(msg)
 
-        current_object['name'] = parent_name
-        ancestors.append(current_object)
-
-    ancestors.reverse()
-    return ancestors
-    
-
-def concatenate_complete_object(object_name, object_cache, child_object=None, 
-                                do_not_inherit_extension_list=None):
+def _concatenate_complete_object(object_name, object_cache):
     """
     Returns
     -------
@@ -92,45 +63,103 @@ def concatenate_complete_object(object_name, object_cache, child_object=None,
         most-derived object (i.e. a child of object_name).  This is 
         useful for appliances.
     """
-    ancestors = get_ancestors(object_name, object_cache)
-    if child_object:
-        ancestors.append(child_object)
-
-    n_ancestors = len(ancestors) - 1
+    ancestors = _get_ancestors(object_name, object_cache)
 
     # Now descend from super-object downwards,
     # collecting and updating properties as we go.
-    merged_object = ancestors[0].copy()
+    merged_object = deepcopy(ancestors[0])
+
+    merged_object['n_ancestors'] = len(ancestors) - 1
+
     for i, next_child in enumerate(ancestors[1:]):
         # Remove properties that the child does not want to inherit
         do_not_inherit = next_child.get('do_not_inherit', [])
         do_not_inherit.extend(['synonyms', 'description', 'do_not_inherit'])
-        if do_not_inherit_extension_list:
-            do_not_inherit.extend(do_not_inherit_extension_list)
-
         for property_to_not_inherit in do_not_inherit:
             merged_object.pop(property_to_not_inherit, None)
-
-        # the 'name' is set as the name of the last object in the hierarchy
-        # which isn't a catalogue entry (catalogue entries have a '~' 
-        # in their names)
-        if '~' in next_child.get('name', ''):
-            next_child['name'] = merged_object.get('name')
         
         # Now, for each probability distribution, we tag it with a
         # 'distance' property, showing how far away it is from
         # the most derived object.
         distributions = merged_object.get('distributions', {})
-        for parameter in distributions.keys():
-            list_of_dists = distributions[parameter]
-            for i, _ in enumerate(list_of_dists):
-                try:
-                    list_of_dists[i]['distance'] = n_ancestors - i
-                except KeyError:
-                    msg = ("'distributions' appears to not be a list in"
-                           " object '{}'".format(merged_object.get('name')))
-                    raise ObjectConcatenationError(msg)
+        for list_of_dists in distributions.values():
+            for dist in list_of_dists:
+                dist['distance'] += 1
 
-        merge_dicts(merged_object, next_child)
+        for list_of_dists in next_child.get('distributions', {}).values():
+            for dist in list_of_dists:
+                dist.update({'from_appliance_type': next_child['type'],
+                             'distance': 0})
+
+        _merge_dicts(merged_object, next_child)
 
     return merged_object
+
+
+def _get_ancestors(appliance_type_name, appliance_types_from_disk):
+    """
+    Arguments
+    ---------
+    appliance_type_name: string
+    
+    Returns
+    -------
+    A list of dicts where each dict is an object. The first
+    dict is the highest on the inheritance hierarchy; the last dict
+    is the object with type == `appliance_type_name`.
+
+    Raises
+    ------
+    ObjectConcatenationError
+    """
+    if appliance_type_name is None:
+        return []
+
+    # walk the inheritance tree from 
+    # bottom upwards (which is the wrong direction
+    # for actually doing inheritance)
+    try:
+        current_appliance_type_dict = appliance_types_from_disk[appliance_type_name]
+    except KeyError as e:
+        msg = "'{}' not found!".format(appliance_type_name)
+        raise ObjectConcatenationError(msg)
+
+    current_appliance_type_dict['type'] = appliance_type_name
+    ancestors = [current_appliance_type_dict]
+
+    while current_appliance_type_dict.get('parent'):
+        parent_type = current_appliance_type_dict['parent']
+        try:
+            current_appliance_type_dict = appliance_types_from_disk[parent_type]
+        except KeyError as e:
+            msg = ("Object '{}' claims its parent is '{}' but that"
+                   " object is not recognised!"
+                   .format(current_appliance_type_dict['type'], e))
+            raise ObjectConcatenationError(msg)
+
+        current_appliance_type_dict['type'] = parent_type
+        ancestors.append(current_appliance_type_dict)
+
+    ancestors.reverse()
+    return ancestors
+
+
+def _merge_dicts(old, new):
+    """ Recursively extends lists in old with lists in new,
+    and updates dicts.    
+
+    Arguments
+    ---------
+    old, new : dict
+        Updates `old` in place.
+    """
+    new = deepcopy(new)
+    for key, new_value in new.iteritems():
+        if isinstance(new_value, list):
+            old.setdefault(key, []).extend(new_value)
+            if not any([isinstance(v, dict) for v in old[key]]):
+                old[key] = list(set(old[key]))
+        elif isinstance(new_value, dict):
+            _merge_dicts(old.setdefault(key, {}), new_value)
+        else:
+            old[key] = new_value
