@@ -45,3 +45,6 @@ fridge freezer:
 air conditioner:
   parent: heat pump
   synonyms: [air conditioning, AC]
+
+air handling unit:
+  parent: fan
