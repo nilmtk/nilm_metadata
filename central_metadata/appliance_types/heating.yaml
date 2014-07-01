@@ -61,11 +61,12 @@ boiler:
 
 #------------ ELECTRIC SPACE HEATERS
 
-electric boiler:
+electric furnace:
   parent: boiler
   description: a boiler where the heat is provided from electricity.
   components:
     - type: electric water heater
+  synonyms: [electric boiler]
 
 electric space heater:
   parent: electric air heater

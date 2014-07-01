@@ -4,21 +4,35 @@ import pandas as pd
 from os.path import isdir, isfile, join, splitext
 from os import listdir
 from sys import stderr
+from .object_concatenation import get_appliance_types
 
-"""
-TODO:
 
-Do sanity checks (make sure there aren't multiple appliance types with same 
-instance, or no instance 1).  Make sure we use proper NILM Metadata names.
-"""
+class NilmMetadataError(Exception):
+    pass
+
 
 def convert_yaml_to_hdf5(yaml_dir, hdf_filename):
+    """Converts a NILM Metadata YAML instance to HDF5.
+
+    Also does a set of sanity checks on the metadata.
+
+    Parameters
+    ----------
+    yaml_dir : str
+        Directory path of all *.YAML files describing this dataset.
+    hdf_filename : str
+        Filename and path of output HDF5 file.  If file exists then will 
+        attempt to append metadata to file.  If file does not exist then 
+        will create it.
+    """
+
     assert isdir(yaml_dir)
     store = pd.HDFStore(hdf_filename, 'a')
 
     # Load Dataset and MeterDevice metadata
     metadata = _load_file(yaml_dir, 'dataset.yaml')
-    metadata['meter_devices'] = _load_file(yaml_dir, 'meter_devices.yaml')
+    meter_devices = _load_file(yaml_dir, 'meter_devices.yaml')
+    metadata['meter_devices'] = meter_devices
     store.root._v_attrs.metadata = metadata
 
     # Load buildings
@@ -29,10 +43,14 @@ def convert_yaml_to_hdf5(yaml_dir, hdf_filename):
     for fname in building_filenames:
         building = splitext(fname)[0] # e.g. 'building1'
         group = store._handle.create_group('/', building)
-        group._f_setattr('metadata', _load_file(yaml_dir, fname))
+        building_metadata = _load_file(yaml_dir, fname)
+        _sanity_check_meters(building_metadata['elec_meters'], meter_devices)
+        _sanity_check_appliances(building_metadata)
+        group._f_setattr('metadata', building_metadata)
 
     store.close()
     print("Done!")
+
 
 def _load_file(yaml_dir, yaml_filename):
     yaml_full_filename = join(yaml_dir, yaml_filename)
@@ -41,3 +59,63 @@ def _load_file(yaml_dir, yaml_filename):
             return yaml.load(fh)
     else:
         print(yaml_full_filename, "not found.", file=stderr)
+
+
+def _sanity_check_meters(meters, meter_devices):
+    """
+    Checks:
+    * Make sure all meter devices map to meter_device keys
+    * Makes sure all IDs are unique
+    """
+    assert len(meters.keys()) == len(set(meters.keys())), "elec_meters not unique"
+    for meter_instance, meter in meters.iteritems():
+        assert meter['device_model'] in meter_devices
+
+
+def _sanity_check_appliances(building_metadata):
+    """
+    Checks:
+    * Make sure we use proper NILM Metadata names.
+    * Make sure there aren't multiple appliance types with same instance
+    """
+    appliances = building_metadata['appliances']
+    appliance_types = get_appliance_types()
+    building_instance = building_metadata['instance']
+
+    for appliance in appliances:
+        appl_type = appliance['type']
+
+        appl_string = ("ApplianceType '{}' in building {:d}"
+                       .format(appl_type, building_instance))
+
+        # check all appliance names are valid
+        if appl_type not in appliance_types:
+            raise NilmMetadataError(appl_string + " not in appliance_types.")
+
+        # Check appliance references valid meters
+        meters = appliance['meters']
+        if len(meters) != len(set(meters)):
+            msg = "In {}, meters '{}' not unique.".format(appl_string, meters)
+            raise NilmMetadataError(msg)
+        for meter in meters:
+            if meter not in building_metadata['elec_meters']:
+                msg = ("In {}, meter {:d} is not in 'elec_meters'"
+                       .format(appl_string, meter))
+                raise NilmMetadataError(msg)
+
+    # Check list of instances for each appliance is valid.
+    appliance_instances = {}
+    for appliance in appliances:
+        appl_type = appliance['type']
+        instances = appliance_instances.setdefault(appl_type, [])
+        instances.append(appliance['instance'])
+
+    for appliance_type, instances in appliance_instances.iteritems():
+        instances.sort()
+        correct_instances = range(1, len(instances)+1)
+        if instances != correct_instances:
+            msg = ("In building {:d}, appliance '{}' appears {:d} times."
+                   " The list of instances is '{}'.  It should be '{}'."
+                   .format(building_metadata['instance'], appliance_type,
+                           len(instances), instances, correct_instances))
+            raise NilmMetadataError(msg)

@@ -80,10 +80,8 @@ dehumidifier:
 electric vehicle:
   parent: appliance
 
-unspecified:
+unknown:
   parent: appliance
   
 sockets:
   parent: appliance
-
-  

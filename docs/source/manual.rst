@@ -398,7 +398,7 @@ categories of appliances::
  
   - original_name: bathroom_gfi   # ground fault interrupter
     room: bathroom
-    type: misc
+    type: unknown
     instance: 1
     multiple: true
     meters: [12]
