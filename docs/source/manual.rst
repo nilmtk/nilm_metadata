@@ -319,8 +319,8 @@ Other circuits deliver power to *groups* of appliances.
 
 ``appliances`` is a list of dictionaries.
 
-Let us start by demonstrating how we describe circuits which power
-individual appliances::
+Let us start by demonstrating how we describe circuits which deliver
+power to an individual appliance::
 
   appliances:
 
@@ -329,15 +329,35 @@ individual appliances::
     meters: [5]
     original_name: refrigerator
 
-  - type: electric oven
-    instance: 1
-    meters: [3, 4]   # draws power from both 120 volt legs
-    original_name: oven
 
 Recall from the `Simple example`_ that the value of appliance ``type``
 is taken from the NILM Metadata controlled vocabulary of appliance
 types.  ``original_name`` is the name used in REDD, prior to
 conversion to the NILM Metadata controlled vocabulary.
+
+Now we specify two 240-volt appliances.  North American homes have
+split-phase mains supplies.  Each split is 120 volts relative to
+neutral.  The two splits are 240 volts relative to each other.  Large
+appliances can connect to both splits to draw lots of power.  REDD
+separately meters both splits to these large appliances so we
+specify two meters per 240-volt appliance::
+
+  appliances:
+
+  - type: electric oven
+    instance: 1
+    meters: [3, 4]   # the oven draws power from both 120 volt legs
+    original_name: oven
+
+  - original_name: washer_dryer
+    type: washer dryer
+    instance: 1
+    meters: [10, 20]
+    components: # we can specify which components connect to which leg
+    - type: motor
+      meters: [10]
+    - type: electric heating element
+      meters: [20]
 
 Now we specify loads which aren't single appliances but, instead, are
 categories of appliances::
@@ -404,6 +424,11 @@ objects, but it comes in handy for REDD::
     instance: 1
     multiple: true
     meters: [6]
+
+The full description of the REDD dataset using NILM Metadata can be
+found in the NILMTK project (at the time of writing, the `files are in
+the develop branch
+<https://github.com/nilmtk/nilmtk/tree/develop/nilmtk/dataset_converters/redd/metadata>`_).
 
 Summary
 -------
