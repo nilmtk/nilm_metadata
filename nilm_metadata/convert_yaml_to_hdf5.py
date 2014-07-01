@@ -42,7 +42,10 @@ def convert_yaml_to_hdf5(yaml_dir, hdf_filename):
 
     for fname in building_filenames:
         building = splitext(fname)[0] # e.g. 'building1'
-        group = store._handle.create_group('/', building)
+        try:
+            group = store._handle.create_group('/', building)
+        except:
+            group = store._handle.get_node('/' + building)
         building_metadata = _load_file(yaml_dir, fname)
         _sanity_check_meters(building_metadata['elec_meters'], meter_devices)
         _sanity_check_appliances(building_metadata)
