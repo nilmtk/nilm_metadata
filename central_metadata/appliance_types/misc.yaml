@@ -85,3 +85,6 @@ unknown:
   
 sockets:
   parent: appliance
+
+subpanel:
+  parent: appliance
