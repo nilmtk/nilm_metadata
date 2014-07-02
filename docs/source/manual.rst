@@ -170,7 +170,7 @@ First, let us specify the name of the dataset and the creators::
     In proceedings of the SustKDD workshop on 
     Data Mining Applications in Sustainability, 2011.
     http://redd.csail.mit.edu/kolter-kddsust11.pdf
-  schema: https://github.com/nilmtk/nilm_metadata/tree/v0.2.0
+  schema: https://github.com/nilmtk/nilm_metadata/tree/v0.2
 
 The nominal mains voltage can be inferred from the
 ``geo_location:country`` value.
