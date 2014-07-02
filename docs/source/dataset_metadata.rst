@@ -120,7 +120,7 @@ Values are dicts with these keys:
   data table.
 
    :physical_quantity: (string) (required) One of {'power', 'energy',
-                       'voltage', 'current'}
+                       'cumulative energy', 'voltage', 'current'}
    :type: (string) (required for 'power' and 'energy') Alternative
            Current (AC) Type. One of {'reactive', 'active',
            'apparent'}.
