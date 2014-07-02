@@ -144,7 +144,7 @@ showing all the classes and the relationships between classes:
 
 .. image:: schema.svg
 
-(Please see the :doc:`manual` for more background about the NILM
+(Please see the :doc:`tutorial` for more background about the NILM
 Metadata schema)
 
 Below we describe all the classes and their attributes and possible values.

@@ -69,6 +69,8 @@ embrace the
 ["don't repeat yourself (DRY)"](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 principal by exploiting the relationship between appliances.
 
+### Python utilities
+
 NILM Metadata comes with a Python module which collects all 
 ApplianceTypes in `central_metadata/appliance_types/*.yaml`,
 performs inheritance and instantiates components and
@@ -79,6 +81,10 @@ value is an ApplianceType dict.  Here's how to use it:
 from nilm_metadata import get_appliance_types
 appliance_types = get_appliance_types()
 ```
+
+NILM Metadata also comes with a `convert_yaml_to_hdf5()` function
+which will convert a YAML instance of NILM Metadata to the HDF5 file
+format.
 
 ## Research paper describing NILM metadata
 
