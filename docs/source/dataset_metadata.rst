@@ -85,7 +85,7 @@ Dublin Core Metadata Initiative or DCMI):
                     Related to the 'relation' DCMI element.
 :schema: (string) The URL of the NILM_metadata version (tag) against
          which this metadata is
-         validated. e.g. https://github.com/nilmtk/nilm_metadata/tree/v0.2.0
+         validated. e.g. https://github.com/nilmtk/nilm_metadata/tree/v0.2
 
 .. _meter-device-schema:
 
