@@ -52,7 +52,7 @@ def convert_yaml_to_hdf5(yaml_dir, hdf_filename):
         group._f_setattr('metadata', building_metadata)
 
     store.close()
-    print("Done!")
+    print("Done converting YAML metadata to HDF5!")
 
 
 def _load_file(yaml_dir, yaml_filename):
