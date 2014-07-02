@@ -13,7 +13,7 @@ The
 [documentation is available online](http://nilm-metadata.readthedocs.org).
 
 If you're new to NILM Metadata then please read this README and then
-dive into the [user manual](http://nilm-metadata.readthedocs.org/en/latest/manual.html)
+dive into the [tutorial](http://nilm-metadata.readthedocs.org/en/latest/tutorial.html)
 to find out how 
 to see a worked example.
 

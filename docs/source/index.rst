@@ -11,7 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   manual
+   tutorial
    dataset_metadata
    central_metadata
 
