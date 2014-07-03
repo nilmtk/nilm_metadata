@@ -43,12 +43,12 @@ def _concatenate_complete_appliance_type(appliance_type_name,
         component_type_name = component_appliance_obj['type']
         component_type_obj = _concatenate_complete_appliance_type(component_type_name,
                                                                   appliance_types_from_disk)
-        _merge_dicts(component_appliance_obj, component_type_obj)
+        recursively_update_dict(component_appliance_obj, component_type_obj)
         components[i] = component_appliance_obj
 
         # Now merge component categories into owner appliance type object
         if not component_appliance_obj.get('do_not_merge_categories'):
-            _merge_dicts(categories, component_appliance_obj.get('categories', {}))
+            recursively_update_dict(categories, component_appliance_obj.get('categories', {}))
 
     return concatenated_app_type
 
@@ -96,7 +96,7 @@ def _concatenate_complete_object(object_name, object_cache):
 
         _init_distributions(next_child)
 
-        _merge_dicts(merged_object, next_child)
+        recursively_update_dict(merged_object, next_child)
 
     return merged_object
 
@@ -149,22 +149,32 @@ def _get_ancestors(appliance_type_name, appliance_types_from_disk):
     return ancestors
 
 
-def _merge_dicts(old, new):
-    """ Recursively extends lists in old with lists in new,
+def recursively_update_dict(dict_to_update, source_dict):
+    """ Recursively extends lists in dict_to_update with lists in source_dict,
     and updates dicts.    
 
-    Arguments
-    ---------
-    old, new : dict
-        Updates `old` in place.
+    This function is required because Python's `dict.update()` function
+    does not descend into dicts within dicts.
+
+    Parameters
+    ----------
+    dict_to_update, source_dict : dict
+        Updates `dict_to_update` in place.
     """
-    new = deepcopy(new)
-    for key, new_value in new.iteritems():
-        if isinstance(new_value, list):
-            old.setdefault(key, []).extend(new_value)
-            if not any([isinstance(v, dict) for v in old[key]]):
-                old[key] = list(set(old[key]))
-        elif isinstance(new_value, dict):
-            _merge_dicts(old.setdefault(key, {}), new_value)
+    source_dict = deepcopy(source_dict)
+    for key_from_source, value_from_source in source_dict.iteritems():
+        try:
+            value_to_update = dict_to_update[key_from_source]
+        except KeyError:
+            dict_to_update[key_from_source] = value_from_source
         else:
-            old[key] = new_value
+            if isinstance(value_from_source, dict):
+                assert isinstance(value_to_update, dict)
+                recursively_update_dict(value_to_update, value_from_source)
+            elif isinstance(value_from_source, list):
+                assert isinstance(value_to_update, list)
+                value_to_update.extend(value_from_source)
+                if not any([isinstance(v, dict) for v in value_to_update]):
+                    value_to_update = list(set(value_to_update))
+            else:
+                dict_to_update[key_from_source] = value_from_source

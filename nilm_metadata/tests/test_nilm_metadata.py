@@ -22,7 +22,7 @@ class TestNilmMetadata(unittest.TestCase):
                           'categories': {'traditional': 'cold', 
                                          'size': 'large',
                                          'electrical': ['single-phase induction motor']},
-                          'subtypes': ['upright', 'chest']}
+                          'subtypes': ['chest', 'upright']}
         for k, v in fridge_answers.iteritems():
             self.assertEqual(fridge[k], v)
             
