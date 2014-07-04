@@ -112,12 +112,12 @@ Values are dicts with these keys:
 :sample_period: (number) (required) The meter's nominal sample period
                (i.e. the length of time between consecutive
                samples) in seconds.
-:max_sample_period: (number) The maximum permissible length of time
-                   between consecutive samples.  We assume the
-                   meter is switched off during any gap longer
-                   than ``max_sample_period``.
-:measurements: (list) The order is the order of the columns in the
-  data table.
+:max_sample_period: (number) (required) The maximum permissible length
+                   of time between consecutive samples.  We assume the
+                   meter is switched off during any gap longer than
+                   ``max_sample_period``.
+:measurements: (list) (required) The order is the order of the columns
+  in the data table.
 
    :physical_quantity: (string) (required) One of {'power', 'energy',
                        'cumulative energy', 'voltage', 'current'}
@@ -189,8 +189,9 @@ section on `Building`_ metadata above).
                              building instance here.  If left blank
                              then we assume the upstream meter is in
                              the same building as this meter.
-:site_meter: (boolean): True if this is a site meter (i.e. furthest
-             upstream meter) otherwise not required.
+:site_meter: (boolean): required and set to True if this is a site
+             meter (i.e. furthest upstream meter) otherwise not
+             required.
 
 .. _ElecMeter-room:
 
@@ -203,12 +204,12 @@ section on `Building`_ metadata above).
        for each building).
 :floor: (int) Not necessary if ``room`` is specified. Ground floor is 0. 
 
-:data_location: (string) Path relative to root directory of
-     dataset. e.g. ``house1/channel_2.dat``. Reference
-     tables and columns within a Hierarchical
-     file e.g. ``data.h5?table=/building1/elec/meter1`` or, if
-     this metadata is stored in the same HDF file as the
-     sensor data itself then just use the key e.g. ``/building1/elec/meter1``.
+:data_location: (string) (required) Path relative to root directory of
+     dataset. e.g. ``house1/channel_2.dat``. Reference tables and
+     columns within a Hierarchical file
+     e.g. ``data.h5?table=/building1/elec/meter1`` or, if this
+     metadata is stored in the same HDF file as the sensor data itself
+     then just use the key e.g. ``/building1/elec/meter1``.
 
 :preprocessing_applied: (dict): Each key is optional and is only
    present if that preprocessing function has been run.
