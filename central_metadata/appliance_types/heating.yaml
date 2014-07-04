@@ -70,6 +70,7 @@ electric furnace:
 
 electric space heater:
   parent: electric air heater
+  control: [manual, timer, thermostat]
   categories:
     traditional: heating  
 
@@ -77,6 +78,7 @@ electric space heater:
 
 electric water heating appliance:
   parent: electric water heater
+  control: [manual, timer, thermostat]
   categories:
     traditional: heating
 

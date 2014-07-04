@@ -37,6 +37,8 @@ light:
     - outdoor
     - mood
 
+  control: [manual, timer]
+
 # ----------------- LIGHTING COMPONENTS ------------------------ #
 
 lighting component:

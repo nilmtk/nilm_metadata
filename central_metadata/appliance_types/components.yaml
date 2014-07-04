@@ -28,10 +28,10 @@ electric heating element:
       - resistive
 
 electric air heater:
-  parent: component
+  parent: electric heating element
 
 electric water heater:
-  parent: electric air heater
+  parent: electric heating element
   additional_properties:
     volume:
       type: number
