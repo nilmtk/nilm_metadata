@@ -201,7 +201,7 @@ Each value is a dictionary describing the meter::
     max_sample_period: 50   # Max allowable interval between samples. Seconds.
     measurements:
     - physical_quantity: power   # power, voltage, energy, current?
-      ac_type: active   # active (real power), reactive or apparent?
+      type: active   # active (real power), reactive or apparent?
       upper_limit: 5000
       lower_limit: 0
     wireless: false 
@@ -228,7 +228,7 @@ Each value is a dictionary describing the meter::
     max_sample_period: 30
     measurements:
     - physical_quantity: power
-      ac_type: apparent
+      type: apparent
       upper_limit: 50000
       lower_limit: 0
     wireless: false
