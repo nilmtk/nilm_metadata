@@ -47,6 +47,7 @@ def convert_yaml_to_hdf5(yaml_dir, hdf_filename):
         except:
             group = store._handle.get_node('/' + building)
         building_metadata = _load_file(yaml_dir, fname)
+        _set_data_location(building_metadata['elec_meters'], building)
         _sanity_check_meters(building_metadata['elec_meters'], meter_devices)
         _sanity_check_appliances(building_metadata)
         group._f_setattr('metadata', building_metadata)
@@ -62,6 +63,20 @@ def _load_file(yaml_dir, yaml_filename):
             return yaml.load(fh)
     else:
         print(yaml_full_filename, "not found.", file=stderr)
+
+
+def _set_data_location(elec_meters, building):
+    """Goes through each ElecMeter in elec_meters and sets `data_location`.
+    Modifies `elec_meters` in place.
+    
+    Parameters
+    ----------
+    elec_meters : dict of ElecMeters
+    building : string e.g. 'building1'
+    """
+    for meter_instance in elec_meters:
+        data_location = '/{:s}/elec/meter{:d}'.format(building, meter_instance)
+        elec_meters[meter_instance]['data_location'] = data_location
 
 
 def _sanity_check_meters(meters, meter_devices):
