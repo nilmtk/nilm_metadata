@@ -175,6 +175,6 @@ def recursively_update_dict(dict_to_update, source_dict):
                 assert isinstance(value_to_update, list)
                 value_to_update.extend(value_from_source)
                 if not any([isinstance(v, dict) for v in value_to_update]):
-                    value_to_update = list(set(value_to_update))
+                    dict_to_update[key_from_source] = list(set(value_to_update))
             else:
                 dict_to_update[key_from_source] = value_from_source
