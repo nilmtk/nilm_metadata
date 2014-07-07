@@ -120,7 +120,11 @@ Values are dicts with these keys:
   in the data table.
 
    :physical_quantity: (string) (required) One of {'power', 'energy',
-                       'cumulative energy', 'voltage', 'current'}
+                       'cumulative energy', 'voltage', 'current',
+                       'state'}.  'state' columns store an integer
+                       state ID where 0 is off and >0 refers to
+                       defined states. (TODO: store mapping of state
+                       ID per appliance to state name)
    :type: (string) (required for 'power' and 'energy') Alternative
            Current (AC) Type. One of {'reactive', 'active',
            'apparent'}.
