@@ -132,8 +132,17 @@ Values are dicts with these keys:
    :lower_limit: (number)
 
 :description: (string)
+:pre_pay: (boolean) Is this a pre-pay meter?
 :wireless: (boolean)
-:wireless_base: (string) Description of the base station used
+
+:wireless_configuration: (dict) All strings are human-readable free text:
+
+   :base: (string) Description of the base station used. Manufacturer, model,
+          version etc.
+   :protocol: (string) e.g. 'zibgee', 'WiFi', 'custom'.  If
+                    custom then add a link to documentation if
+                    available.
+   :carrier_frequency: (number) MHz
 :data_logger: (string) Description of the data logger used
 
 .. _building-schema:
@@ -167,6 +176,13 @@ Building
 :periods_unoccupied: (list of `Interval` objects, see below) Periods when this
                      building was empty for more than a day
                      (e.g. holidays)
+:construction_year: (int) Four-digit calendar year of construction.
+:energy_improvements: (list of strings) Some combination of
+                      {'photovoltaics', 'solar thermal', 'cavity
+                      wall insulation', 'loft insulation', 'solid wall
+                      insulation', 'double glazing', 'secondary
+                      glazing', 'triple glazing'}
+
 
 Building metadata which is inherited from `Dataset`_ but can be
 overridden by ``Building``:
@@ -300,7 +316,8 @@ look up objects in
 :file:`nilm_metadata/central_metadata/appliances/*.yaml` for details.
 
 When an Appliance object is used as a component for an ApplianceType,
-then the Appliance object may have :ref:`distributions-schema`
+then the Appliance object may have a ``distributions`` dict (see
+``ApplianceType:distributions`` in :doc:`central_metadata`)
 specified and may also use a property ``do_not_merge_categories:
 true`` which prevents the system from merging categories from the
 component into the container appliance.
