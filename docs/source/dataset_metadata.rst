@@ -22,7 +22,7 @@ entire dataset etc.
 * Location in HDF5: ``store.root._v_attrs.metadata``
 
 Metadata attributes (some of these attributes are adapted from the
-Dublin Core Metadata Initiative or DCMI):
+Dublin Core Metadata Initiative (DCMI)):
 
 :name: (string) (required) Short name for the dataset.  e.g. 'REDD' or
        'UK-DALE'.  Equivalent DCMI element is 'title'.
@@ -34,8 +34,8 @@ Dublin Core Metadata Initiative or DCMI):
            (aka Olson) Time Zone Database
            <http://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`_ 
            e.g. 'America/New_York' or 'Europe/London'.
-:publication_date: (string) Related to the 'date' DCMI element.  ISO
-                   8601 format.  e.g. '2014-06-23'
+:date: (string) ISO 8601 format. e.g. '2014-06-23' Identical to the
+       'date' DCMI element.
 :contact: (string) Email address
 :institution: (string)
 :description: (string) DCMI element.  Human-readable, brief
@@ -50,7 +50,7 @@ Dublin Core Metadata Initiative or DCMI):
 :geospatial_coverage: (string): Spatial coverage.  e.g. 'Southern
                       England'. Related to the 'coverage' DCMI
                       element.  Human-readable free text.
-:temporal_coverage: (`Interval`_, see below) Start and end dates for
+:timeframe: (`TimeFrame`_, see below) Start and end dates for
                     the entire dataset.
 :funding: (list of strings) A list of all the sources of funding used
           to produce this dataset.
@@ -65,14 +65,12 @@ Dublin Core Metadata Initiative or DCMI):
              <http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_. e.g. 'GB' or 'US'.
    :latitude: (number)
    :longitude: (number)
-
 :rights_list: (list of dicts) License(s) under which this dataset is
               released.  Related to the 'rights' DCMI element.  
               Each element has these attributes:
 
    :uri: (string) License URI
    :name: (string) License name
-
 :description_of_subjects: (string) A brief description of how subjects
                           were recruited.  Are they all PhD students,
                           for example?  Were they incentivised to
@@ -172,8 +170,8 @@ Building
    :description: (string)
    :floor: (int) Ground floor is floor 0.
 :n_occupants: (int) Mode number of occupants.
-:temporal_coverage: (`Interval`_, see below)
-:periods_unoccupied: (list of `Interval` objects, see below) Periods when this
+:timeframe: (`TimeFrame`_, see below)
+:periods_unoccupied: (list of `TimeFrame` objects, see below) Periods when this
                      building was empty for more than a day
                      (e.g. holidays)
 :construction_year: (int) Four-digit calendar year of construction.
@@ -189,7 +187,7 @@ overridden by ``Building``:
 
 * geo_location
 * timezone
-* temporal_coverage
+* timeframe
 
 .. _elec-meter-schema:
 
@@ -212,6 +210,7 @@ section on `Building`_ metadata above).
 :site_meter: (boolean): required and set to True if this is a site
              meter (i.e. furthest upstream meter) otherwise not
              required.
+:timeframe: (`TimeFrame`_ object)
 
 .. _ElecMeter-room:
 
@@ -241,8 +240,10 @@ section on `Building`_ metadata above).
 
 :statistics: (dict):
 
-   :good_sections: (list of `Interval`_ objects)
-   :contiguous_sections: (list of `Interval`_ objects)
+   :timeframe: (`TimeFrame`_ object) (required) The timeframe
+               over which these statistics were calculated.
+   :good_sections: (list of `TimeFrame`_ objects)
+   :contiguous_sections: (list of `TimeFrame`_ objects)
    :energy: (dict) kWh
 
       :active: (number)
@@ -301,7 +302,7 @@ Each appliance dict has:
 :model: (string)
 :manufacturer: (string)
 :original_name: (string)
-:dates_active: (list of `Interval`_ objects, see below) Can be used to specify
+:dates_active: (list of `TimeFrame`_ objects, see below) Can be used to specify
                a change in appliance over time (for example if one
                appliance is replaced with another).
 :year_of_purchase: (int) Four-digit year.
@@ -322,9 +323,9 @@ specified and may also use a property ``do_not_merge_categories:
 true`` which prevents the system from merging categories from the
 component into the container appliance.
 
-.. _interval-schema:
+.. _timeframe-schema:
 
-Interval
+TimeFrame
 ---------
 
 Represent an arbitrary time frame.  If either start or end is absent
