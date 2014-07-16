@@ -147,7 +147,7 @@ sudo python setup.py install
 Or, if you want to develop:
 
 ```
-sudo python setup.py install
+sudo python setup.py develop
 ```
 
 Related projects
