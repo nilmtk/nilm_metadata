@@ -138,17 +138,14 @@ Installation
 ============
 
 If you want to use the Python package in order to concatenate the
-common appliance metadata into a single dictionary then please run:
+common appliance metadata then please run:
 
 ```
-sudo python setup.py install
+sudo python setup.py develop
 ```
 
-Or, if you want to develop:
-
-```
-sudo python setup.py install
-```
+Please do *not* use `python setup.py install` until I have updated
+`setup.py` to copy the relevant `*.yaml` files.  See [issue #6](https://github.com/nilmtk/nilm_metadata/issues/6).
 
 Related projects
 ================

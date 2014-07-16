@@ -9,7 +9,7 @@ setup(
     author='Jack Kelly',
     author_email='jack.kelly@imperial.ac.uk',
     url='https://github.com/nilmtk/nilm_metadata',
-    long_description=open('README.md').read(),
+#    long_description=open('README.md').read(),
     license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',
