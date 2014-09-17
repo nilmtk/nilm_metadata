@@ -38,7 +38,7 @@ boiler:
       
   subtypes:
     - combi
-    - regular
+    - system
 
   # We can specify the different mechanisms that
   # control the boiler.  This is useful, for example,

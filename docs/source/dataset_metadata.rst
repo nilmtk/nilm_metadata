@@ -301,6 +301,7 @@ Each appliance dict has:
 :components: (list of dicts): Components within this appliance. Each dict is an Appliance dict.
 :model: (string)
 :manufacturer: (string)
+:brand: (string)
 :original_name: (string)
 :dates_active: (list of `TimeFrame`_ objects, see below) Can be used to specify
                a change in appliance over time (for example if one
