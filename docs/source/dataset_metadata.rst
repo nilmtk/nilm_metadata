@@ -166,7 +166,7 @@ Building
                            'garage', 'basement', 'bathroom', 'study',
                            'nursery', 'hall', 'dining room',
                            'outdoors'}
-   :instance: (int)
+   :instance: (int) (optional.  Starts from 1.  If absent then assume to be 1.)
    :description: (string)
    :floor: (int) Ground floor is floor 0.
 :n_occupants: (int) Mode number of occupants.
