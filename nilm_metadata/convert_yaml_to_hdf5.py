@@ -123,7 +123,7 @@ def _sanity_check_appliances(building_metadata):
             msg = "In {}, meters '{}' not unique.".format(appl_string, meters)
             raise NilmMetadataError(msg)
         for meter in meters:
-            if meter not in building_metadata['elec_meters']:
+            if meter !=0 and meter not in building_metadata['elec_meters']:
                 msg = ("In {}, meter {:d} is not in 'elec_meters'"
                        .format(appl_string, meter))
                 raise NilmMetadataError(msg)
