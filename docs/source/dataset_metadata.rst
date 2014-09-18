@@ -209,7 +209,9 @@ section on `Building`_ metadata above).
                              the same building as this meter.
 :site_meter: (boolean): required and set to True if this is a site
              meter (i.e. furthest upstream meter) otherwise not
-             required.
+             required.  If there are multiple site meters in *series*
+             then set `submeter_of` in all but one of the site meters
+             and, for the appliance meters, set `submeter_of` to 0.
 :timeframe: (`TimeFrame`_ object)
 
 .. _ElecMeter-room:
