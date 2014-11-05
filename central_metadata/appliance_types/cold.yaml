@@ -43,8 +43,17 @@ fridge freezer:
   additional_properties: *freezerVolume
 
 air conditioner:
-  parent: heat pump
+  parent: appliance
   synonyms: [air conditioning, AC]
+  control: [manual, timer, thermostat]
+  categories:
+    google_shopping:
+      - climate control
+  additional_properties:
+    heat_dump:
+      enum: [ground, air, water]
+  components:
+    - type: compressor
 
 air handling unit:
   parent: fan
