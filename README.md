@@ -133,6 +133,9 @@ instead.  If there is a real desire for automated validation then we
 could resurrect the JSON Schema, but it is a fair amount of work to
 maintain.
 
+However, there are YAML validators freely available to make sure you are 
+using the correct YAML format.  For example: [YAMLlint](http://www.yamllint.com)
+
 
 Installation
 ============
