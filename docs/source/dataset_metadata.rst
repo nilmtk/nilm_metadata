@@ -74,7 +74,8 @@ Dublin Core Metadata Initiative (DCMI)):
 :description_of_subjects: (string) A brief description of how subjects
                           were recruited.  Are they all PhD students,
                           for example?  Were they incentivised to
-                          reduce their energy consumption?
+                          reduce their energy consumption?  How were
+                          they chosen?
 :related_documents: (list of strings) References about this dataset
                     (e.g. references to academic papers or web pages).
                     Also briefly describe the contents of each
@@ -170,17 +171,30 @@ Building
    :description: (string)
    :floor: (int) Ground floor is floor 0.
 :n_occupants: (int) Mode number of occupants.
+:description_of_occupants: (string) free-text describing the
+                           occupants.  Number of children, teenagers,
+                           adults, pensioners?  Demographics?  Were
+                           all occupants away from the house during
+                           all week days?
 :timeframe: (`TimeFrame`_, see below)
 :periods_unoccupied: (list of `TimeFrame` objects, see below) Periods when this
                      building was empty for more than a day
                      (e.g. holidays)
 :construction_year: (int) Four-digit calendar year of construction.
-:energy_improvements: (list of strings) Some combination of
-                      {'photovoltaics', 'solar thermal', 'cavity
-                      wall insulation', 'loft insulation', 'solid wall
+:energy_improvements: (list of strings) Any post-construction
+                      modifications?  Some combination of
+                      {'photovoltaics', 'solar thermal', 'cavity wall
+                      insulation', 'loft insulation', 'solid wall
                       insulation', 'double glazing', 'secondary
                       glazing', 'triple glazing'}
-
+:heating: (ordered list of strings, with the most dominant fuel first)
+          Some combination of {'natural gas', 'electricity', 'coal',
+          'wood', 'biomass', 'oil', 'LPG'}
+:ownership: (string) one of {'rented', 'bought'}
+:building_type: (string) one of {'bungalow', 'cottage', 'detached',
+                'end of terrace', 'flat', 'semi-detached',
+                'mid-terrace', 'student halls', 'factory', 'office',
+                'university'}
 
 Building metadata which is inherited from `Dataset`_ but can be
 overridden by ``Building``:
