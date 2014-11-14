@@ -190,6 +190,8 @@ Building
 :heating: (ordered list of strings, with the most dominant fuel first)
           Some combination of {'natural gas', 'electricity', 'coal',
           'wood', 'biomass', 'oil', 'LPG'}
+:communal_boiler: boolean (set to true if heating is provided by a
+                  shared boiler for the flats)
 :ownership: (string) one of {'rented', 'bought'}
 :building_type: (string) one of {'bungalow', 'cottage', 'detached',
                 'end of terrace', 'flat', 'semi-detached',
