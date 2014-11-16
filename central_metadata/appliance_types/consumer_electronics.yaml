@@ -60,6 +60,8 @@ audio system:
 audio amplifier:
   parent: CE appliance
   usual_components: [DAC, radio]
+  subtypes:
+    - home theatre
 
 active speaker:
   parent: audio amplifier
