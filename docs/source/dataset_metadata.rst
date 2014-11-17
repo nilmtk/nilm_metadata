@@ -268,6 +268,10 @@ section on `Building`_ metadata above).
       :reactive: (number)
       :apparent: (number)
 
+:disabled: (bool): Set to true if NILMTK should ignore this channel.
+           This is useful if, for example, this channel is a redundant 
+           site_meter.
+
 .. _appliance-schema:
 
 Appliance
