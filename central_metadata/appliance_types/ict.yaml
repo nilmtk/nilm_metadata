@@ -22,6 +22,9 @@ computer:
       
   control: [manual, timer]
 
+server computer: 
+  parent: computer
+
 laptop computer:
   parent: computer
   categories:
@@ -104,6 +107,10 @@ tablet computer charger:
 
 external hard disk:
   parent: ICT appliance
+
+network attached storage:
+  parent: ICT appliance
+  synonyms: [NAS]
 
 broadband router:
   parent: ICT appliance
