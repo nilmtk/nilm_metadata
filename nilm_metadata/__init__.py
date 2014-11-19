@@ -1,2 +1,2 @@
 from object_concatenation import get_appliance_types, recursively_update_dict
-from convert_yaml_to_hdf5 import convert_yaml_to_hdf5
+from convert_yaml_to_hdf5 import convert_yaml_to_hdf5, save_yaml_to_datastore

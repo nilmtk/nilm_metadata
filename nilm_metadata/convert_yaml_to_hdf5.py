@@ -57,7 +57,43 @@ def convert_yaml_to_hdf5(yaml_dir, hdf_filename):
 
     store.close()
     print("Done converting YAML metadata to HDF5!")
+   
+def save_yaml_to_datastore(yaml_dir, store):
+    """Saves a NILM Metadata YAML instance to a NILMTK datastore.
 
+    Parameters
+    ----------
+    yaml_dir : str
+        Directory path of all *.YAML files describing this dataset.
+    store : DataStore
+        DataStore object
+    """
+    
+    assert isdir(yaml_dir)
+
+    # Load Dataset and MeterDevice metadata
+    metadata = _load_file(yaml_dir, 'dataset.yaml')
+    meter_devices = _load_file(yaml_dir, 'meter_devices.yaml')
+    metadata['meter_devices'] = meter_devices
+    store.save_metadata('/', metadata)
+
+    # Load buildings
+    building_filenames = [fname for fname in listdir(yaml_dir)
+                          if fname.startswith('building') 
+                          and fname.endswith('.yaml')]
+
+    for fname in building_filenames:
+        building = splitext(fname)[0] # e.g. 'building1'
+        building_metadata = _load_file(yaml_dir, fname)
+        elec_meters = building_metadata['elec_meters']
+        _deep_copy_meters(elec_meters)
+        _set_data_location(elec_meters, building)
+        _sanity_check_meters(elec_meters, meter_devices)
+        _sanity_check_appliances(building_metadata)
+        store.save_metadata('/'+building, building_metadata)
+
+    store.close()
+    print("Done converting YAML metadata to HDF5!")
 
 def _load_file(yaml_dir, yaml_filename):
     yaml_full_filename = join(yaml_dir, yaml_filename)
