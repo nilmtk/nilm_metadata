@@ -256,10 +256,12 @@ section on `Building`_ metadata above).
       :lower_limit:
       :upper_limit:
 
-:statistics: (dict):
+:statistics: (list of dicts): Each dict describes statistics for
+             one set of timeframes.  Each dict has:
 
-   :timeframe: (`TimeFrame`_ object) (required) The timeframe
-               over which these statistics were calculated.
+   :timeframes: (list of `TimeFrame`_ objects) The timeframes
+               over which these statistics were calculated.  Leave out
+               if the statistic was calculated over the entire period.
    :good_sections: (list of `TimeFrame`_ objects)
    :contiguous_sections: (list of `TimeFrame`_ objects)
    :energy: (dict) kWh
