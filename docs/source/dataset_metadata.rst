@@ -259,9 +259,10 @@ section on `Building`_ metadata above).
 :statistics: (list of dicts): Each dict describes statistics for
    one set of timeframes.  Each dict has:
 
-   :timeframes: (list of `TimeFrame`_ objects) The timeframes
-               over which these statistics were calculated.  Leave out
-               if the statistic was calculated over the entire period.
+   :timeframes: (list of `TimeFrame`_ objects) (required)  The timeframes
+               over which these statistics were calculated.  If the
+               stat(s) refer to the entire timeseries then enter the
+               start and end of the timeseries as the only TimeFrame. 
    :good_sections: (list of `TimeFrame`_ objects)
    :contiguous_sections: (list of `TimeFrame`_ objects)
    :total_energy: (dict) kWh
