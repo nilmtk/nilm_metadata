@@ -264,7 +264,7 @@ section on `Building`_ metadata above).
                if the statistic was calculated over the entire period.
    :good_sections: (list of `TimeFrame`_ objects)
    :contiguous_sections: (list of `TimeFrame`_ objects)
-   :energy: (dict) kWh
+   :total_energy: (dict) kWh
 
       :active: (number)
       :reactive: (number)
