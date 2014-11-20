@@ -257,7 +257,7 @@ section on `Building`_ metadata above).
       :upper_limit:
 
 :statistics: (list of dicts): Each dict describes statistics for
-             one set of timeframes.  Each dict has:
+   one set of timeframes.  Each dict has:
 
    :timeframes: (list of `TimeFrame`_ objects) The timeframes
                over which these statistics were calculated.  Leave out
