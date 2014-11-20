@@ -248,6 +248,20 @@ section on `Building`_ metadata above).
      metadata is stored in the same HDF file as the sensor data itself
      then just use the key e.g. ``/building1/elec/meter1``.
 
+:disabled: (bool): Set to true if NILMTK should ignore this channel.
+           This is useful if, for example, this channel is a redundant 
+           site_meter.
+
+.. _mutable-ElecMeter-metadata:
+
+Mutable ElecMeter metadata
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following information is kept in
+``/building<I>/elec/meter<K>._v_attrs.metadata`` for each meter and
+could be kept in ``/building<I>/elec/meter<K>_mutable_metadata.yaml`` in YAML
+formats.
+
 :preprocessing_applied: (dict): Each key is optional and is only
    present if that preprocessing function has been run.
 
@@ -271,9 +285,6 @@ section on `Building`_ metadata above).
       :reactive: (number)
       :apparent: (number)
 
-:disabled: (bool): Set to true if NILMTK should ignore this channel.
-           This is useful if, for example, this channel is a redundant 
-           site_meter.
 
 .. _appliance-schema:
 
