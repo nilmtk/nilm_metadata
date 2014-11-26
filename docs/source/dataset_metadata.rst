@@ -215,7 +215,9 @@ section on `Building`_ metadata above).
 
 :device_model: (string) (required) ``model`` which keys into ``meter_devices``
 :submeter_of: (int) (required) the meter instance of the upstream meter.  Or 0
-              to mean 'one of the site_meters'.
+              to mean "one of the site_meters".  In practice, 0 will
+              be interpreted to mean "downstream of a 'MeterGroup' 
+              representing all the site meters summed together".
 :submeter_of_is_uncertain: (boolean) Set to true if the value for
                            `submeter_of` is uncertain.
 :upstream_meter_in_building: (int) If the upstream meter is
