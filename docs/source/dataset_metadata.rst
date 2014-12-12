@@ -254,16 +254,6 @@ section on `Building`_ metadata above).
            This is useful if, for example, this channel is a redundant 
            site_meter.
 
-.. _mutable-ElecMeter-metadata:
-
-Mutable ElecMeter metadata
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The following information is kept in
-``/building<I>/elec/meter<K>._v_attrs.metadata`` for each meter and
-could be kept in ``/building<I>/elec/meter<K>_mutable_metadata.yaml`` in YAML
-formats.
-
 :preprocessing_applied: (dict): Each key is optional and is only
    present if that preprocessing function has been run.
 
@@ -286,6 +276,12 @@ formats.
       :active: (number)
       :reactive: (number)
       :apparent: (number)
+
+   Note that some of these statistics are cached by 
+   `NILMTK <http://nilmtk.github.io/>`_ at
+   ``building<I>/elec/cache/meter<K>/<statistic_name>``. 
+   For more details, see the docstring of 
+   ``nilmtk.ElecMeter._get_stat_from_cache_or_compute()``.
 
 
 .. _appliance-schema:
