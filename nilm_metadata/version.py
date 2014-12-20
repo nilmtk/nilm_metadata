@@ -1,2 +1,2 @@
-version = '0.2.0.dev-2a1e9f7'
+version = '0.2.0.dev-24d529f'
 short_version = '0.2.0'
