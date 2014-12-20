@@ -306,11 +306,14 @@ Each appliance dict has:
         upstream of this appliance.  This is a list to handle the case
         where some appliances draw power from both 120 volt legs in a
         north American house.  Or 3-phase appliances.
-:on_power_threshold: (number) watts
-:minimum_off_duration: (number (seconds) in YAML; timedelta in HDF5)
-:minimum_on_duration: (number (seconds) in YAML; timedelta in HDF5)
-:dominant_appliance: (boolean) Is this appliance responsible for 
-          most of the power demand on this meter?
+:dominant_appliance: (boolean) (required if multiple appliances
+                     attached to one meter). Is this appliance
+                     responsible for most of the power demand on this
+                     meter?
+:on_power_threshold: (number) watts.  Not required.  Default is taken
+                     from the appliance `type`.
+:minimum_off_duration: (number) (seconds) 
+:minimum_on_duration: (number) (seconds)
 :room: see `ElecMeter-room`_
 :multiple: (boolean) True if there are more than one 
            of these appliances represented by this single
