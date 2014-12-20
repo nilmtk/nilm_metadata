@@ -234,6 +234,7 @@ section on `Building`_ metadata above).
              then set `submeter_of` in all but one of the site meters
              and, for the appliance meters, set `submeter_of` to 0.
 :timeframe: (`TimeFrame`_ object)
+:name: (string) (optional) e.g. 'first floor total'.
 
 .. _ElecMeter-room:
 
