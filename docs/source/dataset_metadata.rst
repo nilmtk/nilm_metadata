@@ -91,11 +91,12 @@ Dublin Core Metadata Initiative (DCMI)):
 MeterDevice
 -----------
 
-Metadata describing each model of electricity meter used in the
-dataset.  (Please note that `ElecMeter`_ is used for representing
-individual *instances* of meters in a building whilst ``MeterDevice`` is
-used to represent information common to all instances of a specific
-make and model of meter).
+Metadata describing every model of meter used in the dataset.  (Please
+note that `ElecMeter`_ is used for representing individual *instances*
+of meters in a building whilst ``MeterDevice`` is used to represent
+information common to all instances of a specific make and model of
+meter).  Think of this section as a catalogue of meter models used in
+the dataset.
 
 * Location in YAML: ``meter_devices.yaml``
 * Location in HDF5: ``store.root._v_attrs.metadata`` in ``meter_devices``
@@ -114,7 +115,9 @@ Values are dicts with these keys:
 :max_sample_period: (number) (required) The maximum permissible length
                    of time between consecutive samples.  We assume the
                    meter is switched off during any gap longer than
-                   ``max_sample_period``.
+                   ``max_sample_period``.  In other words, we define a
+                   'gap' to be any two samples which are more than
+                   ``max_sample_period`` apart.
 :measurements: (list) (required) The order is the order of the columns
   in the data table.
 
