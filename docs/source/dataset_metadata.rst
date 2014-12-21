@@ -166,6 +166,8 @@ Building
               Each value is an ``ElecMeter``. See section below on
               `ElecMeter`_.
 :appliances: (list of dicts) (required) See section below on `Appliance`_.
+:water_meters: (dict of dicts) Same structure as ``elec_meters``.
+:gas_meters: (dict of dicts) Same structure as ``elec_meters``.
 :description: (string)
 :rooms: (list of dicts):
 
@@ -236,6 +238,9 @@ section on `Building`_ metadata above).
              required.  If there are multiple site meters in *series*
              then set `submeter_of` in all but one of the site meters
              and, for the appliance meters, set `submeter_of` to 0.
+:utility_meter: (boolean) required and set to True if this is meter
+                was installed by the utility company. Otherwise not
+                required.
 :timeframe: (`TimeFrame`_ object)
 :name: (string) (optional) e.g. 'first floor total'.
 
@@ -290,6 +295,10 @@ section on `Building`_ metadata above).
    For more details, see the docstring of 
    ``nilmtk.ElecMeter._get_stat_from_cache_or_compute()``.
 
+WaterMeter and GasMeter
+-----------------------
+
+Same attributes as `ElecMeter`_.
 
 .. _appliance-schema:
 
