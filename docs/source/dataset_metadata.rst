@@ -222,10 +222,11 @@ ElecMeters are the values of the ``elec_meters`` dict of each building (see the
 section on `Building`_ metadata above).
 
 :device_model: (string) (required) ``model`` which keys into ``meter_devices``
-:submeter_of: (int) (required) the meter instance of the upstream meter.  Or 0
-              to mean "one of the site_meters".  In practice, 0 will
-              be interpreted to mean "downstream of a 'MeterGroup' 
-              representing all the site meters summed together".
+:submeter_of: (int) (required) the meter instance of the upstream
+              meter.  Or set to ``0`` to mean "*one of the
+              site_meters*".  In practice, ``0`` will be interpreted to
+              mean "downstream of a 'MeterGroup' representing all the
+              site meters summed together".
 :submeter_of_is_uncertain: (boolean) Set to true if the value for
                            `submeter_of` is uncertain.
 :upstream_meter_in_building: (int) If the upstream meter is
@@ -235,14 +236,36 @@ section on `Building`_ metadata above).
                              the same building as this meter.
 :site_meter: (boolean): required and set to True if this is a site
              meter (i.e. furthest upstream meter) otherwise not
-             required.  If there are multiple site meters in *series*
-             then set `submeter_of` in all but one of the site meters
-             and, for the appliance meters, set `submeter_of` to 0.
+             required.  If there are multiple mains phases
+             (e.g. 3-phase mains) or multiple mains 'splits' (e.g. in
+             North America where there are two 120 volt splits) then
+             set ``site_meter=true`` in every site meter.  All
+             non-site-meters directly downstream of the site meters
+             should set ``submeter_of=0``.  Optionally also use
+             ``phase`` to describe which phase this meter measures.
+             What happens if there are multiple site meters in
+             *parallel* (i.e. there are redundant meters)?  For
+             example, perhaps there is a site meter installed by the
+             utility company which provides infrequent readings; and
+             there is also a fancy digital site meter which measures
+             at the same point in the wiring tree and so, in a sense,
+             the utility meter can be considered 'redundant' but is
+             included in the dataset for comparison). In this
+             situation, set ``site_meter=true`` in every site meter.
+             Then set ``disabled=true`` in all but the 'favoured' site
+             meter (which would usually be the site meter which
+             provides the 'best' readings).  It is important to set
+             ``disabled=true`` so NILMTK does not sum together
+             parallel site meters.  The disabled site meters should
+             also set ``submeter_of`` to the ID of the enabled site
+             meter.  All non-site-meters directly downstream of site
+             meters should set ``submeter_of=0``.
 :utility_meter: (boolean) required and set to True if this is meter
                 was installed by the utility company. Otherwise not
                 required.
 :timeframe: (`TimeFrame`_ object)
 :name: (string) (optional) e.g. 'first floor total'.
+:phase: (int or string) (optional) Used in multiple-phase setups.
 
 .. _ElecMeter-room:
 
