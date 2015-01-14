@@ -428,7 +428,7 @@ objects, but it comes in handy for REDD::
 The `full description of the REDD dataset using NILM Metadata can be
 found in the NILMTK project
 <https://github.com/nilmtk/nilmtk/tree/master/nilmtk/dataset_converters/redd/metadata>`_
-along with the `metadata descriptions for many other datasets<https://github.com/nilmtk/nilmtk/tree/master/nilmtk/dataset_converters>`_.
+along with the `metadata descriptions for many other datasets <https://github.com/nilmtk/nilmtk/tree/master/nilmtk/dataset_converters>`_.
 
 Summary
 -------
