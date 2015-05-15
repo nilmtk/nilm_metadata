@@ -38,6 +38,8 @@ fryer:
 
 coffee maker:
   parent: small resistive cooking appliance
+  min_on_duration: 60
+  min_off_duration: 600
 
 rice cooker:
   parent: small resistive cooking appliance

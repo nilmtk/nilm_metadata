@@ -23,6 +23,8 @@ hair dryer:
     electrical:
       - resistive
   parent: manual misc appliance
+  min_on_duration: 15
+  min_off_duration: 300
 
 hair straighteners:
   categories:

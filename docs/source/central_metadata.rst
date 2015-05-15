@@ -156,8 +156,8 @@ Has many of the attributes that :ref:`appliance-schema` has, with the addition
 of:
 
 * on_power_threshold
-* minimum_off_duration
-* minimum_on_duration
+* min_off_duration
+* min_on_duration
 * control
 * components
 

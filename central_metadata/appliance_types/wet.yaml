@@ -34,6 +34,8 @@ washing machine:
   parent: spin dryer
   components:
     - type: electric water heater
+  min_on_duration: 60
+  min_off_duration: 60
 
 washer dryer:
   parent: washing machine
@@ -43,6 +45,8 @@ washer dryer:
 
 dish washer:
   parent: wet appliance
+  min_on_duration: 600
+  min_off_duration: 1800
   components:
     - type: electric air heater
     - type: electric water heater

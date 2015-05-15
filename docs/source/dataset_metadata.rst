@@ -347,8 +347,8 @@ Each appliance dict has:
                      meter?
 :on_power_threshold: (number) watts.  Not required.  Default is taken
                      from the appliance `type`.
-:minimum_off_duration: (number) (seconds) 
-:minimum_on_duration: (number) (seconds)
+:min_off_duration: (number) (seconds) 
+:min_on_duration: (number) (seconds)
 :room: see `ElecMeter-room`_
 :multiple: (boolean) True if there are more than one 
            of these appliances represented by this single
