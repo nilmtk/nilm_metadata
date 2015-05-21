@@ -346,7 +346,8 @@ Each appliance dict has:
                      responsible for most of the power demand on this
                      meter?
 :on_power_threshold: (number) watts.  Not required.  Default is taken
-                     from the appliance `type`.
+                     from the appliance `type`.  The threshold (in
+                     watts) used to decide if the appliance is `on` or `off`.
 :min_off_duration: (number) (seconds) 
 :min_on_duration: (number) (seconds)
 :room: see `ElecMeter-room`_
@@ -367,7 +368,7 @@ Each appliance dict has:
    :certification_name: (string) e.g. 'SEDBUK' or 'Energy Star 5.0'
    :rating: (string) e.g. 'A+'
 
-:nominal_consumption: (dict):
+:nominal_consumption: (dict):  Specifications reported by the manufacturer.
 
    :on_power: (number) active power in watts when on.
    :standby_power: (number) active power in watts when in standby.
