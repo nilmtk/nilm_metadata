@@ -388,6 +388,7 @@ Each appliance dict has:
 :part_number: (string)
 :gtin: (int) http://en.wikipedia.org/wiki/Global_Trade_Item_Number
 :version: (string)
+:portable: (boolean)
 
 Additional properties are specified for some Appliance Types.  Please
 look up objects in
