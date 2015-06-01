@@ -79,6 +79,12 @@ DVD player:
 CD player:
   parent: CE appliance
 
+record deck:
+  parent: CE appliance
+
+cassette deck:
+  parent: CE appliance
+
 blu-ray player:
   parent: CE appliance
 

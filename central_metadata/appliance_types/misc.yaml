@@ -16,7 +16,7 @@ sewing machine:
   components:
     - type: motor
 
-#-------------- CLOTHES, HEALTH AND BEUTY -----------------
+#-------------- CLOTHES, HEALTH AND BEAUTY -----------------
 
 hair dryer:
   categories:
@@ -43,6 +43,10 @@ clothes iron:
     electrical:
       - resistive
   parent: manual misc appliance
+  subtypes:
+    - dry
+    - steam
+
 
 motorised chair:
   parent: manual misc appliance
