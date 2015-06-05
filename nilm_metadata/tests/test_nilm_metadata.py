@@ -4,6 +4,7 @@ import unittest
 from copy import deepcopy
 from ..object_concatenation import get_appliance_types
 
+
 class TestNilmMetadata(unittest.TestCase):
 
     def test_appliance_types(self):
@@ -11,21 +12,22 @@ class TestNilmMetadata(unittest.TestCase):
 
         # COLD APPLIANCE
         cold = types['cold appliance']
-        cold_answers = {'n_ancestors': 1, 
+        cold_answers = {'n_ancestors': 1,
                         'categories': {'traditional': 'cold', 'size': 'large'}}
-        for k, v in cold_answers.iteritems():        
+        for k, v in cold_answers.iteritems():
             self.assertEqual(cold[k], v)
 
         # FRIDGE
         fridge = types['fridge']
-        fridge_answers = {'n_ancestors': 2, 
-                          'categories': {'traditional': 'cold', 
-                                         'size': 'large',
-                                         'electrical': ['single-phase induction motor']},
+        fridge_answers = {'n_ancestors': 2,
+                          'categories': {
+                              'traditional': 'cold',
+                              'size': 'large',
+                              'electrical': ['single-phase induction motor']},
                           'subtypes': ['chest', 'upright']}
         for k, v in fridge_answers.iteritems():
             self.assertEqual(fridge[k], v)
-            
+
         fridge_dists = fridge['distributions']
         self.assertEqual(fridge_dists.keys(), ['rooms'])
         rooms = fridge_dists['rooms']
