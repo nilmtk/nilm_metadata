@@ -132,7 +132,7 @@ def _sanity_check_meters(meters, meter_devices):
     * Makes sure all IDs are unique
     """
     if len(meters.keys()) != len(set(meters.keys())):
-        raise RuntimeError("elec_meters not unique")
+        raise NilmMetadataError("elec_meters not unique")
 
     for meter_instance, meter in meters.iteritems():
         assert meter['device_model'] in meter_devices
@@ -147,25 +147,46 @@ def _sanity_check_appliances(building_metadata):
     appliances = building_metadata['appliances']
     appliance_types = get_appliance_types()
     building_instance = building_metadata['instance']
+    REQUIRED_KEYS = ['type', 'instance', 'meters']
 
     for appliance in appliances:
-        appl_type = appliance['type']
+        if not isinstance(appliance, dict):
+            raise NilmMetadataError(
+                "Appliance '{}' is {} when it should be a dict."
+                .format(appliance, type(appliance)))
 
-        appl_string = ("ApplianceType '{}' in building {:d}"
-                       .format(appl_type, building_instance))
+        # Generate string for specifying which is the problematic
+        # appliance for error messages:
+        appl_string = ("ApplianceType '{}', instance '{}', in building {:d}"
+                       .format(appliance.get('type'),
+                               appliance.get('instance'),
+                               building_instance))
+
+        # Check required keys are all present
+        for key in REQUIRED_KEYS:
+            if key not in appliance:
+                raise NilmMetadataError("key '{}' missing for {}"
+                                        .format(key, appl_string))
+
+        appl_type = appliance['type']
 
         # check all appliance names are valid
         if appl_type not in appliance_types:
-            raise NilmMetadataError(appl_string + " not in appliance_types.")
+            raise NilmMetadataError(
+                appl_string + " not in appliance_types."
+                "  In other words, '{}' is not a recognised appliance type."
+                .format(appl_type))
 
         # Check appliance references valid meters
         meters = appliance['meters']
         if len(meters) != len(set(meters)):
             msg = "In {}, meters '{}' not unique.".format(appl_string, meters)
             raise NilmMetadataError(msg)
+
         for meter in meters:
             if meter != 0 and meter not in building_metadata['elec_meters']:
-                msg = ("In {}, meter {:d} is not in 'elec_meters'"
+                msg = ("In ({}), meter '{:d}' is not in"
+                       " this building's 'elec_meters'"
                        .format(appl_string, meter))
                 raise NilmMetadataError(msg)
 
@@ -180,8 +201,9 @@ def _sanity_check_appliances(building_metadata):
         instances.sort()
         correct_instances = range(1, len(instances)+1)
         if instances != correct_instances:
-            msg = ("In building {:d}, appliance '{}' appears {:d} times."
-                   " The list of instances is '{}'.  It should be '{}'."
+            msg = ("In building {:d}, appliance '{}' appears {:d} time(s)."
+                   " Yet the list of instances is '{}'.  The list of instances"
+                   " should be '{}'."
                    .format(building_metadata['instance'], appliance_type,
                            len(instances), instances, correct_instances))
             raise NilmMetadataError(msg)
