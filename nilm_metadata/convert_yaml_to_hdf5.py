@@ -22,8 +22,8 @@ def convert_yaml_to_hdf5(yaml_dir, hdf_filename):
     yaml_dir : str
         Directory path of all *.YAML files describing this dataset.
     hdf_filename : str
-        Filename and path of output HDF5 file.  If file exists then will 
-        attempt to append metadata to file.  If file does not exist then 
+        Filename and path of output HDF5 file.  If file exists then will
+        attempt to append metadata to file.  If file does not exist then
         will create it.
     """
 
@@ -38,11 +38,11 @@ def convert_yaml_to_hdf5(yaml_dir, hdf_filename):
 
     # Load buildings
     building_filenames = [fname for fname in listdir(yaml_dir)
-                          if fname.startswith('building') 
+                          if fname.startswith('building')
                           and fname.endswith('.yaml')]
 
     for fname in building_filenames:
-        building = splitext(fname)[0] # e.g. 'building1'
+        building = splitext(fname)[0]  # e.g. 'building1'
         try:
             group = store._handle.create_group('/', building)
         except:
@@ -57,7 +57,8 @@ def convert_yaml_to_hdf5(yaml_dir, hdf_filename):
 
     store.close()
     print("Done converting YAML metadata to HDF5!")
-   
+
+
 def save_yaml_to_datastore(yaml_dir, store):
     """Saves a NILM Metadata YAML instance to a NILMTK datastore.
 
@@ -68,7 +69,7 @@ def save_yaml_to_datastore(yaml_dir, store):
     store : DataStore
         DataStore object
     """
-    
+
     assert isdir(yaml_dir)
 
     # Load Dataset and MeterDevice metadata
@@ -79,11 +80,11 @@ def save_yaml_to_datastore(yaml_dir, store):
 
     # Load buildings
     building_filenames = [fname for fname in listdir(yaml_dir)
-                          if fname.startswith('building') 
+                          if fname.startswith('building')
                           and fname.endswith('.yaml')]
 
     for fname in building_filenames:
-        building = splitext(fname)[0] # e.g. 'building1'
+        building = splitext(fname)[0]  # e.g. 'building1'
         building_metadata = _load_file(yaml_dir, fname)
         elec_meters = building_metadata['elec_meters']
         _deep_copy_meters(elec_meters)
@@ -94,6 +95,7 @@ def save_yaml_to_datastore(yaml_dir, store):
 
     store.close()
     print("Done converting YAML metadata to HDF5!")
+
 
 def _load_file(yaml_dir, yaml_filename):
     yaml_full_filename = join(yaml_dir, yaml_filename)
@@ -112,7 +114,7 @@ def _deep_copy_meters(elec_meters):
 def _set_data_location(elec_meters, building):
     """Goes through each ElecMeter in elec_meters and sets `data_location`.
     Modifies `elec_meters` in place.
-    
+
     Parameters
     ----------
     elec_meters : dict of dicts
@@ -122,13 +124,16 @@ def _set_data_location(elec_meters, building):
         data_location = '/{:s}/elec/meter{:d}'.format(building, meter_instance)
         elec_meters[meter_instance]['data_location'] = data_location
 
+
 def _sanity_check_meters(meters, meter_devices):
     """
     Checks:
     * Make sure all meter devices map to meter_device keys
     * Makes sure all IDs are unique
     """
-    assert len(meters.keys()) == len(set(meters.keys())), "elec_meters not unique"
+    if len(meters.keys()) != len(set(meters.keys())):
+        raise RuntimeError("elec_meters not unique")
+
     for meter_instance, meter in meters.iteritems():
         assert meter['device_model'] in meter_devices
 
@@ -159,7 +164,7 @@ def _sanity_check_appliances(building_metadata):
             msg = "In {}, meters '{}' not unique.".format(appl_string, meters)
             raise NilmMetadataError(msg)
         for meter in meters:
-            if meter !=0 and meter not in building_metadata['elec_meters']:
+            if meter != 0 and meter not in building_metadata['elec_meters']:
                 msg = ("In {}, meter {:d} is not in 'elec_meters'"
                        .format(appl_string, meter))
                 raise NilmMetadataError(msg)
