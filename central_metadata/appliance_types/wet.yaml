@@ -36,10 +36,14 @@ washing machine:
     - type: electric water heater
   min_on_duration: 600
   min_off_duration: 300
-
+  synonyms:
+    - washer dryer
+  
 washer dryer:
   parent: washing machine
   components: *dryerElement
+  synonyms:
+    - washing machine
 
 #------------ DISH WASHING --------------------------
 
