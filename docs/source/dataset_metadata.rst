@@ -25,7 +25,9 @@ Metadata attributes (some of these attributes are adapted from the
 Dublin Core Metadata Initiative (DCMI)):
 
 :name: (string) (required) Short name for the dataset.  e.g. 'REDD' or
-       'UK-DALE'.  Equivalent DCMI element is 'title'.
+       'UK-DALE'.  Equivalent DCMI element is 'title'.  If this
+       dataset is the output of a disaggregation algorithm then `name`
+       will be set to a short name for the algorithm; e.g. 'CO' or 'FHMM'.
 :long_name: (string) Full name of the dataset, eg. 'Reference Energy
             Disaggregation Data Set'.
 :creators: (list of strings) in the format '<Lastname>,
