@@ -94,3 +94,6 @@ sockets:
 
 subpanel:
   parent: appliance
+
+bouncy castle pump:
+  parent: motor
