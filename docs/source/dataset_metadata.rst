@@ -383,6 +383,8 @@ Each appliance dict has:
 :manufacturer: (string)
 :brand: (string)
 :original_name: (string)
+:model_url: (string) URL for this model of appliance
+:manufacturer_url: (string) URL for the manufacturer
 :dates_active: (list of `TimeFrame`_ objects, see below) Can be used to specify
                a change in appliance over time (for example if one
                appliance is replaced with another).
