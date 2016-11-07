@@ -5,6 +5,7 @@ from os.path import isdir, isfile, join, splitext
 from os import listdir
 from sys import stderr
 from copy import deepcopy
+from six import iteritems
 from .object_concatenation import get_appliance_types
 
 
@@ -107,7 +108,7 @@ def _load_file(yaml_dir, yaml_filename):
 
 
 def _deep_copy_meters(elec_meters):
-    for meter_instance, meter in elec_meters.iteritems():
+    for meter_instance, meter in iteritems(elec_meters):
         elec_meters[meter_instance] = deepcopy(meter)
 
 
@@ -131,10 +132,10 @@ def _sanity_check_meters(meters, meter_devices):
     * Make sure all meter devices map to meter_device keys
     * Makes sure all IDs are unique
     """
-    if len(meters.keys()) != len(set(meters.keys())):
+    if len(meters) != len(set(meters)):
         raise NilmMetadataError("elec_meters not unique")
 
-    for meter_instance, meter in meters.iteritems():
+    for meter_instance, meter in iteritems(meters):
         assert meter['device_model'] in meter_devices
 
 
@@ -197,9 +198,9 @@ def _sanity_check_appliances(building_metadata):
         instances = appliance_instances.setdefault(appl_type, [])
         instances.append(appliance['instance'])
 
-    for appliance_type, instances in appliance_instances.iteritems():
+    for appliance_type, instances in iteritems(appliance_instances):
         instances.sort()
-        correct_instances = range(1, len(instances)+1)
+        correct_instances = list(range(1, len(instances)+1))
         if instances != correct_instances:
             msg = ("In building {:d}, appliance '{}' appears {:d} time(s)."
                    " Yet the list of instances is '{}'.  The list of instances"
