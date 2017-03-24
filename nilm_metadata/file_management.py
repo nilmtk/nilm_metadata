@@ -7,6 +7,7 @@ from sys import getfilesystemencoding
 import yaml
 
 
+
 def get_appliance_types_from_disk():
     obj_filenames = _find_all_appliance_type_files()
     obj_cache = {}
@@ -25,7 +26,6 @@ def _find_all_appliance_type_files():
 
 
 def _get_appliance_types_directory():
-    print(_path_to_directory('central_metadata', 'appliance_types'))
     return _path_to_directory('central_metadata', 'appliance_types')
 
 
@@ -58,6 +58,4 @@ def _get_module_directory():
     if not isdir(path_to_this_file):
         path_to_this_file = getcwd()
     assert isdir(path_to_this_file), path_to_this_file + ' is not a directory'
-    print(path_to_this_file)
-    print("MODULE")
     return path_to_this_file

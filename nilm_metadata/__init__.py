@@ -8,4 +8,4 @@ _ROOT = os.path.abspath(os.path.dirname(__file__))
 def get_data(path):
     return os.path.join(_ROOT, 'central_metadata', path)
 
-print get_data('appliance_types/appliance.yaml')
+
