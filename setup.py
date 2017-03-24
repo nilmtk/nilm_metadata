@@ -65,7 +65,7 @@ setup(
     name='nilm_metadata',
     version='0.2.0',
     packages = find_packages(),
-    install_requires = ['PyYAML'],
+    #install_requires = ['PyYAML'],
     description='Concatenate NILM metadata',
     author='Jack Kelly',
     author_email='jack.kelly@imperial.ac.uk',
@@ -76,7 +76,6 @@ setup(
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT',
         'Programming Language :: Python',
         'Topic :: Scientific/Engineering :: Mathematics',
     ],
