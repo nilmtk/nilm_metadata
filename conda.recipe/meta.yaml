@@ -1,0 +1,32 @@
+{% set version = "0.2" %}
+package:
+  name: nilm_metadata
+  version: {{ version }}
+
+source:
+  fn: nilm_metadata-{{ version }}.tar.gz
+  url: https://github.com/nilmtk/nilm_metadata/archive/{{ version }}.tar.gz
+
+build:
+  entry_points:
+    - anaconda = binstar.scripts.cli:main
+    - binstar = binstar_client.scripts.cli:main
+    - conda-server = binstar_client.scripts.cli:main
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+    - setuptools
+    - pyyaml
+    - dateutil
+    - pytz
+
+about:
+  home: abc
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: summary
