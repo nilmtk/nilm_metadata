@@ -425,10 +425,10 @@ objects, but it comes in handy for REDD::
     multiple: true
     meters: [6]
 
-The full description of the REDD dataset using NILM Metadata can be
-found in the NILMTK project (at the time of writing, the `files are in
-the develop branch
-<https://github.com/nilmtk/nilmtk/tree/develop/nilmtk/dataset_converters/redd/metadata>`_).
+The `full description of the REDD dataset using NILM Metadata can be
+found in the NILMTK project
+<https://github.com/nilmtk/nilmtk/tree/master/nilmtk/dataset_converters/redd/metadata>`_
+along with the `metadata descriptions for many other datasets <https://github.com/nilmtk/nilmtk/tree/master/nilmtk/dataset_converters>`_.
 
 Summary
 -------

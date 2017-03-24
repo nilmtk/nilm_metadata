@@ -1,6 +1,7 @@
 from __future__ import print_function, division
 from inspect import currentframe, getfile, getsourcefile
-from os.path import dirname, join, isdir, walk, abspath
+from os.path import dirname, join, isdir, abspath
+import os
 from os import getcwd
 from sys import getfilesystemencoding
 import yaml
@@ -18,7 +19,7 @@ def get_appliance_types_from_disk():
 
 
 def _find_all_appliance_type_files():
-    filenames = _find_all_files_with_suffix('.yaml', 
+    filenames = _find_all_files_with_suffix('.yaml',
                                             _get_appliance_types_directory())
     return filenames
 
@@ -28,15 +29,14 @@ def _get_appliance_types_directory():
 
 
 def _find_all_files_with_suffix(suffix, directory):
-    # Find all files with suffix, recursively.
+    """Find all files with suffix, recursively."""
     accumulator = []
-    def select_object_files(accumulator, dirname, fnames):
-        new_files = [join(dirname, fname) for fname in fnames 
+
+    for root, dirs, fnames in os.walk(directory):
+        new_files = [os.path.join(root, fname) for fname in fnames
                      if fname.endswith(suffix)]
         accumulator.extend(new_files)
-        fnames = filter(lambda fname: fname != '.git', fnames)
 
-    walk(directory, select_object_files, accumulator)
     return accumulator
 
 

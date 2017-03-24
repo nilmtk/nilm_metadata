@@ -25,7 +25,9 @@ Metadata attributes (some of these attributes are adapted from the
 Dublin Core Metadata Initiative (DCMI)):
 
 :name: (string) (required) Short name for the dataset.  e.g. 'REDD' or
-       'UK-DALE'.  Equivalent DCMI element is 'title'.
+       'UK-DALE'.  Equivalent DCMI element is 'title'.  If this
+       dataset is the output of a disaggregation algorithm then `name`
+       will be set to a short name for the algorithm; e.g. 'CO' or 'FHMM'.
 :long_name: (string) Full name of the dataset, eg. 'Reference Energy
             Disaggregation Data Set'.
 :creators: (list of strings) in the format '<Lastname>,
@@ -91,11 +93,12 @@ Dublin Core Metadata Initiative (DCMI)):
 MeterDevice
 -----------
 
-Metadata describing each model of electricity meter used in the
-dataset.  (Please note that `ElecMeter`_ is used for representing
-individual *instances* of meters in a building whilst ``MeterDevice`` is
-used to represent information common to all instances of a specific
-make and model of meter).
+Metadata describing every model of meter used in the dataset.  (Please
+note that `ElecMeter`_ is used for representing individual *instances*
+of meters in a building whilst ``MeterDevice`` is used to represent
+information common to all instances of a specific make and model of
+meter).  Think of this section as a catalogue of meter models used in
+the dataset.
 
 * Location in YAML: ``meter_devices.yaml``
 * Location in HDF5: ``store.root._v_attrs.metadata`` in ``meter_devices``
@@ -114,19 +117,22 @@ Values are dicts with these keys:
 :max_sample_period: (number) (required) The maximum permissible length
                    of time between consecutive samples.  We assume the
                    meter is switched off during any gap longer than
-                   ``max_sample_period``.
+                   ``max_sample_period``.  In other words, we define a
+                   'gap' to be any two samples which are more than
+                   ``max_sample_period`` apart.
 :measurements: (list) (required) The order is the order of the columns
   in the data table.
 
    :physical_quantity: (string) (required) One of {'power', 'energy',
                        'cumulative energy', 'voltage', 'current',
-                       'frequency', 'power factor', 'state', 'phase angle'}.  
+                       'frequency', 'power factor', 'state', 'phase
+                       angle', 'total harmonic distortion', 'temperature'}.  
                        'state' columns store an integer
                        state ID where 0 is off and >0 refers to
                        defined states. (TODO: store mapping of state
                        ID per appliance to state name).  Units: phase angle:
                        degrees; power: watts; energy: kWh; voltage:
-                       volts; current: amps
+                       volts; current: amps; temperature: degrees Celsius.
    :type: (string) (required for 'power' and 'energy') Alternative
            Current (AC) Type. One of {'reactive', 'active',
            'apparent'}.
@@ -163,6 +169,8 @@ Building
               Each value is an ``ElecMeter``. See section below on
               `ElecMeter`_.
 :appliances: (list of dicts) (required) See section below on `Appliance`_.
+:water_meters: (dict of dicts) Same structure as ``elec_meters``.
+:gas_meters: (dict of dicts) Same structure as ``elec_meters``.
 :description: (string)
 :rooms: (list of dicts):
 
@@ -217,10 +225,11 @@ ElecMeters are the values of the ``elec_meters`` dict of each building (see the
 section on `Building`_ metadata above).
 
 :device_model: (string) (required) ``model`` which keys into ``meter_devices``
-:submeter_of: (int) (required) the meter instance of the upstream meter.  Or 0
-              to mean "one of the site_meters".  In practice, 0 will
-              be interpreted to mean "downstream of a 'MeterGroup' 
-              representing all the site meters summed together".
+:submeter_of: (int) (required) the meter instance of the upstream
+              meter.  Or set to ``0`` to mean "*one of the
+              site_meters*".  In practice, ``0`` will be interpreted to
+              mean "downstream of a 'MeterGroup' representing all the
+              site meters summed together".
 :submeter_of_is_uncertain: (boolean) Set to true if the value for
                            `submeter_of` is uncertain.
 :upstream_meter_in_building: (int) If the upstream meter is
@@ -230,11 +239,36 @@ section on `Building`_ metadata above).
                              the same building as this meter.
 :site_meter: (boolean): required and set to True if this is a site
              meter (i.e. furthest upstream meter) otherwise not
-             required.  If there are multiple site meters in *series*
-             then set `submeter_of` in all but one of the site meters
-             and, for the appliance meters, set `submeter_of` to 0.
+             required.  If there are multiple mains phases
+             (e.g. 3-phase mains) or multiple mains 'splits' (e.g. in
+             North America where there are two 120 volt splits) then
+             set ``site_meter=true`` in every site meter.  All
+             non-site-meters directly downstream of the site meters
+             should set ``submeter_of=0``.  Optionally also use
+             ``phase`` to describe which phase this meter measures.
+             What happens if there are multiple site meters in
+             *parallel* (i.e. there are redundant meters)?  For
+             example, perhaps there is a site meter installed by the
+             utility company which provides infrequent readings; and
+             there is also a fancy digital site meter which measures
+             at the same point in the wiring tree and so, in a sense,
+             the utility meter can be considered 'redundant' but is
+             included in the dataset for comparison). In this
+             situation, set ``site_meter=true`` in every site meter.
+             Then set ``disabled=true`` in all but the 'favoured' site
+             meter (which would usually be the site meter which
+             provides the 'best' readings).  It is important to set
+             ``disabled=true`` so NILMTK does not sum together
+             parallel site meters.  The disabled site meters should
+             also set ``submeter_of`` to the ID of the enabled site
+             meter.  All non-site-meters directly downstream of site
+             meters should set ``submeter_of=0``.
+:utility_meter: (boolean) required and set to True if this is meter
+                was installed by the utility company. Otherwise not
+                required.
 :timeframe: (`TimeFrame`_ object)
 :name: (string) (optional) e.g. 'first floor total'.
+:phase: (int or string) (optional) Used in multiple-phase setups.
 
 .. _ElecMeter-room:
 
@@ -287,6 +321,10 @@ section on `Building`_ metadata above).
    For more details, see the docstring of 
    ``nilmtk.ElecMeter._get_stat_from_cache_or_compute()``.
 
+WaterMeter and GasMeter
+-----------------------
+
+Same attributes as `ElecMeter`_.
 
 .. _appliance-schema:
 
@@ -311,9 +349,11 @@ Each appliance dict has:
                      responsible for most of the power demand on this
                      meter?
 :on_power_threshold: (number) watts.  Not required.  Default is taken
-                     from the appliance `type`.
-:minimum_off_duration: (number) (seconds) 
-:minimum_on_duration: (number) (seconds)
+                     from the appliance `type`.  The threshold (in
+                     watts) used to decide if the appliance is `on` or `off`.
+:max_power: (number) watts.  Not required.
+:min_off_duration: (number) (seconds)  Not required.
+:min_on_duration: (number) (seconds)  Not required.
 :room: see `ElecMeter-room`_
 :multiple: (boolean) True if there are more than one 
            of these appliances represented by this single
@@ -332,7 +372,7 @@ Each appliance dict has:
    :certification_name: (string) e.g. 'SEDBUK' or 'Energy Star 5.0'
    :rating: (string) e.g. 'A+'
 
-:nominal_consumption: (dict):
+:nominal_consumption: (dict):  Specifications reported by the manufacturer.
 
    :on_power: (number) active power in watts when on.
    :standby_power: (number) active power in watts when in standby.
@@ -344,6 +384,8 @@ Each appliance dict has:
 :manufacturer: (string)
 :brand: (string)
 :original_name: (string)
+:model_url: (string) URL for this model of appliance
+:manufacturer_url: (string) URL for the manufacturer
 :dates_active: (list of `TimeFrame`_ objects, see below) Can be used to specify
                a change in appliance over time (for example if one
                appliance is replaced with another).
@@ -353,6 +395,7 @@ Each appliance dict has:
 :part_number: (string)
 :gtin: (int) http://en.wikipedia.org/wiki/Global_Trade_Item_Number
 :version: (string)
+:portable: (boolean)
 
 Additional properties are specified for some Appliance Types.  Please
 look up objects in

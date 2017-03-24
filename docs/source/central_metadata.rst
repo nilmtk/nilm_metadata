@@ -156,8 +156,8 @@ Has many of the attributes that :ref:`appliance-schema` has, with the addition
 of:
 
 * on_power_threshold
-* minimum_off_duration
-* minimum_on_duration
+* min_off_duration
+* min_on_duration
 * control
 * components
 
@@ -354,7 +354,7 @@ categorical variables, specify the categorical distribution.
             <http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_
             e.g. 'GB' or 'US'.
 
-ApplianceModel
+DisaggregationModel
 --------------
 
 This is not especially well defined yet. Just an initial sketch.  The
@@ -367,7 +367,7 @@ appliance type.
              optimisation'}
 :parameters: (dict) Parameters specific to each model type.
 
-ApplianceModel re-uses several properties from :ref:`prior-schema` :
+DisaggregationModel re-uses several properties from :ref:`prior-schema` :
 
 * training_data
 * specific_to

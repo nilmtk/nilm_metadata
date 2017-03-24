@@ -93,7 +93,8 @@ The following paper describes NILM metadata in detail:
 * Jack Kelly and William Knottenbelt (2014). **Metadata for Energy
   Disaggregation**. In The 2nd IEEE International Workshop on Consumer
   Devices and Systems (CDS 2014) in Västerås, Sweden.
-  [arXiv:1403.5946](http://arxiv.org/abs/1403.5946)
+  arXiv:[1403.5946](http://arxiv.org/abs/1403.5946)
+  DOI:[10.1109/COMPSACW.2014.97](http://dx.doi.org/10.1109/COMPSACW.2014.97)
 
 Bibtex:
 
@@ -107,7 +108,8 @@ address = {V{\" a}ster{\aa}s, Sweden},
 booktitle = {The 2nd IEEE International Workshop on Consumer Devices and Systems (CDS 2014)},
 archivePrefix = {arXiv},
 arxivId = {1403.5946},
-eprint = {1403.5946}
+eprint = {1403.5946},
+doi = {10.1109/COMPSACW.2014.97}
 }
 ```
 

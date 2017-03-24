@@ -119,7 +119,7 @@ ethernet switch:
   parent: ICT appliance
   subtypes:
     - 1gigabit
-    - 100metabit
+    - 100megabit
 
 ethernet hub:
   parent: ethernet switch

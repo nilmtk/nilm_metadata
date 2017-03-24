@@ -1,18 +1,19 @@
 from __future__ import print_function, division
-import json, yaml
 from copy import deepcopy
-from file_management import get_appliance_types_from_disk
+from .file_management import get_appliance_types_from_disk
+from six import iteritems
 
 
 def get_appliance_types():
     """
     Returns
     -------
-    dict of all appliance types.  Fully concatenated and with components 
+    dict of all appliance types.  Fully concatenated and with components
     recursively resolved.
     """
     appliance_types_from_disk = get_appliance_types_from_disk()
-    appliance_types = _concatenate_all_appliance_types(appliance_types_from_disk)
+    appliance_types = _concatenate_all_appliance_types(
+        appliance_types_from_disk)
     return appliance_types
 
 
@@ -30,25 +31,26 @@ def _concatenate_all_appliance_types(appliance_types_from_disk):
     return concatenated
 
 
-def _concatenate_complete_appliance_type(appliance_type_name, 
-                                        appliance_types_from_disk):
+def _concatenate_complete_appliance_type(
+        appliance_type_name, appliance_types_from_disk):
 
-    concatenated_app_type = _concatenate_complete_object(appliance_type_name,
-                                                        appliance_types_from_disk)
+    concatenated_app_type = _concatenate_complete_object(
+        appliance_type_name, appliance_types_from_disk)
     categories = concatenated_app_type.setdefault('categories', {})
 
     # Instantiate components recursively
     components = concatenated_app_type.get('components', [])
     for i, component_appliance_obj in enumerate(components):
         component_type_name = component_appliance_obj['type']
-        component_type_obj = _concatenate_complete_appliance_type(component_type_name,
-                                                                  appliance_types_from_disk)
+        component_type_obj = _concatenate_complete_appliance_type(
+            component_type_name, appliance_types_from_disk)
         recursively_update_dict(component_appliance_obj, component_type_obj)
         components[i] = component_appliance_obj
 
         # Now merge component categories into owner appliance type object
         if not component_appliance_obj.get('do_not_merge_categories'):
-            recursively_update_dict(categories, component_appliance_obj.get('categories', {}))
+            recursively_update_dict(
+                categories, component_appliance_obj.get('categories', {}))
 
     return concatenated_app_type
 
@@ -64,11 +66,11 @@ def _concatenate_complete_object(object_name, object_cache):
     """
     Returns
     -------
-    merged_object: dict.  
+    merged_object: dict.
         If `child_object` is None then merged_object will be the object
         identified by `object_name` merged with its ancestor tree.
-        If `child_object` is not None then it will be merged as the 
-        most-derived object (i.e. a child of object_name).  This is 
+        If `child_object` is not None then it will be merged as the
+        most-derived object (i.e. a child of object_name).  This is
         useful for appliances.
     """
     ancestors = _get_ancestors(object_name, object_cache)
@@ -85,7 +87,7 @@ def _concatenate_complete_object(object_name, object_cache):
         do_not_inherit.extend(['synonyms', 'description', 'do_not_inherit'])
         for property_to_not_inherit in do_not_inherit:
             merged_object.pop(property_to_not_inherit, None)
-        
+
         # Now, for each probability distribution, we tag it with a
         # 'distance' property, showing how far away it is from
         # the most derived object.
@@ -106,7 +108,7 @@ def _get_ancestors(appliance_type_name, appliance_types_from_disk):
     Arguments
     ---------
     appliance_type_name: string
-    
+
     Returns
     -------
     A list of dicts where each dict is an object. The first
@@ -120,11 +122,12 @@ def _get_ancestors(appliance_type_name, appliance_types_from_disk):
     if appliance_type_name is None:
         return []
 
-    # walk the inheritance tree from 
+    # walk the inheritance tree from
     # bottom upwards (which is the wrong direction
     # for actually doing inheritance)
     try:
-        current_appliance_type_dict = appliance_types_from_disk[appliance_type_name]
+        current_appliance_type_dict = appliance_types_from_disk[
+            appliance_type_name]
     except KeyError as e:
         msg = "'{}' not found!".format(appliance_type_name)
         raise ObjectConcatenationError(msg)
@@ -135,7 +138,8 @@ def _get_ancestors(appliance_type_name, appliance_types_from_disk):
     while current_appliance_type_dict.get('parent'):
         parent_type = current_appliance_type_dict['parent']
         try:
-            current_appliance_type_dict = appliance_types_from_disk[parent_type]
+            current_appliance_type_dict = appliance_types_from_disk[
+                parent_type]
         except KeyError as e:
             msg = ("Object '{}' claims its parent is '{}' but that"
                    " object is not recognised!"
@@ -151,7 +155,7 @@ def _get_ancestors(appliance_type_name, appliance_types_from_disk):
 
 def recursively_update_dict(dict_to_update, source_dict):
     """ Recursively extends lists in dict_to_update with lists in source_dict,
-    and updates dicts.    
+    and updates dicts.
 
     This function is required because Python's `dict.update()` function
     does not descend into dicts within dicts.
@@ -162,7 +166,7 @@ def recursively_update_dict(dict_to_update, source_dict):
         Updates `dict_to_update` in place.
     """
     source_dict = deepcopy(source_dict)
-    for key_from_source, value_from_source in source_dict.iteritems():
+    for key_from_source, value_from_source in iteritems(source_dict):
         try:
             value_to_update = dict_to_update[key_from_source]
         except KeyError:
@@ -175,6 +179,7 @@ def recursively_update_dict(dict_to_update, source_dict):
                 assert isinstance(value_to_update, list)
                 value_to_update.extend(value_from_source)
                 if not any([isinstance(v, dict) for v in value_to_update]):
-                    dict_to_update[key_from_source] = list(set(value_to_update))
+                    dict_to_update[key_from_source] = list(
+                        set(value_to_update))
             else:
                 dict_to_update[key_from_source] = value_from_source

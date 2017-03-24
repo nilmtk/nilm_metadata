@@ -16,13 +16,15 @@ sewing machine:
   components:
     - type: motor
 
-#-------------- CLOTHES, HEALTH AND BEUTY -----------------
+#-------------- CLOTHES, HEALTH AND BEAUTY -----------------
 
 hair dryer:
   categories:
     electrical:
       - resistive
   parent: manual misc appliance
+  min_on_duration: 15
+  min_off_duration: 300
 
 hair straighteners:
   categories:
@@ -41,6 +43,10 @@ clothes iron:
     electrical:
       - resistive
   parent: manual misc appliance
+  subtypes:
+    - dry
+    - steam
+
 
 motorised chair:
   parent: manual misc appliance
@@ -88,3 +94,6 @@ sockets:
 
 subpanel:
   parent: appliance
+
+bouncy castle pump:
+  parent: motor
