@@ -75,6 +75,7 @@ def save_yaml_to_datastore(yaml_dir, store):
 
     # Load Dataset and MeterDevice metadata
     metadata = _load_file(yaml_dir, 'dataset.yaml')
+    print("Loaded metadata")
     meter_devices = _load_file(yaml_dir, 'meter_devices.yaml')
     metadata['meter_devices'] = meter_devices
     store.save_metadata('/', metadata)
