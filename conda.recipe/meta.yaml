@@ -1,32 +1,23 @@
-{% set version = "0.2" %}
+# This file created by conda-build 3.10.9
+# meta.yaml template originally from:
+# C:\temp\pkg\nilm_metadata, last modified Sun Jun 24 19:00:51 2018
+# ------------------------------------------------
+
 package:
-  name: nilm_metadata
-  version: {{ version }}
-
+    name: nilm_metadata
+    version: 0.2.3.dev
 source:
-  fn: nilm_metadata-{{ version }}.tar.gz
-  url: https://github.com/nilmtk/nilm_metadata/archive/{{ version }}.tar.gz
-
+    git_url: https://github.com/nilmtk/nilm_metadata.git
 build:
-  entry_points:
-    - anaconda = binstar.scripts.cli:main
-    - binstar = binstar_client.scripts.cli:main
-    - conda-server = binstar_client.scripts.cli:main
-
+    string: '0'
 requirements:
-  build:
-    - python
-    - setuptools
-  run:
-    - python
-    - setuptools
-    - pyyaml
-    - dateutil
-    - pytz
-
-about:
-  home: abc
-  license: MIT
-  license_family: MIT
-  license_file: LICENSE
-  summary: summary
+    host:
+        - python 
+        - setuptools
+    run:
+        - PyYAML
+        - pandas
+        - six
+extra:
+    copy_test_source_files: true
+    final: true
