@@ -12,8 +12,8 @@ Following Segment of this file was taken from the pandas project(https://github.
 
 MAJOR = 0
 MINOR = 2
-MICRO = 2
-ISRELEASED = True
+MICRO = 3
+ISRELEASED = False
 VERSION = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
 QUALIFIER = ''
 
@@ -64,7 +64,7 @@ write_version_py()
 
 setup(
 	name='nilm_metadata',
-	version='0.2.2',
+	version='0.2.3',
 	packages=find_packages(),
 	install_requires=['PyYAML', 'six', 'pandas'],
 	package_data={'': ['*.yaml']},
@@ -73,7 +73,6 @@ setup(
 	author='Jack Kelly',
 	author_email='jack.kelly@imperial.ac.uk',
 	url='https://github.com/nilmtk/nilm_metadata',
-	download_url='https://github.com/nilmtk/nilm_metadata/archive/0.2.2.tar.gz',
 	#    long_description=open('README.md').read(),
 	license='MIT',
 	classifiers=[
