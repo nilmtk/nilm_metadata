@@ -103,7 +103,7 @@ def _load_file(yaml_dir, yaml_filename):
     yaml_full_filename = join(yaml_dir, yaml_filename)
     if isfile(yaml_full_filename):
         with open(yaml_full_filename, 'rb') as fh:
-            return yaml.load(fh)
+            return yaml.safe_load(fh)
     else:
         print(yaml_full_filename, "not found.", file=stderr)
 

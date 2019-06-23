@@ -13,7 +13,7 @@ def get_appliance_types_from_disk():
     obj_cache = {}
     for filename in obj_filenames:
         with open(filename, 'rb') as fh:
-            objs = yaml.load(fh)
+            objs = yaml.safe_load(fh)
         obj_cache.update(objs)
 
     return obj_cache
