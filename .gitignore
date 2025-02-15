@@ -7,3 +7,7 @@ docs/build
 .idea/
 build/
 dist/
+.venv/
+venv/
+__pycache__/
+.pytest_cache/

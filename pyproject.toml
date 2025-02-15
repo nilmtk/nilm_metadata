@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools >= 75.0", "setuptools_scm[toml]", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nilm_metadata"
+dynamic = ["version"]
+dependencies = ["pandas", "PyYaml"]
+authors = [{ name = "Jack Kelly", email = "jack.kelly@imperial.ac.uk" }]
+description = "Concatenate NILM metadata"
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = [
+    "smartmeters",
+    "power",
+    "electricity",
+    "energy",
+    "analytics",
+    "redd",
+    "disaggregation",
+    "nilm",
+    "nialm",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache 2.0",
+    "Programming Language :: Python :: 2",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "sphinx"]
+
+[project.urls]
+Repository = "https://github.com/nilmtk/nilm_metadata"
+
+[tool.setuptools]
+packages = ["nilm_metadata"]
+
+[tool.setuptools_scm]
+version_scheme = "guess-next-dev"
+local_scheme = "node-and-date"
+fallback_version = "0.0.1.dev0+unknown"
+
+[tool.distutils.bdist_wheel]
+universal = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["nilm_metadata/tests"]
