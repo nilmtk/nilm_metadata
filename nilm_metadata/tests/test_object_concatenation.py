@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 from __future__ import print_function
 import unittest
-from ..object_concatenation import (recursively_update_dict, 
-                                    _concatenate_complete_object)
+from nilm_metadata.object_concatenation import (
+    recursively_update_dict, 
+    _concatenate_complete_object
+)
+
 
 class TestObjectConcatenation(unittest.TestCase):
 
