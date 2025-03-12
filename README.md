@@ -146,7 +146,7 @@ If you want to use the Python package in order to concatenate the
 common appliance metadata then please run:
 
 ```
-sudo python -m pip install -e .[dev]
+python -m pip install -e .[dev]
 ```
 
 To exceute tests please run from the project root directory:

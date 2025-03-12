@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "nilm_metadata"
 dynamic = ["version"]
-dependencies = ["pandas", "PyYaml"]
+dependencies = ["pandas~=2.2.0", "PyYaml"]
 authors = [{ name = "Jack Kelly", email = "jack.kelly@imperial.ac.uk" }]
 description = "Concatenate NILM metadata"
 readme = "README.md"
