@@ -1,0 +1,10 @@
+graft docs
+graft nilm_metadata
+# `-> adds all files inside a directory
+
+prune **/__pycache__
+prune docs/build
+# `-> excludes all files inside a directory
+
+global-include *.yaml
+# `-> matches file names (regardless of directory)

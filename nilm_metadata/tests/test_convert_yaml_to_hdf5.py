@@ -2,7 +2,9 @@
 from __future__ import print_function
 import unittest
 from nilm_metadata.convert_yaml_to_hdf5 import (
-    _sanity_check_appliances, NilmMetadataError)
+    _sanity_check_appliances,
+    NilmMetadataError
+)
 
 
 class TestConvertYamlToHdf5(unittest.TestCase):

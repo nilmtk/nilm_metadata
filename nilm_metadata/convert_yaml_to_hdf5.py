@@ -6,7 +6,7 @@ from os import listdir
 from sys import stderr
 from copy import deepcopy
 from six import iteritems
-from .object_concatenation import get_appliance_types
+from nilm_metadata.object_concatenation import get_appliance_types
 
 
 class NilmMetadataError(Exception):

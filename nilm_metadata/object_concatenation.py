@@ -1,7 +1,7 @@
 from __future__ import print_function, division
 from copy import deepcopy
-from .file_management import get_appliance_types_from_disk
 from six import iteritems
+from nilm_metadata.file_management import get_appliance_types_from_disk
 
 
 def get_appliance_types():

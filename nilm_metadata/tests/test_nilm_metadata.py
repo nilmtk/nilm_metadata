@@ -3,7 +3,7 @@ from __future__ import print_function
 import unittest
 from copy import deepcopy
 from six import iteritems
-from ..object_concatenation import get_appliance_types
+from nilm_metadata.object_concatenation import get_appliance_types
 
 
 class TestNilmMetadata(unittest.TestCase):

@@ -146,11 +146,20 @@ If you want to use the Python package in order to concatenate the
 common appliance metadata then please run:
 
 ```
-sudo python setup.py develop
+python -m pip install -e .[dev]
 ```
 
-Please do *not* use `python setup.py install` until I have updated
-`setup.py` to copy the relevant `*.yaml` files.  See [issue #6](https://github.com/nilmtk/nilm_metadata/issues/6).
+To exceute tests please run from the project root directory:
+
+```
+pytest
+```
+
+To generate documentation please run from the project root directory:
+
+```
+make -C docs singlehtml
+```
 
 Related projects
 ================
