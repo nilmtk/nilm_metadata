@@ -142,8 +142,10 @@ using the correct YAML format.  For example: [YAMLlint](http://www.yamllint.com)
 Installation
 ============
 
+This Python package uses `uv` for installation. `uv` is a fast and modern Python package manager that replaces tools like `pip` and `virtualenv`, with support for pyproject.toml and ultra-fast dependency resolution. To install `uv`, please follow the instructions given in [Astral Docs](https://docs.astral.sh/uv/#installation).
+
 If you want to use the Python package in order to concatenate the
-common appliance metadata then please run:
+common appliance metadata, then please run:
 
 ```
 uv pip install git+https://github.com/nilmtk/nilm_metadata.git
