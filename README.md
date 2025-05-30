@@ -146,7 +146,7 @@ If you want to use the Python package in order to concatenate the
 common appliance metadata then please run:
 
 ```
-python -m pip install -e .[dev]
+uv pip install git+https://github.com/nilmtk/nilm_metadata.git
 ```
 
 To exceute tests please run from the project root directory:
