@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=65.5.0", "setuptools_scm[toml]", "wheel"]
+requires = ["setuptools>=77", "setuptools_scm[toml]>=8", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -10,7 +10,8 @@ dependencies = ["pandas~=2.2.0", "pyyaml"]
 authors = [{ name = "Jack Kelly", email = "jack.kelly@imperial.ac.uk" }]
 description = "Concatenate NILM metadata"
 readme = "README.md"
-license = { file = "LICENSE" }
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 keywords = [
     "smartmeters",
     "power",
@@ -25,7 +26,6 @@ keywords = [
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: Apache 2.0",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -33,13 +33,27 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "sphinx"]
+hdf5 = ["tables>=3.9"]
+dev = ["furo>=2024.8.6", "pytest>=8", "sphinx>=8"]
 
 [project.urls]
+Homepage = "https://nilmtk.github.io/"
+Documentation = "https://nilm-metadata.readthedocs.io/"
 Repository = "https://github.com/nilmtk/nilm_metadata"
+Issues = "https://github.com/nilmtk/nilm_metadata/issues"
 
 [tool.setuptools]
-packages = ["nilm_metadata"]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ["nilm_metadata*"]
+exclude = ["nilm_metadata.tests*"]
+
+[tool.setuptools.package-data]
+nilm_metadata = [
+    "central_metadata/*.yaml",
+    "central_metadata/appliance_types/*.yaml",
+]
 
 [tool.setuptools_scm]
 version_scheme = "guess-next-dev"

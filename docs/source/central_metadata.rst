@@ -348,14 +348,14 @@ categorical variables, specify the categorical distribution.
   :buildings: (list of dicts):
 
     :building_id: (int)
-    :dates: (list of :ref:`interval-schema` objects)
+    :dates: (list of :ref:`timeframe-schema` objects)
     :country: (string) standard two-letter country code defined by 
             `ISO 3166-1 alpha-2
             <http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_
             e.g. 'GB' or 'US'.
 
 DisaggregationModel
---------------
+-------------------
 
 This is not especially well defined yet. Just an initial sketch.  The
 basic idea is that we would be able to specify models for each
