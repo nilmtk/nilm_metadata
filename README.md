@@ -1,182 +1,163 @@
-NILM METADATA
-=============
+# NILM Metadata
 
-NILM Metadata (where 'NILM' stands for 'non-instrusive load
-monitoring') is a metadata framework for describing appliances, meters,
-measurements, buildings and datasets.
+NILM Metadata gives energy datasets a shared vocabulary and structure. It is
+the place to define appliance names, meter relationships, buildings, and
+dataset metadata so that tools do not need a different naming rule for every
+dataset.
 
-Please jump in and add to or modify the schema and documentation!
+This repository contains:
 
-### Documentation
+- the controlled appliance vocabulary in YAML;
+- the dataset, building, meter, and appliance schema;
+- Python helpers that resolve inherited appliance types; and
+- an optional YAML-to-HDF5 converter.
 
-The
-[documentation is available online](http://nilm-metadata.readthedocs.org).
+It does not contain energy readings, dataset downloads, disaggregation models,
+or benchmark results.
 
-If you're new to NILM Metadata then please read this README and then
-dive into the [tutorial](http://nilm-metadata.readthedocs.org/en/latest/tutorial.html)
-to find out how 
-to see a worked example.
+## Start here
 
-Or, if you are already familiar with NILM Metadata then perhaps you
-want direct access to the full description of the
-"[Dataset metadata](http://nilm-metadata.readthedocs.org/en/latest/dataset_metadata.html)".
+| What do you want to do? | Use |
+| --- | --- |
+| Convert or inspect energy data | [NILMTK core](https://github.com/nilmtk/nilmtk) |
+| Define an appliance name or dataset schema | **NILM Metadata — this repository** |
+| Run or add a disaggregation model | [nilmtk-contrib](https://github.com/nilmtk/nilmtk-contrib) |
+| Run T1/T2/T3 protocols or submit a result | [NILMbench](https://github.com/nilmtk/nilmbench) |
 
-## There are two sides to NILM Metadata:
+The [NILMTK start page](https://nilmtk.github.io/) connects the four projects.
 
-### 1) A schema describing energy datasets
+## Install and verify
 
-Modelled objects include:
+Use Python 3.11 for the shared NILMTK environment. Install
+[uv](https://docs.astral.sh/uv/getting-started/installation/), then run:
 
-* electricity meters (whole-home and individual appliance meters)
-  * wiring hierarchy of meters
-  * a controlled vocabulary for measurement names
-  * description of pre-processing applied
-  * storage of pre-processed statistics
-* domestic appliances
-  * a controlled vocabulary for appliance names
-  * each appliance can contain any number of components (e.g. a
-    light fitting can contain multiple lamps and a dimmer)
-  * a list of time periods when each appliance was active
-  * manufacturer, model, nominal power consumption etc.
-* a mapping of which appliances are connected to which meters
-* buildings
-* datasets 
+```bash
+uv venv --python 3.11
+source .venv/bin/activate
+uv pip install \
+  "nilm-metadata @ git+https://github.com/nilmtk/nilm_metadata.git"
+python -c "from nilm_metadata import get_appliance_types; print(get_appliance_types()['fridge']['type'])"
+```
 
-The metadata itself can be either
-[YAML](http://en.wikipedia.org/wiki/YAML) or JSON.
+The last command should print `fridge`. On Windows PowerShell, activate the
+environment with `.venv\Scripts\Activate.ps1`.
 
-### 2) Central metadata
+If you need the standalone YAML-to-HDF5 converter, install the HDF5 extra:
 
-Common info about appliances is stored in NILM Metadata.  This includes:
+```bash
+uv pip install \
+  "nilm-metadata[hdf5] @ git+https://github.com/nilmtk/nilm_metadata.git"
+```
 
-* Categories for each appliance type
-* prior knowledge about the distribution of variables such as:
-  * on power
-  * on duration
-  * usage in terms of hour per day
-  * appliance correlations (e.g. that the TV is usually on if the
-    games console is on)
-* valid additional properties for each appliance
-* mapping from country codes to nominal mains voltage ranges
+NILMTK core already supplies its own HDF5 dependency.
 
-The common info about appliances uses a simple but powerful
-inheritance mechanism to allow appliances to inherit from a other
-appliances.  For example, `laptop computer` is a specialisation of
-`computer` and the two share several properties (e.g. both are in the
-`ICT` category).  So `laptop computer` inherits from `computer` and
-modifies and adds any properties it needs.  In this way, we can
-embrace the
-["don't repeat yourself (DRY)"](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
-principal by exploiting the relationship between appliances.
+## Use the appliance vocabulary
 
-### Python utilities
-
-NILM Metadata comes with a Python module which collects all 
-ApplianceTypes in `central_metadata/appliance_types/*.yaml`,
-performs inheritance and instantiates components and
-returns a dictionary where each key is an ApplianceType name and each
-value is an ApplianceType dict.  Here's how to use it:
+`get_appliance_types()` returns the resolved vocabulary. Parent fields and
+components have already been inherited.
 
 ```python
 from nilm_metadata import get_appliance_types
+
 appliance_types = get_appliance_types()
+fridge = appliance_types["fridge"]
+
+print(fridge["categories"])
+print(fridge.get("synonyms", []))
 ```
 
-NILM Metadata also comes with a `convert_yaml_to_hdf5()` function
-which will convert a YAML instance of NILM Metadata to the HDF5 file
-format.
+The source vocabulary is split by domain under
+[`nilm_metadata/central_metadata/appliance_types`](nilm_metadata/central_metadata/appliance_types).
 
-## Research paper describing NILM metadata
+## Describe a dataset
 
-The following paper describes NILM metadata in detail:
+A dataset metadata directory normally contains:
 
-* Jack Kelly and William Knottenbelt (2014). **Metadata for Energy
-  Disaggregation**. In The 2nd IEEE International Workshop on Consumer
-  Devices and Systems (CDS 2014) in Västerås, Sweden.
-  arXiv:[1403.5946](http://arxiv.org/abs/1403.5946)
-  DOI:[10.1109/COMPSACW.2014.97](http://dx.doi.org/10.1109/COMPSACW.2014.97)
-
-Bibtex:
-
+```text
+metadata/
+├── dataset.yaml
+├── meter_devices.yaml
+├── building1.yaml
+└── building2.yaml
 ```
-@inproceedings{NILM_Metadata,
-title = {{Metadata for Energy Disaggregation}},
-author = {Kelly, Jack and Knottenbelt, William},
-year = {2014},
-month = jul,
-address = {V{\" a}ster{\aa}s, Sweden},
-booktitle = {The 2nd IEEE International Workshop on Consumer Devices and Systems (CDS 2014)},
-archivePrefix = {arXiv},
-arxivId = {1403.5946},
-eprint = {1403.5946},
-doi = {10.1109/COMPSACW.2014.97}
+
+- `dataset.yaml` describes the dataset and its provenance.
+- `meter_devices.yaml` describes each meter model.
+- `buildingN.yaml` maps meters, wiring, and appliances for one building.
+
+Start with the [worked tutorial](https://nilm-metadata.readthedocs.io/en/latest/tutorial.html),
+then use the [dataset schema](https://nilm-metadata.readthedocs.io/en/latest/dataset_metadata.html)
+for the complete field reference.
+
+With the `hdf5` extra installed, write the YAML metadata into a NILMTK HDF5
+file with:
+
+```python
+from nilm_metadata import convert_yaml_to_hdf5
+
+convert_yaml_to_hdf5("metadata", "dataset.h5")
+```
+
+The converter appends metadata to the target HDF5 file. Keep the original YAML
+with the dataset: it is the readable source of truth.
+
+## Add or change an appliance type
+
+1. Search the existing YAML files for the canonical type and its synonyms.
+2. Edit the closest domain file. Reuse a parent instead of copying inherited
+   fields.
+3. Add a focused test when inheritance, components, or a public name changes.
+4. Run the complete local gate:
+
+```bash
+git clone https://github.com/nilmtk/nilm_metadata.git
+cd nilm_metadata
+uv sync --frozen --extra dev --extra hdf5
+uv run python scripts/check_docs.py
+uv run pytest
+uv run sphinx-build -E -W --keep-going -b html docs/source docs/build/html
+uv build
+uv run python scripts/check_distribution.py dist
+```
+
+A vocabulary PR should explain why the new canonical name is needed, list the
+source dataset labels it normalizes, and cite an external standard or dataset
+documentation when one exists.
+
+## Docker
+
+There is no metadata-only Docker image. The package is small and installs in
+the same Python environment as NILMTK. The general nilmtk-contrib development
+image includes it; NILMbench owns the pinned CPU and CUDA benchmark images.
+
+## Citation
+
+If you use NILM Metadata in research, cite the metadata paper:
+
+```bibtex
+@inproceedings{kelly2014metadata,
+  title     = {Metadata for Energy Disaggregation},
+  author    = {Kelly, Jack and Knottenbelt, William},
+  booktitle = {2014 IEEE 38th International Computer Software and
+               Applications Conference Workshops},
+  year      = {2014},
+  pages     = {578--583},
+  doi       = {10.1109/COMPSACW.2014.97}
 }
 ```
 
-Please cite this paper if you use NILM metadata in academic research.
-But please also be aware that the online documentation is more
-up-to-date than the paper.
+Paper: [DOI 10.1109/COMPSACW.2014.97](https://doi.org/10.1109/COMPSACW.2014.97) ·
+[arXiv:1403.5946](https://arxiv.org/abs/1403.5946)
 
+Also cite each dataset whose measurements you use. Cite model papers through
+nilmtk-contrib, and cite NILMbench only when using its protocols, runner, or
+leaderboard results.
 
-## JSON Schema has been depreciated
+## Documentation and support
 
-In
-[version 0.1 of the schema](https://github.com/nilmtk/nilm_metadata/tree/v0.1.0),
-we wrote a very comprehensive (and complex) schema using
-[JSON Schema](http://json-schema.org/) in order to automate the
-validation of metadata instances.  JSON Schema is a lovely language
-and can capture everything we need but, because our metadata is quite
-comprehensive, we found that using JSON Schema was a significant time
-drain and made it hard to move quickly and add new ideas to the
-metadata.  As such, when we moved from v0.1 to v0.2, the JSON Schema
-has been dropped.  Please use the
-[human-readable documentation](http://nilm-metadata.readthedocs.org)
-instead.  If there is a real desire for automated validation then we
-could resurrect the JSON Schema, but it is a fair amount of work to
-maintain.
+- [Tutorial](https://nilm-metadata.readthedocs.io/en/latest/tutorial.html)
+- [Dataset metadata reference](https://nilm-metadata.readthedocs.io/en/latest/dataset_metadata.html)
+- [Central appliance metadata reference](https://nilm-metadata.readthedocs.io/en/latest/central_metadata.html)
+- [Issues](https://github.com/nilmtk/nilm_metadata/issues)
 
-However, there are YAML validators freely available to make sure you are 
-using the correct YAML format.  For example: [YAMLlint](http://www.yamllint.com)
-
-
-Installation
-============
-
-This Python package uses `uv` for installation. `uv` is a fast and modern Python package manager that replaces tools like `pip` and `virtualenv`, with support for pyproject.toml and ultra-fast dependency resolution. To install `uv`, please follow the instructions given in [Astral Docs](https://docs.astral.sh/uv/#installation).
-
-If you want to use the Python package in order to concatenate the
-common appliance metadata, then please run:
-
-```
-uv pip install git+https://github.com/nilmtk/nilm_metadata.git
-```
-
-To exceute tests please run from the project root directory:
-
-```
-pytest
-```
-
-To generate documentation please run from the project root directory:
-
-```
-make -C docs singlehtml
-```
-
-Related projects
-================
-
-* [Project Haystack](http://project-haystack.org/), to quote their
-  website, "*is an open source initiative to develop tagging
-  conventions and taxonomies for building equipment and operational
-  data. We define standardized data models for sites, equipment, and
-  points related to energy, HVAC, lighting, and other environmental
-  systems.*"  Haystack is an awesome project but it does not specify a
-  controlled vocabulary for appliances, which is the meat of the
-  `nilm_metadata` project.  Where appropriate, `nilm_metadata` does
-  use similar properties to Haystack (e.g. the "site_meter" property
-  is borrowed directly from Haystack).
-* [WikiEnergy](http://wiki-energy.org/) "*A Universe of Energy Data,
-  Available Around the World*".
-* [sMAP metadata tags](http://www.eecs.berkeley.edu/~stevedh/smap2/tags.html)
-  - sMAP is Berkley's "Simple Measurement and Actuation Profile".
+NILM Metadata is licensed under the Apache License 2.0.
