@@ -2,8 +2,10 @@
 from __future__ import print_function
 import unittest
 from nilm_metadata.object_concatenation import (
-    recursively_update_dict, 
-    _concatenate_complete_object
+    ObjectConcatenationError,
+    _concatenate_complete_appliance_type,
+    _concatenate_complete_object,
+    recursively_update_dict,
 )
 
 
@@ -75,6 +77,52 @@ class TestObjectConcatenation(unittest.TestCase):
         on_duration = obj['distributions']['on_duration']
         self.assertEqual(on_duration[0], {'distance':2, 'description': 'a',
                                           'from_appliance_type': 'a'})
+
+    def test_inheritance_cycle_is_rejected(self):
+        objects = {
+            'a': {'parent': 'b'},
+            'b': {'parent': 'a'},
+        }
+
+        with self.assertRaisesRegex(
+                ObjectConcatenationError,
+                'Inheritance cycle detected: a -> b -> a'):
+            _concatenate_complete_object('a', objects)
+
+    def test_self_inheritance_is_rejected(self):
+        objects = {'a': {'parent': 'a'}}
+
+        with self.assertRaisesRegex(
+                ObjectConcatenationError,
+                'Inheritance cycle detected: a -> a'):
+            _concatenate_complete_object('a', objects)
+
+    def test_component_cycle_is_rejected(self):
+        objects = {
+            'a': {'components': [{'type': 'b'}]},
+            'b': {'components': [{'type': 'a'}]},
+        }
+
+        with self.assertRaisesRegex(
+                ObjectConcatenationError,
+                'Component cycle detected: a -> b -> a'):
+            _concatenate_complete_appliance_type('a', objects)
+
+    def test_missing_object_retains_a_clear_error(self):
+        with self.assertRaises(ObjectConcatenationError) as error:
+            _concatenate_complete_object('missing', {})
+
+        self.assertEqual(str(error.exception), "'missing' not found!")
+
+    def test_missing_parent_names_the_child_and_parent(self):
+        with self.assertRaises(ObjectConcatenationError) as error:
+            _concatenate_complete_object('a', {'a': {'parent': 'missing'}})
+
+        self.assertEqual(
+            str(error.exception),
+            "Object 'a' claims its parent is 'missing' but that object is not "
+            "recognised!",
+        )
 
 if __name__ == '__main__':
     unittest.main()
