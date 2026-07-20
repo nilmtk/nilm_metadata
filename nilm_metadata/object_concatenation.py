@@ -32,7 +32,15 @@ def _concatenate_all_appliance_types(appliance_types_from_disk):
 
 
 def _concatenate_complete_appliance_type(
-        appliance_type_name, appliance_types_from_disk):
+        appliance_type_name, appliance_types_from_disk, component_path=()):
+
+    if appliance_type_name in component_path:
+        cycle_start = component_path.index(appliance_type_name)
+        cycle = component_path[cycle_start:] + (appliance_type_name,)
+        raise ObjectConcatenationError(
+            "Component cycle detected: {}".format(" -> ".join(cycle)))
+
+    component_path = component_path + (appliance_type_name,)
 
     concatenated_app_type = _concatenate_complete_object(
         appliance_type_name, appliance_types_from_disk)
@@ -43,7 +51,7 @@ def _concatenate_complete_appliance_type(
     for i, component_appliance_obj in enumerate(components):
         component_type_name = component_appliance_obj['type']
         component_type_obj = _concatenate_complete_appliance_type(
-            component_type_name, appliance_types_from_disk)
+            component_type_name, appliance_types_from_disk, component_path)
         recursively_update_dict(component_appliance_obj, component_type_obj)
         components[i] = component_appliance_obj
 
@@ -125,29 +133,32 @@ def _get_ancestors(appliance_type_name, appliance_types_from_disk):
     # walk the inheritance tree from
     # bottom upwards (which is the wrong direction
     # for actually doing inheritance)
-    try:
-        current_appliance_type_dict = appliance_types_from_disk[
-            appliance_type_name]
-    except KeyError as e:
-        msg = "'{}' not found!".format(appliance_type_name)
-        raise ObjectConcatenationError(msg)
+    current_type = appliance_type_name
+    lineage = []
+    ancestors = []
+    while current_type:
+        if current_type in lineage:
+            cycle_start = lineage.index(current_type)
+            cycle = lineage[cycle_start:] + [current_type]
+            raise ObjectConcatenationError(
+                "Inheritance cycle detected: {}".format(" -> ".join(cycle)))
 
-    current_appliance_type_dict['type'] = appliance_type_name
-    ancestors = [current_appliance_type_dict]
-
-    while current_appliance_type_dict.get('parent'):
-        parent_type = current_appliance_type_dict['parent']
         try:
             current_appliance_type_dict = appliance_types_from_disk[
-                parent_type]
+                current_type]
         except KeyError as e:
-            msg = ("Object '{}' claims its parent is '{}' but that"
-                   " object is not recognised!"
-                   .format(current_appliance_type_dict['type'], e))
-            raise ObjectConcatenationError(msg)
+            if not lineage:
+                msg = "'{}' not found!".format(appliance_type_name)
+            else:
+                msg = ("Object '{}' claims its parent is '{}' but that"
+                       " object is not recognised!"
+                       .format(lineage[-1], current_type))
+            raise ObjectConcatenationError(msg) from e
 
-        current_appliance_type_dict['type'] = parent_type
+        current_appliance_type_dict['type'] = current_type
+        lineage.append(current_type)
         ancestors.append(current_appliance_type_dict)
+        current_type = current_appliance_type_dict.get('parent')
 
     ancestors.reverse()
     return ancestors
