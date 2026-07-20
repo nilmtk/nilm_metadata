@@ -15,14 +15,14 @@ This repository contains:
 It does not contain energy readings, dataset downloads, disaggregation models,
 or benchmark results.
 
-## Start here
+## Ecosystem repositories
 
-| What do you want to do? | Use |
+| Research task | Repository |
 | --- | --- |
-| Convert or inspect energy data | [NILMTK core](https://github.com/nilmtk/nilmtk) |
-| Define an appliance name or dataset schema | **NILM Metadata — this repository** |
-| Run or add a disaggregation model | [nilmtk-contrib](https://github.com/nilmtk/nilmtk-contrib) |
-| Run T1/T2/T3 protocols or submit a result | [NILMbench](https://github.com/nilmtk/nilmbench) |
+| Dataset conversion, meter access, preprocessing, and metrics | [NILMTK core](https://github.com/nilmtk/nilmtk) |
+| Appliance taxonomy, synonyms, meter relationships, and dataset schema | **NILM Metadata — this repository** |
+| Disaggregation model implementation and testing | [nilmtk-contrib](https://github.com/nilmtk/nilmtk-contrib) |
+| Fixed T1/T2/T3 evaluation and published result bundles | [NILMbench](https://github.com/nilmtk/nilmbench) |
 
 The [NILMTK start page](https://nilmtk.github.io/) connects the four projects.
 
@@ -99,7 +99,7 @@ convert_yaml_to_hdf5("metadata", "dataset.h5")
 ```
 
 The converter appends metadata to the target HDF5 file. Keep the original YAML
-with the dataset: it is the readable source of truth.
+with the dataset as the readable archival representation.
 
 ## Add or change an appliance type
 

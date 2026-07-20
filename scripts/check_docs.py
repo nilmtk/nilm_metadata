@@ -19,6 +19,10 @@ README = ROOT / "README.md"
 APPLIANCE_DIR = ROOT / "nilm_metadata" / "central_metadata" / "appliance_types"
 
 REQUIRED_TEXT = (
+    "Dataset conversion, meter access, preprocessing, and metrics",
+    "Appliance taxonomy, synonyms, meter relationships, and dataset schema",
+    "Disaggregation model implementation and testing",
+    "Fixed T1/T2/T3 evaluation and published result bundles",
     "https://nilmtk.github.io/",
     "https://github.com/nilmtk/nilmtk",
     "https://github.com/nilmtk/nilmtk-contrib",
